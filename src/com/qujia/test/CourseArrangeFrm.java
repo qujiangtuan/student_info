@@ -83,7 +83,7 @@ public class CourseArrangeFrm extends JFrame {
                     
                     JComboBox comboBox_1 = new JComboBox();
                     
-                    JLabel lblNewLabel_2 = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC77C\uC9DC:");
+                    JLabel lblNewLabel_2 = new JLabel("ㅇㅅㅇ...수강신청일자:");
                     
                     DatePicker datePicker = new DatePicker();
                     
