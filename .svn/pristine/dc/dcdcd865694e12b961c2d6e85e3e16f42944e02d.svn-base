@@ -1,0 +1,15 @@
+eclipse.preferences.version=1
+encoding//src/com/qujia/dao/AdminDao.java=UTF-8
+encoding//src/com/qujia/dao/BaseDao.java=UTF-8
+encoding//src/com/qujia/dao/ClassDao.java=UTF-8
+encoding//src/com/qujia/model/StudentClass.java=UTF-8
+encoding//src/com/qujia/model/UserType.java=UTF-8
+encoding//src/com/qujia/util/DBUtil.java=UTF-8
+encoding//src/com/qujia/util/DateUtil.java=UTF-8
+encoding//src/com/qujia/view/AddStudentFrm.java=UTF-8
+encoding//src/com/qujia/view/ClassManagerFrm.java=UTF-8
+encoding//src/com/qujia/view/EditPasswordFrm.java=UTF-8
+encoding//src/com/qujia/view/LoginFrm.java=UTF-8
+encoding//src/com/qujia/view/MainFrm.java=UTF-8
+encoding//src/com/qujia/view/StudentClassAddFrm.java=UTF-8
+encoding//src/com/qujia/view/StudentManagerFrm.java=UTF-8

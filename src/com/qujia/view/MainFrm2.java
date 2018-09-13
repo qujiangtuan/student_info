@@ -1,0 +1,259 @@
+package com.qujia.view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URI;
+
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import com.qujia.model.UserType;
+
+public class MainFrm2 extends JFrame {
+
+          private JPanel contentPane;
+          public static UserType userType;//登陆的用户类型
+          public static Object userObject;//用于哪个用户登陆
+          private JDesktopPane desktopPane_1;
+          /**
+           * Launch the application.
+           */
+          
+
+          /**
+           * Create the frame.
+           */
+          public MainFrm2(UserType userType,Object userObject) {
+                    this.userType=userType;
+                    this.userObject=userObject;
+                    
+                    setTitle("학사관리시스템");
+                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setBounds(100, 100, 904, 600);
+                    
+                    JMenuBar menuBar = new JMenuBar();
+                    setJMenuBar(menuBar);
+                    
+                    JMenu systemManagerMenu = new JMenu("시스템관리");
+                    systemManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/system.png")));
+                    systemManagerMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    menuBar.add(systemManagerMenu);
+                    
+                    JMenu managerStudentMenu = new JMenu("학생관리");
+                    managerStudentMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
+                    managerStudentMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    systemManagerMenu.add(managerStudentMenu);
+                    
+                    JMenuItem studentAddMenuItem = new JMenuItem("학생추가");
+                    studentAddMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/add.png")));
+                    studentAddMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        addStudent(ae);
+                              }
+                    });
+                    studentAddMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    managerStudentMenu.add(studentAddMenuItem);
+                    
+                    JMenuItem studentListMenuItem = new JMenuItem("학생리스트");
+                    studentListMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentList.png")));
+                    studentListMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        StudentManagerFrm studentManagerFrm=new StudentManagerFrm();
+                                        studentManagerFrm.setVisible(true);
+                                        desktopPane_1.add(studentManagerFrm);
+                              }
+                    });
+                    studentListMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    managerStudentMenu.add(studentListMenuItem);
+                    
+                    JMenu orgManagerMenu = new JMenu("조직관리");
+                    orgManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/college.png")));
+                    orgManagerMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    systemManagerMenu.add(orgManagerMenu);
+                    
+                    JMenu collegeMenu = new JMenu("학부");
+                    collegeMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    orgManagerMenu.add(collegeMenu);
+                    
+                    JMenu majorMenu = new JMenu("학과(전공)");
+                    majorMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    collegeMenu.add(majorMenu);
+                    
+                    JMenuItem majorAddMenuItem = new JMenuItem("학과(전공)추가");
+                    majorAddMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    majorMenu.add(majorAddMenuItem);
+                    
+                    JMenuItem majorManagerMenuItem = new JMenuItem("학과(전공)관리");
+                    majorManagerMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    majorMenu.add(majorManagerMenuItem);
+                    
+                    JMenu graduateMenu = new JMenu("대학관");
+                    graduateMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    collegeMenu.add(graduateMenu);
+                    
+                    JMenuItem graduateAddMenuItem = new JMenuItem("대학관추가");
+                    graduateAddMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    graduateMenu.add(graduateAddMenuItem);
+                    
+                    JMenuItem graduateManagerMenuItem = new JMenuItem("대학관관리");
+                    graduateManagerMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    graduateMenu.add(graduateManagerMenuItem);
+                    
+                    JMenuItem collegeAddMenuItem = new JMenuItem("학부추가");
+                    collegeAddMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    collegeMenu.add(collegeAddMenuItem);
+                    
+                    JMenuItem collegeManagerMenuItem = new JMenuItem("학부관리");
+                    collegeManagerMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    collegeMenu.add(collegeManagerMenuItem);
+                    
+                    JMenu affiliateMenu = new JMenu("부속기관");
+                    affiliateMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    orgManagerMenu.add(affiliateMenu);
+                    
+                    JMenuItem menuItem_7 = new JMenuItem("부속기관추가");
+                    menuItem_7.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    affiliateMenu.add(menuItem_7);
+                    
+                    JMenuItem menuItem_8 = new JMenuItem("부속기관관리");
+                    menuItem_8.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    affiliateMenu.add(menuItem_8);
+                    
+                    JMenu settingMenu = new JMenu("설정");
+                    settingMenu.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    settingMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/systemsetting.png")));
+                    menuBar.add(settingMenu);
+                    
+                    JMenuItem editPasswordMenuItem = new JMenuItem("안호변경");
+                    editPasswordMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    editPasswordMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        editPassword(ae);
+                              }
+                    });
+                    editPasswordMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/password.png")));
+                    settingMenu.add(editPasswordMenuItem);
+                    
+                    JMenuItem exitSystemMenuItem = new JMenuItem("시스템종료");
+                    exitSystemMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    exitSystemMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        if(JOptionPane.showConfirmDialog(MainFrm2.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
+                                                  System.exit(0);
+                                        }
+                              }
+                    });
+                    exitSystemMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/exit.png")));
+                    settingMenu.add(exitSystemMenuItem);
+                    
+                    JMenu menu_2 = new JMenu("학과관리");
+                    menu_2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menu_2.setIcon(new ImageIcon(MainFrm.class.getResource("/images/className.png")));
+                    menuBar.add(menu_2);
+                    
+                    JMenuItem menuItem_3 = new JMenuItem("학과추가");
+                    menuItem_3.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menuItem_3.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        addStudentClass(ae);
+                              }
+                    });
+                    menuItem_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classManager.png")));
+                    menu_2.add(menuItem_3);
+                    
+                    JMenuItem menuItem_4 = new JMenuItem("학과리스트");
+                    menuItem_4.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menuItem_4.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        ClassManagerFrm cm=new ClassManagerFrm();
+                                        cm.setVisible(true);
+                                        desktopPane_1.add(cm);
+                              }
+                    });
+                    menuItem_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classList1.png")));
+                    menu_2.add(menuItem_4);
+                    
+                    JMenu menu_3 = new JMenu("도움");
+                    menu_3.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
+                    menuBar.add(menu_3);
+                    
+                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
+                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menuItem_5.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        aboutUs(ae);
+                              }
+                    });
+                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
+                    menu_3.add(menuItem_5);
+                    contentPane = new JPanel();
+                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+                    contentPane.setLayout(new BorderLayout(0, 0));
+                    setContentPane(contentPane);
+                    
+                    desktopPane_1 = new JDesktopPane();
+                    desktopPane_1.setBackground(new Color(0, 128, 128));
+                    contentPane.add(desktopPane_1, BorderLayout.CENTER);
+                    setLocationRelativeTo(null);
+          }
+          //添加学生
+          protected void addStudent(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    AddStudentFrm asf=new AddStudentFrm();
+                    asf.setVisible(true);
+                    desktopPane_1.add(asf);
+                    
+          }
+          //添加班级
+          protected void addStudentClass(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    StudentClassAddFrm sca=new StudentClassAddFrm();
+                    sca.setVisible(true);
+                    desktopPane_1.add(sca);
+          }
+          //修改密码
+          protected void editPassword(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    EditPasswordFrm editPasswordFrm =new EditPasswordFrm();
+                    editPasswordFrm.setVisible(true);
+                    desktopPane_1.add(editPasswordFrm);
+          }
+          //关于我们 
+          protected void aboutUs(ActionEvent ae) {
+                    String info="【屈江团】出品 \n";
+                    info+="网址：http://programmer.ischoolbar.com \n";
+                    info+="환영합니다！";
+                   // JOptionPane.showMessageDialog(this, info);
+                    String[] buttons={"가 보자","다음 가"};
+                    int ret = JOptionPane.showOptionDialog(this, info, "우리에 대함", JOptionPane.YES_NO_CANCEL_OPTION, 
+                                        JOptionPane.DEFAULT_OPTION, 
+                                        new ImageIcon(LoginFrm.class.getResource("/images/student2.png")), buttons, null);
+                    if(ret==0){
+                              //采用Java调用系统浏览其打开制定网址
+                              try {
+                                        URI uri=new URI("http://programmer.ischoolbar.com");
+                                        //以下两种方式都可以访问网站
+                                        //Desktop.getDesktop().browse(uri);
+                                        Runtime.getRuntime().exec("explorer http://programmer.ischoolbar.com");
+                              } catch ( Exception e) {
+                                        // TODO Auto-generated catch block 
+                                        e.printStackTrace();
+                              }
+                              
+//                             JOptionPane.showMessageDialog(this, "迫不及待");
+                    }else{
+                              JOptionPane.showMessageDialog(this, "다음에 꼭 오세요！");
+                    }
+          }
+}

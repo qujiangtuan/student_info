@@ -1,0 +1,397 @@
+package com.qujia.view;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+import com.qujia.dao.ClassDao;
+import com.qujia.dao.StudentDao;
+import com.qujia.model.Student;
+import com.qujia.model.StudentClass;
+import com.qujia.util.StringUtil;
+
+public class StudentManagerFrm extends JInternalFrame {
+          private JTextField searchStudentNameTextField;
+          private JTable studentListTable;
+          private JTextField editStudentNameTextField;
+          private JTextField editEmailTextField;
+          private JComboBox searchClassComboBox;
+          private JComboBox editClassComboBox;
+          private List<StudentClass> studentClassList;
+          private ButtonGroup editSexButtonGroup;
+          private JRadioButton editStudentSexManRadioButton;
+          private JRadioButton editStudentSexFemalRadioButton;
+          private JRadioButton editStudentSexUnknowRadioButton;
+
+          /**
+           * Launch the application.
+           */
+//          public static void main(String[] args) {
+//                    EventQueue.invokeLater(new Runnable() {
+//                              public void run() {
+//                                        try {
+//                                                  StudentManagerFrm frame = new StudentManagerFrm();
+//                                                  frame.setVisible(true);
+//                                        } catch (Exception e) {
+//                                                  e.printStackTrace();
+//                                        }
+//                              }
+//                    });
+//          }
+
+          /**
+           * Create the frame.
+           */
+          public StudentManagerFrm() {
+                    setFrameIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/studentManager.png")));
+                    setClosable(true);
+                    //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setIconifiable(true);
+                    setTitle("\uD559\uC0DD\uB9AC\uC2A4\uD2B8");
+                    setBounds(100, 10, 761, 438);
+                    
+                    JLabel searchStudentNameLabel = new JLabel("\uD559\uC0DD\uC774\uB984:");
+                    searchStudentNameLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/studentManager.png")));
+                    searchStudentNameLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    searchStudentNameTextField = new JTextField();
+                    searchStudentNameTextField.setColumns(10);
+                    
+                    JButton searchButton = new JButton("\uAC80\uC0C9");
+                    searchButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        searchStudent(ae);
+                              }
+                    });
+                    searchButton.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/search.png")));
+                    searchButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    JLabel searchClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
+                    searchClassLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/className.png")));
+                    searchClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    searchClassComboBox = new JComboBox();
+                    
+                    JScrollPane scrollPane =  new JScrollPane();
+                    
+                    JLabel editStudentNameLabel = new JLabel("\uD559\uC0DD\uC774\uB984:");
+                    editStudentNameLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/studentManager.png")));
+                    editStudentNameLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editStudentNameTextField = new JTextField();
+                    editStudentNameTextField.setColumns(10);
+                    
+                    JLabel editClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
+                    editClassLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/className.png")));
+                    editClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editClassComboBox = new JComboBox();
+                    
+                    JLabel editStudentSexLabel = new JLabel("\uC131\uBCC4:");
+                    editStudentSexLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/sex.png")));
+                    editStudentSexLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editStudentSexManRadioButton = new JRadioButton("\uB0A8");
+                    editStudentSexManRadioButton.setSelected(true);
+                    editStudentSexManRadioButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editStudentSexFemalRadioButton = new JRadioButton("\uC5EC");
+                    editStudentSexFemalRadioButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editStudentSexUnknowRadioButton = new JRadioButton("\uBE44\uBC00");
+                    editStudentSexUnknowRadioButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editSexButtonGroup=new ButtonGroup();
+                    editSexButtonGroup.add(editStudentSexManRadioButton);
+                    editSexButtonGroup.add(editStudentSexFemalRadioButton);
+                    editSexButtonGroup.add(editStudentSexUnknowRadioButton);
+                    
+                    JLabel editEmailLabel = new JLabel("이메일:");
+                    editEmailLabel.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/email.png")));
+                    editEmailLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    editEmailTextField = new JTextField();
+                    
+                    JButton submitEidtButton = new JButton("\uC218\uC815");
+                    submitEidtButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                          submiEditAct(ae);
+                              }
+                    });
+                    submitEidtButton.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/submit.png")));
+                    submitEidtButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    
+                    JButton deleteStudentButton = new JButton("\uC0AD\uC81C");
+                    deleteStudentButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        deleteStudent(ae);
+                              }
+                    });
+                    deleteStudentButton.setIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/delete.png")));
+                    deleteStudentButton.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    GroupLayout groupLayout = new GroupLayout(getContentPane());
+                    groupLayout.setHorizontalGroup(
+                              groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addContainerGap(90, Short.MAX_VALUE)
+                                                  .addComponent(searchStudentNameLabel)
+                                                  .addGap(18)
+                                                  .addComponent(searchStudentNameTextField, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(18)
+                                                  .addComponent(searchClassLabel)
+                                                  .addGap(18)
+                                                  .addComponent(searchClassComboBox, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(12)
+                                                  .addComponent(searchButton)
+                                                  .addGap(76))
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addGap(69)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addComponent(editStudentNameLabel)
+                                                                      .addGap(18)
+                                                                      .addComponent(editStudentNameTextField))
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addComponent(editClassLabel)
+                                                                      .addGap(18)
+                                                                      .addComponent(editClassComboBox, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE)))
+                                                  .addGap(33)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addComponent(editStudentSexLabel)
+                                                                      .addGap(12)
+                                                                      .addComponent(editStudentSexManRadioButton)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(editStudentSexFemalRadioButton)
+                                                                      .addGap(10)
+                                                                      .addComponent(editStudentSexUnknowRadioButton)
+                                                                      .addGap(39)
+                                                                      .addComponent(submitEidtButton))
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addComponent(editEmailLabel)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(editEmailTextField, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                      .addComponent(deleteStudentButton)))
+                                                  .addGap(47))
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addGap(31)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 688, GroupLayout.PREFERRED_SIZE)
+                                                  .addContainerGap(26, Short.MAX_VALUE))
+                    );
+                    groupLayout.setVerticalGroup(
+                              groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addGap(36)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(searchStudentNameLabel)
+                                                            .addComponent(searchStudentNameTextField, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(searchButton)
+                                                            .addComponent(searchClassLabel)
+                                                            .addComponent(searchClassComboBox, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
+                                                  .addGap(29)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(29)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(editStudentNameLabel)
+                                                            .addComponent(editStudentNameTextField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(editStudentSexLabel)
+                                                            .addComponent(editStudentSexManRadioButton)
+                                                            .addComponent(editStudentSexFemalRadioButton)
+                                                            .addComponent(editStudentSexUnknowRadioButton)
+                                                            .addComponent(submitEidtButton))
+                                                  .addGap(18)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(editClassLabel)
+                                                            .addComponent(editClassComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(editEmailLabel, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(editEmailTextField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(deleteStudentButton))
+                                                  .addContainerGap(22, Short.MAX_VALUE))
+                    );
+                    
+                    
+                    
+                    studentListTable = new JTable();
+                    studentListTable.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent me) {
+                                        selectedTableRow(me);
+                              }
+                    });
+                    studentListTable.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    studentListTable.setModel(new DefaultTableModel(
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC785\uD559\uC77C\uC9DC", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638"
+                              }
+                    ) {
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
+                    });
+                    studentListTable.getColumnModel().getColumn(4).setPreferredWidth(85);
+                    scrollPane.setViewportView(studentListTable);
+                    getContentPane().setLayout(groupLayout);
+                    //set TABLE data in center
+                    DefaultTableCellRenderer cr = new DefaultTableCellRenderer();
+                    cr.setHorizontalAlignment(JLabel.CENTER);
+                    studentListTable.setDefaultRenderer(Object.class, cr);
+                    
+                    selectClass();
+                    setTable(new Student());
+          }
+          //수정 submit event
+          protected void submiEditAct(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    int row=studentListTable.getSelectedRow();
+                    if(row==-1){
+                              JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
+                    }
+                    String studentName=editStudentNameTextField.getText().toString();
+                    String studentEmail=editEmailTextField.getText().toString();
+                    if(StringUtil.isEmpty(studentName)){
+                              JOptionPane.showMessageDialog(this, "학생이름을 입력해주세요");
+                              return;
+                    }
+                    if(StringUtil.isEmpty(studentEmail)){
+                              JOptionPane.showMessageDialog(this, "이메일를 입력해주세요");
+                              return;
+                    }
+                    Student student=new Student();
+                    student.setName(studentName);
+                    student.setEmail(studentEmail);
+                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
+                    student.setClassId(sc.getId());
+                    
+                    student.setsNo(studentListTable.getValueAt(row, 0).toString());
+                    if(editStudentSexManRadioButton.isSelected()) student.setSex(editStudentSexManRadioButton.getText().toString());
+                    if(editStudentSexFemalRadioButton.isSelected()) student.setSex(editStudentSexFemalRadioButton.getText().toString());
+                    if(editStudentSexUnknowRadioButton.isSelected()) student.setSex(editStudentSexUnknowRadioButton.getText().toString());
+                    StudentDao studentDao=new StudentDao();
+                    if(studentDao.updateStudent(student)){
+                              JOptionPane.showMessageDialog(this, "수정 성공했습니다");
+                    }else{
+                              JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                    }
+                    studentDao.closeDao();
+                    setTable(new Student());
+          }
+          //Table중 행을 선택
+          protected void selectedTableRow(MouseEvent me) {
+                    // TODO Auto-generated method stub
+                    DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
+                    //得到选中表格中的哪一行，那一列的值
+                    editStudentNameTextField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 1).toString());
+                    editEmailTextField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 6).toString());
+                    String className=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
+                    for(int i=0;i<editClassComboBox.getItemCount();i++){
+                              StudentClass sc=(StudentClass) editClassComboBox.getItemAt(i);
+                              if(className.equals(sc.getName())){
+                                        editClassComboBox.setSelectedIndex(i);
+                              }
+                    }
+                    String sex=dft.getValueAt(studentListTable.getSelectedRow(), 3).toString();
+                    editSexButtonGroup.clearSelection();
+                    if(sex.equals(editStudentSexManRadioButton.getText())) editStudentSexManRadioButton.setSelected(true);
+                    if(sex.equals(editStudentSexFemalRadioButton.getText())) editStudentSexFemalRadioButton.setSelected(true);
+                    if(sex.equals(editStudentSexUnknowRadioButton.getText())) editStudentSexUnknowRadioButton.setSelected(true);
+                    
+          }
+          //학생삭제
+          protected void deleteStudent(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까?？") != JOptionPane.OK_OPTION){
+                              return;
+                    }
+                    int row=studentListTable.getSelectedRow();
+                    if(row==-1){
+                              JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
+                              return;
+                    }
+                    StudentDao studentDao =new StudentDao();
+                    int id=Integer.parseInt(studentListTable.getValueAt(row, 0).toString());
+                    if(studentDao.delete(id)){
+                              JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                    }else{
+                              JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                    }
+                    studentDao.closeDao();
+                    setTable(new Student());
+          }
+          //학생 검색
+          protected void searchStudent(ActionEvent ae) {
+                    // TODO Auto-generated method stub
+                    Student student=new Student();
+                    student.setName(searchStudentNameTextField.getText().toString());
+                    StudentClass sc=(StudentClass)searchClassComboBox.getSelectedItem();
+                    student.setClassId(sc.getId());
+                    setTable(student);
+          }
+          // table다시 설정
+          private void setTable(Student student){
+                   DefaultTableModel dft = (DefaultTableModel) studentListTable.getModel();
+                   dft.setRowCount(0);
+                   StudentDao studentDao=new StudentDao();
+                   List<Student> studentList = studentDao.getStudentList(student);
+                   for(Student s : studentList){
+                             Vector v=new Vector();
+                             v.add(s.getsNo());
+                             v.add(s.getName());
+                             v.add(this.getClassNameById(s.getClassId()));
+                             v.add(s.getSex());
+                             v.add(s.getIdCardNo());
+                             v.add(s.getJoinDate());
+                             v.add(s.getEmail());
+                             v.add(s.getPassword());
+                             dft.addRow(v);
+                   }
+                   studentDao.closeDao();
+                   
+          }
+          //학과선택
+          private void selectClass(){
+                    ClassDao classDao=new ClassDao();
+                    studentClassList=classDao.getClassList(new StudentClass());
+                    for(StudentClass sc:studentClassList){
+                              searchClassComboBox.addItem(sc);
+                              editClassComboBox.addItem(sc);
+                    }
+                    classDao.closeDao();
+          }
+          //classId에 통해서 className를 받는다
+          public String getClassNameById(int id){
+                    for(StudentClass sc:studentClassList){
+                            if(sc.getId()==id) return sc.getName();
+                    }
+                    return "";
+          }
+}
