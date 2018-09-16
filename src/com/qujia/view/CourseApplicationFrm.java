@@ -3,6 +3,7 @@ package com.qujia.view;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -61,6 +62,7 @@ public class CourseApplicationFrm extends JFrame {
     private JLabel label_4;
     private JLabel label_5;
     private JLabel lblNewLabel_1;
+    private JTextField searchField;
    
     public CourseApplicationFrm() {
         super("CardLayout Test");
@@ -102,7 +104,7 @@ public class CourseApplicationFrm extends JFrame {
                     
                     label_5 = new JLabel("이름:");
                     
-                    lblNewLabel_1 = new JLabel("취지앙투안");
+                    lblNewLabel_1 = new JLabel("오준택");
                     GroupLayout gl_panel_one_button = new GroupLayout(panel_one_button);
                     gl_panel_one_button.setHorizontalGroup(
                               gl_panel_one_button.createParallelGroup(Alignment.LEADING)
@@ -146,7 +148,7 @@ public class CourseApplicationFrm extends JFrame {
                            p_3.setBackground(new Color(221, 160, 221));
                            panel_one.add(p_1, "p1");
                            
-                           JLabel label_apply_list = new JLabel("수강신청목록");
+                           JLabel label_apply_list = new JLabel("수강신청");
                            
                            JScrollPane scrollPane = new JScrollPane();
                            GroupLayout gl_p_1 = new GroupLayout(p_1);
@@ -165,7 +167,7 @@ public class CourseApplicationFrm extends JFrame {
                                                          .addContainerGap()
                                                          .addComponent(label_apply_list)
                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                         .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+                                                         .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                                                          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                            );
                            
@@ -179,12 +181,18 @@ public class CourseApplicationFrm extends JFrame {
                                                {null, null, null, null, null, null, null, null},
                                                {null, null, null, null, null, null, null, null},
                                                {null, null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null, null},
                                      },
                                      new String[] {
-                                               "\uC0AD\uC81C", "\uAD6C\uBD84", "\uD559\uC218\uBC88\uD638 ", "\uBD84\uBC18 ", "\uACFC\uBAA9\uBA85 ", "\uD559\uC810 ", "\uB2F4\uB2F9\uAD50\uC218", " \uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                               "학수번호", "분반", "과목명", "취득학점", "담당교수", "교과구분", "강의시간", "강의실"
                                      }
                            ));
+                           table.setRowHeight(35);
                            scrollPane.setViewportView(table);
+           
                            p_1.setLayout(gl_p_1);
                            panel_one.add(p_2, "p2");
                            
@@ -194,7 +202,7 @@ public class CourseApplicationFrm extends JFrame {
                                      gl_p_2.createParallelGroup(Alignment.LEADING)
                                                .addGroup(gl_p_2.createSequentialGroup()
                                                          .addContainerGap()
-                                                         .addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 745, GroupLayout.PREFERRED_SIZE)
+                                                         .addComponent(scrollPane_3, GroupLayout.PREFERRED_SIZE, 745, Short.MAX_VALUE)
                                                          .addContainerGap())
                            );
                            gl_p_2.setVerticalGroup(
@@ -208,9 +216,9 @@ public class CourseApplicationFrm extends JFrame {
                            schedule = new JTable();
                            schedule.setModel(new DefaultTableModel(
                                      new Object[][] {
-                                               {null, null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null, null},
+                                               {"1교시", "09:00", "데이터베이스", null, null, null, null, null, null},
+                                               {"2교시", "10:00", "데이터베이스", null, null, null, null, null, null},
+                                               {"3교시", "11:00", "데이터베이스", null, null, null, null, null, null},
                                                {null, null, null, null, null, null, null, null, null},
                                                {null, null, null, null, null, null, null, null, null},
                                                {null, null, null, null, null, null, null, null, null},
@@ -234,7 +242,7 @@ public class CourseApplicationFrm extends JFrame {
                                                {null, null, null, null, null, null, null, null, null},
                                      },
                                      new String[] {
-                                               "\uAD50\uC2DC", "\uC2DC\uAC04", "\uC6D4", "\uD654", "\uC218", "\uBAA9", "\uAE08", "\uD1A0", "\uC77C"
+                                               "교시", "시간", "월", "화", "수", "목", "금", "토", "일"
                                      }
                            ));
                            scrollPane_3.setViewportView(schedule);
@@ -247,7 +255,7 @@ public class CourseApplicationFrm extends JFrame {
                                      gl_p_3.createParallelGroup(Alignment.LEADING)
                                                .addGroup(Alignment.TRAILING, gl_p_3.createSequentialGroup()
                                                          .addContainerGap()
-                                                         .addComponent(scrollPane_show, GroupLayout.PREFERRED_SIZE, 745, GroupLayout.PREFERRED_SIZE)
+                                                         .addComponent(scrollPane_show, GroupLayout.PREFERRED_SIZE, 745, Short.MAX_VALUE)
                                                          .addContainerGap())
                            );
                            gl_p_3.setVerticalGroup(
@@ -264,8 +272,8 @@ public class CourseApplicationFrm extends JFrame {
                                                {null, null, null, null, null, null, null, null, null, "", null},
                                      },
                                      new String[] {
-                                               "\uC2E0\uCCAD\uC0C1\uD0DC", "\uAD6C\uBD84", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uAC15\uC758\uC2E4", "\uC7AC\uC218\uAC15", "\uAC1C\uC124\uC8FC\uAD00\uD559\uACFC", "\uC5F0\uB77D\uCC98"
-                                     }
+                                    		 "삭제", "구분", "학수번호", "분반 ", "과목명 ", "학점 ", "담당교수", " 시간/강의실"
+                            		 }
                            ));
                            scrollPane_show.setViewportView(table_show);
                            p_3.setLayout(gl_p_3);
@@ -280,6 +288,7 @@ public class CourseApplicationFrm extends JFrame {
                   panel_two_button = new JPanel();
                   
                   button_no = new JButton("학수번호");
+                  button_no.setMargin(new Insets(2, 2, 2, 2));
                   button_no.setBackground(new Color(230, 230, 250));
                   button_no.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
@@ -295,6 +304,7 @@ public class CourseApplicationFrm extends JFrame {
                             }
                   });
                   button_other = new JButton("타과과목");
+                  button_other.setMargin(new Insets(2, 2, 2, 2));
                   button_other.setBackground(new Color(102, 205, 170));
                   button_other.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
@@ -303,6 +313,7 @@ public class CourseApplicationFrm extends JFrame {
                   });
                   
                   button_liberal = new JButton("교양과목");
+                  button_liberal.setMargin(new Insets(2, 2, 2, 2));
                   button_liberal.setBackground(new Color(65, 105, 225));
                   button_liberal.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
@@ -311,6 +322,7 @@ public class CourseApplicationFrm extends JFrame {
                   });
                   
                  button_master = new JButton("석사과목");
+                 button_master.setMargin(new Insets(2, 2, 2, 2));
                  button_master.setBackground(new Color(135, 206, 235));
                  button_master.addActionListener(new ActionListener() {
                            public void actionPerformed(ActionEvent e) {
@@ -347,33 +359,7 @@ public class CourseApplicationFrm extends JFrame {
                                                .addContainerGap())
                  );
                  panel_two_button.setLayout(gl_panel_two_button);
-                  GroupLayout groupLayout = new GroupLayout(getContentPane());
-                  groupLayout.setHorizontalGroup(
-                            groupLayout.createParallelGroup(Alignment.TRAILING)
-                                      .addGroup(groupLayout.createSequentialGroup()
-                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                          .addComponent(panel_one_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                          .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)
-                                                          .addComponent(panel_two, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
-                                                          .addComponent(panel_show, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
-                                                          .addComponent(panel_two_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
-                                                .addContainerGap())
-                  );
-                  groupLayout.setVerticalGroup(
-                            groupLayout.createParallelGroup(Alignment.LEADING)
-                                      .addGroup(groupLayout.createSequentialGroup()
-                                                .addGap(4)
-                                                .addComponent(panel_one_button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(2)
-                                                .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(panel_show, GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
-                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(panel_two_button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(1)
-                                                .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(4))
-                  );
+                  
                   
                   JLabel label_avg = new JLabel("직전학기평점평균:");
                   
@@ -429,19 +415,46 @@ public class CourseApplicationFrm extends JFrame {
                   );
                   panel_show.setLayout(gl_panel_show);
                   
+                  
+                  //학수번호
                   panel_1 = new JPanel();
                   panel_1.setBackground(new Color(230, 230, 250));
-                  panel_two.add(panel_1, "panel_1");
                   
-                  label = new JLabel("학수번호/과목명 : ");
+                  
+                  label = new JLabel("교과목명 : ");
                   
                   scrollPane_list_no = new JScrollPane();
                   
                   textField = new JTextField();
                   textField.setColumns(10);
                   
-                  JButton btnNewButton = new JButton("조희");
+                  JButton btnNewButton = new JButton("조회");
+                  
+              	  //학수번호 테이블 추가
+                  table_1 = new JTable();
+                  table_1.setModel(new DefaultTableModel(
+                            new Object[][] {
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                            },
+                            new String[] {
+                                      "상태", "구분 ", "학년", "학수번호", "분반", "수강대상", "정원", "현원 ", "과목명", "학점", "담당교수", "시간/강의실"
+                            }
+                  ));
+                  table_1.setRowHeight(35);
+                  scrollPane_list_no.setViewportView(table_1);
+                  
                   GroupLayout gl_panel_1 = new GroupLayout(panel_1);
+                  
                   gl_panel_1.setHorizontalGroup(
                             gl_panel_1.createParallelGroup(Alignment.LEADING)
                                       .addGroup(gl_panel_1.createSequentialGroup()
@@ -458,49 +471,49 @@ public class CourseApplicationFrm extends JFrame {
                                                                     .addComponent(btnNewButton)
                                                                     .addGap(32))))
                   );
-                  gl_panel_1.setVerticalGroup(
-                            gl_panel_1.createParallelGroup(Alignment.LEADING)
-                                      .addGroup(gl_panel_1.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-                                                          .addComponent(label)
-                                                          .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                          .addComponent(btnNewButton))
-                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(scrollPane_list_no, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  );
                   
-                  table_1 = new JTable();
-                  table_1.setModel(new DefaultTableModel(
+                  gl_panel_1.setVerticalGroup(
+                          gl_panel_1.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(gl_panel_1.createSequentialGroup()
+                                              .addContainerGap()
+                                              .addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+                                                        .addComponent(label)
+                                                        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(btnNewButton))
+                                              .addPreferredGap(ComponentPlacement.RELATED)
+                                              .addComponent(scrollPane_list_no, GroupLayout.PREFERRED_SIZE, 300, Short.MAX_VALUE)
+                                              .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                  
+                  panel_1.setLayout(gl_panel_1);
+                  panel_two.add(panel_1, "panel_1");
+ 
+                  //자과과목
+                  panel_2 = new JPanel();
+                  panel_2.setBackground(new Color(189, 183, 107));
+                  
+                  
+                  JScrollPane scrollPane_4 = new JScrollPane();
+                  
+                  table_2 = new JTable();
+                  table_2.setModel(new DefaultTableModel(
                             new Object[][] {
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
                             },
                             new String[] {
-                                      "\uC0C1\uD0DC", "\uAD6C\uBD84 ", "\uD559\uB144", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC6D0", "\uD604\uC6D0 ", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
+                                      "상태", "구분 ", " 학년", " 학수번호", "분반", "수강대상", "정원", "현원", "과목명", "학점", "담당교수", "시간/강의실"
                             }
                   ));
-                  scrollPane_list_no.setViewportView(table_1);
-                  panel_1.setLayout(gl_panel_1);
+                  scrollPane_4.setViewportView(table_2);
                   
-                  panel_2 = new JPanel();
-                  panel_2.setBackground(new Color(189, 183, 107));
-                  panel_two.add(panel_2, "panel_2");
                   
-                  JScrollPane scrollPane_4 = new JScrollPane();
                   GroupLayout gl_panel_2 = new GroupLayout(panel_2);
                   gl_panel_2.setHorizontalGroup(
                             gl_panel_2.createParallelGroup(Alignment.LEADING)
                                       .addGroup(gl_panel_2.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(scrollPane_4, GroupLayout.PREFERRED_SIZE, 745, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(scrollPane_4, GroupLayout.PREFERRED_SIZE, 745, Short.MAX_VALUE)
+                                                .addContainerGap())
                   );
                   gl_panel_2.setVerticalGroup(
                             gl_panel_2.createParallelGroup(Alignment.LEADING)
@@ -510,38 +523,16 @@ public class CourseApplicationFrm extends JFrame {
                                                 .addContainerGap())
                   );
                   
-                  table_2 = new JTable();
-                  table_2.setModel(new DefaultTableModel(
-                            new Object[][] {
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
-                            },
-                            new String[] {
-                                      "\uC0C1\uD0DC", "\uAD6C\uBD84 ", " \uD559\uB144", " \uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC6D0", "\uD604\uC6D0", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
-                            }
-                  ));
-                  scrollPane_4.setViewportView(table_2);
                   panel_2.setLayout(gl_panel_2);
+                  panel_two.add(panel_2, "panel_2");
                   
+                  
+                  //교양과목
                   panel_3 = new JPanel();
                   panel_3.setBackground(new Color(65, 105, 225));
-                  panel_two.add(panel_3, "panel_3");
+                  
                   
                   JScrollPane scrollPane_5 = new JScrollPane();
-                  GroupLayout gl_panel_3 = new GroupLayout(panel_3);
-                  gl_panel_3.setHorizontalGroup(
-                            gl_panel_3.createParallelGroup(Alignment.LEADING)
-                                      .addGroup(gl_panel_3.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(scrollPane_5, GroupLayout.PREFERRED_SIZE, 745, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  );
-                  gl_panel_3.setVerticalGroup(
-                            gl_panel_3.createParallelGroup(Alignment.LEADING)
-                                      .addGroup(gl_panel_3.createSequentialGroup()
-                                                .addContainerGap()
-                                                .addComponent(scrollPane_5, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                  );
                   
                   table_3 = new JTable();
                   table_3.setModel(new DefaultTableModel(
@@ -549,19 +540,42 @@ public class CourseApplicationFrm extends JFrame {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
                             },
                             new String[] {
-                                      "\uC0C1\uD0DC", "\uAD6C\uBD84 ", " \uD559\uB144", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC6D0", "\uD604\uC6D0", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
+                            		"상태", "구분 ", " 학년", " 학수번호", "분반", "수강대상", "정원", "현원", "과목명", "학점", "담당교수", "시간/강의실"
                             }
                   ));
                   scrollPane_5.setViewportView(table_3);
-                  panel_3.setLayout(gl_panel_3);
                   
+                  
+                  
+                  GroupLayout gl_panel_3 = new GroupLayout(panel_3);
+                  gl_panel_3.setHorizontalGroup(
+                            gl_panel_3.createParallelGroup(Alignment.LEADING)
+                                      .addGroup(gl_panel_3.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(scrollPane_5, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                                                .addContainerGap())
+                  );
+                  gl_panel_3.setVerticalGroup(
+                            gl_panel_3.createParallelGroup(Alignment.LEADING)
+                                      .addGroup(gl_panel_3.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(scrollPane_5, GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  );
+                  
+                
+                  panel_3.setLayout(gl_panel_3);
+                  panel_two.add(panel_3, "panel_3");
+                  
+                  
+                  
+                  
+                  
+                  
+                  //타과과목
                   panel_4 = new JPanel();
                   panel_4.setBackground(new Color(102, 205, 170));
                   panel_two.add(panel_4, "panel_4");
-                  
-                  panel_5 = new JPanel();
-                  panel_5.setBackground(new Color(135, 206, 235));
-                  panel_two.add(panel_5, "panel_5");
                   
                   JLabel label_1 = new JLabel("대학(원):");
                   
@@ -572,7 +586,11 @@ public class CourseApplicationFrm extends JFrame {
                   
                   JComboBox comboBox_2 = new JComboBox();
                   
-                  JButton btnNewButton_1 = new JButton("조희");
+                  
+                  
+                  JButton btnNewButton_1 = new JButton("조회");
+                  
+                  
                   
                   JScrollPane scrollPane_2 = new JScrollPane();
                   GroupLayout gl_panel_4 = new GroupLayout(panel_4);
@@ -581,9 +599,6 @@ public class CourseApplicationFrm extends JFrame {
                                       .addGroup(gl_panel_4.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
-                                                          .addGroup(gl_panel_4.createSequentialGroup()
-                                                                    .addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
-                                                                    .addContainerGap())
                                                           .addGroup(gl_panel_4.createSequentialGroup()
                                                                     .addComponent(label_1)
                                                                     .addPreferredGap(ComponentPlacement.RELATED)
@@ -595,6 +610,9 @@ public class CourseApplicationFrm extends JFrame {
                                                                     .addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
                                                                     .addComponent(btnNewButton_1)
                                                                     .addGap(36))))
+		                                        .addGroup(gl_panel_4.createSequentialGroup()
+		                                        		.addComponent(scrollPane_2, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+		                                        		.addContainerGap())
                   );
                   gl_panel_4.setVerticalGroup(
                             gl_panel_4.createParallelGroup(Alignment.LEADING)
@@ -621,12 +639,17 @@ public class CourseApplicationFrm extends JFrame {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
                             },
                             new String[] {
-                                      "\uC0C1\uD0DC", "\uAD6C\uBD84 ", "\uD559\uB144", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC6D0", "\uD604\uC6D0", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
+                            		"상태", "구분 ", " 학년", " 학수번호", "분반", "수강대상", "정원", "현원", "과목명", "학점", "담당교수", "시간/강의실"
                             }
                   ));
                   scrollPane_2.setViewportView(table_4);
                   panel_4.setLayout(gl_panel_4);
                   
+                  
+                  //석사과목
+                  panel_5 = new JPanel();
+                  panel_5.setBackground(new Color(135, 206, 235));
+                  panel_two.add(panel_5, "panel_5");
                   
                   
                   scrollPane_1 = new JScrollPane();
@@ -646,6 +669,37 @@ public class CourseApplicationFrm extends JFrame {
                                                 .addContainerGap(30, Short.MAX_VALUE))
                   );
                   panel_5.setLayout(gl_panel_5);
+                  
+                  
+                  GroupLayout groupLayout = new GroupLayout(getContentPane());
+                  groupLayout.setHorizontalGroup(
+                            groupLayout.createParallelGroup(Alignment.TRAILING)
+                                      .addGroup(groupLayout.createSequentialGroup()
+                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                          .addComponent(panel_one_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                          .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE)
+                                                          .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 765, Short.MAX_VALUE)
+                                                          .addComponent(panel_show, GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE)
+                                                          .addComponent(panel_two_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                                                .addContainerGap())
+                  );
+                  groupLayout.setVerticalGroup(
+                            groupLayout.createParallelGroup(Alignment.LEADING)
+                                      .addGroup(groupLayout.createSequentialGroup()
+                                                .addGap(4)
+                                                .addComponent(panel_one_button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2)
+                                                .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 170, Short.MAX_VALUE)
+                                                .addPreferredGap(ComponentPlacement.RELATED)
+                                                .addComponent(panel_show, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(ComponentPlacement.RELATED)
+                                                .addComponent(panel_two_button, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(1)
+                                                .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 170, Short.MAX_VALUE)
+                                                .addGap(4))
+                  );
+                  
+                  
                   
                   getContentPane().setLayout(groupLayout);
         this.setSize(797, 520);

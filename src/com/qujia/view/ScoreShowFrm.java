@@ -73,7 +73,7 @@ public class ScoreShowFrm extends JFrame {
            * Create the frame.
            */
           public ScoreShowFrm() {
-                    setTitle("\uC131\uC801\uC870\uD76C");
+                    setTitle("성적조회");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 908, 479);
                     ViewUtil vu=new ViewUtil();
@@ -157,7 +157,7 @@ public class ScoreShowFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uB144\uB3C4/\uD559\uAE30", "\uACFC\uBAA9\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uD559\uC810", "\uB4F1\uAE09", "\uC131\uC801\uC720\uD6A8\uAD6C\uBD84", "\uBE44\uACE0"
+                                        "년도/학기", "과목번호", "교과목명", "이수구분", "학점", "등급", "성적유효구분", "비고"
                               }
                     ));
                     table.getColumnModel().getColumn(2).setPreferredWidth(162);
@@ -172,7 +172,7 @@ public class ScoreShowFrm extends JFrame {
                     panel_c_2.setBackground(new Color(173, 255, 47));
                     panel_three.add(panel_c_2, "panel_c_2");
                     
-                    JLabel lblNewLabel = new JLabel("\uD559\uAE30\uBCC4 \uC131\uC801\uB204\uACC4");
+                    JLabel lblNewLabel = new JLabel("학기별 성적");
                     
                     JScrollPane scrollPane_1 = new JScrollPane();
                     GroupLayout gl_panel_c_2 = new GroupLayout(panel_c_2);
@@ -212,35 +212,35 @@ public class ScoreShowFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uB144\uB3C4/\uD559\uAE30", "\uC2E0\uCCAD\uD559\uC810", "\uCDE8\uB4DD\uD559\uC810", "\uD3C9\uC810", "\uBC31\uBD84\uC728", "\uC11D\uCC28", "F\uC81C\uC678\uD3C9\uC810", "\uBE44\uACE0"
+                                        "학년도/학기", "신청학점", "취득학점", "평점", "백분율", "석차", "F 제외 평점", "비고"
                               }
                     ));
                     scrollPane_1.setViewportView(table_1);
                     panel_c_2.setLayout(gl_panel_c_2);
                     
-                    JLabel label_dept = new JLabel("\uC18C\uC18D\uB300\uD559(\uC6D0):");
+                    JLabel label_dept = new JLabel("소속대학(원)");
                     
-                    JLabel label_schoolyear = new JLabel("\uD559    \uB144:");
+                    JLabel label_schoolyear = new JLabel("학년");
                     
-                    JLabel label_major = new JLabel("\uD559\uBD80(\uACFC):");
+                    JLabel label_major = new JLabel("학부(과):");
                     
-                    JLabel label_grade = new JLabel("\uD559\uC704\uACFC\uC815:");
+                    JLabel label_grade = new JLabel("학위과정:");
                     
-                    JLabel label_name = new JLabel("\uC131        \uBA85:");
+                    JLabel label_name = new JLabel("성        명:");
                     
-                    JLabel label_no = new JLabel("\uD559    \uBC88:");
+                    JLabel label_no = new JLabel("학    번:");
                     
-                    JLabel lblNewLabel_1 = new JLabel("\uCDE8\uC9C0\uC559\uD22C\uC548");
+                    JLabel lblNewLabel_1 = new JLabel("오준택");
                     
-                    JLabel lblNewLabel_2 = new JLabel("201518047");
+                    JLabel lblNewLabel_2 = new JLabel("201211734");
                     
                     JLabel label = new JLabel("4");
                     
-                    JLabel lblNewLabel_3 = new JLabel("\uACF5\uACFC\uB300\uD559");
+                    JLabel lblNewLabel_3 = new JLabel("공과대학");
                     
-                    JLabel lblNewLabel_4 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD558\uACFC");
+                    JLabel lblNewLabel_4 = new JLabel("컴퓨터공학과");
                     
-                    JLabel lblNewLabel_5 = new JLabel("\uD559\uC0AC\uACFC\uC815");
+                    JLabel lblNewLabel_5 = new JLabel("학사과정");
                     GroupLayout gl_panel_one = new GroupLayout(panel_one);
                     gl_panel_one.setHorizontalGroup(
                               gl_panel_one.createParallelGroup(Alignment.LEADING)
@@ -295,23 +295,23 @@ public class ScoreShowFrm extends JFrame {
                     );
                     panel_one.setLayout(gl_panel_one);
                     
-                    JRadioButton all_RadioButton = new JRadioButton("\uCC9C\uC81C\uD559\uAE30");
+                    JRadioButton all_RadioButton = new JRadioButton("전체학기");
                     all_RadioButton.setSelected(true);
                     buttonGroup.add(all_RadioButton);
                     
-                    JRadioButton current_RadioButton = new JRadioButton("\uD574\uB2F9\uD559\uAE30");
+                    JRadioButton current_RadioButton = new JRadioButton("해당학기");
                     buttonGroup.add(current_RadioButton);
                     
-                    JLabel label_year = new JLabel("\uB144\uB3C4/\uD559\uAE30:");
+                    JLabel label_year = new JLabel("년도/학기:");
                     
                     JComboBox comboBox_term = new JComboBox();
-                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1\uD559\uAE30", "2\uD559\uAE30", "\uC5EC\uB984\uACC4\uC808\uD559\uAE30", "\uACA8\uC6B8\uACC4\uC808\uD559\uAE30"}));
+                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1학기", "2학기", "여름계절학기", "겨울계절학기"}));
                     comboBox_term.setEditable(true);
                     
                     JSpinner spinner_year = new JSpinner();
                     spinner_year.setModel(new SpinnerNumberModel(2018, 1990, 2030, 1));
                     
-                    JButton all_Button = new JButton("\uCC9C\uC81C\uACFC\uBAA9\uC131\uC801");
+                    JButton all_Button = new JButton("전체 성적 보기");
                     all_Button.setBackground(new Color(0, 255, 255));
                     all_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
@@ -319,7 +319,7 @@ public class ScoreShowFrm extends JFrame {
                               }
                     });
                     
-                    JButton term_Button = new JButton("\uB204\uAC8C\uC131\uC801");
+                    JButton term_Button = new JButton("학기별 성적 보기");
                     term_Button.setBackground(new Color(173, 255, 47));
                     term_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -327,7 +327,7 @@ public class ScoreShowFrm extends JFrame {
                               }
                     });
                     
-                    JButton search_Button = new JButton("\uC870\uD76C");
+                    JButton search_Button = new JButton("조회");
                     GroupLayout gl_panel_two = new GroupLayout(panel_two);
                     gl_panel_two.setHorizontalGroup(
                               gl_panel_two.createParallelGroup(Alignment.LEADING)
