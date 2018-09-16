@@ -234,12 +234,12 @@ public class LoginFrm extends JFrame {
                     // 判断用户输入的字符串是否为空
                     if (StringUtil.isEmpty(userName)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "사용자 이름은 비워 둘 수 없습니다！");
+                                                  "사용자 이름을 입력해주세요！");
                               return;
                     }
                     if (StringUtil.isEmpty(password)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "비밀번호는 비워 둘 수 없습니다.！");
+                                                  "비밀번호를 입력해주세요！");
                               return;
                     }
                     Admin admin = null;
@@ -251,7 +251,7 @@ public class LoginFrm extends JFrame {
                               adminTmp.setPassword(password);
                               admin = adminDao.login(adminTmp);
                               adminDao.closeDao();
-                              if (admin == null) {
+                              if (admin == null|| !(userName.equals(admin.getName()))) {
                                         JOptionPane.showMessageDialog(this,
                                                             "사용자 이름 또는 비밀번호가 잘못되었습니다！");
                                         return;

@@ -172,6 +172,10 @@ public class AddDeptFrm extends JFrame {
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         String deptNo= textField_no.getText().toString();
+                                        if(StringUtil.isEmpty(deptNo)){
+                                                  JOptionPane.showMessageDialog(null, "학과코드 입력합시오!");
+                                                  return;
+                                        }
                                         Dept dept=new Dept();
                                         DeptDao deptDao=new DeptDao();
                                         List<Dept> deptList = deptDao.getDeptList(dept);

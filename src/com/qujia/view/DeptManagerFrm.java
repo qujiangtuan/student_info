@@ -360,6 +360,7 @@ public class DeptManagerFrm extends JInternalFrame {
                                         JOptionPane.showMessageDialog(this, "삭제 했습니다!");
                               }
                               setTable(new Dept());
+                              resetValut();
                     }else{
                               return;
                     }
@@ -488,7 +489,17 @@ public class DeptManagerFrm extends JInternalFrame {
                     }
                     
           }
-
+          //重置编辑框的值
+         public void resetValut(){
+                  textField_no.setText("");
+                   textField_name.setText("");
+                   comboBox_college.setSelectedIndex(0);
+                   textField_pnum.setText("");
+                   textField_credit.setText("");
+                   textField_year1.setText("");
+                   textField_year2.setText("");
+                   textArea_exp.setText("");
+          }
           public void setTable(Dept dept) {
                     DefaultTableModel dft = (DefaultTableModel) deptListTable
                                         .getModel();

@@ -95,13 +95,7 @@ public class Dept {
 
           @Override
           public String toString() {
-                    return "Dept [deptNo=" + deptNo + ", deptName=" + deptName
-                                        + ", college=" + college + ", credit="
-                                        + credit + ", pNum=" + pNum
-                                        + ", inNum=" + inNum + ", loginDate="
-                                        + loginDate + ", year1=" + year1
-                                        + ", year2=" + year2 + ", deptExplain="
-                                        + deptExplain + "]";
+                    return deptName;
           }
 
 }

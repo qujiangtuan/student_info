@@ -3,12 +3,33 @@ package com.qujia.model;
 public class Student {
           private String sNo;
           private String name;
-          private int classId;
+          private String deptId;
           private String sex;
           private String password;
           private String idCardNo;
           private String email;
           private String joinDate;
+          private String tel;
+          private String adress;
+          
+          public String getDeptId() {
+                    return deptId;
+          }
+          public void setDeptId(String deptId) {
+                    this.deptId = deptId;
+          }
+          public String getTel() {
+                    return tel;
+          }
+          public void setTel(String tel) {
+                    this.tel = tel;
+          }
+          public String getAdress() {
+                    return adress;
+          }
+          public void setAdress(String adress) {
+                    this.adress = adress;
+          }
           public String getsNo() {
                     return sNo;
           }
@@ -21,12 +42,7 @@ public class Student {
           public void setName(String name) {
                     this.name = name;
           }
-          public int getClassId() {
-                    return classId;
-          }
-          public void setClassId(int classId) {
-                    this.classId = classId;
-          }
+           
           public String getSex() {
                     return sex;
           }
@@ -57,6 +73,17 @@ public class Student {
           public void setJoinDate(String joinDate) {
                     this.joinDate = joinDate;
           }
+          @Override
+          public String toString() {
+                    return "Student [sNo=" + sNo + ", name=" + name
+                                        + ", deptId=" + deptId + ", sex=" + sex
+                                        + ", password=" + password
+                                        + ", idCardNo=" + idCardNo + ", email="
+                                        + email + ", joinDate=" + joinDate
+                                        + ", tel=" + tel + ", adress=" + adress
+                                        + "]";
+          }
+          
           
 
           

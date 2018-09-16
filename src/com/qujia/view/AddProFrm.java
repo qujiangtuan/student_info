@@ -116,7 +116,7 @@ public class AddProFrm extends JFrame {
                     btnNewButton.setBackground(new Color(175, 238, 238));
                     btnNewButton.setFont(new Font("ÈÞ¸Õ°íµñ", Font.BOLD, 13));
                     
-                    JButton btnNewButton_1 = new JButton("\uCD08\uAE30\uD654");
+                    JButton btnNewButton_1 = new JButton("\uCDE8 \uC18C");
                     btnNewButton_1.setBackground(new Color(222, 184, 135));
                     btnNewButton_1.setFont(new Font("ÈÞ¸Õ°íµñ", Font.BOLD, 13));
                     

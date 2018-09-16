@@ -26,10 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.eltima.components.ui.DatePicker;
-import com.qujia.dao.ClassDao;
+import com.qujia.dao.DeptDao;
 import com.qujia.dao.StudentDao;
+import com.qujia.model.Dept;
 import com.qujia.model.Student;
-import com.qujia.model.StudentClass;
 import com.qujia.util.StringUtil;
 
 public class AddStudentFrm extends JInternalFrame {
@@ -37,15 +37,15 @@ public class AddStudentFrm extends JInternalFrame {
           private JRadioButton studentSexManRadioButton;
           private JRadioButton studentSexFemalRadioButton;
           private ButtonGroup sexButtonGroup;
-          private JComboBox studentClassComboBox;
+          private JComboBox deptComboBox;
           private JTextField identityTextField_1;
           private JTextField identityTextField_2;
           private JLabel emailLabel;
           private JTextField emailTextField;
           private DatePicker datePicker;
           private JLabel lblNewLabel;
-          private JTextField textField;
-          private JTextField textField_1;
+          private JTextField textField_tel;
+          private JTextField textField_address;
 
           /**
            * Launch the application.
@@ -88,7 +88,7 @@ public class AddStudentFrm extends JInternalFrame {
                     studentClassLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
-                    studentClassComboBox = new JComboBox();
+                    deptComboBox = new JComboBox();
 
                     JLabel studentSexLabel = new JLabel(" 성    별 :");
                     studentSexLabel.setIcon(null);
@@ -113,14 +113,14 @@ public class AddStudentFrm extends JInternalFrame {
                     sexButtonGroup = new ButtonGroup();
                     sexButtonGroup.add(studentSexManRadioButton);
                     sexButtonGroup.add(studentSexFemalRadioButton);
-                    JButton resetButton = new JButton("취  소");
-                    resetButton.addActionListener(new ActionListener() {
+                    JButton cancelButton = new JButton("취  소");
+                    cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         resetValue(ae);
                               }
                     });
-                    resetButton.setIcon(null);
-                    resetButton.setFont(new Font("Dialog", Font.BOLD, 13));
+                    cancelButton.setIcon(null);
+                    cancelButton.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JLabel identityLabel = new JLabel("주민등록번호:");
                     identityLabel.setIcon(null);
@@ -202,20 +202,20 @@ public class AddStudentFrm extends JInternalFrame {
                     emailTextField.setColumns(10);
 
                     datePicker = new DatePicker();
-                    datePicker = getDatePicker();
+                    //注释下列一行才能打开 界面编辑
+                    //datePicker = getDatePicker();
                     lblNewLabel = new JLabel("전화번호:");
                     lblNewLabel.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
-                    textField = new JTextField();
-                    textField.setColumns(10);
+                    textField_tel = new JTextField();
+                    textField_tel.setColumns(10);
 
                     JLabel lblNewLabel_1 = new JLabel("집주소:");
                     lblNewLabel_1.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
-                    textField_1 = new JTextField();
-                    textField_1.setColumns(10);
-                    // datePicker=getDatePicker();
-                    // datepick.setColumns(10);
+                    textField_address = new JTextField();
+                    textField_address.setColumns(10);
+
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
                     groupLayout.setHorizontalGroup(groupLayout
                                         .createParallelGroup(Alignment.TRAILING)
@@ -231,7 +231,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                     .addPreferredGap(ComponentPlacement.RELATED,
                                                                                                                         92,
                                                                                                                         Short.MAX_VALUE)
-                                                                                                    .addComponent(resetButton))
+                                                                                                    .addComponent(cancelButton))
                                                                                 .addGroup(groupLayout
                                                                                                     .createSequentialGroup()
                                                                                                     .addGap(65)
@@ -250,7 +250,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                     .addGroup(groupLayout
                                                                                                                         .createParallelGroup(
                                                                                                                                             Alignment.LEADING)
-                                                                                                                        .addComponent(textField_1,
+                                                                                                                        .addComponent(textField_address,
                                                                                                                                             GroupLayout.DEFAULT_SIZE,
                                                                                                                                             153,
                                                                                                                                             Short.MAX_VALUE)
@@ -263,7 +263,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                                                             .addComponent(studentSexManRadioButton)
                                                                                                                                             .addGap(18)
                                                                                                                                             .addComponent(studentSexFemalRadioButton))
-                                                                                                                        .addComponent(studentClassComboBox,
+                                                                                                                        .addComponent(deptComboBox,
                                                                                                                                             0,
                                                                                                                                             160,
                                                                                                                                             Short.MAX_VALUE)
@@ -286,7 +286,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                                                             GroupLayout.DEFAULT_SIZE,
                                                                                                                                             GroupLayout.DEFAULT_SIZE,
                                                                                                                                             Short.MAX_VALUE)
-                                                                                                                        .addComponent(textField,
+                                                                                                                        .addComponent(textField_tel,
                                                                                                                                             GroupLayout.DEFAULT_SIZE,
                                                                                                                                             153,
                                                                                                                                             Short.MAX_VALUE))))
@@ -308,7 +308,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                             .addGroup(groupLayout
                                                                                 .createParallelGroup(
                                                                                                     Alignment.BASELINE)
-                                                                                .addComponent(studentClassComboBox,
+                                                                                .addComponent(deptComboBox,
                                                                                                     GroupLayout.PREFERRED_SIZE,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     GroupLayout.PREFERRED_SIZE)
@@ -356,7 +356,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                 .createParallelGroup(
                                                                                                     Alignment.BASELINE)
                                                                                 .addComponent(lblNewLabel)
-                                                                                .addComponent(textField,
+                                                                                .addComponent(textField_tel,
                                                                                                     GroupLayout.PREFERRED_SIZE,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     GroupLayout.PREFERRED_SIZE))
@@ -365,7 +365,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                 .createParallelGroup(
                                                                                                     Alignment.BASELINE)
                                                                                 .addComponent(lblNewLabel_1)
-                                                                                .addComponent(textField_1,
+                                                                                .addComponent(textField_address,
                                                                                                     GroupLayout.PREFERRED_SIZE,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     GroupLayout.PREFERRED_SIZE))
@@ -377,22 +377,26 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                     GroupLayout.PREFERRED_SIZE,
                                                                                                     27,
                                                                                                     GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(resetButton,
+                                                                                .addComponent(cancelButton,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     Short.MAX_VALUE))
                                                             .addGap(38)));
                     getContentPane().setLayout(groupLayout);
-                    setStudentClassInfo();
-
+                    setDeptName();
           }
 
           // 添加学生，确认提交
           protected void studentAddAction(ActionEvent ae) {
+                    
                     // TODO Auto-generated method stub
                     String studentName = studentNameTextField.getText()
                                         .toString();
-
+                    if (StringUtil.isEmpty(studentName)) {
+                              JOptionPane.showMessageDialog(this,
+                                                  "학생 이름을 입력하십시오！");
+                              return;
+                    }
                     String idCardNo_1 = identityTextField_1.getText()
                                         .toString();
                     String idCardNo_2 = identityTextField_2.getText()
@@ -403,17 +407,31 @@ public class AddStudentFrm extends JInternalFrame {
                     // System.out.println(joinDate);
                     String email = emailTextField.getText().toString();
 
-                    String sNo = getStudentNumber(joinDate);
-                    if (StringUtil.isEmpty(studentName)) {
-                              JOptionPane.showMessageDialog(this,
-                                                  "학생 이름을 입력하십시오！");
-                              return;
-                    }
-                    if (StringUtil.isEmpty(idCardNo)) {
+                    Dept dept=(Dept) deptComboBox.getSelectedItem();
+                    String deptNo=dept.getDeptNo();
+                    String sNo = getStudentNumber(joinDate,deptNo);
+                    String sex = studentSexManRadioButton.isSelected() ? studentSexManRadioButton
+                                        .getText() : studentSexFemalRadioButton
+                                        .getText();
+                    String passWord = identityTextField_1.getText().toString();
+                    String tel=textField_tel.getText().toString();
+                    String address=textField_address.getText().toString();
+//                    if(StringUtil.isEmpty(studentName)
+//                                        &&StringUtil.isEmpty(idCardNo)
+//                                        &&StringUtil.isEmpty(joinDate)
+//                                        &&StringUtil.isEmpty(email)
+//                                        &&StringUtil.isEmpty(tel)
+//                                        &&StringUtil.isEmpty(address)){
+//                              JOptionPane.showMessageDialog(this,
+//                                                  "데이터를 입력하십시오！");
+//                              return;
+//                    }
+                    if (StringUtil.isEmpty(idCardNo_1)||StringUtil.isEmpty(idCardNo_2)) {
                               JOptionPane.showMessageDialog(this,
                                                   "주민등록번호를 입력하십시오！");
                               return;
                     }
+                    
                     if (StringUtil.isEmpty(joinDate)) {
                               JOptionPane.showMessageDialog(this,
                                                   "입학일짜을 입력하십시오！");
@@ -424,45 +442,55 @@ public class AddStudentFrm extends JInternalFrame {
                                                   "이메일을 입력하십시오！");
                               return;
                     }
-                    StudentClass sc = (StudentClass) studentClassComboBox
-                                        .getSelectedItem();
-                    String sex = studentSexManRadioButton.isSelected() ? studentSexManRadioButton
-                                        .getText() : studentSexFemalRadioButton
-                                        .getText();
-                    String passWord = identityTextField_1.getText().toString();
-
+                    if (StringUtil.isEmpty(tel)) {
+                              JOptionPane.showMessageDialog(this,
+                                                  "전화번호를 입력하십시오！");
+                              return;
+                    }
+                    if (StringUtil.isEmpty(address)) {
+                              JOptionPane.showMessageDialog(this,
+                                                  "주소를 입력하십시오！");
+                              return;
+                    }
                     Student student = new Student();
                     student.setsNo(sNo);
                     student.setName(studentName);
-                    student.setClassId(sc.getId());
+                    student.setDeptId(deptNo);
                     student.setPassword(passWord);
                     student.setSex(sex);
                     student.setIdCardNo(idCardNo);
                     student.setJoinDate(joinDate);
                     student.setEmail(email);
+                    student.setTel(tel);
+                    student.setAdress(address);
+                    //System.out.println(student);
                     StudentDao studentDao = new StudentDao();
                     if (studentDao.addStudent(student)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "학생이 성공적으로 추가되었습니다! ");
+                                                  "학생이 등록 성공! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "학생 추가에 실패했습니다！");
+                                                  "학생이 등록 실패！");
                     }
                     resetValue(ae);
                     studentDao.closeDao();
           }
 
           // 获取学生id
-          public String getStudentNumber(String string) {
-                    String str = string.substring(0, 4);
-                    // System.out.println(str);
-                    int no = Integer.parseInt(str) + 4;
-                    String str2 = String.valueOf(no);
-                    String str3 = str2.substring(str2.length() - 2);
-                    String sNo = str + String.valueOf(str3) + getRandom();
-
+          public String getStudentNumber(String str1,String str2) {
+                    String str = str1.substring(0, 4);
+                    String sNo = str + str2 + getRandom();
                     return sNo;
           }
+//          public String getStudentNumber(String string) {
+//                    String str = string.substring(0, 4);
+//                    int no = Integer.parseInt(str) + 4;
+//                    String str2 = String.valueOf(no);
+//                    String str3 = str2.substring(str2.length() - 2);
+//                    String sNo = str + String.valueOf(str3) + getRandom();
+//
+//                    return sNo;
+//          }
 
           // 获取一个随机产生的三位数（001,001）
           public String getRandom() {
@@ -479,17 +507,15 @@ public class AddStudentFrm extends JInternalFrame {
                     }
                     return threeNumber;
           }
-
-          // 班级选择事件
-          protected void setStudentClassInfo() {
+          //学科 从数据库中把数据填充选择框
+          protected void setDeptName() {
                     // TODO Auto-generated method stub
-                    ClassDao classDao = new ClassDao();
-                    List<StudentClass> classList = classDao
-                                        .getClassList(new StudentClass());
-                    for (StudentClass sc : classList) {
-                              studentClassComboBox.addItem(sc);
+                    DeptDao deptDao=new DeptDao();
+                    List<Dept> deptList = deptDao.getDeptList(new Dept());
+                    for (Dept dept : deptList) {
+                              deptComboBox.addItem(dept);
                     }
-                    classDao.closeDao();
+                    deptDao.closeDao();
           }
 
           // 添加学生的重置按钮事件
@@ -497,21 +523,28 @@ public class AddStudentFrm extends JInternalFrame {
                     // TODO Auto-generated method stub
                     studentNameTextField.setText("");
                     // studentPasswordField.setText("");
-                    studentClassComboBox.setSelectedIndex(0);
+                    deptComboBox.setSelectedIndex(0);
                     sexButtonGroup.clearSelection();
                     studentSexManRadioButton.setSelected(true);
                     identityTextField_1.setText("");
                     identityTextField_2.setText("");
                     // datePicker=getDatePicker();
                     emailTextField.setText("");
+                    textField_tel.setText("");
+                    textField_address.setText("");
 
           }
 
           // 数据库中获取日期
           public String getStringDate(DatePicker datepick) {
                     String stringDate;
-                    SimpleDateFormat form = new SimpleDateFormat("yyyy-mm-dd");
-                    Date date = (Date) datepick.getValue();
+                    SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date;
+                    if(datepick.getValue()==null){
+                              date=new Date();
+                    }else{
+                              date = (Date) datepick.getValue();
+                    }
                     stringDate = form.format(date);
                     return stringDate;
           }

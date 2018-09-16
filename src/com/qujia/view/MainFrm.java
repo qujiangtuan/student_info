@@ -121,25 +121,34 @@ public class MainFrm extends JFrame {
                     mnNewMenu_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     systemManagerMenu.add(mnNewMenu_3);
                     
-                    JMenuItem mntmNewMenuItem_6 = new JMenuItem("수강등록");
-                    mntmNewMenuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_3.add(mntmNewMenuItem_6);
+                    JMenuItem menuItemAddCourse = new JMenuItem("수강등록");
+                    menuItemAddCourse.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        
+                              }
+                    });
                     
-                    JMenuItem mntmNewMenuItem_7 = new JMenuItem("수강관리");
-                    mntmNewMenuItem_7.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_3.add(mntmNewMenuItem_7);
+                    JMenuItem menuItemSubject = new JMenuItem("교과목관리");
+                    menuItemSubject.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_3.add(menuItemSubject);
+                    menuItemAddCourse.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_3.add(menuItemAddCourse);
                     
-                    JMenu mnNewMenu_4 = new JMenu("강의실관리");
-                    mnNewMenu_4.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_3.add(mnNewMenu_4);
+                    JMenuItem menuItemManagerCourse = new JMenuItem("수강관리");
+                    menuItemManagerCourse.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_3.add(menuItemManagerCourse);
                     
-                    JMenuItem mntmNewMenuItem_5 = new JMenuItem("강의실등록");
-                    mntmNewMenuItem_5.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_4.add(mntmNewMenuItem_5);
+                    JMenu menuClassRoom = new JMenu("강의실관리");
+                    menuClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_3.add(menuClassRoom);
                     
-                    JMenuItem menuItem_4 = new JMenuItem("강의실관리");
-                    menuItem_4.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_4.add(menuItem_4);
+                    JMenuItem menuItemAddClassRoom = new JMenuItem("강의실등록");
+                    menuItemAddClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
+                    menuClassRoom.add(menuItemAddClassRoom);
+                    
+                    JMenuItem menuItemManClassRoom = new JMenuItem("강의실관리");
+                    menuItemManClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
+                    menuClassRoom.add(menuItemManClassRoom);
                     
                     JMenu orgManagerMenu = new JMenu("조직관리");
                     orgManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/college.png")));
