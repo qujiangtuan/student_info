@@ -39,8 +39,8 @@ public class DeptManagerFrm extends JInternalFrame {
           private JTextField textField_year1;
           private JTextField textField_year2;
           private JTextField textField_credit;
+          private JTextArea textArea;
           private JComboBox comboBox_college;
-          private JTextArea textArea_exp;
 
           /**
            * Launch the application.
@@ -63,7 +63,7 @@ public class DeptManagerFrm extends JInternalFrame {
            */
           public DeptManagerFrm() {
                     setTitle("학과과리");
-                    setBounds(20, 20, 868, 508);
+                    setBounds(20, 20, 863, 482);
                     setClosable(true);
                     setIconifiable(true);
 
@@ -138,8 +138,6 @@ public class DeptManagerFrm extends JInternalFrame {
                     lblNewLabel_3.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
-                    textArea_exp = new JTextArea();
-
                     JButton updateButton = new JButton("수  정");
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -170,11 +168,13 @@ public class DeptManagerFrm extends JInternalFrame {
                     textField_credit.setColumns(10);
                     
                     comboBox_college = new JComboBox();
-                    comboBox_college.setModel(new DefaultComboBoxModel(new String[] {"공학대학", "경영대학", "인문대학"}));
+                    comboBox_college.setModel(new DefaultComboBoxModel(new String[] {"공학대학", "경영대학", "인문사회학과대학","수산과학대학","자연과학대학","환경.해양대학"}));
                     comboBox_college.setEditable(true);
+                    
+                    JScrollPane scrollPane_text = new JScrollPane();
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
                     groupLayout.setHorizontalGroup(
-                              groupLayout.createParallelGroup(Alignment.LEADING)
+                              groupLayout.createParallelGroup(Alignment.TRAILING)
                                         .addGroup(groupLayout.createSequentialGroup()
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                             .addGroup(groupLayout.createSequentialGroup()
@@ -190,44 +190,47 @@ public class DeptManagerFrm extends JInternalFrame {
                                                                                 .addGroup(groupLayout.createSequentialGroup()
                                                                                           .addComponent(lblNewLabel)
                                                                                           .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
+                                                                                          .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addPreferredGap(ComponentPlacement.RELATED))
                                                                                 .addGroup(groupLayout.createSequentialGroup()
                                                                                           .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
                                                                                                     .addComponent(lblNewLabel_4)
                                                                                                     .addComponent(label_1))
                                                                                           .addPreferredGap(ComponentPlacement.UNRELATED)
                                                                                           .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addComponent(comboBox_college, 0, 91, Short.MAX_VALUE)
-                                                                                                    .addComponent(textField_year1, GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))))
-                                                                      .addGap(18)
+                                                                                                    .addComponent(comboBox_college, 0, 128, Short.MAX_VALUE)
+                                                                                                    .addComponent(textField_year1, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))))
+                                                                      .addGap(29)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                                                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                                                                          .addGroup(groupLayout.createSequentialGroup()
+                                                                                                    .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                    .addComponent(lblNewLabel_2))
+                                                                                          .addGroup(groupLayout.createSequentialGroup()
+                                                                                                    .addGap(29)
+                                                                                                    .addComponent(label_2)))
+                                                                                .addComponent(label))
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                                                                .addComponent(textField_year2, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                                                                .addComponent(textField_name, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                                                                                .addComponent(textField_credit))
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                                                 .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addGroup(groupLayout.createSequentialGroup()
-                                                                                                              .addComponent(label)
-                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                              .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE))
-                                                                                                    .addGroup(groupLayout.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_2)
-                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                              .addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)))
-                                                                                          .addGap(18)
-                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                                                                                                    .addComponent(lblNewLabel_1)
-                                                                                                    .addComponent(lblNewLabel_3)))
+                                                                                          .addComponent(lblNewLabel_3)
+                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                          .addComponent(scrollPane_text, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
                                                                                 .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addGap(4)
-                                                                                          .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(textField_pnum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(textArea_exp, GroupLayout.PREFERRED_SIZE, 166, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(31)
+                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
+                                                                                          .addComponent(lblNewLabel_1)
+                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                          .addComponent(textField_pnum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                                                 .addComponent(deleteButton)
                                                                                 .addComponent(updateButton))
-                                                                      .addGap(96))
+                                                                      .addGap(50))
                                                             .addGroup(groupLayout.createSequentialGroup()
                                                                       .addContainerGap()
                                                                       .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 822, GroupLayout.PREFERRED_SIZE)))
@@ -243,48 +246,51 @@ public class DeptManagerFrm extends JInternalFrame {
                                                             .addComponent(searchButton))
                                                   .addPreferredGap(ComponentPlacement.UNRELATED)
                                                   .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(18)
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
                                                             .addGroup(groupLayout.createSequentialGroup()
-                                                                      .addGap(18)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                                                 .addComponent(lblNewLabel)
                                                                                 .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                                                           .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                                                           .addComponent(label)
-                                                                                          .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addComponent(lblNewLabel_1)
-                                                                                          .addComponent(textField_pnum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addGap(23)
-                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                                                              .addComponent(label_1)
-                                                                                                              .addComponent(textField_year1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                                                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                                                              .addComponent(lblNewLabel_2)
-                                                                                                              .addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                                              .addComponent(lblNewLabel_3)))
-                                                                                          .addGap(18)
-                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                                                              .addComponent(lblNewLabel_4)
-                                                                                                              .addComponent(comboBox_college, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                                                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                                                              .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                                                                                                              .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                                                                                .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addGap(30)
-                                                                                          .addComponent(textArea_exp, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addContainerGap(53, Short.MAX_VALUE))
+                                                                                          .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(23))
                                                             .addGroup(groupLayout.createSequentialGroup()
-                                                                      .addGap(3)
-                                                                      .addComponent(updateButton)
-                                                                      .addGap(21)
-                                                                      .addComponent(deleteButton)
-                                                                      .addGap(61))))
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(lblNewLabel_1)
+                                                                                .addComponent(textField_pnum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(updateButton))
+                                                                      .addGap(18)))
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                                                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                          .addComponent(label_1)
+                                                                                          .addComponent(textField_year1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(groupLayout.createSequentialGroup()
+                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
+                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                                    .addComponent(lblNewLabel_2)
+                                                                                                    .addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                                      .addGap(18)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(lblNewLabel_4)
+                                                                                .addComponent(comboBox_college, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                            .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                      .addComponent(scrollPane_text, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                      .addComponent(lblNewLabel_3))
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addGap(18)
+                                                                      .addComponent(deleteButton)))
+                                                  .addGap(97))
                     );
+                    
+                    textArea = new JTextArea();
+                    textArea.setLineWrap(true);
+                    scrollPane_text.setViewportView(textArea);
 
                     deptListTable = new JTable();
                     deptListTable.setRowHeight(25);
@@ -391,6 +397,7 @@ public class DeptManagerFrm extends JInternalFrame {
                               deptExp=dft.getValueAt(deptListTable.getSelectedRow(),9).toString();
                     } catch (NullPointerException ne) {
                               // TODO: handle exception
+                              deptExp="";
                     }
                     //得到编辑框数据
                     String editDeptNo = textField_no.getText().toString();
@@ -403,7 +410,7 @@ public class DeptManagerFrm extends JInternalFrame {
                                         .getText());
                     int editYear2 = Integer.parseInt(textField_year2
                                         .getText());
-                    String editDeptExp = textArea_exp.getText().toString();
+                    String editDeptExp = textArea.getText().toString();
                     //判断编辑框是否为空
                     if(StringUtil.isEmpty(deptNo)){
                               JOptionPane.showMessageDialog(this, "학과코드를 입력합시오");
@@ -482,10 +489,10 @@ public class DeptManagerFrm extends JInternalFrame {
                     
                     textField_credit.setText(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
                     try {
-                              textArea_exp.setText(dft.getValueAt(deptListTable.getSelectedRow(),9).toString());
+                              textArea.setText(dft.getValueAt(deptListTable.getSelectedRow(),9).toString());
                     } catch (NullPointerException e) {
                               // TODO: handle exception
-                              textArea_exp.setText("");
+                              textArea.setText("");
                     }
                     
           }
@@ -498,7 +505,7 @@ public class DeptManagerFrm extends JInternalFrame {
                    textField_credit.setText("");
                    textField_year1.setText("");
                    textField_year2.setText("");
-                   textArea_exp.setText("");
+                   textArea.setText("");
           }
           public void setTable(Dept dept) {
                     DefaultTableModel dft = (DefaultTableModel) deptListTable

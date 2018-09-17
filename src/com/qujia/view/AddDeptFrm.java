@@ -122,10 +122,7 @@ public class AddDeptFrm extends JFrame {
                                         13));
                     comboBox_uni.setModel(new DefaultComboBoxModel(
                                         new String[] {
-                                                            "\uACF5\uD559\uB300\uD559",
-                                                            "\uBB38\uD654\uB300\uD559",
-                                                            "\uACBD\uC601\uB300\uD559",
-                                                            "\uC218\uC0B0\uB300\uD559" }));
+                                                            "공학대학", "경영대학", "인문사회학과대학","수산과학대학","자연과학대학","환경.해양대학" }));
 
                     JButton button_submit = new JButton("\uB4F1 \uB85D");
                     button_submit.addActionListener(new ActionListener() {

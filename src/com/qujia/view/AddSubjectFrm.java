@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.eltima.components.ui.DatePicker;
+import com.qujia.util.ViewUtil;
 
 public class AddSubjectFrm extends JFrame {
 
@@ -45,8 +46,12 @@ public class AddSubjectFrm extends JFrame {
            */
           public AddSubjectFrm() {
                     setTitle("\uAD50\uACFC\uBAA9\uB4F1\uB85D");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 544, 372);
+                    
+                    ViewUtil vu = new ViewUtil();
+                    vu.showCenter(this);
+                    
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);

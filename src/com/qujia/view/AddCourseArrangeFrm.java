@@ -28,6 +28,7 @@ import com.eltima.components.ui.DatePicker;
 import com.qujia.model.ClassRoom;
 import com.qujia.model.TableTime;
 import com.qujia.util.DateUtil;
+import com.qujia.util.ViewUtil;
 
 public class AddCourseArrangeFrm extends JFrame {
 
@@ -73,8 +74,12 @@ public class AddCourseArrangeFrm extends JFrame {
            */
           public AddCourseArrangeFrm() {
                     setTitle("\uC218\uAC15\uB4F1\uB85D");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 625, 560);
+                    
+                    ViewUtil vu = new ViewUtil();
+                    vu.showCenter(this);
+                    
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);

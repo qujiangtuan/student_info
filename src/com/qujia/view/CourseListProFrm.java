@@ -1,24 +1,22 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
 
 import com.qujia.util.ViewUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CourseListProFrm extends JFrame {
 
@@ -46,7 +44,7 @@ public class CourseListProFrm extends JFrame {
            */
           public CourseListProFrm() {
                     setTitle("\uAC15\uC758\uBAA9\uB85D");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 721, 311);
                     
                     ViewUtil view =new ViewUtil();

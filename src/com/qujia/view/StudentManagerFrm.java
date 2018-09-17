@@ -365,7 +365,7 @@ public class StudentManagerFrm extends JInternalFrame {
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, true, false, false, false, true
+                                        false, false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -416,7 +416,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     student.setTel(studentTel);
                     student.setAdress(studentAddress);
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
-                    Dept dept=(Dept) searchDeptComboBox.getSelectedItem();
+                    Dept dept=(Dept) editDeptComboBox.getSelectedItem();
                     student.setDeptId(dept.getDeptNo());
                     
                     student.setsNo(studentListTable.getValueAt(row, 0).toString());

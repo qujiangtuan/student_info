@@ -124,11 +124,23 @@ public class MainFrm extends JFrame {
                     JMenuItem menuItemAddCourse = new JMenuItem("수강등록");
                     menuItemAddCourse.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        AddCourseArrangeFrm acaf=new AddCourseArrangeFrm();
+                                        layeredPane.setLayer(acaf, 200);
+                                        acaf.setVisible(true);
+                                        //desktopPane.add(acaf);
                                         
                               }
                     });
                     
                     JMenuItem menuItemSubject = new JMenuItem("교과목관리");
+                    menuItemSubject.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        AddSubjectFrm asf=new AddSubjectFrm();
+                                        layeredPane.setLayer(asf, 200);
+                                        asf.setVisible(true);
+                                        //desktopPane.add(asf);
+                              }
+                    });
                     menuItemSubject.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_3.add(menuItemSubject);
                     menuItemAddCourse.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -263,6 +275,13 @@ public class MainFrm extends JFrame {
                     mnNewMenu.add(mntmNewMenuItem_3);
                     
                     JMenuItem mntmNewMenuItem_4 = new JMenuItem("개인수강");
+                    mntmNewMenuItem_4.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        CourseListProFrm clp=new CourseListProFrm();
+                                        layeredPane.setLayer(clp, 200);
+                                        clp.setVisible(true);
+                              }
+                    });
                     mntmNewMenuItem_4.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     mnNewMenu.add(mntmNewMenuItem_4);
                     
