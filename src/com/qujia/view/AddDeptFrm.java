@@ -100,7 +100,7 @@ public class AddDeptFrm extends JFrame {
                     textField_3.setColumns(10);
 
                     JLabel label_loginDate = new JLabel(
-                                        "\uB4F1\uB85D\uC77C\uC9DC:");
+                                        "\uB4F1\uB85D\uC77C\uC790:");
                     label_loginDate.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
@@ -165,7 +165,7 @@ public class AddDeptFrm extends JFrame {
 
                     JScrollPane scrollPane = new JScrollPane();
                     
-                    JButton btnNewButton = new JButton("\uC911\uBCF5\uD559\uC778");
+                    JButton btnNewButton = new JButton("\uC911\uBCF5\uD655\uC778");
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         String deptNo= textField_no.getText().toString();

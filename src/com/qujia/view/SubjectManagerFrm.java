@@ -1,26 +1,24 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import com.eltima.components.ui.DatePicker;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class SubjectManagerFrm extends JFrame {
 
@@ -50,7 +48,7 @@ public class SubjectManagerFrm extends JFrame {
            * Create the frame.
            */
           public SubjectManagerFrm() {
-                    setTitle("\uAD50\uACFC\uBAA9\uACFC\uB9AC");
+                    setTitle("\uAD50\uACFC\uBAA9\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     setBounds(100, 100, 736, 641);
                     contentPane = new JPanel();
@@ -110,7 +108,7 @@ public class SubjectManagerFrm extends JFrame {
                     textField_2 = new JTextField();
                     textField_2.setColumns(10);
                     
-                    JButton btnNewButton_2 = new JButton("\uCEF4   \uC0C9");
+                    JButton btnNewButton_2 = new JButton("\uAC80   \uC0C9");
                     
                     JScrollPane scrollPane = new JScrollPane();
                     

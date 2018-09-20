@@ -3,7 +3,7 @@ package com.qujia.model;
 public class Student {
           private String sNo;
           private String name;
-          private String deptId;
+          private String orgId;
           private String sex;
           private String password;
           private String idCardNo;
@@ -12,11 +12,13 @@ public class Student {
           private String tel;
           private String adress;
           
-          public String getDeptId() {
-                    return deptId;
+
+          
+          public String getOrgId() {
+                    return orgId;
           }
-          public void setDeptId(String deptId) {
-                    this.deptId = deptId;
+          public void setOrgId(String orgId) {
+                    this.orgId = orgId;
           }
           public String getTel() {
                     return tel;
@@ -76,7 +78,7 @@ public class Student {
           @Override
           public String toString() {
                     return "Student [sNo=" + sNo + ", name=" + name
-                                        + ", deptId=" + deptId + ", sex=" + sex
+                                        + ", orgId=" + orgId + ", sex=" + sex
                                         + ", password=" + password
                                         + ", idCardNo=" + idCardNo + ", email="
                                         + email + ", joinDate=" + joinDate

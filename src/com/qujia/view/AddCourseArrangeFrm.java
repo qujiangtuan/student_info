@@ -73,7 +73,7 @@ public class AddCourseArrangeFrm extends JFrame {
            * Create the frame.
            */
           public AddCourseArrangeFrm() {
-                    setTitle("\uC218\uAC15\uB4F1\uB85D");
+                    setTitle("개설교과목등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 625, 560);
                     

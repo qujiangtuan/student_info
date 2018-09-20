@@ -29,9 +29,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import com.qujia.dao.DeptDao;
+import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
-import com.qujia.model.Dept;
+import com.qujia.model.Org;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
@@ -40,10 +40,10 @@ public class StudentManagerFrm extends JInternalFrame {
           private JTable studentListTable;
           private JTextField editNameTextField;
           private JTextField editEmailTextField;
-          private JComboBox searchDeptComboBox;
-          private JComboBox editDeptComboBox;
+          private JComboBox searchOrgComboBox;
+          private JComboBox editOrgComboBox;
 //          private List<StudentClass> studentClassList;
-          private List<Dept> deptList;
+          private List<Org> orgList;
           private ButtonGroup editSexButtonGroup;
           private JRadioButton editStudentSexManRadioButton;
           private JRadioButton editStudentSexFemalRadioButton;
@@ -102,8 +102,8 @@ public class StudentManagerFrm extends JInternalFrame {
                     searchClassLabel.setIcon(null);
                     searchClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
-                    searchDeptComboBox = new JComboBox();
-                    searchDeptComboBox.setEnabled(false);
+                    searchOrgComboBox = new JComboBox();
+                    searchOrgComboBox.setEnabled(false);
                     
                     JScrollPane scrollPane =  new JScrollPane();
                     
@@ -118,7 +118,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     editClassLabel.setIcon(null);
                     editClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
-                    editDeptComboBox = new JComboBox();
+                    editOrgComboBox = new JComboBox();
                     
                     JLabel editStudentSexLabel = new JLabel("\uC131\uBCC4:");
                     editStudentSexLabel.setIcon(null);
@@ -178,9 +178,9 @@ public class StudentManagerFrm extends JInternalFrame {
                     checkBox_3.addItemListener(new ItemListener() {
                               public void itemStateChanged(ItemEvent e) {
                                         if(checkBox_3.isSelected()){
-                                                  searchDeptComboBox.setEnabled(true);
+                                                  searchOrgComboBox.setEnabled(true);
                                         }else{
-                                                  searchDeptComboBox.setEnabled(false);
+                                                  searchOrgComboBox.setEnabled(false);
                                         }
                               }
                     });
@@ -188,7 +188,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     textField_no = new JTextField();
                     textField_no.setColumns(10);
                     textField_no.setEnabled(false);
-                    JLabel label_ = new JLabel("학생학번:");
+                    JLabel label_ = new JLabel("학 번:");
                     label_.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     radioButton_2 = new JRadioButton("");
@@ -228,7 +228,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                                                       .addGap(18)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
                                                                                 .addComponent(editNameTextField)
-                                                                                .addComponent(editDeptComboBox, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
+                                                                                .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 131, GroupLayout.PREFERRED_SIZE))
                                                                       .addGap(29)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                                                 .addGroup(groupLayout.createSequentialGroup()
@@ -267,13 +267,13 @@ public class StudentManagerFrm extends JInternalFrame {
                                                   .addPreferredGap(ComponentPlacement.RELATED)
                                                   .addComponent(label_, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                                   .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                  .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
                                                   .addPreferredGap(ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                                   .addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                                   .addPreferredGap(ComponentPlacement.RELATED)
                                                   .addComponent(searchClassLabel)
                                                   .addGap(18)
-                                                  .addComponent(searchDeptComboBox, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+                                                  .addComponent(searchOrgComboBox, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
                                                   .addGap(70)
                                                   .addComponent(searchButton)
                                                   .addGap(135))
@@ -286,7 +286,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                                             .addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                             .addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                             .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(searchDeptComboBox, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                                                      .addComponent(searchOrgComboBox, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                                                                       .addComponent(searchClassLabel))
                                                             .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                                       .addComponent(label_, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
@@ -310,7 +310,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                                                       .addGap(18)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                                                 .addComponent(editClassLabel)
-                                                                                .addComponent(editDeptComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                                                                 .addComponent(editEmailLabel, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
                                                                                 .addComponent(editEmailTextField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
                                                             .addGroup(groupLayout.createSequentialGroup()
@@ -361,7 +361,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC804\uD654\uBC88\uD638", "\uC785\uD559\uC77C\uC9DC", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638", "\uC9D1\uC8FC\uC18C"
+                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC804\uD654\uBC88\uD638", "\uC785\uD559\uC77C\uC790", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638", "\uC9D1\uC8FC\uC18C"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -384,7 +384,7 @@ public class StudentManagerFrm extends JInternalFrame {
           }
           //수정 submit event
           protected void submiEditAct(ActionEvent ae) {
-                    // TODO Auto-generated method stub
+                    setDeptName();
                     int row=studentListTable.getSelectedRow();
                     if(row==-1){
                               JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
@@ -416,8 +416,8 @@ public class StudentManagerFrm extends JInternalFrame {
                     student.setTel(studentTel);
                     student.setAdress(studentAddress);
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
-                    Dept dept=(Dept) editDeptComboBox.getSelectedItem();
-                    student.setDeptId(dept.getDeptNo());
+                   Org org=(Org) editOrgComboBox.getSelectedItem();
+                    student.setOrgId(org.getOrgCode());
                     
                     student.setsNo(studentListTable.getValueAt(row, 0).toString());
                     if(editStudentSexManRadioButton.isSelected()) student.setSex(editStudentSexManRadioButton.getText().toString());
@@ -441,11 +441,11 @@ public class StudentManagerFrm extends JInternalFrame {
                     editEmailTextField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 7).toString());
                     editTel_textField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 5).toString());
                     editAddress_textField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 9).toString());
-                    String deptName=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
-                    for(int i=0;i<editDeptComboBox.getItemCount();i++){
-                              Dept dept=(Dept) editDeptComboBox.getItemAt(i);
-                              if(deptName.equals(dept.getDeptName())){
-                                        editDeptComboBox.setSelectedIndex(i);
+                    String orgName=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
+                    for(int i=0;i<editOrgComboBox.getItemCount();i++){
+                              Org org=(Org)editOrgComboBox.getItemAt(i);
+                              if(orgName.equals(org.getName())){
+                                        editOrgComboBox.setSelectedIndex(i);
                               }
                     }
                     String sex=dft.getValueAt(studentListTable.getSelectedRow(), 3).toString();
@@ -458,7 +458,7 @@ public class StudentManagerFrm extends JInternalFrame {
           //학생삭제
           protected void deleteStudent(ActionEvent ae) {
                     // TODO Auto-generated method stub
-                    
+                    setDeptName();
                     int row=studentListTable.getSelectedRow();
                     if(row==-1){
                               JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
@@ -476,31 +476,35 @@ public class StudentManagerFrm extends JInternalFrame {
                     }
                     studentDao.closeDao();
                     setTable(new Student());
+                    restvalues();
           }
           //학생 검색
           protected void searchStudent(ActionEvent ae) {
-                    // TODO Auto-generated method stub
+                    setDeptName();
                     Student student=new Student();
                     if(radioButton_1.isSelected()){
                               student.setName(nameTextField.getText().toString());
                     }else{
                               student.setsNo(textField_no.getText().toString());
                     }
-                    Dept dept;
+                    Org org;
                     if(checkBox_3.isSelected()){
-                              dept=(Dept) searchDeptComboBox.getSelectedItem();
-                              student.setDeptId(dept.getDeptNo());
+                              org=(Org) searchOrgComboBox.getSelectedItem();
+                              student.setOrgId(org.getOrgCode());
                     }
                     int row=studentListTable.getSelectedRow();
                     if(row==-1){
-                              editNameTextField.setText("");
-                            editEmailTextField.setText("");
-                            editTel_textField.setText("");
-                            editAddress_textField.setText("");
-                            editDeptComboBox.setSelectedIndex(0);
-                            editSexButtonGroup.clearSelection();
+                              restvalues();
                     }
                     setTable(student);
+          }
+          private void restvalues() {
+                    editNameTextField.setText("");
+                          editEmailTextField.setText("");
+                          editTel_textField.setText("");
+                          editAddress_textField.setText("");
+                          editOrgComboBox.setSelectedIndex(0);
+                          editSexButtonGroup.clearSelection();
           }
           // table다시 설정
           private void setTable(Student student){
@@ -512,7 +516,7 @@ public class StudentManagerFrm extends JInternalFrame {
                              Vector v=new Vector();
                              v.add(s.getsNo());
                              v.add(s.getName());
-                             v.add(this.getDeptNameById(s.getDeptId()));
+                             v.add(this.getDeptNameById(s.getOrgId()));
 //                             v.add(s.getDeptId());
                              v.add(s.getSex());
                              v.add(s.getIdCardNo());
@@ -529,18 +533,19 @@ public class StudentManagerFrm extends JInternalFrame {
         //학과선택
           protected void setDeptName() {
                     // TODO Auto-generated method stub
-                    DeptDao deptDao=new DeptDao();
-                    deptList = deptDao.getDeptList(new Dept());
-                    for (Dept dept : deptList) {
-                              searchDeptComboBox.addItem(dept);
-                              editDeptComboBox.addItem(dept);
+                    OrgDao orgDao=new OrgDao();
+                    
+                    orgList = orgDao.getOrgList(new Org());
+                    for (Org org : orgList) {
+                              searchOrgComboBox.addItem(org);
+                              editOrgComboBox.addItem(org);
                     }
-                    deptDao.closeDao();
+                    orgDao.closeDao();
           }
           //classId에 통해서 className를 받는다
           public String getDeptNameById(String id){
-                    for(Dept dept:deptList){
-                            if(dept.getDeptNo().equals(id)) return dept.getDeptName();
+                    for(Org org:orgList){
+                            if(org.getOrgCode().equals(id)) return org.getName();
                     }
                     return "";
           }

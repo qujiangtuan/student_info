@@ -16,7 +16,7 @@ public class StudentDao extends BaseDao{
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());
                                 prst.setString(2, student.getName());
-                                prst.setString(3,student.getDeptId());
+                                prst.setString(3,student.getOrgId());
                                 prst.setString(4,student.getSex());
                                 prst.setString(5, student.getIdCardNo());
                                 prst.setString(6, student.getJoinDate());
@@ -41,8 +41,8 @@ public class StudentDao extends BaseDao{
                       if(!StringUtil.isEmpty(student.getsNo())){
                                 sqlString.append(" and sno like '%"+student.getsNo()+"%'");
                       }
-                      if(student.getDeptId()!=null){
-                                sqlString.append(" and deptid = '"+student.getDeptId()+"'");
+                      if(student.getOrgId()!=null){
+                                sqlString.append(" and deptid = '"+student.getOrgId()+"'");
                       }
                       try {
                                 PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
@@ -52,7 +52,7 @@ public class StudentDao extends BaseDao{
                                           Student s =new Student();
                                           s.setsNo(executeQuery.getString("sno"));
                                           s.setName(executeQuery.getString("name"));
-                                          s.setDeptId(executeQuery.getString("deptid"));
+                                          s.setOrgId(executeQuery.getString("orgid"));
                                           s.setSex(executeQuery.getString("sex"));
                                           s.setIdCardNo(executeQuery.getString("idcardno"));
                                           s.setJoinDate(executeQuery.getString("joindate"));
@@ -87,11 +87,11 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set name = ? , deptid=?,sex=?,email=? , tel= ?, address=? where sno=?";
+                      String sql="update student set name = ? , orgid=?,sex=?,email=? , tel= ?, address=? where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,student.getName());
-                              prst.setString(2,student.getDeptId());
+                              prst.setString(2,student.getOrgId());
                               prst.setString(3, student.getSex());
                               prst.setString(4,student.getEmail());
                               prst.setString(5,student.getTel());

@@ -62,7 +62,7 @@ public class DeptManagerFrm extends JInternalFrame {
            * Create the frame.
            */
           public DeptManagerFrm() {
-                    setTitle("학과과리");
+                    setTitle("학과관리");
                     setBounds(20, 20, 863, 482);
                     setClosable(true);
                     setIconifiable(true);
@@ -121,7 +121,7 @@ public class DeptManagerFrm extends JInternalFrame {
                     textField_pnum = new JTextField();
                     textField_pnum.setColumns(10);
 
-                    JLabel label_1 = new JLabel("수학년학\r\n:");
+                    JLabel label_1 = new JLabel("수학년한\r\n:");
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_year1 = new JTextField();
@@ -315,7 +315,7 @@ public class DeptManagerFrm extends JInternalFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uACFC\uCF54\uB4DC", "\uD559\uACFC\uC774\uB984", "\uC18C\uC18D\uB300\uD559", "\uBAA8\uC9D1\uC778\uC6D0", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC9DC", "\uC878\uC5C5\uC774\uC218\uD559\uC810", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uD559\uACFC\uC124\uBA85"
+                                        "\uD559\uACFC\uCF54\uB4DC", "\uD559\uACFC\uC774\uB984", "\uC18C\uC18D\uB300\uD559", "\uBAA8\uC9D1\uC778\uC6D0", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC878\uC5C5\uC774\uC218\uD559\uC810", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uD559\uACFC\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

@@ -26,9 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.eltima.components.ui.DatePicker;
-import com.qujia.dao.DeptDao;
+import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
-import com.qujia.model.Dept;
+import com.qujia.model.Org;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
@@ -37,7 +37,7 @@ public class AddStudentFrm extends JInternalFrame {
           private JRadioButton studentSexManRadioButton;
           private JRadioButton studentSexFemalRadioButton;
           private ButtonGroup sexButtonGroup;
-          private JComboBox deptComboBox;
+          private JComboBox orgComboBox;
           private JTextField identityTextField_1;
           private JTextField identityTextField_2;
           private JLabel emailLabel;
@@ -83,19 +83,19 @@ public class AddStudentFrm extends JInternalFrame {
                     studentNameTextField = new JTextField();
                     studentNameTextField.setColumns(10);
 
-                    JLabel studentClassLabel = new JLabel("소속학과:");
+                    JLabel studentClassLabel = new JLabel("소속조직:");
                     studentClassLabel.setIcon(null);
                     studentClassLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
-                    deptComboBox = new JComboBox();
+                    orgComboBox = new JComboBox();
 
                     JLabel studentSexLabel = new JLabel(" 성    별 :");
                     studentSexLabel.setIcon(null);
                     studentSexLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
-                    JButton submitButton = new JButton("학  인");
+                    JButton submitButton = new JButton("확  인");
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         studentAddAction(ae);
@@ -263,7 +263,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                                                                                                             .addComponent(studentSexManRadioButton)
                                                                                                                                             .addGap(18)
                                                                                                                                             .addComponent(studentSexFemalRadioButton))
-                                                                                                                        .addComponent(deptComboBox,
+                                                                                                                        .addComponent(orgComboBox,
                                                                                                                                             0,
                                                                                                                                             160,
                                                                                                                                             Short.MAX_VALUE)
@@ -308,7 +308,7 @@ public class AddStudentFrm extends JInternalFrame {
                                                             .addGroup(groupLayout
                                                                                 .createParallelGroup(
                                                                                                     Alignment.BASELINE)
-                                                                                .addComponent(deptComboBox,
+                                                                                .addComponent(orgComboBox,
                                                                                                     GroupLayout.PREFERRED_SIZE,
                                                                                                     GroupLayout.DEFAULT_SIZE,
                                                                                                     GroupLayout.PREFERRED_SIZE)
@@ -407,9 +407,9 @@ public class AddStudentFrm extends JInternalFrame {
                     // System.out.println(joinDate);
                     String email = emailTextField.getText().toString();
 
-                    Dept dept=(Dept) deptComboBox.getSelectedItem();
-                    String deptNo=dept.getDeptNo();
-                    String sNo = getStudentNumber(joinDate,deptNo);
+                   Org org=(Org)orgComboBox.getSelectedItem();
+                    String orgid=org.getOrgCode();
+                    String sNo = getStudentNumber(joinDate,orgid);
                     String sex = studentSexManRadioButton.isSelected() ? studentSexManRadioButton
                                         .getText() : studentSexFemalRadioButton
                                         .getText();
@@ -455,7 +455,7 @@ public class AddStudentFrm extends JInternalFrame {
                     Student student = new Student();
                     student.setsNo(sNo);
                     student.setName(studentName);
-                    student.setDeptId(deptNo);
+                    student.setOrgId(orgid);
                     student.setPassword(passWord);
                     student.setSex(sex);
                     student.setIdCardNo(idCardNo);
@@ -477,8 +477,10 @@ public class AddStudentFrm extends JInternalFrame {
           }
 
           // 获取学生id
-          public String getStudentNumber(String str1,String str2) {
+          public String getStudentNumber(String str1,String string) {
                     String str = str1.substring(0, 4);
+                    String str2;
+                    str2=string.substring(3, 5);
                     String sNo = str + str2 + getRandom();
                     return sNo;
           }
@@ -510,12 +512,12 @@ public class AddStudentFrm extends JInternalFrame {
           //学科 从数据库中把数据填充选择框
           protected void setDeptName() {
                     // TODO Auto-generated method stub
-                    DeptDao deptDao=new DeptDao();
-                    List<Dept> deptList = deptDao.getDeptList(new Dept());
-                    for (Dept dept : deptList) {
-                              deptComboBox.addItem(dept);
+                    OrgDao orgDao=new OrgDao();
+                    List<Org> orgList=orgDao.getOrgList(new Org());
+                    for (Org org: orgList) {
+                              orgComboBox.addItem(org);
                     }
-                    deptDao.closeDao();
+                    orgDao.closeDao();
           }
 
           // 添加学生的重置按钮事件
@@ -523,7 +525,7 @@ public class AddStudentFrm extends JInternalFrame {
                     // TODO Auto-generated method stub
                     studentNameTextField.setText("");
                     // studentPasswordField.setText("");
-                    deptComboBox.setSelectedIndex(0);
+                    orgComboBox.setSelectedIndex(0);
                     sexButtonGroup.clearSelection();
                     studentSexManRadioButton.setSelected(true);
                     identityTextField_1.setText("");

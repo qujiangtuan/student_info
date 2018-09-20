@@ -24,7 +24,6 @@ public class AddProFrm extends JFrame {
           private JPanel contentPane;
           private JTextField textField;
           private JTextField textField_3;
-          private JTextField textField_4;
           private JTextField textField_5;
           private JTextField textField_6;
           private JTextField textField_7;
@@ -88,9 +87,6 @@ public class AddProFrm extends JFrame {
                     
                     JLabel lblNewLabel_5 = new JLabel("\uC18C\uC18D\uD559\uACFC:");
                     
-                    textField_4 = new JTextField();
-                    textField_4.setColumns(10);
-                    
                     JLabel lblNewLabel_6 = new JLabel("\uC8FC\uC18C:");
                     
                     textField_5 = new JTextField();
@@ -126,6 +122,9 @@ public class AddProFrm extends JFrame {
                     JLabel lblNewLabel_9 = new JLabel("\uB4F1\uB85D\uC77C\uC9DC:");
                     
                     DatePicker datePicker = new DatePicker();
+                    
+                    JComboBox comboBox_3 = new JComboBox();
+                    comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC"}));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -147,9 +146,9 @@ public class AddProFrm extends JFrame {
                                                                                 .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                                                                                           .addComponent(comboBox_2, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                           .addComponent(textField_6)
-                                                                                          .addComponent(textField_4)
                                                                                           .addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                          .addComponent(textField, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)))))
+                                                                                          .addComponent(textField, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                                                                                .addComponent(comboBox_3, 0, 101, Short.MAX_VALUE))))
                                                   .addPreferredGap(ComponentPlacement.UNRELATED)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
                                                             .addComponent(lblNewLabel_2)
@@ -195,8 +194,9 @@ public class AddProFrm extends JFrame {
                                                                       .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                      .addComponent(lblNewLabel_5)
+                                                                      .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                             .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                                                       .addComponent(lblNewLabel_6)
                                                                       .addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
