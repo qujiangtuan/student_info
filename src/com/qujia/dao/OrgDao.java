@@ -80,6 +80,31 @@ public class OrgDao extends BaseDao {
                    
                    return retList;
          }
+         public List<Org> getOrgdeptNameList(Org org){
+                   List<Org> retList=new ArrayList<Org>();
+                   String sqlString ="select * from org where gs_dpt_maj_code is not null";
+                   try {
+                             PreparedStatement prst=con.prepareStatement(sqlString);
+                             ResultSet executeQuery = prst.executeQuery();
+                             while(executeQuery.next()){
+                                       Org o=new Org();
+                                       o.setOrgCode(executeQuery.getString("org_code"));
+                                       o.setName(executeQuery.getString("name"));
+                                       o.setsName(executeQuery.getString("sname"));
+                                       o.setOrgType(executeQuery.getString("org_type"));
+                                       o.setCoGrCode(executeQuery.getString("co_gr_code"));
+                                       o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
+                                       o.setAftType(executeQuery.getString("aft_type"));
+                                       o.setParCode(executeQuery.getString("par_org"));
+                                       retList.add(o);
+                             }
+                   } catch (SQLException e) {
+                             // TODO Auto-generated catch block
+                             e.printStackTrace();
+                   }
+                   
+                   return retList;
+         }
        //delete org
          public boolean deleteOrg(String orgCode){
                    String sql="delete from org where org_code="+orgCode;

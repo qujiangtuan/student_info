@@ -194,10 +194,26 @@ public class MainFrm extends JFrame {
                     orgManagerMenu.add(menu);
                     
                     JMenuItem menuItem_2 = new JMenuItem("학과기준등록");
+                    menuItem_2.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        AddDeptStandFrm adsf=new AddDeptStandFrm();
+                                        layeredPane.setLayer(adsf, 200);
+                                        adsf.setVisible(true);
+//                                        desktopPane.add(adsf);
+                              }
+                    });
                     menuItem_2.setFont(new Font("Dialog", Font.BOLD, 13));
                     menu.add(menuItem_2);
                     
                     JMenuItem menuItem_3 = new JMenuItem("학과기준관리");
+                    menuItem_3.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        DeptStandManagerFrm dsmf=new DeptStandManagerFrm();
+                                        layeredPane.setLayer(dsmf, 200);
+                                        dsmf.setVisible(true);
+                                        desktopPane.add(dsmf);
+                              }
+                    });
                     menuItem_3.setFont(new Font("Dialog", Font.BOLD, 13));
                     menu.add(menuItem_3);
                     

@@ -18,6 +18,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -68,6 +69,7 @@ public class AddStudentFrm extends JInternalFrame {
            */
           public AddStudentFrm() {
                     getContentPane().setFont(new Font("휴먼고딕", Font.BOLD, 13));
+                   
                     setTitle("학생등록");
                     setBounds(100, 50, 485, 462);
                     setClosable(true);
@@ -116,7 +118,18 @@ public class AddStudentFrm extends JInternalFrame {
                     JButton cancelButton = new JButton("취  소");
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
-                                        resetValue(ae);
+//                                        resetValue(ae);
+                                        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+                                        AddStudentFrm asf=new AddStudentFrm();
+//                                        asf.dispatchEvent(new WindowEvent(asf,WindowEvent.WINDOW_CLOSING) );
+                                        asf.dispose();
+//                                        try {
+//                                                  asf.setClosed(true);
+//                                        } catch (PropertyVetoException e) {
+//                                                  // TODO Auto-generated catch block
+//                                                  e.printStackTrace();
+//                                        }
                               }
                     });
                     cancelButton.setIcon(null);
