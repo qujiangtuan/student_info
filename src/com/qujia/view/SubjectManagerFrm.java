@@ -20,6 +20,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.util.ViewUtil;
+
 public class SubjectManagerFrm extends JFrame {
 
           private JPanel contentPane;
@@ -49,8 +51,12 @@ public class SubjectManagerFrm extends JFrame {
            */
           public SubjectManagerFrm() {
                     setTitle("\uAD50\uACFC\uBAA9\uAD00\uB9AC");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 736, 641);
+                    
+                  ViewUtil vu=new ViewUtil();
+                     vu.showCenter(this);
+                    
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);

@@ -11,7 +11,7 @@ import com.qujia.util.StringUtil;
 
 public class StudentDao extends BaseDao{
             public boolean addStudent(Student student){
-                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?)";
+                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null)";
                       try {
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());
@@ -32,6 +32,22 @@ public class StudentDao extends BaseDao{
                       }
                       return false;
             }
+            public boolean UpdateAppendMajor(Student student){
+//            	update student set major_type='123',major='345',applydate='2015-03-49' where name='gerge'
+                String sql="update student set major_type=?,major=?,applydate=? where name=?";
+                try {
+                          PreparedStatement prst=con.prepareStatement(sql);
+                          prst.setString(1, student.getMajorType());
+                          prst.setString(2, student.getMajor());
+                          prst.setString(3,student.getApplyDate());
+                          prst.setString(4,student.getName());
+                          if(prst.executeUpdate()>0) return true;
+                } catch (SQLException e) {
+                          // TODO Auto-generated catch block
+                          e.printStackTrace();
+                }
+                return false;
+      }
             public List<Student> getStudentList(Student student){
                       List<Student> retList=new ArrayList<Student>();
                       StringBuffer sqlString=new StringBuffer("select * from student");
@@ -60,6 +76,9 @@ public class StudentDao extends BaseDao{
                                           s.setPassword(executeQuery.getString("password"));
                                           s.setTel(executeQuery.getString("tel"));
                                           s.setAdress(executeQuery.getString("address"));
+                                          s.setMajorType(executeQuery.getString("major_type"));
+                                          s.setMajor(executeQuery.getString("major"));
+                                          s.setApplyDate(executeQuery.getString("applydate"));
                                           retList.add(s);
                                 }
                       } catch (SQLException e) {

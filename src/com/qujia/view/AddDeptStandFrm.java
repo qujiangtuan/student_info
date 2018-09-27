@@ -212,7 +212,7 @@ public class AddDeptStandFrm extends JFrame {
                     textArea_explain.setLineWrap(true);
                     scrollPane.setViewportView(textArea_explain);
                     contentPane.setLayout(gl_contentPane);
-                    setDeptName();
+                    setDeptStandName();
           }
 
           public String getStringDate(DatePicker datepick) {
@@ -304,7 +304,7 @@ public class AddDeptStandFrm extends JFrame {
                     resetValue(e);
           }
         //学科 从数据库中把数据填充选择框
-          protected void setDeptName() {
+          protected void setDeptStandName() {
                     // TODO Auto-generated method stub
                     OrgDao orgDao=new OrgDao();
                     List<Org> orgList=orgDao.getOrgdeptNameList(new Org());

@@ -12,9 +12,32 @@ public class Student {
           private String tel;
           private String adress;
           
+          private String majorType;
+          private String major;
+          private String applyDate;
+          
+          
 
           
-          public String getOrgId() {
+          public String getMajorType() {
+			return majorType;
+		}
+		public void setMajorType(String majorType) {
+			this.majorType = majorType;
+		}
+		public String getMajor() {
+			return major;
+		}
+		public void setMajor(String major) {
+			this.major = major;
+		}
+		public String getApplyDate() {
+			return applyDate;
+		}
+		public void setApplyDate(String applyDate) {
+			this.applyDate = applyDate;
+		}
+		public String getOrgId() {
                     return orgId;
           }
           public void setOrgId(String orgId) {

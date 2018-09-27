@@ -90,6 +90,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                                         } 
                                         deptStand.setOrgName(str);
                                         setTable(deptStand);
+                                        resetValut();
                               }
                     });
                     searchButton.setIcon(new ImageIcon(DeptStandManagerFrm.class
@@ -431,6 +432,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
           }
           //重置编辑框的值
          public void resetValut(){
+        	       label_name.setText("");
                    textField_pnum.setText("");
                    textField_credit.setText("");
                    textField_year1.setText("");

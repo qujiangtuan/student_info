@@ -34,7 +34,7 @@ public class AddOrgFrm extends JFrame {
           private JPanel contentPane;
           private JTextField textField_orgName;
           private JTextField textField_sName;
-          private JRadioButton radioButton_1,radioButton_2;
+          private JRadioButton radioButton_1,radioButton_2,radioButton_3;
           private ButtonGroup bGroup;
           private CardLayout card;
           private JPanel panel_1,panel_2,panel;
@@ -43,6 +43,8 @@ public class AddOrgFrm extends JFrame {
           private JComboBox comboBox_2,comboBox_1,comboBox_3;
           private JLabel label_3;
           private JComboBox comboBox_par;
+          private JPanel panel_3;
+          private JComboBox comboBox;
           /**
            * Launch the application.
            */
@@ -104,9 +106,18 @@ public class AddOrgFrm extends JFrame {
                                         }
                               }
                     });
+                    radioButton_3 = new JRadioButton("본부행정기관");
+                    radioButton_3.addItemListener(new ItemListener() {
+                        public void itemStateChanged(ItemEvent e) {
+                                  if(radioButton_3.isSelected()){
+                                            card.show(panel, "p3");
+                                  }
+                        }
+              });
                     bGroup=new ButtonGroup();
                     bGroup.add(radioButton_1);
                     bGroup.add(radioButton_2);
+                    bGroup.add(radioButton_3);
                     
                     card=new CardLayout(5,5);
                     panel = new JPanel(card);
@@ -123,77 +134,85 @@ public class AddOrgFrm extends JFrame {
                     label_3 = new JLabel("\uC0C1\uC704\uC870\uC9C1:");
                     
                     comboBox_par = new JComboBox();
+                    
+                    
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(71)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(lblNewLabel)
-                                                                                .addComponent(label))
-                                                                      .addGap(18)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(radioButton_1)
-                                                                                .addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(42)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_1)
-                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                          .addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-                                                                                .addComponent(radioButton_2)))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(panel, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(125)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(submitButton)
-                                                                                .addComponent(label_3, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGap(117)
-                                                                                          .addComponent(cancelButton))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                          .addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)))))
-                                                  .addContainerGap(39, Short.MAX_VALUE))
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(71)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(lblNewLabel)
+                    						.addComponent(label))
+                    					.addGap(18)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                    							.addGap(42)
+                    							.addComponent(lblNewLabel_1)
+                    							.addPreferredGap(ComponentPlacement.RELATED))
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addComponent(radioButton_1)
+                    							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    							.addComponent(radioButton_2)
+                    							.addGap(22)))
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    						.addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+                    						.addComponent(radioButton_3, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
+                    					.addGap(37))
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addContainerGap()
+                    					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(125)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(submitButton)
+                    						.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addGap(117)
+                    							.addComponent(cancelButton))
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addPreferredGap(ComponentPlacement.RELATED)
+                    							.addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)))))
+                    			.addContainerGap(39, Short.MAX_VALUE))
                     );
                     gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(35)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(radioButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(panel, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(21)
-                                                                      .addComponent(label_3))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(18)
-                                                                      .addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                                                                      .addComponent(submitButton)
-                                                                      .addGap(18))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(18)
-                                                                      .addComponent(cancelButton)
-                                                                      .addContainerGap())))
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addGap(35)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(lblNewLabel)
+                    				.addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(lblNewLabel_1)
+                    				.addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(18)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    				.addComponent(radioButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    				.addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    				.addComponent(radioButton_3))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(21)
+                    					.addComponent(label_3))
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(18)
+                    					.addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    			.addPreferredGap(ComponentPlacement.RELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addPreferredGap(ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                    					.addComponent(submitButton)
+                    					.addGap(18))
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(18)
+                    					.addComponent(cancelButton)
+                    					.addContainerGap())))
                     );
                     
                     panel_1 = new JPanel();
@@ -258,6 +277,30 @@ public class AddOrgFrm extends JFrame {
                                                   .addContainerGap(19, Short.MAX_VALUE))
                     );
                     panel_2.setLayout(gl_panel_2);
+                    
+                    panel_3 = new JPanel();
+                    panel_3.setBackground(new Color(255, 255, 255));
+                    panel.add(panel_3, "p3");
+                    
+                    comboBox = new JComboBox();
+                    GroupLayout gl_panel_3 = new GroupLayout(panel_3);
+                    gl_panel_3.setHorizontalGroup(
+                    	gl_panel_3.createParallelGroup(Alignment.TRAILING)
+                    		.addGap(0, 481, Short.MAX_VALUE)
+                    		.addGroup(gl_panel_3.createSequentialGroup()
+                    			.addContainerGap(47, Short.MAX_VALUE)
+                    			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
+                    			.addGap(24))
+                    );
+                    gl_panel_3.setVerticalGroup(
+                    	gl_panel_3.createParallelGroup(Alignment.LEADING)
+                    		.addGap(0, 50, Short.MAX_VALUE)
+                    		.addGroup(gl_panel_3.createSequentialGroup()
+                    			.addContainerGap()
+                    			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    			.addContainerGap(19, Short.MAX_VALUE))
+                    );
+                    panel_3.setLayout(gl_panel_3);
                     contentPane.setLayout(gl_contentPane);
                     
                     setOrgName();
@@ -271,8 +314,7 @@ public class AddOrgFrm extends JFrame {
                     name=textField_orgName.getText().toString();
                     sName=textField_sName.getText().toString();
                     orgType=radioButton_1.isSelected() ? radioButton_1
-                                        .getText() : radioButton_2
-                                        .getText();
+                                        .getText() :  (radioButton_2.isSelected() ? radioButton_2.getText():radioButton_3.getText());
                     coGrCode=comboBox_1.getSelectedItem().toString();
                     gsDepMajCode=comboBox_2.getSelectedItem().toString();
                     aftType=comboBox_3.getSelectedItem().toString();
@@ -288,7 +330,7 @@ public class AddOrgFrm extends JFrame {
                                                   "조직이름을 입력하십시오！");
                               return;
                     }
-                    orgCode = getOrgCode(radioButton_1,comboBox_1,comboBox_2);
+                    orgCode = MakeOrgCode(radioButton_1,radioButton_2,comboBox_1,comboBox_2);
                     
                     Org org=new Org();
                     org.setOrgCode(orgCode);
@@ -311,14 +353,16 @@ public class AddOrgFrm extends JFrame {
                     
           }
           // get orgCode 조직코드 생성
-          private String getOrgCode(JRadioButton jr,JComboBox jc1,JComboBox jc2) {
+          private String MakeOrgCode(JRadioButton jr1,JRadioButton jr2,JComboBox jc1,JComboBox jc2) {
                     String orgCode;
                     String str1,str2,str3;//코드
                     //교육기관/부속기관
-                    if(jr.isSelected()){
+                    if(jr1.isSelected()){
                               str1="1";
-                    }else{
+                    }else if(jr2.isSelected()){
                               str1="2";
+                    }else {
+                    	str1="3";
                     }
                     //대학/대학원
                     int s2=jc1.getSelectedIndex();
