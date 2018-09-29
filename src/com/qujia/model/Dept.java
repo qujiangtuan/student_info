@@ -1,11 +1,13 @@
 package com.qujia.model;
 
+
 public class Dept {
           private String deptNo;
           private String deptName;
           private String college;
           private Integer credit;
           private Integer pNum;
+          private Integer inNum;
           private String loginDate;
           private Integer year1;
           private Integer year2;
@@ -17,6 +19,14 @@ public class Dept {
 
           public void setDeptNo(String deptNo) {
                     this.deptNo = deptNo;
+          }
+
+          public Integer getInNum() {
+                    return inNum;
+          }
+
+          public void setInNum(Integer inNum) {
+                    this.inNum = inNum;
           }
 
           public String getDeptName() {
@@ -85,13 +95,7 @@ public class Dept {
 
           @Override
           public String toString() {
-                    return "Dept [deptNo=" + deptNo + ", deptName=" + deptName
-                                        + ", college=" + college + ", credit="
-                                        + credit + ", pNum=" + pNum
-                                        + ", loginDate=" + loginDate
-                                        + ", year1=" + year1 + ", year2="
-                                        + year2 + ", deptExplain="
-                                        + deptExplain + "]";
+                    return deptName;
           }
 
 }
