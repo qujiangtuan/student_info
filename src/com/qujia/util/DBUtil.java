@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class DBUtil {
           // private String dbUrl="jdbc:oracle:thin:@localhost:1522:XE";
-          private String dbUrl = "jdbc:oracle:thin:@210.110.136.106:1522:XE";
+          private String dbUrl = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
           private String dbUserName = "student";
           private String dbPassword = "6317800";
           private String jdbcName = "oracle.jdbc.driver.OracleDriver";
