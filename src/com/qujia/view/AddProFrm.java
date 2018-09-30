@@ -469,7 +469,7 @@ public class AddProFrm extends JFrame {
                     panel.add(panel_2, "panel_2");
                     
                     comboBox_emptype = new JComboBox();
-                    comboBox_emptype.setModel(new DefaultComboBoxModel(new String[] {"", "\uBD80\uC7A5", "\uCC28\uC7A5", "\uB300\uB9AC", "\uC0AC\uC6D0"}));
+                    comboBox_emptype.setModel(new DefaultComboBoxModel(new String[] {"", "부장", "차장", "대리", "사원"}));
                     
                     JLabel lblNewLabel_5 = new JLabel("\uC9C1\uC6D0\uAD6C\uBD84:");
                     

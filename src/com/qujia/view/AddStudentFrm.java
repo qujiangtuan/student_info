@@ -47,6 +47,7 @@ public class AddStudentFrm extends JInternalFrame {
           private JLabel lblNewLabel;
           private JTextField textField_tel;
           private JTextField textField_address;
+          private JLabel label;
 
           /**
            * Launch the application.
@@ -71,7 +72,7 @@ public class AddStudentFrm extends JInternalFrame {
                     getContentPane().setFont(new Font("휴먼고딕", Font.BOLD, 13));
                    
                     setTitle("학생등록");
-                    setBounds(100, 50, 485, 462);
+                    setBounds(100, 50, 502, 462);
                     setClosable(true);
                     setIconifiable(true);
 
@@ -228,173 +229,94 @@ public class AddStudentFrm extends JInternalFrame {
 
                     textField_address = new JTextField();
                     textField_address.setColumns(10);
+                    
+                    label = new JLabel("-");
 
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
-                    groupLayout.setHorizontalGroup(groupLayout
-                                        .createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(groupLayout
-                                                            .createSequentialGroup()
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addGroup(groupLayout
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addGap(121)
-                                                                                                    .addComponent(submitButton)
-                                                                                                    .addPreferredGap(ComponentPlacement.RELATED,
-                                                                                                                        92,
-                                                                                                                        Short.MAX_VALUE)
-                                                                                                    .addComponent(cancelButton))
-                                                                                .addGroup(groupLayout
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addGap(65)
-                                                                                                    .addGroup(groupLayout
-                                                                                                                        .createParallelGroup(
-                                                                                                                                            Alignment.TRAILING)
-                                                                                                                        .addComponent(identityLabel)
-                                                                                                                        .addComponent(studentSexLabel)
-                                                                                                                        .addComponent(joinDateLabel)
-                                                                                                                        .addComponent(studentClassLabel)
-                                                                                                                        .addComponent(studentNameLabel)
-                                                                                                                        .addComponent(emailLabel)
-                                                                                                                        .addComponent(lblNewLabel)
-                                                                                                                        .addComponent(lblNewLabel_1))
-                                                                                                    .addGap(18)
-                                                                                                    .addGroup(groupLayout
-                                                                                                                        .createParallelGroup(
-                                                                                                                                            Alignment.LEADING)
-                                                                                                                        .addComponent(textField_address,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            153,
-                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                        .addComponent(studentNameTextField,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            160,
-                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                        .addGroup(groupLayout
-                                                                                                                                            .createSequentialGroup()
-                                                                                                                                            .addComponent(studentSexManRadioButton)
-                                                                                                                                            .addGap(18)
-                                                                                                                                            .addComponent(studentSexFemalRadioButton))
-                                                                                                                        .addComponent(orgComboBox,
-                                                                                                                                            0,
-                                                                                                                                            160,
-                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                        .addGroup(groupLayout
-                                                                                                                                            .createSequentialGroup()
-                                                                                                                                            .addComponent(identityTextField_1,
-                                                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                70,
-                                                                                                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                                                                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                            .addComponent(identityTextField_2,
-                                                                                                                                                                GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                84,
-                                                                                                                                                                Short.MAX_VALUE))
-                                                                                                                        .addComponent(emailTextField,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            160,
-                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                        .addComponent(datePicker,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                        .addComponent(textField_tel,
-                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                            153,
-                                                                                                                                            Short.MAX_VALUE))))
-                                                            .addGap(137)));
-                    groupLayout.setVerticalGroup(groupLayout
-                                        .createParallelGroup(Alignment.LEADING)
-                                        .addGroup(groupLayout
-                                                            .createSequentialGroup()
-                                                            .addGap(36)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(studentNameTextField,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(studentNameLabel))
-                                                            .addGap(18)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(orgComboBox,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(studentClassLabel))
-                                                            .addGap(18)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(studentSexManRadioButton)
-                                                                                .addComponent(studentSexFemalRadioButton)
-                                                                                .addComponent(studentSexLabel))
-                                                            .addGap(17)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(identityLabel)
-                                                                                .addComponent(identityTextField_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(identityTextField_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(18)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addComponent(joinDateLabel)
-                                                                                .addComponent(datePicker,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(13)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(emailTextField,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(emailLabel))
-                                                            .addGap(18)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel)
-                                                                                .addComponent(textField_tel,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(18)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel_1)
-                                                                                .addComponent(textField_address,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(52)
-                                                            .addGroup(groupLayout
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(submitButton,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    27,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(cancelButton,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    Short.MAX_VALUE))
-                                                            .addGap(38)));
+                    groupLayout.setHorizontalGroup(
+                    	groupLayout.createParallelGroup(Alignment.TRAILING)
+                    		.addGroup(groupLayout.createSequentialGroup()
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(groupLayout.createSequentialGroup()
+                    					.addGap(121)
+                    					.addComponent(submitButton)
+                    					.addPreferredGap(ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                    					.addComponent(cancelButton))
+                    				.addGroup(groupLayout.createSequentialGroup()
+                    					.addGap(65)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(identityLabel)
+                    						.addComponent(studentSexLabel)
+                    						.addComponent(joinDateLabel)
+                    						.addComponent(studentClassLabel)
+                    						.addComponent(studentNameLabel)
+                    						.addComponent(emailLabel)
+                    						.addComponent(lblNewLabel)
+                    						.addComponent(lblNewLabel_1))
+                    					.addGap(18)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    						.addComponent(textField_address, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    						.addGroup(groupLayout.createSequentialGroup()
+                    							.addComponent(studentSexManRadioButton)
+                    							.addGap(18)
+                    							.addComponent(studentSexFemalRadioButton))
+                    						.addGroup(groupLayout.createSequentialGroup()
+                    							.addComponent(identityTextField_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                    							.addGap(7)
+                    							.addComponent(label, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
+                    							.addGap(5)
+                    							.addComponent(identityTextField_2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    						.addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    						.addComponent(datePicker, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    						.addComponent(textField_tel, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    						.addComponent(studentNameTextField, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    						.addComponent(orgComboBox, 0, 240, Short.MAX_VALUE))))
+                    			.addGap(58))
+                    );
+                    groupLayout.setVerticalGroup(
+                    	groupLayout.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(groupLayout.createSequentialGroup()
+                    			.addGap(36)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(studentNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(studentNameLabel))
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(orgComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(studentClassLabel))
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(studentSexManRadioButton)
+                    				.addComponent(studentSexFemalRadioButton)
+                    				.addComponent(studentSexLabel))
+                    			.addGap(17)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(identityLabel)
+                    				.addComponent(identityTextField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(identityTextField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(label))
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    				.addComponent(joinDateLabel)
+                    				.addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(13)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(emailLabel))
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(lblNewLabel)
+                    				.addComponent(textField_tel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(lblNewLabel_1)
+                    				.addComponent(textField_address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(52)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(submitButton, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(cancelButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    			.addGap(38))
+                    );
                     getContentPane().setLayout(groupLayout);
                     setDeptName();
           }

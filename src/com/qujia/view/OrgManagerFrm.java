@@ -61,7 +61,7 @@ public class OrgManagerFrm extends JFrame {
           public OrgManagerFrm() {
                     setTitle("조직관리");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 786, 388);
+                    setBounds(100, 100, 783, 425);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -168,26 +168,30 @@ public class OrgManagerFrm extends JFrame {
                     gl_contentPane.setHorizontalGroup(
                     	gl_contentPane.createParallelGroup(Alignment.LEADING)
                     		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addContainerGap()
                     			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                     				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addComponent(lblNewLabel_1)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+                    					.addGap(22)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(lblNewLabel_3)
+                    						.addComponent(lblNewLabel_1))
                     					.addGap(18)
-                    					.addComponent(lblNewLabel_2)
-                    					.addGap(18)
-                    					.addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(lblNewLabel_3)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(updateButton)
-                    					.addGap(18)
-                    					.addComponent(deleteButton))
-                    				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 735, GroupLayout.PREFERRED_SIZE)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                    						.addComponent(comboBox_editPar, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    						.addComponent(textField_editName, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                    					.addGap(29)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addComponent(lblNewLabel_2)
+                    							.addPreferredGap(ComponentPlacement.UNRELATED)
+                    							.addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+                    							.addGap(18)
+                    							.addComponent(updateButton))
+                    						.addComponent(deleteButton)))
                     				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addContainerGap()
+                    					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 735, GroupLayout.PREFERRED_SIZE))
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addContainerGap()
                     					.addComponent(lblNewLabel)
                     					.addPreferredGap(ComponentPlacement.RELATED)
                     					.addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
@@ -203,14 +207,14 @@ public class OrgManagerFrm extends JFrame {
                     					.addComponent(lblNewLabel_6)
                     					.addPreferredGap(ComponentPlacement.RELATED)
                     					.addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
+                    					.addGap(28)
                     					.addComponent(searchButton)))
-                    			.addContainerGap(15, Short.MAX_VALUE))
+                    			.addContainerGap(198, Short.MAX_VALUE))
                     );
                     gl_contentPane.setVerticalGroup(
                     	gl_contentPane.createParallelGroup(Alignment.LEADING)
                     		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGap(27)
+                    			.addGap(19)
                     			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                     				.addComponent(lblNewLabel)
                     				.addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
@@ -228,12 +232,14 @@ public class OrgManagerFrm extends JFrame {
                     				.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     				.addComponent(lblNewLabel_2)
                     				.addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(lblNewLabel_1)
+                    				.addComponent(updateButton))
+                    			.addGap(32)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                     				.addComponent(lblNewLabel_3)
                     				.addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(updateButton)
-                    				.addComponent(deleteButton)
-                    				.addComponent(lblNewLabel_1))
-                    			.addContainerGap(45, Short.MAX_VALUE))
+                    				.addComponent(deleteButton))
+                    			.addContainerGap(29, Short.MAX_VALUE))
                     );
                     
                     table = new JTable();
