@@ -33,7 +33,6 @@ import com.qujia.util.ViewUtil;
 public class AddCourseArrangeFrm extends JFrame {
 
           private JPanel contentPane;
-          private JTextField textField_no;
           private JSpinner spinner_1_1, spinner_2_1, spinner_3_1, spinner_4_1,
                               spinner_5_1, spinner_6_1, spinner_7_1,
                               spinner_1_2, spinner_2_2, spinner_3_2,
@@ -41,9 +40,8 @@ public class AddCourseArrangeFrm extends JFrame {
                               spinner_7_2;
           private JCheckBox checkBox_1, checkBox_2, checkBox_3, checkBox_4,
                               checkBox_5, checkBox_6, checkBox_7;
-          private JLabel lebel_name, leabel_no, leabel_pro, leabel_date,
-                              leabel_schYear, leabel_term;
-          private JComboBox comboBox_name, comboBox_pro, comboBox_schYear,
+          private JLabel lebel_name, leabel_pro, leabel_term;
+          private JComboBox comboBox_name, comboBox_pro,
                               comboBox_term;
           private JComboBox comboBox_1, comboBox_2, comboBox_3, comboBox_4,
                               comboBox_5, comboBox_6, comboBox_7;
@@ -90,35 +88,16 @@ public class AddCourseArrangeFrm extends JFrame {
                     comboBox_name.setModel(new DefaultComboBoxModel(
                                         new String[] { "데이터베이스" }));
 
-                    leabel_no = new JLabel("학수번호:");
-
-                    textField_no = new JTextField();
-                    textField_no.setColumns(10);
-
                     leabel_pro = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
 
                     comboBox_pro = new JComboBox();
                     comboBox_pro.setModel(new DefaultComboBoxModel(
                                         new String[] { "김**" }));
 
-                    leabel_date = new JLabel(
-                                        "\uC218\uAC15\uC2E0\uCCAD\uC77C\uC9DC:");
-
-                    DatePicker datePicker_date = new DatePicker();
-
-                    leabel_schYear = new JLabel("\uD559    \uB144:");
-
-                    comboBox_schYear = new JComboBox();
-                    comboBox_schYear.setModel(new DefaultComboBoxModel(
-                                        new String[] { "1", "2", "3", "4",
-                                                            "대학원1", "대학원2",
-                                                            "대학원3" }));
-
                     leabel_term = new JLabel(" 학기:");
 
                     comboBox_term = new JComboBox();
-                    comboBox_term.setModel(new DefaultComboBoxModel(
-                                        new String[] { "1", "2" }));
+                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "여름계절학기", "겨울계절학기"}));
 
                     DateUtil du = new DateUtil();
 
@@ -515,6 +494,11 @@ public class AddCourseArrangeFrm extends JFrame {
 
                     textField_1 = new JTextField();
                     textField_1.setColumns(10);
+                    
+                    JLabel lblNewLabel_2 = new JLabel("학년:");
+                    
+                    JComboBox comboBox = new JComboBox();
+                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "대학원1", "대학원2", "대학원3"}));
                     // btnNewButton.addActionListener(new ActionListener() {
                     // public void getdate(){
                     // Date cellEditorValue = (Date) new
@@ -557,475 +541,158 @@ public class AddCourseArrangeFrm extends JFrame {
                     // }
                     // });
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(gl_contentPane
-                                        .createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane
-                                                            .createSequentialGroup()
-                                                            .addGap(42)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addComponent(lblNewLabel)
-                                                                                                    .addContainerGap())
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addGroup(gl_contentPane
-                                                                                                                        .createParallelGroup(
-                                                                                                                                            Alignment.LEADING)
-                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                            .createSequentialGroup()
-                                                                                                                                            .addGroup(gl_contentPane
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                    Alignment.LEADING)
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING,
-                                                                                                                                                                                                                            false)
-                                                                                                                                                                                                        .addComponent(label_1,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_1,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_2,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_3,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_4,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_5,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_6,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(checkBox_7,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE))
-                                                                                                                                                                                    .addGap(28)
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING,
-                                                                                                                                                                                                                            false)
-                                                                                                                                                                                                        .addComponent(label_2)
-                                                                                                                                                                                                        .addComponent(spinner_7_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_6_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_5_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_4_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_3_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_2_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(spinner_1_1,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            93,
-                                                                                                                                                                                                                            Short.MAX_VALUE)))
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGap(46)
-                                                                                                                                                                                    .addComponent(textField,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                        76,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE)))
-                                                                                                                                            .addGap(34)
-                                                                                                                                            .addGroup(gl_contentPane
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                    Alignment.TRAILING,
-                                                                                                                                                                                    false)
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING)
-                                                                                                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                                                                                                            .createParallelGroup(
-                                                                                                                                                                                                                                                Alignment.LEADING,
-                                                                                                                                                                                                                                                false)
-                                                                                                                                                                                                                            .addComponent(spinner_2_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_1_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                                                                102,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_3_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_4_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_5_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_6_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE)
-                                                                                                                                                                                                                            .addComponent(spinner_7_2,
-                                                                                                                                                                                                                                                Alignment.TRAILING,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                0,
-                                                                                                                                                                                                                                                Short.MAX_VALUE))
-                                                                                                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                                                                                                            .createSequentialGroup()
-                                                                                                                                                                                                                            .addGap(18)
-                                                                                                                                                                                                                            .addComponent(label_3,
-                                                                                                                                                                                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                                                                62,
-                                                                                                                                                                                                                                                GroupLayout.PREFERRED_SIZE)))
-                                                                                                                                                                                    .addGap(18)
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING,
-                                                                                                                                                                                                                            false)
-                                                                                                                                                                                                        .addComponent(label_4,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_7,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_6,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_5,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_4,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_3,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_1,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_2,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            147,
-                                                                                                                                                                                                                            Short.MAX_VALUE)))
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addComponent(lblNewLabel_1)
-                                                                                                                                                                                    .addGap(18)
-                                                                                                                                                                                    .addComponent(textField_1,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                                                                                                                                    .addPreferredGap(ComponentPlacement.RELATED,
-                                                                                                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                        Short.MAX_VALUE)
-                                                                                                                                                                                    .addComponent(submitButton)))
-                                                                                                                                            .addGap(34))
-                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                            .createSequentialGroup()
-                                                                                                                                            .addGroup(gl_contentPane
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                    Alignment.LEADING)
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addComponent(lebel_name)
-                                                                                                                                                                                    .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                                                                    .addComponent(comboBox_name,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                        158,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING)
-                                                                                                                                                                                                        .addComponent(leabel_pro)
-                                                                                                                                                                                                        .addComponent(leabel_schYear))
-                                                                                                                                                                                    .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING)
-                                                                                                                                                                                                        .addComponent(comboBox_schYear,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            158,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(comboBox_pro,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            158,
-                                                                                                                                                                                                                            Short.MAX_VALUE))))
-                                                                                                                                            .addGap(34)
-                                                                                                                                            .addGroup(gl_contentPane
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                    Alignment.LEADING)
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGap(23)
-                                                                                                                                                                                    .addComponent(leabel_no)
-                                                                                                                                                                                    .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                                                                    .addComponent(textField_no,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                                                                                                        161,
-                                                                                                                                                                                                        GroupLayout.PREFERRED_SIZE))
-                                                                                                                                                                .addGroup(gl_contentPane
-                                                                                                                                                                                    .createSequentialGroup()
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.TRAILING)
-                                                                                                                                                                                                        .addComponent(leabel_term)
-                                                                                                                                                                                                        .addComponent(leabel_date))
-                                                                                                                                                                                    .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                                                                                                                    .addGroup(gl_contentPane
-                                                                                                                                                                                                        .createParallelGroup(
-                                                                                                                                                                                                                            Alignment.LEADING,
-                                                                                                                                                                                                                            false)
-                                                                                                                                                                                                        .addComponent(comboBox_term,
-                                                                                                                                                                                                                            0,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE)
-                                                                                                                                                                                                        .addComponent(datePicker_date,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                                                            Short.MAX_VALUE))))))
-                                                                                                    .addGap(63)))));
-                    gl_contentPane.setVerticalGroup(gl_contentPane
-                                        .createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane
-                                                            .createSequentialGroup()
-                                                            .addGap(27)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(lebel_name)
-                                                                                .addComponent(comboBox_name,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(textField_no,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(leabel_no))
-                                                            .addGap(18)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createParallelGroup(
-                                                                                                                        Alignment.BASELINE)
-                                                                                                    .addComponent(leabel_pro)
-                                                                                                    .addComponent(comboBox_pro,
-                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                                                    .addComponent(leabel_date))
-                                                                                .addComponent(datePicker_date,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(18)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(leabel_schYear)
-                                                                                .addComponent(leabel_term)
-                                                                                .addComponent(comboBox_term,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_schYear,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(37)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(label_1)
-                                                                                .addComponent(label_2)
-                                                                                .addComponent(label_3)
-                                                                                .addComponent(label_4))
-                                                            .addGap(18)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(checkBox_1)
-                                                                                .addComponent(spinner_1_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_1_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(checkBox_2)
-                                                                                .addComponent(spinner_2_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_2_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(checkBox_3)
-                                                                                .addComponent(spinner_3_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_3_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_3,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(checkBox_4)
-                                                                                .addComponent(spinner_4_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_4_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_4,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createParallelGroup(
-                                                                                                                        Alignment.BASELINE)
-                                                                                                    .addComponent(spinner_5_1,
-                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                                                    .addComponent(spinner_5_2,
-                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                                                    .addComponent(comboBox_5,
-                                                                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                                                                        GroupLayout.PREFERRED_SIZE))
-                                                                                .addComponent(checkBox_5))
-                                                            .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(spinner_6_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_6_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(checkBox_6)
-                                                                                .addComponent(comboBox_6,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(spinner_7_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(spinner_7_2,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(checkBox_7)
-                                                                                .addComponent(comboBox_7,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(26)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel)
-                                                                                .addComponent(submitButton)
-                                                                                .addComponent(textField,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(lblNewLabel_1)
-                                                                                .addComponent(textField_1,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addContainerGap(58,
-                                                                                Short.MAX_VALUE)));
+                    gl_contentPane.setHorizontalGroup(
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addGap(42)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addComponent(lblNewLabel)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    						.addGroup(Alignment.LEADING, gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    							.addGroup(gl_contentPane.createSequentialGroup()
+                    								.addGap(46)
+                    								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+                    							.addGroup(gl_contentPane.createSequentialGroup()
+                    								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                    									.addGroup(gl_contentPane.createSequentialGroup()
+                    										.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                    											.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    											.addComponent(checkBox_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    										.addGap(22))
+                    									.addGroup(gl_contentPane.createSequentialGroup()
+                    										.addComponent(lblNewLabel_2)
+                    										.addGap(18)))
+                    								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    									.addComponent(comboBox, 0, 134, Short.MAX_VALUE)
+                    									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                    										.addComponent(label_2)
+                    										.addComponent(spinner_7_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_6_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_5_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_4_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_3_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_2_1, 0, 0, Short.MAX_VALUE)
+                    										.addComponent(spinner_1_1, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                    									.addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))))
+                    						.addComponent(lebel_name, Alignment.LEADING))
+                    					.addGap(34)
+                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    								.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                    									.addComponent(spinner_2_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(spinner_1_2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, Short.MAX_VALUE)
+                    									.addComponent(spinner_3_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(spinner_4_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(spinner_5_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(spinner_6_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(spinner_7_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                    									.addComponent(leabel_pro, Alignment.TRAILING)
+                    									.addComponent(leabel_term, Alignment.TRAILING))
+                    								.addGroup(gl_contentPane.createSequentialGroup()
+                    									.addGap(18)
+                    									.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)))
+                    							.addGap(18)
+                    							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                    								.addComponent(label_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    								.addComponent(comboBox_7, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_6, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_5, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_4, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_3, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_1, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_2, 0, 147, Short.MAX_VALUE)
+                    								.addComponent(comboBox_pro, 0, 149, Short.MAX_VALUE)
+                    								.addComponent(comboBox_term, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    							.addPreferredGap(ComponentPlacement.RELATED, 9, Short.MAX_VALUE))
+                    						.addGroup(gl_contentPane.createSequentialGroup()
+                    							.addComponent(lblNewLabel_1)
+                    							.addGap(18)
+                    							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    							.addComponent(submitButton)))))
+                    			.addGap(182))
+                    );
+                    gl_contentPane.setVerticalGroup(
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addGap(27)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(lebel_name)
+                    				.addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(leabel_pro)
+                    				.addComponent(comboBox_pro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(24)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(leabel_term)
+                    				.addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(lblNewLabel_2))
+                    			.addGap(76)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(label_1)
+                    				.addComponent(label_2)
+                    				.addComponent(label_3)
+                    				.addComponent(label_4))
+                    			.addGap(18)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(checkBox_1)
+                    				.addComponent(spinner_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_1_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(checkBox_2)
+                    				.addComponent(spinner_2_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_2_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(checkBox_3)
+                    				.addComponent(spinner_3_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_3_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(checkBox_4)
+                    				.addComponent(spinner_4_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_4_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addPreferredGap(ComponentPlacement.RELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    					.addComponent(spinner_5_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    					.addComponent(spinner_5_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    					.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    				.addComponent(checkBox_5))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(spinner_6_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_6_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(checkBox_6)
+                    				.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addPreferredGap(ComponentPlacement.RELATED)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(spinner_7_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_7_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(checkBox_7)
+                    				.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addGap(26)
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(lblNewLabel)
+                    				.addComponent(submitButton)
+                    				.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(lblNewLabel_1)
+                    				.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    			.addContainerGap(52, Short.MAX_VALUE))
+                    );
                     // for (int i = 0; i < rowCount; i++) {
                     // model.setValueAt(new Boolean(false), i, 0);
                     // }
@@ -1041,5 +708,4 @@ public class AddCourseArrangeFrm extends JFrame {
                                         spinner, "HH:mm");
                     spinner.setEditor(editor);
           }
-
 }

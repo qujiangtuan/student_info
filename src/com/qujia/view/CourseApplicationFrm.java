@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 
 import java.awt.Font;
 import java.awt.LayoutManager;
@@ -655,8 +657,14 @@ public class CourseApplicationFrm extends JFrame {
         
         this.setVisible(true);
     }
-   
-    public static void main(String[] args) {
-        new CourseApplicationFrm();
+    
+ // 设置jspinner 类型方法
+    private void setMyModel(JSpinner spinner) {
+              spinner.setValue(new Date());
+              // 设置时间格式
+              JSpinner.DateEditor editor = new JSpinner.DateEditor(
+                                  spinner, "HH:mm");
+              spinner.setEditor(editor);
     }
+
 }

@@ -79,22 +79,22 @@ public class EditPasswordFrm extends JInternalFrame {
                     confirmPasswordTextField = new JPasswordField();
                     confirmPasswordTextField.setColumns(10);
                      
-                    JButton submitButton = new JButton("수정");
+                    JButton submitButton = new JButton("수 정");
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         submitEdit(ae);
                               }
                     });
                     submitButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    submitButton.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/submit.png")));
+                    submitButton.setIcon(null);
                     
-                    JButton resetButton = new JButton("초기화");
+                    JButton resetButton = new JButton("최 소");
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         resetValue(ae);
                               }
                     });
-                    resetButton.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/reset.png")));
+                    resetButton.setIcon(null);
                     resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JLabel currentUserLabel_1 = new JLabel("사 용 자：");

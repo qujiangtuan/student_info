@@ -328,46 +328,58 @@ public class ScoreShowFrm extends JFrame {
                     });
                     
                     JButton search_Button = new JButton("\uC870\uD76C");
+                    
+                    JButton btnNewButton = new JButton("\uAC15\uC758\uD3C9\uAC00");
+                    btnNewButton.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent e) {
+                    		LectureEvalutaionFrm lef=new LectureEvalutaionFrm();
+//                    		layeredPane.setLayer(lef, 200);
+                    		lef.setVisible(true);
+                    	}
+                    });
                     GroupLayout gl_panel_two = new GroupLayout(panel_two);
                     gl_panel_two.setHorizontalGroup(
-                              gl_panel_two.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel_two.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_panel_two.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_panel_two.createSequentialGroup()
-                                                                      .addComponent(all_Button)
-                                                                      .addGap(18)
-                                                                      .addComponent(term_Button)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 463, Short.MAX_VALUE)
-                                                                      .addComponent(search_Button)
-                                                                      .addGap(31))
-                                                            .addGroup(gl_panel_two.createSequentialGroup()
-                                                                      .addComponent(all_RadioButton)
-                                                                      .addGap(18)
-                                                                      .addComponent(current_RadioButton)
-                                                                      .addGap(57)
-                                                                      .addComponent(label_year)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(spinner_year, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(26)
-                                                                      .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-                                                                      .addContainerGap(282, Short.MAX_VALUE))))
+                    	gl_panel_two.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_panel_two.createSequentialGroup()
+                    			.addContainerGap()
+                    			.addGroup(gl_panel_two.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_panel_two.createSequentialGroup()
+                    					.addComponent(all_Button)
+                    					.addGap(18)
+                    					.addComponent(term_Button)
+                    					.addPreferredGap(ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                    					.addComponent(btnNewButton)
+                    					.addGap(18)
+                    					.addComponent(search_Button)
+                    					.addGap(31))
+                    				.addGroup(gl_panel_two.createSequentialGroup()
+                    					.addComponent(all_RadioButton)
+                    					.addGap(18)
+                    					.addComponent(current_RadioButton)
+                    					.addGap(57)
+                    					.addComponent(label_year)
+                    					.addPreferredGap(ComponentPlacement.UNRELATED)
+                    					.addComponent(spinner_year, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+                    					.addGap(26)
+                    					.addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
+                    					.addContainerGap(341, Short.MAX_VALUE))))
                     );
                     gl_panel_two.setVerticalGroup(
-                              gl_panel_two.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel_two.createSequentialGroup()
-                                                  .addGroup(gl_panel_two.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(all_RadioButton)
-                                                            .addComponent(current_RadioButton)
-                                                            .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_year, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label_year))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_panel_two.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(all_Button)
-                                                            .addComponent(term_Button)
-                                                            .addComponent(search_Button))
-                                                  .addContainerGap(14, Short.MAX_VALUE))
+                    	gl_panel_two.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_panel_two.createSequentialGroup()
+                    			.addGroup(gl_panel_two.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(all_RadioButton)
+                    				.addComponent(current_RadioButton)
+                    				.addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(spinner_year, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(label_year))
+                    			.addPreferredGap(ComponentPlacement.RELATED)
+                    			.addGroup(gl_panel_two.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(all_Button)
+                    				.addComponent(term_Button)
+                    				.addComponent(search_Button)
+                    				.addComponent(btnNewButton))
+                    			.addContainerGap(14, Short.MAX_VALUE))
                     );
                     panel_two.setLayout(gl_panel_two);
                     contentPane.setLayout(gl_contentPane);

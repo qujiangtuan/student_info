@@ -33,13 +33,13 @@ import com.qujia.util.StringUtil;
 public class DeptStandManagerFrm extends JInternalFrame {
           private JTextField searchClassNameTextField;
           private JTable deptListTable;
-          private JTextField textField_pnum;
-          private JTextField textField_year1;
+          private JTextField textField_min;
           private JTextField textField_year2;
-          private JTextField textField_credit;
+          private JTextField textField_max;
+          private JTextField textField_year1;
           private JTextArea textArea;
           private List<Org> orgList;
-          private JLabel label_name;
+          private JLabel lblWreerwe;
           /**
            * Launch the application.
            */
@@ -103,25 +103,25 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     JLabel label = new JLabel("조직이름:");
                     label.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
-                    JLabel lblNewLabel_1 = new JLabel("모집인원:");
+                    JLabel lblNewLabel_1 = new JLabel("학기당최소이수학점:");
                     lblNewLabel_1.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
-                    textField_pnum = new JTextField();
-                    textField_pnum.setColumns(10);
+                    textField_min = new JTextField();
+                    textField_min.setColumns(10);
 
-                    JLabel label_1 = new JLabel("수학년한\r\n:");
+                    JLabel label_1 = new JLabel("재학년한\r\n:");
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-
-                    textField_year1 = new JTextField();
-                    textField_year1.setColumns(10);
-
-                    JLabel lblNewLabel_2 = new JLabel("재학년한:");
-                    lblNewLabel_2.setFont(new Font("NanumMyeongjo", Font.BOLD,
-                                        13));
 
                     textField_year2 = new JTextField();
                     textField_year2.setColumns(10);
+
+                    JLabel lblNewLabel_2 = new JLabel("학기당최대이수학점:");
+                    lblNewLabel_2.setFont(new Font("NanumMyeongjo", Font.BOLD,
+                                        13));
+
+                    textField_max = new JTextField();
+                    textField_max.setColumns(10);
 
                     JLabel lblNewLabel_3 = new JLabel("부가설명:");
                     lblNewLabel_3.setFont(new Font("NanumMyeongjo", Font.BOLD,
@@ -147,93 +147,97 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     deleteButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 
-                    JLabel label_2 = new JLabel("졸업이수학점:");
+                    JLabel label_2 = new JLabel("수학년한:");
                     label_2.setFont(new Font("Dialog", Font.BOLD, 13));
 
-                    textField_credit = new JTextField();
-                    textField_credit.setColumns(10);
+                    textField_year1 = new JTextField();
+                    textField_year1.setColumns(10);
                     
                     JScrollPane scrollPane_text = new JScrollPane();
                     
-                    label_name = new JLabel();
+                    lblWreerwe = new JLabel();
+                    lblWreerwe.setFont(new Font("Dialog", Font.BOLD, 13));
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
                     groupLayout.setHorizontalGroup(
-                              groupLayout.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(groupLayout.createSequentialGroup()
-                                                                      .addGap(52)
-                                                                      .addComponent(classNameLabel)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(searchClassNameTextField, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(38)
-                                                                      .addComponent(searchButton))
-                                                            .addGroup(groupLayout.createSequentialGroup()
-                                                                      .addGap(35)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(label_1)
-                                                                                .addComponent(label))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(textField_year1, Alignment.TRAILING)
-                                                                                .addComponent(label_name, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
-                                                                      .addGap(33)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(lblNewLabel_1)
-                                                                                .addComponent(lblNewLabel_2))
-                                                                      .addGap(18)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(textField_pnum)
-                                                                                .addComponent(textField_year2, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                                                                      .addGap(18)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(lblNewLabel_3, Alignment.TRAILING)
-                                                                                .addComponent(label_2, Alignment.TRAILING))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(scrollPane_text, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(textField_credit, 125, 125, Short.MAX_VALUE))
-                                                                      .addGap(18)
-                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(deleteButton)
-                                                                                .addComponent(updateButton)))
-                                                            .addGroup(groupLayout.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 822, GroupLayout.PREFERRED_SIZE)))
-                                                  .addGap(36))
+                    	groupLayout.createParallelGroup(Alignment.TRAILING)
+                    		.addGroup(groupLayout.createSequentialGroup()
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(groupLayout.createSequentialGroup()
+                    					.addGap(52)
+                    					.addComponent(classNameLabel)
+                    					.addPreferredGap(ComponentPlacement.UNRELATED)
+                    					.addComponent(searchClassNameTextField, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
+                    					.addGap(38)
+                    					.addComponent(searchButton))
+                    				.addGroup(groupLayout.createSequentialGroup()
+                    					.addContainerGap()
+                    					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 822, GroupLayout.PREFERRED_SIZE))
+                    				.addGroup(groupLayout.createSequentialGroup()
+                    					.addGap(35)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(label_1)
+                    						.addComponent(label))
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    						.addGroup(groupLayout.createSequentialGroup()
+                    							.addPreferredGap(ComponentPlacement.UNRELATED)
+                    							.addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+                    						.addGroup(groupLayout.createSequentialGroup()
+                    							.addGap(10)
+                    							.addComponent(lblWreerwe, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
+                    					.addGap(12)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                    						.addComponent(lblNewLabel_1)
+                    						.addComponent(lblNewLabel_2))
+                    					.addGap(18)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                    						.addComponent(textField_max, 0, 0, Short.MAX_VALUE)
+                    						.addComponent(textField_min, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                    					.addGap(65)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    						.addComponent(lblNewLabel_3, Alignment.TRAILING)
+                    						.addComponent(label_2, Alignment.TRAILING))
+                    					.addPreferredGap(ComponentPlacement.UNRELATED)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                    						.addComponent(scrollPane_text, 0, 0, Short.MAX_VALUE)
+                    						.addComponent(textField_year1, 125, 125, Short.MAX_VALUE))
+                    					.addGap(18)
+                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    						.addComponent(deleteButton)
+                    						.addComponent(updateButton))))
+                    			.addGap(36))
                     );
                     groupLayout.setVerticalGroup(
-                              groupLayout.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(groupLayout.createSequentialGroup()
-                                                  .addGap(39)
-                                                  .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(classNameLabel)
-                                                            .addComponent(searchClassNameTextField, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(searchButton))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label)
-                                                            .addComponent(label_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_pnum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(updateButton))
-                                                  .addGap(25)
-                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(label_1)
-                                                                      .addComponent(textField_year1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(lblNewLabel_2)
-                                                                      .addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addComponent(lblNewLabel_3))
-                                                            .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(scrollPane_text, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                                      .addComponent(deleteButton)))
-                                                  .addGap(97))
+                    	groupLayout.createParallelGroup(Alignment.TRAILING)
+                    		.addGroup(groupLayout.createSequentialGroup()
+                    			.addGap(39)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(classNameLabel)
+                    				.addComponent(searchClassNameTextField, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(searchButton))
+                    			.addPreferredGap(ComponentPlacement.UNRELATED)
+                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+                    			.addGap(18)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(label)
+                    				.addComponent(lblWreerwe, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(lblNewLabel_1)
+                    				.addComponent(textField_min, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(textField_year1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    				.addComponent(updateButton))
+                    			.addGap(25)
+                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    					.addComponent(label_1)
+                    					.addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    					.addComponent(textField_max, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    					.addComponent(lblNewLabel_3)
+                    					.addComponent(lblNewLabel_2))
+                    				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                    					.addComponent(scrollPane_text, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                    					.addComponent(deleteButton)))
+                    			.addGap(97))
                     );
                     
                     textArea = new JTextArea();
@@ -250,27 +254,27 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     });
                     deptListTable.setFont(new Font("나눔명조", Font.BOLD, 13));
                     deptListTable.setModel(new DefaultTableModel(
-                              new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null},
-                              },
-                              new String[] {
-                                        "\uC21C\uBC88", "\uC870\uC9C1\uC774\uB984", "\uC18C\uC18D\uC870\uC9C1", "\uBAA8\uC9D1\uC778\uC6D0", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC878\uC5C5\uC774\uC218\uD559\uC810", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uBD80\uAC00\uC124\uBA85"
-                              }
+                    	new Object[][] {
+                    		{null, null, null, null, null, null, null, null, null, null},
+                    	},
+                    	new String[] {
+                    		"\uC21C\uBC88", "\uC870\uC9C1\uC774\uB984", "\uC18C\uC18D\uC870\uC9C1", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uBD80\uAC00\uC124\uBA85"
+                    	}
                     ) {
-                              boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false
-                              };
-                              public boolean isCellEditable(int row, int column) {
-                                        return columnEditables[column];
-                              }
+                    	boolean[] columnEditables = new boolean[] {
+                    		false, false, false, false, false, false, false, false, false, false
+                    	};
+                    	public boolean isCellEditable(int row, int column) {
+                    		return columnEditables[column];
+                    	}
                     });
                     deptListTable.getColumnModel().getColumn(0).setPreferredWidth(80);
                     deptListTable.getColumnModel().getColumn(1).setPreferredWidth(112);
                     deptListTable.getColumnModel().getColumn(2).setPreferredWidth(81);
-                    deptListTable.getColumnModel().getColumn(3).setPreferredWidth(95);
-                    deptListTable.getColumnModel().getColumn(4).setPreferredWidth(79);
-                    deptListTable.getColumnModel().getColumn(5).setPreferredWidth(108);
-                    deptListTable.getColumnModel().getColumn(6).setPreferredWidth(133);
+                    deptListTable.getColumnModel().getColumn(3).setPreferredWidth(118);
+                    deptListTable.getColumnModel().getColumn(4).setPreferredWidth(133);
+                    deptListTable.getColumnModel().getColumn(5).setPreferredWidth(79);
+                    deptListTable.getColumnModel().getColumn(6).setPreferredWidth(108);
                     deptListTable.getColumnModel().getColumn(7).setPreferredWidth(93);
                     deptListTable.getColumnModel().getColumn(8).setPreferredWidth(88);
                     deptListTable.getColumnModel().getColumn(9).setPreferredWidth(129);
@@ -326,12 +330,10 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     String dsNo=dft.getValueAt(deptListTable.getSelectedRow(),0).toString();
                     String dsName=dft.getValueAt(deptListTable.getSelectedRow(),1).toString();
                     String college=dft.getValueAt(deptListTable.getSelectedRow(),2).toString();
-                    int pNum=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
+                    int min=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
                     int year1=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),7).toString());
                     int year2=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),8).toString());
-                  
-                    
-                    int credit=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
+                    int max=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),4).toString());
                     String deptExp = null;
                     try {
                               deptExp=dft.getValueAt(deptListTable.getSelectedRow(),9).toString();
@@ -343,18 +345,22 @@ public class DeptStandManagerFrm extends JInternalFrame {
 //                    String editDeptNo = textField_no.getText().toString();
 //                    String editDeptName = textField_name.getText().toString();
 //                    String editCollege = comboBox_college.getSelectedItem().toString();
-                    int editpNum = Integer.parseInt(textField_pnum.getText());
-                    int editCredit = Integer.parseInt(textField_credit
+                    int editmin = Integer.parseInt(textField_min.getText());
+                    int edityear1 = Integer.parseInt(textField_year1
                                         .getText());
-                    int editYear1 = Integer.parseInt(textField_year1
+                    int edityear2= Integer.parseInt(textField_year2
                                         .getText());
-                    int editYear2 = Integer.parseInt(textField_year2
+                    int editmax = Integer.parseInt(textField_max
                                         .getText());
                     String editDeptExp = textArea.getText().toString();
                     //判断编辑框是否为空
-                    if(StringUtil.isEmpty(pNum)){
-                              JOptionPane.showMessageDialog(this, "모집인원을 입력합시오");
+                    if(StringUtil.isEmpty(min)){
+                              JOptionPane.showMessageDialog(this, "학기당최소이수학점을 입력합시오");
                               return;
+                    }
+                    if(StringUtil.isEmpty(max)){
+                        JOptionPane.showMessageDialog(this, "학기당최대이수학점을 입력합시오");
+                        return;
                     }
                     if(StringUtil.isEmpty(year1)){
                               JOptionPane.showMessageDialog(this, "수학년한을 입력합시오");
@@ -364,12 +370,9 @@ public class DeptStandManagerFrm extends JInternalFrame {
                               JOptionPane.showMessageDialog(this, "재학년한을 입력합시오");
                               return;
                     }
-                    if(StringUtil.isEmpty(credit)){
-                              JOptionPane.showMessageDialog(this, "이수학점을 입력합시오");
-                              return;
-                    }
-                    if (StringUtil.isEmpty(credit)
-                                        || StringUtil.isEmpty(pNum)
+                    
+                    if (StringUtil.isEmpty(min)
+                                        || StringUtil.isEmpty(max)
                                         || StringUtil.isEmpty(year1)
                                         || StringUtil.isEmpty(year2)) {
                               JOptionPane.showMessageDialog(this,
@@ -377,10 +380,10 @@ public class DeptStandManagerFrm extends JInternalFrame {
                               return;
                     }
                     //判断编辑框值是否有变动
-                    if (credit==editCredit
-                                        && pNum==editpNum
-                                        && year1==editYear1
-                                        &&year2==editYear2
+                    if (min==editmin
+                                        && max==editmax
+                                        && year1==edityear1
+                                        &&year2==edityear2
                                         &&deptExp.equals(editDeptExp)
                                         ) {
                               JOptionPane.showMessageDialog(this,
@@ -391,10 +394,10 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     dStand.setStandId(dsNo);
                     dStand.setOrgid(dsNo);
                     dStand.setCollege(college);
-                    dStand.setpNum(editpNum);
-                    dStand.setCredit(editCredit);
-                    dStand.setYear1(editYear1);
-                    dStand.setYear2(editYear2);
+                    dStand.setMin(editmin);
+                    dStand.setMax(editmax);
+                    dStand.setYear1(edityear1);
+                    dStand.setYear2(edityear2);
                     dStand.setDeptExplain(editDeptExp);
                     DeptStandDao dsDao=new DeptStandDao();
                     if(dsDao.updateDStand(dStand)){
@@ -415,13 +418,13 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     // TODO Auto-generated method stub
                     DefaultTableModel dft = (DefaultTableModel) deptListTable.getModel();
                     // 得到选中表格中的哪一行，那一列的值
-                    label_name.setText(dft.getValueAt(deptListTable.getSelectedRow(),1).toString());
-                    textField_pnum.setText(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
-                    textField_year1.setText(dft.getValueAt(deptListTable.getSelectedRow(),7).toString());
+                    lblWreerwe.setText(dft.getValueAt(deptListTable.getSelectedRow(),1).toString());
+                    textField_min.setText(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
                     textField_year2.setText(dft.getValueAt(deptListTable.getSelectedRow(),8).toString());
+                    textField_max.setText(dft.getValueAt(deptListTable.getSelectedRow(),4).toString());
                     //comboBox_college.setSelectedIndex(0);
                     
-                    textField_credit.setText(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
+                    textField_year1.setText(dft.getValueAt(deptListTable.getSelectedRow(),7).toString());
                     try {
                               textArea.setText(dft.getValueAt(deptListTable.getSelectedRow(),9).toString());
                     } catch (NullPointerException e) {
@@ -432,11 +435,11 @@ public class DeptStandManagerFrm extends JInternalFrame {
           }
           //重置编辑框的值
          public void resetValut(){
-        	       label_name.setText("");
-                   textField_pnum.setText("");
-                   textField_credit.setText("");
+        	       lblWreerwe.setText("");
+                   textField_min.setText("");
                    textField_year1.setText("");
                    textField_year2.setText("");
+                   textField_max.setText("");
                    textArea.setText("");
           }
           public void setTable(DeptStand dStand) {
@@ -453,10 +456,12 @@ public class DeptStandManagerFrm extends JInternalFrame {
                               v.add(ds.getStandId());
                               v.add(this.getOrgNameById(ds.getOrgid()));
                               v.add(this.getOrgCollegeById(ds.getOrgid()));
-                              v.add(ds.getpNum());
+                              v.add(ds.getMin());
+                              v.add(ds.getMax());
+                            
                               v.add(ds.getInNum());
                               v.add(ds.getLoginDate());
-                              v.add(ds.getCredit());
+                             
                               v.add(ds.getYear1());
                               v.add(ds.getYear2());
                               v.add(ds.getDeptExplain());

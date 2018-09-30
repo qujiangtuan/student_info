@@ -121,7 +121,7 @@ public class MainFrm extends JFrame {
                     mnNewMenu_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     systemManagerMenu.add(mnNewMenu_3);
                     
-                    JMenuItem menuItemAddCourse = new JMenuItem("수강등록");
+                    JMenuItem menuItemAddCourse = new JMenuItem("개설교과목등록");
                     menuItemAddCourse.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         AddCourseArrangeFrm acaf=new AddCourseArrangeFrm();
@@ -157,9 +157,27 @@ public class MainFrm extends JFrame {
                     menuItemAddCourse.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_3.add(menuItemAddCourse);
                     
-                    JMenuItem menuItemManagerCourse = new JMenuItem("수강관리");
+                    JMenuItem menuItemManagerCourse = new JMenuItem("개설교과목관리");
+                    menuItemManagerCourse.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent arg0) {
+                    		CourseArrangeManagerFrm camf=new CourseArrangeManagerFrm();
+                            layeredPane.setLayer(camf, 200);
+                            camf.setVisible(true);
+                    	}
+                    });
                     menuItemManagerCourse.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_3.add(menuItemManagerCourse);
+                    
+                    JMenuItem menuItem_11 = new JMenuItem("강의실관리");
+                    menuItem_11.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent e) {
+                    		ClassRoomFrm crf=new ClassRoomFrm();
+                    		layeredPane.setLayer(crf, 200);
+                    		crf.setVisible(true);
+                    	}
+                    });
+                    menuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_3.add(menuItem_11);
                     
                     JMenu mnNewMenu_4 = new JMenu("강의평가관리");
                     mnNewMenu_4.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -197,18 +215,6 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_8.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_4.add(menuItem_8);
-                    
-                    JMenu menuClassRoom = new JMenu("강의실관리");
-                    menuClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_3.add(menuClassRoom);
-                    
-                    JMenuItem menuItemAddClassRoom = new JMenuItem("강의실등록");
-                    menuItemAddClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
-                    menuClassRoom.add(menuItemAddClassRoom);
-                    
-                    JMenuItem menuItemManClassRoom = new JMenuItem("강의실관리");
-                    menuItemManClassRoom.setFont(new Font("Dialog", Font.BOLD, 13));
-                    menuClassRoom.add(menuItemManClassRoom);
                     
                     JMenu orgManagerMenu = new JMenu("조직관리");
                     orgManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/college.png")));
@@ -264,6 +270,18 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_3.setFont(new Font("Dialog", Font.BOLD, 13));
                     menu.add(menuItem_3);
+                    
+                    JMenu mnNewMenu_5 = new JMenu("학년별학과기준");
+                    mnNewMenu_5.setFont(new Font("Dialog", Font.BOLD, 13));
+                    orgManagerMenu.add(mnNewMenu_5);
+                    
+                    JMenuItem mntmNewMenuItem_6 = new JMenuItem("학년별학과기준등록");
+                    mntmNewMenuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_5.add(mntmNewMenuItem_6);
+                    
+                    JMenuItem menuItem_10 = new JMenuItem("학년별학과기준관리");
+                    menuItem_10.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_5.add(menuItem_10);
                     
                     JMenu mnNewMenu_2 = new JMenu("공지관리");
                     mnNewMenu_2.setIcon(new ImageIcon(MainFrm.class.getResource("/images/tongzhi1.png")));

@@ -60,7 +60,24 @@ public class Org {
           }
           @Override
           public String toString() {
-                    return name;
+//        	  orgType;//교육기과,소속기관
+//              coGrCode;//대학,대학원
+//              gsDepMajCode;//학부/학과/전공
+//              aftType;/부속기과에서 부분
+        	  if(coGrCode==null&&gsDepMajCode==null&&aftType!=null) {
+//        		  return "["+orgType+"] / ["+aftType+"] --- "+name;
+        		  return name+"--["+aftType+"] / ["+orgType+"] ";
+        	  }if(coGrCode!=null&&gsDepMajCode==null&&aftType==null) {
+//        		  return "["+orgType+"] / ["+coGrCode+"] --- "+name;
+        		  return name+"--["+coGrCode+"] / ["+orgType+"]";
+        	  }if(aftType==null&&gsDepMajCode==null&&coGrCode==null) {
+//        		  return "["+orgType+"] --- "+name;
+        		  return name+"--["+orgType+"]";
+        	  }else {
+//        		  return "["+orgType+"] / ["+coGrCode+"] / ["+gsDepMajCode+"] --- "+name;
+        		  return name+"--["+gsDepMajCode+"] / ["+coGrCode+"] / ["+orgType+"]";
+        	  }
+                    
           }
           
 }

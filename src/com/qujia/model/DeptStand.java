@@ -6,8 +6,10 @@ public class DeptStand {
           private String orgName;//#조직 이름
           private String college;//#소속대학/대학원
           private String orgid;//조직 코드
-          private Integer credit;//이수학점
-          private Integer pNum;//모집인원
+//          private Integer credit;//이수학점
+//          private Integer pNum;//모집인원
+          private Integer min;
+          private Integer max;
           private Integer inNum;//재학인원
           private String loginDate;//등록 일자
           private Integer year1;//수학년한
@@ -47,24 +49,36 @@ public class DeptStand {
           public void setStandId(String standId) {
                     this.standId = standId;
           }
+          
+//          public Integer getCredit() {
+//                    return credit;
+//          }
+//
+//          public void setCredit(Integer credit) {
+//                    this.credit = credit;
+//          }
+//
+//          public Integer getpNum() {
+//                    return pNum;
+//          }
+//
+//          public void setpNum(Integer pNum) {
+//                    this.pNum = pNum;
+//          }
 
-          public Integer getCredit() {
-                    return credit;
-          }
-
-          public void setCredit(Integer credit) {
-                    this.credit = credit;
-          }
-
-          public Integer getpNum() {
-                    return pNum;
-          }
-
-          public void setpNum(Integer pNum) {
-                    this.pNum = pNum;
-          }
-
-          public String getLoginDate() {
+          public Integer getMin() {
+			return min;
+		}
+		public void setMin(Integer min) {
+			this.min = min;
+		}
+		public Integer getMax() {
+			return max;
+		}
+		public void setMax(Integer max) {
+			this.max = max;
+		}
+		public String getLoginDate() {
                     return loginDate;
           }
 
