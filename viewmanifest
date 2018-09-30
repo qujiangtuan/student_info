@@ -1,0 +1,40 @@
+<com.qujia.view>
+
+1.AddCourseArrangeFrm.java : 개설교과목 등록
+2.AddDeptStandFrm.java : 교육부서학사기준 등록
+3.AddOrgFrm.java : 조직등록 => 기관(교육기관 / 부속기관 / 본부행정기관) 등록으로.. & 부서 등록 필요
+4.AddProFrm.java : 교직원 등록
+5.AddStudentFrm.java : 학생등록
+6.AddSubjectFrm.java : 교과목 등록
+7.ClassManagerFrm.java : 분반정보관리 => 분반 언급 안할시 없앨 계획
+8.CourseApplicationFrm : 수강신청, 수강시간표
+9.CourseArrangeManagerFrm.java : 수강배치관리?? 뭐지이게
+10.CourseListProFrm.java : 교수 현재강의목록
+11.DeptStandManagerFrm.java : 교육부서기준 관리
+12.EditPasswordFrm.java
+13.FindPassword.java
+14.LectureEvalutationFrm.java : 강의평가
+15.LoginFrm.java : 로그인
+16.MainFrm.java
+17.MainFrm2.java
+18.OrgManagerFrm.java : 조직관리 => 기관/부서로 
+19.ProManagerFrm.java : 교직원 관리
+20.ScoreEvalutionFrm.java : 성적평가
+21.ScoreInputFrm.java : 성적입력/성적변경(평가방법별 성적입력)
+22.ScoreShowFrm.java : 성적조회(과목별 성적 보기/학기별 평균성적 보기)
+23.StudentClassAddFrm.java : 분반정보추가 => x
+24.StudentManagerFrm.java : 학생관리
+25.SubjectManagerFrm.java : 과목관리
+
+
+<com.juntaek.view> - 생성 예정
+8 : CourseApplicationFrm : 수강신청
+9? 
+10 : 교수 현재강의목록
+14 : 강의평가
+20 : 성적평가
+21 : 성적입력/성적변경(평가방법별 성적입력)
+22 : 성적조회(과목별 성적보기/학기별 평균성적보기)
+
+
+

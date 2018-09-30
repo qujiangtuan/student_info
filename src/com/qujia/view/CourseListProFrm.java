@@ -64,8 +64,6 @@ public class CourseListProFrm extends JFrame {
                     
                     JScrollPane scrollPane = new JScrollPane();
                     
-                    JButton button = new JButton("\uC218\uAC15\uD559\uC0DD\uB9AC\uC2A4\uD2B8");
-                    
                     JButton btnNewButton = new JButton("\uC131\uC801\uD391\uAC00");
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -75,42 +73,38 @@ public class CourseListProFrm extends JFrame {
                     });
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(20)
-                                                                      .addComponent(label)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(label_1)
-                                                                      .addGap(18)
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(lblNewLabel_1))
-                                                            .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(19)
-                                                                      .addComponent(button)
-                                                                      .addGap(18)
-                                                                      .addComponent(btnNewButton)))
-                                                  .addContainerGap())
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addGap(20)
+                    					.addComponent(label)
+                    					.addPreferredGap(ComponentPlacement.RELATED)
+                    					.addComponent(label_1)
+                    					.addGap(18)
+                    					.addComponent(lblNewLabel)
+                    					.addPreferredGap(ComponentPlacement.UNRELATED)
+                    					.addComponent(lblNewLabel_1))
+                    				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                    				.addGroup(gl_contentPane.createSequentialGroup()
+                    					.addContainerGap()
+                    					.addComponent(btnNewButton)))
+                    			.addContainerGap())
                     );
                     gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label)
-                                                            .addComponent(label_1)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(lblNewLabel_1))
-                                                  .addGap(18)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(button)
-                                                            .addComponent(btnNewButton))
-                                                  .addContainerGap(116, Short.MAX_VALUE))
+                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
+                    		.addGroup(gl_contentPane.createSequentialGroup()
+                    			.addContainerGap()
+                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                    				.addComponent(label)
+                    				.addComponent(label_1)
+                    				.addComponent(lblNewLabel)
+                    				.addComponent(lblNewLabel_1))
+                    			.addGap(18)
+                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+                    			.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                    			.addComponent(btnNewButton)
+                    			.addContainerGap())
                     );
                     
                     table = new JTable();
@@ -128,7 +122,7 @@ public class CourseListProFrm extends JFrame {
                                         {null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAC1C\uC124\uD559\uACFC", "\uC774\uC218\uAD6C\uBD84", "\uAD50\uACFC\uBAA9\uBA70\uBC88\uD638", "\uBD84\uBC18", "\uAD50\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uAC15\uC758\uAE30\uAC04"
+                                        "개설학과", "이수구분", "학수번호", "교과목명", "이수학점", "평가방식"
                               }
                     ));
                     scrollPane.setViewportView(table);
