@@ -6,11 +6,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qujia.model.Admin;
 import com.qujia.model.ProStaff;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
 public class ProStaffDao extends BaseDao {
+	public ProStaff login(ProStaff ps){
+
+        String sql = "select * from pro_staff where pno=? and password= ?";
+        ProStaff psRst=null;
+       ResultSet rs=null;
+        try {
+                  //把sql语句传给数据库操作对象
+                  PreparedStatement prst = con.prepareStatement(sql);
+                  prst.setString(1, ps.getpNo());
+                  prst.setString(2, ps.getPassword());
+                  rs = prst.executeQuery();;
+                  while(rs.next()){
+                	  psRst = new ProStaff();
+                	  psRst.setpNo(rs.getString("pno"));
+                	  psRst.setpName(rs.getString("pname"));
+                	  psRst.setPassword(rs.getString("password"));
+                 }
+        } catch (SQLException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+        }
+        this.closeDao();
+        return psRst;
+       
+}
+	//add ProStaff
 	public boolean addProStaff(ProStaff ps){
         String sql="insert into pro_staff values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
@@ -129,5 +156,41 @@ public class ProStaffDao extends BaseDao {
               }
               
               return false;
+    }
+  //update password
+    public String editPassword(ProStaff ps,String newPasswrod){
+              String sql = "select * from pro_staff where pno= ? and password= ?";
+              PreparedStatement prst =null;
+              ResultSet rs;
+              try {
+                        prst= con.prepareStatement(sql);
+                        prst.setString(1, ps.getpNo());
+                        prst.setString(2, ps.getPassword());
+                        rs = prst.executeQuery();
+                        if(!rs.next()){
+                                  String retString ="옛 암호 오류！";
+                                  return retString;
+                        }
+              } catch (SQLException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+              }
+              String retString ="수정 실패";
+              String sqlString = "update pro_staff set password = ? where pno = ?";
+               
+              try {
+                        prst = con.prepareStatement(sqlString);
+                        prst.setString(1, newPasswrod);
+                        prst.setString(2, ps.getpNo());
+                       int rst= prst.executeUpdate();
+                        if(rst>0){
+                                  retString="암호 수정 성공했습니다！";
+                        }
+              } catch ( Exception e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+              }
+              
+              return retString;
     }
 }

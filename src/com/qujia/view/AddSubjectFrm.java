@@ -108,7 +108,7 @@ public class AddSubjectFrm extends JFrame {
 
                     DatePicker datePicker = new DatePicker();
 
-                    JButton btnNewButton = new JButton(" \uD559   \uC778");
+                    JButton btnNewButton = new JButton("\uB4F1  \uB85D");
                     btnNewButton.setBackground(new Color(64, 224, 208));
                     btnNewButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));

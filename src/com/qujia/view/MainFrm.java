@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.model.UserType;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
 
 public class MainFrm extends JFrame {
 
@@ -28,8 +30,9 @@ public class MainFrm extends JFrame {
           public static UserType userType;//登陆的用户类型
           public static Object userObject;//用于哪个用户登陆
           private CardLayout card;
-          private JDesktopPane desktopPane;
+          private JDesktopPane desktopPane_sys,desktopPane_pro,desktopPane_stu;
           private JLayeredPane layeredPane;
+          private JMenu studentMenu,proMenu,systemManagerMenu;
           /**
            * Launch the application.
            */
@@ -52,7 +55,7 @@ public class MainFrm extends JFrame {
                     JMenuBar menuBar = new JMenuBar();
                     setJMenuBar(menuBar);
                     
-                    JMenu systemManagerMenu = new JMenu("시스템");
+                    systemManagerMenu = new JMenu("시스템");
                     systemManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/system.png")));
                     systemManagerMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
                     menuBar.add(systemManagerMenu);
@@ -79,7 +82,7 @@ public class MainFrm extends JFrame {
                                         StudentManagerFrm studentManagerFrm=new StudentManagerFrm();
                                         layeredPane.setLayer(studentManagerFrm, 200);
                                         studentManagerFrm.setVisible(true);
-                                        desktopPane.add(studentManagerFrm);
+                                        desktopPane_sys.add(studentManagerFrm);
                               }
                     });
                     studentListMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
@@ -265,7 +268,7 @@ public class MainFrm extends JFrame {
                                         DeptStandManagerFrm dsmf=new DeptStandManagerFrm();
                                         layeredPane.setLayer(dsmf, 200);
                                         dsmf.setVisible(true);
-                                        desktopPane.add(dsmf);
+                                        desktopPane_sys.add(dsmf);
                               }
                     });
                     menuItem_3.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -276,10 +279,24 @@ public class MainFrm extends JFrame {
                     orgManagerMenu.add(mnNewMenu_5);
                     
                     JMenuItem mntmNewMenuItem_6 = new JMenuItem("학년별학과기준등록");
+                    mntmNewMenuItem_6.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent e) {
+                    		AddYearStandFrm aysf=new AddYearStandFrm();
+                    		layeredPane.setLayer(aysf, 200);
+                    		aysf.setVisible(true);
+                    	}
+                    });
                     mntmNewMenuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_5.add(mntmNewMenuItem_6);
                     
                     JMenuItem menuItem_10 = new JMenuItem("학년별학과기준관리");
+                    menuItem_10.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent e) {
+                    		YearStandManagerFrm ysmf=new YearStandManagerFrm();
+                    		layeredPane.setLayer(ysmf, 200);
+                    		ysmf.setVisible(true);
+                    	}
+                    });
                     menuItem_10.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_5.add(menuItem_10);
                     
@@ -288,7 +305,7 @@ public class MainFrm extends JFrame {
                     mnNewMenu_2.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     systemManagerMenu.add(mnNewMenu_2);
                     
-                    JMenu studentMenu = new JMenu("학생");
+                    studentMenu = new JMenu("학생");
                     studentMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
                     studentMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
                     menuBar.add(studentMenu);
@@ -327,10 +344,10 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_1.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     studentMenu.add(mntmNewMenuItem_1);
                     
-                    JMenu mnNewMenu = new JMenu("교원");
-                    mnNewMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    mnNewMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/teacher.png")));
-                    menuBar.add(mnNewMenu);
+                    proMenu = new JMenu("교원");
+                    proMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
+                    proMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/teacher.png")));
+                    menuBar.add(proMenu);
                     
                     JMenuItem mntmNewMenuItem_3 = new JMenuItem("개인정보");
                     mntmNewMenuItem_3.addActionListener(new ActionListener() {
@@ -341,7 +358,7 @@ public class MainFrm extends JFrame {
                     	}
                     });
                     mntmNewMenuItem_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
-                    mnNewMenu.add(mntmNewMenuItem_3);
+                    proMenu.add(mntmNewMenuItem_3);
                     
                     JMenuItem mntmNewMenuItem_4 = new JMenuItem("개인수강");
                     mntmNewMenuItem_4.addActionListener(new ActionListener() {
@@ -352,7 +369,7 @@ public class MainFrm extends JFrame {
                               }
                     });
                     mntmNewMenuItem_4.setFont(new Font("휴먼고딕", Font.BOLD, 13));
-                    mnNewMenu.add(mntmNewMenuItem_4);
+                    proMenu.add(mntmNewMenuItem_4);
                     
                     JMenu settingMenu = new JMenu("설정");
                     settingMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
@@ -398,69 +415,97 @@ public class MainFrm extends JFrame {
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
-                    //desktopPane.setVisible(false);
-                    card=new CardLayout(0,0);
-                    contentPane.setLayout(card);
+                    contentPane.setLayout(null);
                     
                     layeredPane = new JLayeredPane();
-                    contentPane.add(layeredPane, "layeredPane");
-                    layeredPane.setLayout(new CardLayout(0, 0));
+                    layeredPane.setBounds(5, 5, 1110, 637);
+                    contentPane.add(layeredPane);
+                    card=new CardLayout(0, 0);
+                    layeredPane.setLayout(card);
                     
-                    desktopPane = new JDesktopPane();
-                    layeredPane.setLayer(desktopPane, 30);
-                    desktopPane.setBackground(new Color(224, 255, 255));
-                    layeredPane.add(desktopPane, "name_2735345872256");
+                    desktopPane_sys = new JDesktopPane();
+                    layeredPane.setLayer(desktopPane_sys, 30);
+                    desktopPane_sys.setBackground(new Color(224, 255, 255));
+                    layeredPane.add(desktopPane_sys, "desktopPane");
+                    desktopPane_sys.setLayout(null);
                     
-                    JPanel panel_sys = new JPanel();
-                    panel_sys.setBackground(new Color(100, 149, 237));
-                    layeredPane.add(panel_sys, "name_2735377943895");
-                    GroupLayout gl_panel_sys = new GroupLayout(panel_sys);
-                    gl_panel_sys.setHorizontalGroup(
-                              gl_panel_sys.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 878, Short.MAX_VALUE)
-                    );
-                    gl_panel_sys.setVerticalGroup(
-                              gl_panel_sys.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 530, Short.MAX_VALUE)
-                    );
-                    panel_sys.setLayout(gl_panel_sys);
+                    JPanel panel = new JPanel();
+                    panel.setBounds(0, 0, 1110, 25);
+                    desktopPane_sys.add(panel);
                     
-                    JPanel panel_student = new JPanel();
-                    panel_student.setBackground(new Color(144, 238, 144));
-                    layeredPane.add(panel_student, "name_2735399246744");
-                    GroupLayout gl_panel_student = new GroupLayout(panel_student);
-                    gl_panel_student.setHorizontalGroup(
-                              gl_panel_student.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 878, Short.MAX_VALUE)
-                    );
-                    gl_panel_student.setVerticalGroup(
-                              gl_panel_student.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 530, Short.MAX_VALUE)
-                    );
-                    panel_student.setLayout(gl_panel_student);
+                    JLabel lblNewLabel = new JLabel("관리자");
+                    panel.add(lblNewLabel);
                     
-                    JPanel panel_pro = new JPanel();
-                    panel_pro.setBackground(new Color(255, 182, 193));
-                    layeredPane.add(panel_pro, "name_2735419649076");
-                    GroupLayout gl_panel_pro = new GroupLayout(panel_pro);
-                    gl_panel_pro.setHorizontalGroup(
-                              gl_panel_pro.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 878, Short.MAX_VALUE)
-                    );
-                    gl_panel_pro.setVerticalGroup(
-                              gl_panel_pro.createParallelGroup(Alignment.LEADING)
-                                        .addGap(0, 530, Short.MAX_VALUE)
-                    );
-                    panel_pro.setLayout(gl_panel_pro);
+                    JLabel lblNewLabel_4 = new JLabel("test");
+                    lblNewLabel_4.setBounds(251, 252, 200, 50);
+                    desktopPane_sys.add(lblNewLabel_4);
+                    
+                    desktopPane_pro = new JDesktopPane();
+                    layeredPane.setLayer(desktopPane_pro, 30);
+                    desktopPane_pro.setBackground(new Color(143, 188, 143));
+                    layeredPane.add(desktopPane_pro, "desktopPane_pro");
+                    desktopPane_pro.setLayout(null);
+                    
+                    JPanel panel_1 = new JPanel();
+                    panel_1.setBounds(0, 0, 1110, 25);
+                    desktopPane_pro.add(panel_1);
+                    
+                    JLabel lblNewLabel_1 = new JLabel("교직원");
+                    panel_1.add(lblNewLabel_1);
+                    
+                    JLabel lblNewLabel_3 = new JLabel("test");
+                    lblNewLabel_3.setBounds(243, 260, 200, 50);
+                    desktopPane_pro.add(lblNewLabel_3);
+                    
+                    desktopPane_stu = new JDesktopPane();
+                    layeredPane.setLayer(desktopPane_stu, 30);
+                    desktopPane_stu.setBackground(new Color(147, 112, 219));
+                    layeredPane.add(desktopPane_stu, "desktopPane_stu");
+                    desktopPane_stu.setLayout(null);
+                    
+                    JLabel label_1 = new JLabel("test");
+                    label_1.setBounds(0, 25, 1110, 612);
+                    desktopPane_stu.add(label_1);
+                    
+                    JPanel panel_2 = new JPanel();
+                    panel_2.setBounds(0, 0, 1110, 25);
+                    desktopPane_stu.add(panel_2);
+                    
+                    JLabel lblNewLabel_2 = new JLabel("학생");
+                    panel_2.add(lblNewLabel_2);
+                    
+                    JLabel lblTest = new JLabel("test");
+                    lblTest.setBounds(225, 273, 200, 50);
+                    desktopPane_stu.add(lblTest);
                     setLocationRelativeTo(null);
+                    setAuthority();
+                    
           }
-
+//          권한
+          private  void setAuthority() {
+        	  if("관리자".equals(userType.getName())) {
+        		  proMenu.setEnabled(false);
+            	  studentMenu.setEnabled(false);
+              	card.show(layeredPane, "desktopPane_sys");
+//              	card.show(layeredPane, "desktopPane");
+              }else if("교직원".equals(userType.getName())) {
+            	  systemManagerMenu.setEnabled(false);
+            	  studentMenu.setEnabled(false);
+              	card.show(layeredPane, "desktopPane_pro");
+//              	card.show(layeredPane, "desktopPane");
+              }else {
+            	  systemManagerMenu.setEnabled(false);
+            	  proMenu.setEnabled(false);
+              	card.show(layeredPane, "desktopPane_stu");
+//              	card.show(layeredPane, "desktopPane");
+              }
+          }
           //添加学生
           protected void addStudent(ActionEvent ae) {
                     AddStudentFrm asf=new AddStudentFrm();
                     layeredPane.setLayer(asf, 200);
                     asf.setVisible(true);
-                    desktopPane.add(asf);
+                    desktopPane_sys.add(asf);
                     
           }
           //修改密码
@@ -469,12 +514,18 @@ public class MainFrm extends JFrame {
                     EditPasswordFrm editPasswordFrm =new EditPasswordFrm();
                     layeredPane.setLayer(editPasswordFrm, 200);
                     editPasswordFrm.setVisible(true);
-                    desktopPane.add(editPasswordFrm);
+                    if("관리자".equals(userType.getName())) {
+                    	desktopPane_sys.add(editPasswordFrm);
+                    }else if("교직원".equals(userType.getName())) {
+                    	desktopPane_pro.add(editPasswordFrm);
+                    }else {
+                    	desktopPane_stu.add(editPasswordFrm);
+                    }
           }
           //关于我们 
           protected void aboutUs(ActionEvent ae) {
-                    String info="【屈江团】出品 \n";
-                    info+="网址：http://programmer.ischoolbar.com \n";
+                    String info="【취 지앙투안】出品 \n";
+                    info+="URL：https://github.com/qujiangtuan/student_info \n";
                     info+="환영합니다！";
                    // JOptionPane.showMessageDialog(this, info);
                     String[] buttons={"가 보자","다음 가"};
@@ -484,10 +535,10 @@ public class MainFrm extends JFrame {
                     if(ret==0){
                               //采用Java调用系统浏览其打开制定网址
                               try {
-                                        URI uri=new URI("http://programmer.ischoolbar.com");
+                                        URI uri=new URI("https://github.com/qujiangtuan/student_info");
                                         //以下两种方式都可以访问网站
                                         //Desktop.getDesktop().browse(uri);
-                                        Runtime.getRuntime().exec("explorer http://programmer.ischoolbar.com");
+                                        Runtime.getRuntime().exec("explorer https://github.com/qujiangtuan/student_info");
                               } catch ( Exception e) {
                                         // TODO Auto-generated catch block 
                                         e.printStackTrace();

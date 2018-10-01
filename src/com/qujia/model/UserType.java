@@ -1,7 +1,7 @@
 package com.qujia.model;
 
 public enum UserType {
-          ADMIN("관리자",0),TEACHER("교원",1),STUDENT("학생",2);
+          ADMIN("관리자",0),TEACHER("교직원",1),STUDENT("학생",2);
           private String name;
           private int index;
           private UserType(String name,int index){

@@ -24,7 +24,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.AdminDao;
+import com.qujia.dao.ProStaffDao;
+import com.qujia.dao.StudentDao;
 import com.qujia.model.Admin;
+import com.qujia.model.ProStaff;
+import com.qujia.model.Student;
 import com.qujia.model.UserType;
 import com.qujia.util.StringUtil;
 
@@ -262,12 +266,46 @@ public class LoginFrm extends JFrame {
                                                   + " , 환영합니다 !");
                               this.dispose();
                               new MainFrm(selectedItem, admin).setVisible(true);
-                    } else if ("교원".equals(selectedItem.getName())) {
+                    } else if ("교직원".equals(selectedItem.getName())) {
                               // 教师登陆
-
+                    			ProStaff ps=null;
+                    			ProStaffDao psDao=new ProStaffDao();
+                    			ProStaff psTmp=new ProStaff();
+                    			psTmp.setpNo(userName);
+                    			psTmp.setPassword(password);
+                    			ps= psDao.login(psTmp);
+                    			psDao.closeDao();
+                    			if(ps==null||!(userName.equals(ps.getpNo()))) {
+                        			JOptionPane.showMessageDialog(this, "사용자 이름 또는 비밀번호가 잘못되었습니다！");
+                        			return;
+                        		} 
+                        		JOptionPane.showMessageDialog(this, "【"
+                                        + selectedItem.getName()
+                                        + "】：" + ps.getpName()
+                                        + " , 환영합니다 !");
+                        		this.dispose();
+                        		new MainFrm(selectedItem, ps).setVisible(true);
+                    			
                     } else {
                               // 学生登陆
-
+                    		Student student=null;
+                    		StudentDao sDao=new StudentDao();
+                    		Student stemp=new Student();
+                    		stemp.setsNo(userName);
+                    		stemp.setPassword(password);
+                    		student=sDao.login(stemp);
+                    		sDao.closeDao();
+                    		if(student==null||!(userName.equals(student.getsNo()))) {
+                    			JOptionPane.showMessageDialog(this, "사용자 이름 또는 비밀번호가 잘못되었습니다！");
+                    			return;
+                    		} 
+                    		JOptionPane.showMessageDialog(this, "【"
+                                    + selectedItem.getName()
+                                    + "】：" + student.getName()
+                                    + " , 환영합니다 !");
+                    		this.dispose();
+                    		new MainFrm(selectedItem, student).setVisible(true);
+                    		
                     }
           }
 

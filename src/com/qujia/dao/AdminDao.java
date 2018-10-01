@@ -39,6 +39,7 @@ public class AdminDao extends BaseDao {
                     return adminRst;
                    
           }
+          //update password
           public String editPassword(Admin admin,String newPasswrod){
                     String sql = "select * from s_admin where name= ? and password= ?";
                     PreparedStatement prst =null;

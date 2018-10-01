@@ -56,7 +56,7 @@ public class AddAppendMajor extends JFrame {
 	public AddAppendMajor() {
 		setTitle("\uCD94\uAC00\uC804\uACF5");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 446, 369);
+		setBounds(100, 100, 525, 369);
 		
 		 ViewUtil vu=new ViewUtil();
          vu.showCenter(this);
@@ -106,20 +106,15 @@ public class AddAppendMajor extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(74)
 							.addComponent(submitButton)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(datePicker, 0, 0, Short.MAX_VALUE)
-								.addComponent(comboBox_major, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(comboBox_major_type, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label_name, 0, 143, Short.MAX_VALUE))
-							.addContainerGap(216, Short.MAX_VALUE))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(cancelButton)
-							.addGap(82))))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+							.addComponent(datePicker, 0, 0, Short.MAX_VALUE)
+							.addComponent(comboBox_major, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(comboBox_major_type, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(label_name, 0, 143, Short.MAX_VALUE))
+						.addComponent(cancelButton))
+					.addContainerGap(121, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -127,7 +122,7 @@ public class AddAppendMajor extends JFrame {
 					.addGap(48)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel)
-						.addComponent(label_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(label_name))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_1)
@@ -140,10 +135,10 @@ public class AddAppendMajor extends JFrame {
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblNewLabel_3)
 						.addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(cancelButton)
-						.addComponent(submitButton))
+						.addComponent(submitButton)
+						.addComponent(cancelButton))
 					.addGap(51))
 		);
 		contentPane.setLayout(gl_contentPane);
@@ -155,7 +150,8 @@ public class AddAppendMajor extends JFrame {
 	protected void addAppendMajorAction(ActionEvent ae) {
 		String name = label_name.getText().toString();
 		String majorType=comboBox_major_type.getSelectedItem().toString();
-		String major = comboBox_major.getSelectedItem().toString();
+		Org org=(Org) comboBox_major.getSelectedItem();
+		String major = org.getName();
 		String applyDate = null;
 		try {
 			applyDate = getStringDate(datePicker);

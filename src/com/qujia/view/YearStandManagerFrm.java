@@ -17,6 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.qujia.util.ViewUtil;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import java.awt.Color;
@@ -56,8 +59,13 @@ public class YearStandManagerFrm extends JFrame {
 	 */
 	public YearStandManagerFrm() {
 		setTitle("\uD559\uB144\uBCC4\uAD50\uC721\uBD80\uC11C\uD559\uC0AC\uAE30\uC900\uAD00\uB9AC");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 871, 658);
+		
+		 ViewUtil vu=new ViewUtil();
+         vu.showCenter(this);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
