@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -33,22 +34,15 @@ import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
 import com.qujia.model.Org;
 import com.qujia.model.Student;
-import com.qujia.util.StringUtil;
 
 public class StudentManagerFrm extends JInternalFrame {
           private JTextField nameTextField;
           private JTable studentListTable;
-          private JTextField editNameTextField;
-          private JTextField editEmailTextField;
           private JComboBox searchOrgComboBox;
           private JComboBox editOrgComboBox;
 //          private List<StudentClass> studentClassList;
           private List<Org> orgList;
           private ButtonGroup editSexButtonGroup;
-          private JRadioButton editStudentSexManRadioButton;
-          private JRadioButton editStudentSexFemalRadioButton;
-          private JTextField editTel_textField;
-          private JTextField editAddress_textField;
           private JCheckBox checkBox_3;
           private JTextField textField_no;
           private JRadioButton radioButton_2;
@@ -109,39 +103,13 @@ public class StudentManagerFrm extends JInternalFrame {
                     
                     JScrollPane scrollPane =  new JScrollPane();
                     
-                    JLabel editStudentNameLabel = new JLabel("\uD559\uC0DD\uC774\uB984:");
-                    editStudentNameLabel.setIcon(null);
-                    editStudentNameLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    editNameTextField = new JTextField();
-                    editNameTextField.setColumns(10);
-                    
                     JLabel editClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
                     editClassLabel.setIcon(null);
                     editClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
                     editOrgComboBox = new JComboBox();
                     
-                    JLabel editStudentSexLabel = new JLabel("\uC131\uBCC4:");
-                    editStudentSexLabel.setIcon(null);
-                    editStudentSexLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    editStudentSexManRadioButton = new JRadioButton("\uB0A8");
-                    editStudentSexManRadioButton.setSelected(true);
-                    editStudentSexManRadioButton.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    editStudentSexFemalRadioButton = new JRadioButton("\uC5EC");
-                    editStudentSexFemalRadioButton.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
                     editSexButtonGroup=new ButtonGroup();
-                    editSexButtonGroup.add(editStudentSexManRadioButton);
-                    editSexButtonGroup.add(editStudentSexFemalRadioButton);
-                    
-                    JLabel editEmailLabel = new JLabel("이메일:");
-                    editEmailLabel.setIcon(null);
-                    editEmailLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    editEmailTextField = new JTextField();
                     
                     JButton submitEidtButton = new JButton("\uC218\uC815");
                     submitEidtButton.setBackground(new Color(176, 224, 230));
@@ -153,7 +121,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     submitEidtButton.setIcon(null);
                     submitEidtButton.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
-                    JButton deleteStudentButton = new JButton("\uC0AD\uC81C");
+                    JButton deleteStudentButton = new JButton("자퇴");
                     deleteStudentButton.setBackground(new Color(255, 105, 180));
                     deleteStudentButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
@@ -162,18 +130,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     });
                     deleteStudentButton.setIcon(null);
                     deleteStudentButton.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    JLabel label_1 = new JLabel("전화번호:");
-                    label_1.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
-                    editTel_textField = new JTextField();
-                    editTel_textField.setColumns(10);
-                    
-                    JLabel label_2 = new JLabel("집주소:");
-                    label_2.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
-                    editAddress_textField = new JTextField();
-                    editAddress_textField.setColumns(10);
                     
                     checkBox_3 = new JCheckBox("");
                     
@@ -232,124 +188,124 @@ public class StudentManagerFrm extends JInternalFrame {
                     });
                     button.setFont(new Font("Dialog", Font.BOLD, 13));
                     button.setBackground(new Color(72, 209, 204));
+                    
+                    JLabel label = new JLabel("재학상태:");
+                    label.setFont(new Font("Dialog", Font.BOLD, 13));
+                    
+                    JComboBox comboBox = new JComboBox();
+                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "재학중", "휴학중", "졸업", "자퇴"}));
+                    
+                    JButton button_1 = new JButton("학점확인");
+                    button_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        GradeCheckFrm gcf=new GradeCheckFrm();
+                                        gcf.setVisible(true);
+                              }
+                    });
+                    button_1.setFont(new Font("Dialog", Font.BOLD, 13));
+                    button_1.setBackground(new Color(245, 222, 179));
+                    
+                    JLabel label_1 = new JLabel("학사과정:");
+                    label_1.setFont(new Font("Dialog", Font.BOLD, 13));
+                    
+                    JComboBox comboBox_1 = new JComboBox();
+                    comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "학사과정", "석사과정", "박사과정"}));
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
                     groupLayout.setHorizontalGroup(
-                    	groupLayout.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(groupLayout.createSequentialGroup()
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addGap(7)
-                    					.addComponent(radioButton_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(searchStudentNameLabel)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(24)
-                    					.addComponent(radioButton_2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(label_, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(41)
-                    					.addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(searchClassLabel)
-                    					.addGap(18)
-                    					.addComponent(searchOrgComboBox, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(searchButton))
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addContainerGap()
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
-                    						.addGroup(groupLayout.createSequentialGroup()
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                    								.addComponent(editStudentNameLabel)
-                    								.addComponent(editClassLabel))
-                    							.addGap(18)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                    								.addComponent(editNameTextField)
-                    								.addComponent(editOrgComboBox, 0, 284, Short.MAX_VALUE))
-                    							.addPreferredGap(ComponentPlacement.UNRELATED)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                    								.addComponent(editEmailLabel)
-                    								.addComponent(editStudentSexLabel))
-                    							.addPreferredGap(ComponentPlacement.UNRELATED)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    								.addComponent(editEmailTextField, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-                    								.addGroup(groupLayout.createSequentialGroup()
-                    									.addComponent(editStudentSexManRadioButton)
-                    									.addGap(18)
-                    									.addComponent(editStudentSexFemalRadioButton)))
-                    							.addGap(18)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                    								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-                    								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-                    							.addGap(18)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-                    								.addComponent(editAddress_textField)
-                    								.addComponent(editTel_textField, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE))
-                    							.addPreferredGap(ComponentPlacement.UNRELATED)
-                    							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                    								.addComponent(submitEidtButton)
-                    								.addComponent(deleteStudentButton))
-                    							.addPreferredGap(ComponentPlacement.UNRELATED)
-                    							.addComponent(button)))))
-                    			.addContainerGap())
+                              groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addGap(7)
+                                                                      .addComponent(radioButton_1, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(searchStudentNameLabel)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(24)
+                                                                      .addComponent(radioButton_2, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(label_, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(textField_no, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(41)
+                                                                      .addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(searchClassLabel)
+                                                                      .addGap(18)
+                                                                      .addComponent(searchOrgComboBox, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(18)
+                                                                      .addComponent(searchButton))
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+                                                                                .addGroup(groupLayout.createSequentialGroup()
+                                                                                          .addGap(12)
+                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                                                                    .addGroup(groupLayout.createSequentialGroup()
+                                                                                                              .addComponent(label, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
+                                                                                                    .addGroup(groupLayout.createSequentialGroup()
+                                                                                                              .addComponent(editClassLabel)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addGap(38)
+                                                                                                              .addComponent(submitEidtButton)
+                                                                                                              .addGap(32)
+                                                                                                              .addComponent(deleteStudentButton)
+                                                                                                              .addGap(29)
+                                                                                                              .addComponent(button)
+                                                                                                              .addGap(31)
+                                                                                                              .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                                                                                    .addGroup(groupLayout.createSequentialGroup()
+                                                                                                              .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)))
+                                                                                          .addGap(205)))))
+                                                  .addContainerGap())
                     );
                     groupLayout.setVerticalGroup(
-                    	groupLayout.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(groupLayout.createSequentialGroup()
-                    			.addContainerGap(26, Short.MAX_VALUE)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-                    					.addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    					.addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(label_, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(textField_no, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                    					.addComponent(radioButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(searchStudentNameLabel)
-                    						.addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
-                    				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    					.addComponent(searchClassLabel)
-                    					.addComponent(searchOrgComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    					.addComponent(searchButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    			.addGap(29)
-                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(29)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(editStudentNameLabel)
-                    						.addComponent(editNameTextField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                    					.addGap(18)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(editClassLabel)
-                    						.addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(submitEidtButton)
-                    					.addGap(18)
-                    					.addComponent(deleteStudentButton))
-                    				.addComponent(button, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addGap(3)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(editStudentSexManRadioButton)
-                    						.addComponent(editStudentSexFemalRadioButton)
-                    						.addComponent(editStudentSexLabel))
-                    					.addGap(18)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(editAddress_textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(editEmailTextField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(editEmailLabel, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)))
-                    				.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    					.addComponent(editTel_textField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    					.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)))
-                    			.addContainerGap(71, Short.MAX_VALUE))
+                              groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                                  .addContainerGap(23, Short.MAX_VALUE)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+                                                                      .addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                      .addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(label_, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(textField_no, GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                                                                      .addComponent(radioButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(searchStudentNameLabel)
+                                                                                .addComponent(nameTextField, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)))
+                                                            .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                      .addComponent(searchClassLabel)
+                                                                      .addComponent(searchOrgComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                      .addComponent(searchButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                  .addGap(29)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(18)
+                                                  .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(groupLayout.createSequentialGroup()
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(editClassLabel)
+                                                                                .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(submitEidtButton)
+                                                                                .addComponent(deleteStudentButton)
+                                                                                .addComponent(button))
+                                                                      .addGap(18)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(label, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                                                      .addGap(18)
+                                                                      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                                                            .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+                                                  .addContainerGap(37, Short.MAX_VALUE))
                     );
                     
                     
@@ -423,38 +379,13 @@ public class StudentManagerFrm extends JInternalFrame {
                               JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
                               return;
                     }
-                    String studentName=editNameTextField.getText().toString();
-                    String studentEmail=editEmailTextField.getText().toString();
-                    String studentTel=editTel_textField.getText().toString();
-                    String studentAddress=editAddress_textField.getText().toString();
-                    if(StringUtil.isEmpty(studentName)){
-                              JOptionPane.showMessageDialog(this, "학생이름을 입력해주세요");
-                              return;
-                    }
-                    if(StringUtil.isEmpty(studentEmail)){
-                              JOptionPane.showMessageDialog(this, "이메일를 입력해주세요");
-                              return;
-                    }
-                    if(StringUtil.isEmpty(studentTel)){
-                              JOptionPane.showMessageDialog(this, "전화번호를 입력해주세요");
-                              return;
-                    }
-                    if(StringUtil.isEmpty(studentAddress)){
-                              JOptionPane.showMessageDialog(this, "주소를 입력해주세요");
-                              return;
-                    }
+                    
                     Student student=new Student();
-                    student.setName(studentName);
-                    student.setEmail(studentEmail);
-                    student.setTel(studentTel);
-                    student.setAdress(studentAddress);
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
                    Org org=(Org) editOrgComboBox.getSelectedItem();
                     student.setOrgId(org.getOrgCode());
                     
                     student.setsNo(studentListTable.getValueAt(row, 0).toString());
-                    if(editStudentSexManRadioButton.isSelected()) student.setSex(editStudentSexManRadioButton.getText().toString());
-                    if(editStudentSexFemalRadioButton.isSelected()) student.setSex(editStudentSexFemalRadioButton.getText().toString());
                      
                     StudentDao studentDao=new StudentDao();
                     if(studentDao.updateStudent(student)){
@@ -471,10 +402,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
                     //得到选中表格中的哪一行，那一列的值
                     selectIndex=studentListTable.getSelectedRow();
-                    editNameTextField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 1).toString());
-                    editEmailTextField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 7).toString());
-                    editTel_textField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 5).toString());
-                    editAddress_textField.setText(dft.getValueAt(studentListTable.getSelectedRow(), 9).toString());
                     String orgName=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
                     for(int i=0;i<editOrgComboBox.getItemCount();i++){
                               Org org=(Org)editOrgComboBox.getItemAt(i);
@@ -484,11 +411,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     }
                     String sex=dft.getValueAt(studentListTable.getSelectedRow(), 3).toString();
                     editSexButtonGroup.clearSelection();
-                    if(sex.equals(editStudentSexManRadioButton.getText())) editStudentSexManRadioButton.setSelected(true);
-                    if(sex.equals(editStudentSexFemalRadioButton.getText())) editStudentSexFemalRadioButton.setSelected(true);
-                    
-                    
-                    
           }
           //학생삭제
           protected void deleteStudent(ActionEvent ae) {
@@ -534,10 +456,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     setTable(student);
           }
           private void restvalues() {
-                    editNameTextField.setText("");
-                          editEmailTextField.setText("");
-                          editTel_textField.setText("");
-                          editAddress_textField.setText("");
                           editOrgComboBox.setSelectedIndex(0);
                           editSexButtonGroup.clearSelection();
           }
@@ -587,7 +505,4 @@ public class StudentManagerFrm extends JInternalFrame {
                     }
                     return "";
           }
-	
-		
-          
 }
