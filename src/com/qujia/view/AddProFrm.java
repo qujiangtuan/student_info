@@ -8,9 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -37,10 +39,6 @@ import com.qujia.model.ProStaff;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
-import oracle.net.aso.p;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 public class AddProFrm extends JFrame {
 
           private JPanel contentPane;
@@ -58,8 +56,6 @@ public class AddProFrm extends JFrame {
           private JPanel panel,panel_1,panel_2;
           private CardLayout card;
           private JComboBox comboBox_teacher,comboBox_emptype,comboBox_org;
-          private JLabel lblNewLabel_2;
-          private JComboBox comboBox_superior1;
           private JLabel label_7;
           private JComboBox comboBox_superior2;
           private DatePicker datePicker;
@@ -221,7 +217,7 @@ public class AddProFrm extends JFrame {
                     		card.show(panel, "panel_2");
                     		bgroup2.clearSelection();
                     		radioButton1.setSelected(true);
-                    		comboBox_superior1.setSelectedIndex(0);
+//                    		comboBox_superior1.setSelectedIndex(0);
                     	}
                     });
                     bgroup1=new ButtonGroup();
@@ -414,53 +410,37 @@ public class AddProFrm extends JFrame {
                     bgroup2.add(radioButton1);
                     bgroup2.add(radioButton2);
                     bgroup2.add(radioButton3);
-                    
-                    lblNewLabel_2 = new JLabel("\uC9C1\uC18D\uC0C1\uC0AC:");
-                    
-                    comboBox_superior1 = new JComboBox();
-                    comboBox_superior1.setModel(new DefaultComboBoxModel(new String[] {""}));
                     GroupLayout gl_panel_1 = new GroupLayout(panel_1);
                     gl_panel_1.setHorizontalGroup(
-                    	gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_panel_1.createSequentialGroup()
-                    			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    				.addComponent(label_5)
-                    				.addComponent(lblNewLabel_2))
-                    			.addPreferredGap(ComponentPlacement.RELATED)
-                    			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_panel_1.createSequentialGroup()
-                    					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(radioButton3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    						.addComponent(radioButton2, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    						.addComponent(radioButton1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(comboBox_teacher, 0, 83, Short.MAX_VALUE)
-                    					.addGap(14))
-                    				.addGroup(gl_panel_1.createSequentialGroup()
-                    					.addComponent(comboBox_superior1, 0, 83, Short.MAX_VALUE)
-                    					.addContainerGap())))
+                              gl_panel_1.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_panel_1.createSequentialGroup()
+                                                  .addComponent(label_5)
+                                                  .addPreferredGap(ComponentPlacement.RELATED)
+                                                  .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+                                                            .addComponent(radioButton3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                                                            .addComponent(radioButton2, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                                                            .addComponent(radioButton1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                                                  .addPreferredGap(ComponentPlacement.RELATED)
+                                                  .addComponent(comboBox_teacher, 0, 79, Short.MAX_VALUE)
+                                                  .addGap(14))
                     );
                     gl_panel_1.setVerticalGroup(
-                    	gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_panel_1.createSequentialGroup()
-                    			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_panel_1.createSequentialGroup()
-                    					.addGap(14)
-                    					.addComponent(label_5))
-                    				.addGroup(gl_panel_1.createSequentialGroup()
-                    					.addGap(11)
-                    					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(radioButton1)
-                    						.addComponent(comboBox_teacher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    			.addPreferredGap(ComponentPlacement.RELATED)
-                    			.addComponent(radioButton2)
-                    			.addPreferredGap(ComponentPlacement.UNRELATED)
-                    			.addComponent(radioButton3)
-                    			.addPreferredGap(ComponentPlacement.RELATED)
-                    			.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-                    				.addComponent(lblNewLabel_2)
-                    				.addComponent(comboBox_superior1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    			.addContainerGap(9, Short.MAX_VALUE))
+                              gl_panel_1.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_panel_1.createSequentialGroup()
+                                                  .addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_panel_1.createSequentialGroup()
+                                                                      .addGap(14)
+                                                                      .addComponent(label_5))
+                                                            .addGroup(gl_panel_1.createSequentialGroup()
+                                                                      .addGap(11)
+                                                                      .addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(radioButton1)
+                                                                                .addComponent(comboBox_teacher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                  .addPreferredGap(ComponentPlacement.RELATED)
+                                                  .addComponent(radioButton2)
+                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                  .addComponent(radioButton3)
+                                                  .addContainerGap(45, Short.MAX_VALUE))
                     );
                     panel_1.setLayout(gl_panel_1);
                     
@@ -511,7 +491,7 @@ public class AddProFrm extends JFrame {
           }
           //submit add pro action
 		protected void addProSubmit(ActionEvent ae) {
-			String pno,name,ename,staffType,sex,personType,teacherType=null,supid;
+			String pno,name,ename,staffType,sex,personType,teacherType=null,supid=null;
 			String cardid1,cardid2,cardid,orgId,address,email,tel,date;
 			name=textField_name.getText().toString();
 			ename=textField_ename.getText().toString();
@@ -525,12 +505,12 @@ public class AddProFrm extends JFrame {
 				}else {
 					teacherType=null;
 				}
-				try {
-					ProStaff ps=(ProStaff)comboBox_superior1.getSelectedItem();
-					supid=ps.getpNo();
-				} catch (Exception e) {
-					supid=null;
-				}
+//				try {
+////					ProStaff ps=(ProStaff)comboBox_superior1.getSelectedItem();
+//					supid=ps.getpNo();
+//				} catch (Exception e) {
+//					supid=null;
+//				}
 				
 			}else {
 				personType=comboBox_emptype.getSelectedItem().toString();
@@ -553,6 +533,9 @@ public class AddProFrm extends JFrame {
 			tel=textField_tel.getText().toString();
 			date=getStringDate(datePicker);
 			 pno=getStudentNumber(date,orgId);
+			 while(this.isRepeat(pno)){
+			           pno=getStudentNumber(date,orgId);
+			 }
 			 if(StringUtil.isEmpty(name)) {
 				 JOptionPane.showMessageDialog(this, "교직원이름을 입력해주세요!");
 				 return;
@@ -607,7 +590,6 @@ public class AddProFrm extends JFrame {
 		}
 		//직속상사 从数据库中把数据填充选择框
         protected void setSuperior() {
-        	comboBox_superior1.removeAllItems();
                   // TODO Auto-generated method stub
                  ProStaffDao psDao=new ProStaffDao();
                  ProStaff ps1=new ProStaff();
@@ -617,10 +599,9 @@ public class AddProFrm extends JFrame {
                   List<ProStaff> proStaffList1 = psDao.getProStaffList(ps1);
                   List<ProStaff> proStaffList2 = psDao.getProStaffList(ps2);
                   String str=null;
-                  comboBox_superior1.addItem(str);
-                  for (ProStaff psa : proStaffList1) {
-                	  comboBox_superior1.addItem(psa);
-				}
+//                  for (ProStaff psa : proStaffList1) {
+//                	  comboBox_superior1.addItem(psa);
+//				}
                   for (ProStaff psb : proStaffList2) {
                 	  comboBox_superior2.addItem(psb);
 				}
@@ -653,7 +634,7 @@ public class AddProFrm extends JFrame {
 			teacherRadioButton.setSelected(true);
 			comboBox_org.setSelectedIndex(0);
 			comboBox_emptype.setSelectedIndex(0);
-			comboBox_superior1.setSelectedIndex(0);
+//			comboBox_superior1.setSelectedIndex(0);
 			comboBox_superior2.setSelectedIndex(0);
 			comboBox_teacher.setSelectedIndex(0);
 		}
@@ -677,6 +658,22 @@ public class AddProFrm extends JFrame {
                    str2=string.substring(3, 5);
                    String sNo = str + str2 + getRandom();
                    return sNo;
+         }
+         ///종복확인
+         private boolean isRepeat(String str){
+                   ProStaff ps=new ProStaff();
+                   ProStaffDao psDao=new ProStaffDao();
+                   List<ProStaff> psList = psDao.getProStaffList(new ProStaff());
+                   List<String> psNoList = new ArrayList<String>();
+                   for (ProStaff psNo2 : psList) {
+                             String string1=psNo2.getpNo();
+                             psNoList.add(string1);
+                   }
+                   if(!psNoList.contains(str)){
+                             return false;
+                   }else{
+                             return true;
+                   }
          }
          // 获取一个随机产生的三位数（001,001）
          public String getRandom() {

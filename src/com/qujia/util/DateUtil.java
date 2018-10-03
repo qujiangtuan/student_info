@@ -102,6 +102,13 @@ public class DateUtil extends DatePicker{
               String dateString = formatter.format(date);
               return dateString;
     }
+    //금년 년도
+    public static String getThisYear(){
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
+            String dateString = formatter.format(date);
+            return dateString;
+  }
     /*调用方法
      *  DateUtil du=new DateUtil();
                     //JSpinner spinner = new JSpinner();

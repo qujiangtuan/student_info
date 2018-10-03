@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -31,6 +32,7 @@ import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
 import com.qujia.model.Org;
 import com.qujia.model.Student;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 
 public class AddStudentFrm extends JInternalFrame {
@@ -339,12 +341,26 @@ public class AddStudentFrm extends JInternalFrame {
                     String idCardNo = idCardNo_1 + "-" + idCardNo_2;
 
                     String joinDate = getStringDate(datePicker);
+                    
                     // System.out.println(joinDate);
                     String email = emailTextField.getText().toString();
-
+                    
+                    String degreeProcess;//학사과정
                    Org org=(Org)orgComboBox.getSelectedItem();
                     String orgid=org.getOrgCode();
-                    String sNo = getStudentNumber(joinDate,orgid);
+                    String col=org.getCoGrCode();
+                    if("대학".equals(col)){
+                              degreeProcess="학사과정";
+                    }else{
+                              degreeProcess="석사과정";
+                    }
+                    String inSchYear=getSchYear(joinDate);//학년
+                    String sNo;//학번종복학인
+                    sNo = getStudentNumber(joinDate,orgid);
+                    while(this.isRepeat(sNo)){
+                            //학번종복학인
+                              sNo = getStudentNumber(joinDate,orgid);
+                    }
                     String sex = studentSexManRadioButton.isSelected() ? studentSexManRadioButton
                                         .getText() : studentSexFemalRadioButton
                                         .getText();
@@ -398,6 +414,8 @@ public class AddStudentFrm extends JInternalFrame {
                     student.setEmail(email);
                     student.setTel(tel);
                     student.setAdress(address);
+                    student.setDegreeProcess(degreeProcess);
+                    student.setInSchYear(inSchYear);
                     //System.out.println(student);
                     StudentDao studentDao = new StudentDao();
                     if (studentDao.addStudent(student)) {
@@ -410,7 +428,20 @@ public class AddStudentFrm extends JInternalFrame {
                     resetValue(ae);
                     studentDao.closeDao();
           }
-
+          //학년 
+          public String getSchYear(String str) {
+                    String str1= str.substring(0, 4);
+                    String str2=DateUtil.getThisYear();
+//                    System.out.println("str2="+str2);
+                    
+                    int maxYear=Integer.parseInt(str2);
+                    int minYear=Integer.parseInt(str1);
+                    int year=maxYear-minYear;
+                    String str3;
+                    str3=year+1+"";
+//                    System.out.println("str3="+str3);
+                    return str3;
+          }
           // 获取学生id
           public String getStudentNumber(String str1,String string) {
                     String str = str1.substring(0, 4);
@@ -419,6 +450,22 @@ public class AddStudentFrm extends JInternalFrame {
                     String sNo = str + str2 + getRandom();
                     return sNo;
           }
+          //학생번호 종복학인
+          private boolean isRepeat(String str){
+                  Student st=new Student();
+                  StudentDao stDao=new StudentDao();
+                  List<Student> stList = stDao.getStudentList(st);
+                  List<String> stNoList = new ArrayList<String>();
+                  for (Student stNo2 : stList) {
+                            String string1=stNo2.getsNo();
+                            stNoList.add(string1);
+                  }
+                  if(!stNoList.contains(str)){
+                            return false;
+                  }else{
+                            return true;
+                  }
+        }
 //          public String getStudentNumber(String string) {
 //                    String str = string.substring(0, 4);
 //                    int no = Integer.parseInt(str) + 4;
@@ -448,7 +495,7 @@ public class AddStudentFrm extends JInternalFrame {
           protected void setDeptName() {
                     // TODO Auto-generated method stub
                     OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgList(new Org());
+                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
                     for (Org org: orgList) {
                               orgComboBox.addItem(org);
                     }

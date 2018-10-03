@@ -38,7 +38,7 @@ public class StudentDao extends BaseDao{
 	}
 			//add student
             public boolean addStudent(Student student){
-                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null)";
+                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학중',?,?)";
                       try {
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());
@@ -51,6 +51,8 @@ public class StudentDao extends BaseDao{
                                 prst.setString(8,student.getPassword());
                                 prst.setString(9,student.getTel());
                                 prst.setString(10,student.getAdress());
+                                prst.setString(11,student.getDegreeProcess());
+                                prst.setString(12,student.getInSchYear());
                                 
                                 if(prst.executeUpdate()>0) return true;
                       } catch (SQLException e) {
@@ -106,6 +108,9 @@ public class StudentDao extends BaseDao{
                                           s.setMajorType(executeQuery.getString("major_type"));
                                           s.setMajor(executeQuery.getString("major"));
                                           s.setApplyDate(executeQuery.getString("applydate"));
+                                          s.setInSchState(executeQuery.getString("insch_status"));
+                                          s.setDegreeProcess(executeQuery.getString("degree"));
+                                          s.setInSchYear(executeQuery.getString("sch_year"));
                                           retList.add(s);
                                 }
                       } catch (SQLException e) {
@@ -133,17 +138,13 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set orgid=? where sno=?";
+                      String sql="update student set orgid=?,insch_status=?,degree=?  where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,student.getOrgId());
-                              prst.setString(2,student.getsNo());
-//                              prst.setString(3, student.getSex());
-//                              prst.setString(4,student.getEmail());
-//                              prst.setString(5,student.getTel());
-//                              prst.setString(6,student.getAdress());
-//                              prst.setString(7, student.getsNo());
-                              
+                              prst.setString(2,student.getInSchState());
+                              prst.setString(3,student.getDegreeProcess());
+                              prst.setString(4,student.getsNo());
                               if(prst.executeUpdate()>0){ 
                                         return true;
                               }

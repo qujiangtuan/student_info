@@ -77,6 +77,8 @@ public class Org {
         	  }if(coGrCode!=null&&gsDepMajCode==null&&aftType==null) {
 //        		  return "["+orgType+"] / ["+coGrCode+"] --- "+name;
         		  return name+"--["+coGrCode+"] / ["+orgType+"]";
+        	  }if(coGrCode==null&&gsDepMajCode!=null&&aftType==null){
+        	       return name+"--["+gsDepMajCode+"] / ["+orgType+"]";
         	  }if(aftType==null&&gsDepMajCode==null&&coGrCode==null) {
 //        		  return "["+orgType+"] --- "+name;
         		  return name+"--["+orgType+"]";

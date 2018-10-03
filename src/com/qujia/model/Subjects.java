@@ -4,13 +4,20 @@ public class Subjects {
           private String subCode;
           private String subName;//교과목명
           private String subEname;//교과목 영어명
+          private String subMname;//교과목 약어명
           private String learnType;//이수구분(전필...)
           private String creditType;//이수학점(3,2,1)
           private String orgId;//소속부서
           private String colType;//대상(대학생,대학원생)
-          private String schYear;//대상학년
-          private String term;//대상학기
           private String subExp;//교과목 설명
+          
+          
+          public String getSubMname() {
+                    return subMname;
+          }
+          public void setSubMname(String subMname) {
+                    this.subMname = subMname;
+          }
           public String getSubCode() {
                     return subCode;
           }
@@ -54,18 +61,6 @@ public class Subjects {
                     this.colType = colType;
           }
           
-          public String getSchYear() {
-                    return schYear;
-          }
-          public void setSchYear(String schYear) {
-                    this.schYear = schYear;
-          }
-          public String getTerm() {
-                    return term;
-          }
-          public void setTerm(String term) {
-                    this.term = term;
-          }
           public String getSubExp() {
                     return subExp;
           }

@@ -20,9 +20,26 @@ public class Student {
           private String degreeProcess;//학사과정
           private String inSchYear;//학년
           
-          
 
           
+          public String getInSchState() {
+                    return inSchState;
+          }
+          public void setInSchState(String inSchState) {
+                    this.inSchState = inSchState;
+          }
+          public String getDegreeProcess() {
+                    return degreeProcess;
+          }
+          public void setDegreeProcess(String degreeProcess) {
+                    this.degreeProcess = degreeProcess;
+          }
+          public String getInSchYear() {
+                    return inSchYear;
+          }
+          public void setInSchYear(String inSchYear) {
+                    this.inSchYear = inSchYear;
+          }
           public String getMajorType() {
 			return majorType;
 		}

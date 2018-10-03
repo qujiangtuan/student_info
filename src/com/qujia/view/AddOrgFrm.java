@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
@@ -45,7 +46,6 @@ public class AddOrgFrm extends JFrame {
           private JLabel label_3;
           private JComboBox comboBox_par;
           private JPanel panel_3;
-          private JComboBox comboBox;
           /**
            * Launch the application.
            */
@@ -208,7 +208,7 @@ public class AddOrgFrm extends JFrame {
                     );
                     
                     panel_1 = new JPanel();
-                    panel_1.setBackground(new Color(175, 238, 238));
+                    panel_1.setBackground(new Color(240, 240, 240));
                     panel.add(panel_1, "p1");
                     
                     JLabel label_1 = new JLabel("\uD559\uACFC\uC804\uACF5\uAD6C\uBD84:");
@@ -248,7 +248,7 @@ public class AddOrgFrm extends JFrame {
                     panel_1.setLayout(gl_panel_1);
                     
                     panel_2 = new JPanel();
-                    panel_2.setBackground(new Color(255, 222, 173));
+                    panel_2.setBackground(new Color(240, 240, 240));
                     panel.add(panel_2, "p2");
                     
                     comboBox_3 = new JComboBox();
@@ -271,26 +271,16 @@ public class AddOrgFrm extends JFrame {
                     panel_2.setLayout(gl_panel_2);
                     
                     panel_3 = new JPanel();
-                    panel_3.setBackground(new Color(255, 255, 255));
+                    panel_3.setBackground(new Color(240, 240, 240));
                     panel.add(panel_3, "p3");
-                    
-                    comboBox = new JComboBox();
                     GroupLayout gl_panel_3 = new GroupLayout(panel_3);
                     gl_panel_3.setHorizontalGroup(
-                    	gl_panel_3.createParallelGroup(Alignment.TRAILING)
-                    		.addGap(0, 481, Short.MAX_VALUE)
-                    		.addGroup(gl_panel_3.createSequentialGroup()
-                    			.addContainerGap(47, Short.MAX_VALUE)
-                    			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 410, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(24))
+                              gl_panel_3.createParallelGroup(Alignment.TRAILING)
+                                        .addGap(0, 481, Short.MAX_VALUE)
                     );
                     gl_panel_3.setVerticalGroup(
-                    	gl_panel_3.createParallelGroup(Alignment.LEADING)
-                    		.addGap(0, 50, Short.MAX_VALUE)
-                    		.addGroup(gl_panel_3.createSequentialGroup()
-                    			.addContainerGap()
-                    			.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    			.addContainerGap(19, Short.MAX_VALUE))
+                              gl_panel_3.createParallelGroup(Alignment.LEADING)
+                                        .addGap(0, 50, Short.MAX_VALUE)
                     );
                     panel_3.setLayout(gl_panel_3);
                     contentPane.setLayout(gl_contentPane);
@@ -323,6 +313,10 @@ public class AddOrgFrm extends JFrame {
                               return;
                     }
                     orgCode = MakeOrgCode(radioButton_1,radioButton_2,comboBox_1,comboBox_2);
+//                    orgCode="110360";
+                    while(this.isRepeat(orgCode)){
+                              orgCode = MakeOrgCode(radioButton_1,radioButton_2,comboBox_1,comboBox_2);
+                    }
                     todayDate=DateUtil.getTodayDate();
                     Org org=new Org();
                     org.setOrgCode(orgCode);
@@ -379,6 +373,23 @@ public class AddOrgFrm extends JFrame {
                     }
                     orgCode=str1+str2+str3+StringUtil.getRandom2();
                     return orgCode;
+          }
+          private boolean isRepeat(String str){
+//                    orgCode="110651";
+                    Org org=new Org();
+                    OrgDao orgDao=new OrgDao();
+                    List<Org> orgList = orgDao.getOrgList(org);
+                    List<String> orgNoList = new ArrayList<String>();
+                    for (Org orgNo2 : orgList) {
+                              String string1=orgNo2.getOrgCode();
+                              orgNoList.add(string1);
+                    }
+                    if(!orgNoList.contains(str)){
+                              return false;
+                    }else{
+                              return true;
+                    }
+//                    return false;
           }
 //          restValue
           private void resetValue() {

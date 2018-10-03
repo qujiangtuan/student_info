@@ -61,6 +61,48 @@ public class MainFrm extends JFrame {
                     menuBar.setBackground(new Color(230, 230, 250));
                     setJMenuBar(menuBar);
                     
+                    JMenu settingMenu = new JMenu("시스템");
+                    settingMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
+                    settingMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/systemsetting.png")));
+                    menuBar.add(settingMenu);
+                    
+                    JMenuItem editPasswordMenuItem = new JMenuItem("안호변경");
+                    editPasswordMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    editPasswordMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        editPassword(ae);
+                              }
+                    });
+                    
+                    JMenu menu_3 = new JMenu("도움");
+                    settingMenu.add(menu_3);
+                    menu_3.setFont(new Font("휴먼고딕", Font.BOLD, 14));
+                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
+                    
+                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
+                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menuItem_5.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        aboutUs(ae);
+                              }
+                    });
+                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
+                    menu_3.add(menuItem_5);
+                    editPasswordMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/password.png")));
+                    settingMenu.add(editPasswordMenuItem);
+                    
+                    JMenuItem exitSystemMenuItem = new JMenuItem("시스템종료");
+                    exitSystemMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    exitSystemMenuItem.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
+                                                  System.exit(0);
+                                        }
+                              }
+                    });
+                    exitSystemMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/exit.png")));
+                    settingMenu.add(exitSystemMenuItem);
+                    
                     systemManagerMenu = new JMenu("관리자");
                     systemManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/system.png")));
                     systemManagerMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
@@ -324,6 +366,22 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_7.setSelected(true);
                     mnNewMenu.add(mntmNewMenuItem_7);
                     
+                    JMenu mnNewMenu_7 = new JMenu("강의관리");
+                    mnNewMenu_7.setIcon(new ImageIcon(MainFrm.class.getResource("/images/subjectList.png")));
+                    mnNewMenu_7.setFont(new Font("Dialog", Font.BOLD, 13));
+                    systemManagerMenu.add(mnNewMenu_7);
+                    
+                    JMenuItem mntmNewMenuItem_11 = new JMenuItem("강의조회");
+                    mntmNewMenuItem_11.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        LectureOfProFrm lopf=new LectureOfProFrm();
+                                        layeredPane.setLayer(lopf, 200);
+                                        lopf.setVisible(true);
+                              }
+                    });
+                    mntmNewMenuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_7.add(mntmNewMenuItem_11);
+                    
                     JMenu mnNewMenu_4 = new JMenu("강의평가관리");
                     mnNewMenu_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/pingjia4.png")));
                     systemManagerMenu.add(mnNewMenu_4);
@@ -351,7 +409,7 @@ public class MainFrm extends JFrame {
                     menuItem_7.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_4.add(menuItem_7);
                     
-                    JMenuItem menuItem_8 = new JMenuItem("답안보기구성");
+                    JMenuItem menuItem_8 = new JMenuItem("평가문답구성");
                     menuItem_8.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		QuestionAnswerShowFrm qasf=new QuestionAnswerShowFrm();
@@ -361,6 +419,10 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_8.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_4.add(menuItem_8);
+                    
+                    JMenuItem menuItem_12 = new JMenuItem("강의평가답안 조회");
+                    menuItem_12.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_4.add(menuItem_12);
                     
                     JMenu mnNewMenu_2 = new JMenu("공지관리");
                     mnNewMenu_2.setIcon(new ImageIcon(MainFrm.class.getResource("/images/tongzhi1.png")));
@@ -431,7 +493,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     proMenu.add(mntmNewMenuItem_3);
                     
-                    JMenuItem mntmNewMenuItem_4 = new JMenuItem("개인수강");
+                    JMenuItem mntmNewMenuItem_4 = new JMenuItem("강의관리");
                     mntmNewMenuItem_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classList.png")));
                     mntmNewMenuItem_4.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -442,48 +504,6 @@ public class MainFrm extends JFrame {
                     });
                     mntmNewMenuItem_4.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     proMenu.add(mntmNewMenuItem_4);
-                    
-                    JMenu settingMenu = new JMenu("시스템");
-                    settingMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    settingMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/systemsetting.png")));
-                    menuBar.add(settingMenu);
-                    
-                    JMenuItem editPasswordMenuItem = new JMenuItem("안호변경");
-                    editPasswordMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    editPasswordMenuItem.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent ae) {
-                                        editPassword(ae);
-                              }
-                    });
-                    
-                    JMenu menu_3 = new JMenu("도움");
-                    settingMenu.add(menu_3);
-                    menu_3.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
-                    
-                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
-                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    menuItem_5.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent ae) {
-                                        aboutUs(ae);
-                              }
-                    });
-                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
-                    menu_3.add(menuItem_5);
-                    editPasswordMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/password.png")));
-                    settingMenu.add(editPasswordMenuItem);
-                    
-                    JMenuItem exitSystemMenuItem = new JMenuItem("시스템종료");
-                    exitSystemMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    exitSystemMenuItem.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent ae) {
-                                        if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
-                                                  System.exit(0);
-                                        }
-                              }
-                    });
-                    exitSystemMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/exit.png")));
-                    settingMenu.add(exitSystemMenuItem);
                     
                     panel_menu = new JPanel();
                     panel_menu.setBackground(new Color(230, 230, 250));
@@ -502,7 +522,7 @@ public class MainFrm extends JFrame {
                     JLabel label = new JLabel("");
                     panel_menu.add(label);
                     
-                    loginUserLabel = new JLabel("학생  ");
+                    loginUserLabel = new JLabel("관리자: admin");
                     loginUserLabel.setFont(new Font("Dialog", Font.BOLD, 13));
                     panel_menu.add(loginUserLabel);
                     panel_menu.add(loginButton);

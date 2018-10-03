@@ -1,14 +1,18 @@
 package com.qujia.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.qujia.model.Subjects;
+import com.qujia.util.StringUtil;
 
 public class SubjectsDao extends BaseDao {
           //subject login
           public boolean addSubjects(Subjects sbj){
-                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?,?)";
+                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sbj.getSubCode() );
@@ -18,15 +22,54 @@ public class SubjectsDao extends BaseDao {
                               prst.setString(5, sbj.getCreditType());
                               prst.setString(6, sbj.getOrgId() );
                               prst.setString(7, sbj.getColType());
-                              prst.setString(8, sbj.getSchYear());
-                              prst.setString(9, sbj.getTerm());
-                              prst.setString(10, sbj.getSubExp());
-                              
+                              prst.setString(8, sbj.getSubExp());
+                              prst.setString(9,sbj.getSubMname());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     return false;
+          }
+          public List<Subjects> getSubjectsList(Subjects sb){
+                    List<Subjects> retList=new ArrayList<Subjects>();
+                    StringBuffer sqlString=new StringBuffer("select * from subject");
+                    if(!StringUtil.isEmpty(sb.getSubCode())){
+                              sqlString.append(" and sub_cod like '%"+sb.getSubCode()+"%'");
+                    }
+                    if(!StringUtil.isEmpty(sb.getSubName())){
+                              sqlString.append(" and sub_name like '%"+sb.getSubName()+"%'");
+                    }
+                    if(!StringUtil.isEmpty(sb.getSubEname())){
+                              sqlString.append(" and sub_ename like '%"+sb.getSubEname()+"%'");
+                    }
+                    if(!StringUtil.isEmpty(sb.getSubMname())){
+                              sqlString.append(" and sub_mname like '%"+sb.getSubMname()+"%'");
+                    }
+                    if(!StringUtil.isEmpty(sb.getOrgId())){
+                              sqlString.append(" and orgid = '"+sb.getOrgId()+"'");
+                    }
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        Subjects sbj=new Subjects();
+                                        sbj.setSubCode(e.getString("sub_cod"));
+                                        sbj.setSubName(e.getString("sub_name"));
+                                        sbj.setSubEname(e.getString("sub_ename"));
+                                        sbj.setSubMname(e.getString("sub_mname"));
+                                        sbj.setLearnType(e.getString("learn_type"));
+                                        sbj.setCreditType(e.getString("credit_type"));
+                                        sbj.setOrgId(e.getString("orgid"));
+                                        sbj.setColType(e.getString("col_type"));
+                                        sbj.setSubExp(e.getString("sub_exp"));
+                                        retList.add(sbj);
+                              }
+                    } catch (SQLException e) {
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    
+                    return retList;
           }
 }

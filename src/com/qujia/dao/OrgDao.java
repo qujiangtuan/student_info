@@ -112,7 +112,7 @@ public class OrgDao extends BaseDao {
          //학부,학과,전공 list
          public List<Org> getOrgdeptNameList(Org org){
                    List<Org> retList=new ArrayList<Org>();
-                   String sqlString ="select * from org where gs_dpt_maj_code is not null";
+                   String sqlString ="select * from org where gs_dpt_maj_code is not null or co_gr_code='대학원'";
                    try {
                              PreparedStatement prst=con.prepareStatement(sqlString);
                              ResultSet executeQuery = prst.executeQuery();

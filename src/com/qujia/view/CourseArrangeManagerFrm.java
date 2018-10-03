@@ -1,30 +1,28 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.Date;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
-import com.eltima.components.ui.DatePicker;
-import com.qujia.util.ViewUtil;
-
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerModel;
-import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SpinnerDateModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.qujia.util.ViewUtil;
 
 public class CourseArrangeManagerFrm extends JFrame {
 
@@ -192,254 +190,273 @@ public class CourseArrangeManagerFrm extends JFrame {
                     
                     JButton button = new JButton("삭 제");
                     button.setBackground(new Color(255, 160, 122));
+                    
+                    JLabel lblNewLabel_5 = new JLabel("상태:");
+                    
+                    JComboBox comboBox_10 = new JComboBox();
+                    comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"", "계설", "폐강"}));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(53)
-                    					.addComponent(lblNewLabel)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(67)
-                    					.addComponent(btnNewButton))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addContainerGap()
-                    					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addContainerGap()
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(checkBox_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(22)
-                    							.addComponent(spinner_4, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(75)
-                    							.addComponent(spinner_9, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(18)
-                    							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(22)
-                    							.addComponent(spinner_3, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(75)
-                    							.addComponent(spinner_10, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(18)
-                    							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(checkBox_4, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(22)
-                    							.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(75)
-                    							.addComponent(spinner_11, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(18)
-                    							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(checkBox_5, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(22)
-                    							.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(75)
-                    							.addComponent(spinner_12, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(18)
-                    							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(checkBox_6, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(22)
-                    							.addComponent(spinner_14, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(75)
-                    							.addComponent(spinner_13, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(18)
-                    							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    								.addGroup(gl_contentPane.createSequentialGroup()
-                    									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-                    										.addGroup(gl_contentPane.createSequentialGroup()
-                    											.addComponent(label, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                    											.addPreferredGap(ComponentPlacement.UNRELATED)
-                    											.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                    											.addComponent(checkBox, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    											.addGap(22)
-                    											.addComponent(spinner_6, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))
-                    									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    										.addGroup(gl_contentPane.createSequentialGroup()
-                    											.addGap(75)
-                    											.addComponent(spinner_8, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    											.addGap(18)
-                    											.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                    										.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                    											.addGap(93)
-                    											.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-                    											.addGap(40)
-                    											.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))))
-                    								.addGroup(gl_contentPane.createSequentialGroup()
-                    									.addComponent(checkBox_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-                    									.addGap(22)
-                    									.addComponent(spinner_5, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-                    									.addGap(75)
-                    									.addComponent(spinner_7, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
-                    									.addGap(18)
-                    									.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)))
-                    							.addGap(49)
-                    							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                    								.addGroup(gl_contentPane.createSequentialGroup()
-                    									.addGap(8)
-                    									.addComponent(label_4)
-                    									.addPreferredGap(ComponentPlacement.UNRELATED)
-                    									.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
-                    								.addGroup(gl_contentPane.createSequentialGroup()
-                    									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                    										.addComponent(lblNewLabel_4)
-                    										.addComponent(lblNewLabel_2)
-                    										.addComponent(lblNewLabel_1)
-                    										.addComponent(lblNewLabel_3)
-                    										.addComponent(btnNewButton_1))
-                    									.addPreferredGap(ComponentPlacement.UNRELATED)
-                    									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                    										.addComponent(textField_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    										.addComponent(textField_1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                    										.addComponent(comboBox_9, Alignment.LEADING, 0, 135, Short.MAX_VALUE)
-                    										.addComponent(comboBox_8, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    										.addComponent(button, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))))))
-                    					.addPreferredGap(ComponentPlacement.RELATED)))
-                    			.addContainerGap())
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(53)
+                                                                      .addComponent(lblNewLabel)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(textField, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(67)
+                                                                      .addComponent(btnNewButton))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(checkBox_2, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(22)
+                                                                                          .addComponent(spinner_4, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(75)
+                                                                                          .addComponent(spinner_9, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(checkBox_3, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(22)
+                                                                                          .addComponent(spinner_3, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(75)
+                                                                                          .addComponent(spinner_10, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(checkBox_4, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(22)
+                                                                                          .addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(75)
+                                                                                          .addComponent(spinner_11, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(checkBox_5, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(22)
+                                                                                          .addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(75)
+                                                                                          .addComponent(spinner_12, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                                                  .addComponent(label, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                                                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                                                  .addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                                                  .addComponent(checkBox, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                                                                  .addGap(22)
+                                                                                                                                  .addComponent(spinner_6, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)))
+                                                                                                              .addGap(75)
+                                                                                                              .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                                                  .addComponent(spinner_8, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                                                                  .addGap(18)
+                                                                                                                                  .addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
+                                                                                                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                                                  .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                                                                                                                                  .addGap(40)
+                                                                                                                                  .addComponent(label_3, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))))
+                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                              .addComponent(checkBox_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addGap(22)
+                                                                                                              .addComponent(spinner_5, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addGap(75)
+                                                                                                              .addComponent(spinner_7, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addGap(18)
+                                                                                                              .addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)))
+                                                                                          .addGap(49)
+                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                              .addGap(8)
+                                                                                                              .addComponent(label_4)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE))
+                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                              .addGap(9)
+                                                                                                              .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                                                        .addComponent(lblNewLabel_4)
+                                                                                                                        .addComponent(lblNewLabel_2)
+                                                                                                                        .addComponent(lblNewLabel_1)
+                                                                                                                        .addComponent(lblNewLabel_3)
+                                                                                                                        .addComponent(lblNewLabel_5))
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                                                        .addComponent(comboBox_10, 0, 135, Short.MAX_VALUE)
+                                                                                                                        .addComponent(textField_2, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                                                                                        .addComponent(textField_1, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                                                                                        .addComponent(comboBox_9, 0, 135, Short.MAX_VALUE)
+                                                                                                                        .addComponent(comboBox_8, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(checkBox_6, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(22)
+                                                                                          .addComponent(spinner_14, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(75)
+                                                                                          .addComponent(spinner_13, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                              .addComponent(btnNewButton_1)
+                                                                                                              .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                              .addComponent(button, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+                                                                                                    .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))))))
+                                                  .addContainerGap())
                     );
                     gl_contentPane.setVerticalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGap(29)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel)
-                    				.addComponent(btnNewButton))
-                    			.addPreferredGap(ComponentPlacement.UNRELATED)
-                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(30)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addComponent(label_2)
-                    				.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    					.addComponent(label_3)
-                    					.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    					.addComponent(label_4))
-                    				.addComponent(label)
-                    				.addComponent(label_1))
-                    			.addGap(18)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addComponent(checkBox)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(1)
-                    					.addComponent(spinner_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(1)
-                    					.addComponent(spinner_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(1)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(lblNewLabel_1)
-                    						.addComponent(comboBox_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(10)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_1)
-                    						.addComponent(spinner_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGap(1)
-                    							.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    					.addGap(9)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_2)
-                    						.addComponent(spinner_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGap(1)
-                    							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    					.addGap(9)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_3)
-                    						.addComponent(spinner_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGap(1)
-                    							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    					.addGap(5)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_4)
-                    						.addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    							.addComponent(lblNewLabel_4))))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(18)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(lblNewLabel_2)
-                    						.addComponent(comboBox_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    					.addGap(18)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(lblNewLabel_3)
-                    						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(9)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_5)
-                    						.addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGap(1)
-                    							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    					.addGap(5)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(checkBox_6)
-                    						.addComponent(spinner_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(spinner_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addGap(1)
-                    							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(27)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    						.addComponent(btnNewButton_1)
-                    						.addComponent(button))))
-                    			.addContainerGap(120, Short.MAX_VALUE))
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGap(29)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel)
+                                                            .addComponent(btnNewButton))
+                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(30)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addComponent(label_2)
+                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                      .addComponent(label_3)
+                                                                      .addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                      .addComponent(label_4))
+                                                            .addComponent(label)
+                                                            .addComponent(label_1))
+                                                  .addGap(18)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addComponent(checkBox)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(1)
+                                                                      .addComponent(spinner_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(1)
+                                                                      .addComponent(spinner_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(1)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(lblNewLabel_1)
+                                                                                .addComponent(comboBox_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(10)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_1)
+                                                                                .addComponent(spinner_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGap(1)
+                                                                                          .addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(9)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_2)
+                                                                                .addComponent(spinner_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGap(1)
+                                                                                          .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(9)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_3)
+                                                                                .addComponent(spinner_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGap(1)
+                                                                                          .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(5)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_4)
+                                                                                .addComponent(spinner_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                          .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addComponent(lblNewLabel_4))))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(lblNewLabel_2)
+                                                                                .addComponent(comboBox_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(lblNewLabel_3)
+                                                                                .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(9)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_5)
+                                                                                .addComponent(spinner_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGap(1)
+                                                                                          .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(5)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(checkBox_6)
+                                                                                .addComponent(spinner_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(spinner_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGap(1)
+                                                                                          .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(btnNewButton_1)
+                                                                                .addComponent(button)))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                                                .addComponent(lblNewLabel_5)
+                                                                                .addComponent(comboBox_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     
                     table = new JTable();
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
-                    	new Object[][] {
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null},
-                    	},
-                    	new String[] {
-                    		"\uD559\uC218\uBC88\uD638", "\uC218\uAC15\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
-                    	}
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uACC4\uD68D", "\uD3C9\uAC00\uBC29\uC2DD\uAD6C\uBD84"
+                              }
                     ) {
-                    	boolean[] columnEditables = new boolean[] {
-                    		false, false, false, false, false, false, false, false
-                    	};
-                    	public boolean isCellEditable(int row, int column) {
-                    		return columnEditables[column];
-                    	}
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
                     });
-                    table.getColumnModel().getColumn(3).setPreferredWidth(73);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(146);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(127);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(73);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(146);
+                    table.getColumnModel().getColumn(10).setPreferredWidth(97);
+                    table.getColumnModel().getColumn(11).setPreferredWidth(93);
                     scrollPane.setViewportView(table);
+                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                     contentPane.setLayout(gl_contentPane);
+                    
           }
 
 		 // 设置jspinner 类型方法

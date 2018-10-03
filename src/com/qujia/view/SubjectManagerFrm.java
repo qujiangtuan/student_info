@@ -3,6 +3,8 @@ package com.qujia.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -20,13 +22,15 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.dao.OrgDao;
+import com.qujia.dao.SubjectsDao;
+import com.qujia.model.Org;
+import com.qujia.model.Subjects;
 import com.qujia.util.ViewUtil;
 
 public class SubjectManagerFrm extends JFrame {
 
           private JPanel contentPane;
-          private JTextField textField;
-          private JTextField textField_1;
           private JTextField textField_2;
           private JTable table;
 
@@ -61,20 +65,6 @@ public class SubjectManagerFrm extends JFrame {
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
                     
-                    JLabel label = new JLabel("\uACFC\uBAA9\uC774\uB984:");
-                    label.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
-                    textField = new JTextField();
-                    textField.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    textField.setColumns(10);
-                    
-                    JLabel lblNewLabel = new JLabel("\uC601\uC5B4\uC774\uB984:");
-                    lblNewLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
-                    textField_1 = new JTextField();
-                    textField_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    textField_1.setColumns(10);
-                    
                     JLabel lblNewLabel_1 = new JLabel("\uC774\uC218\uAD6C\uBD84:");
                     lblNewLabel_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
@@ -92,22 +82,9 @@ public class SubjectManagerFrm extends JFrame {
                     comboBox_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"\uB300\uD559", "\uB300\uD559\uC6D0"}));
                     
-                    JLabel lblNewLabel_3 = new JLabel("\uB300\uC0C1\uD559\uB144:");
-                    lblNewLabel_3.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
-                    JLabel lblNewLabel_5 = new JLabel("\uB300\uC0C1\uD559\uAE30:");
-                    lblNewLabel_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
                     JComboBox comboBox_2 = new JComboBox();
                     comboBox_2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"3", "2", "1"}));
-                    
-                    JComboBox comboBox_3 = new JComboBox();
-                    comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "\uB300\uD559\uAD001", "\uB300\uD559\uAD002", "\uB300\uD559\uAD003"}));
-                    comboBox_3.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
-                    JComboBox comboBox_5 = new JComboBox();
-                    comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
                     
                     JLabel lblNewLabel_6 = new JLabel("\uAD50\uACFC\uBAA9\uBA85:");
                     
@@ -121,16 +98,6 @@ public class SubjectManagerFrm extends JFrame {
                     JLabel label_2 = new JLabel("\uC124       \uBA85:");
                     label_2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
-                    JTextArea textArea = new JTextArea();
-                    textArea.setLineWrap(true);
-                    
-                    JLabel lblNewLabel_4 = new JLabel("\uAC1C\uC124\uBD80\uC11C:");
-                    lblNewLabel_4.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    
-                    JComboBox comboBox_4 = new JComboBox();
-                    comboBox_4.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC"}));
-                    
                     JButton btnNewButton = new JButton("\uC218   \uC815");
                     btnNewButton.setBackground(new Color(176, 224, 230));
                     btnNewButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
@@ -138,6 +105,8 @@ public class SubjectManagerFrm extends JFrame {
                     JButton btnNewButton_1 = new JButton("\uC0AD   \uC81C");
                     btnNewButton_1.setBackground(new Color(255, 127, 80));
                     btnNewButton_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    
+                    JScrollPane scrollPane_1 = new JScrollPane();
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -154,49 +123,31 @@ public class SubjectManagerFrm extends JFrame {
                                                   .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                                                   .addContainerGap())
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
+                                                  .addGap(20)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
                                                             .addComponent(btnNewButton)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                                                       .addGroup(gl_contentPane.createSequentialGroup()
                                                                                 .addComponent(lblNewLabel_1)
                                                                                 .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                .addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE))
                                                                       .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addComponent(lblNewLabel)
+                                                                                .addComponent(label_1)
                                                                                 .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                .addComponent(textField_1))
-                                                                      .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addComponent(label)
-                                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                          .addComponent(lblNewLabel_4)
-                                                                                          .addComponent(label_1))
-                                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                          .addComponent(comboBox_4, 0, 126, Short.MAX_VALUE)
-                                                                                          .addComponent(comboBox_2, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                                                .addComponent(comboBox_2, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                                   .addGap(100)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(lblNewLabel_5)
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                          .addComponent(lblNewLabel_2)
-                                                                                          .addComponent(lblNewLabel_3))
-                                                                                .addComponent(label_2))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(textArea, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_5, 0, 143, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_3, 0, 143, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_1, 0, 143, Short.MAX_VALUE))
-                                                                      .addGap(195))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(btnNewButton_1)
-                                                                      .addContainerGap())))
+                                                            .addComponent(btnNewButton_1)
+                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                      .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                .addComponent(label_2)
+                                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                .addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE))
+                                                                      .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                .addComponent(lblNewLabel_2)
+                                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                .addComponent(comboBox_1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                  .addGap(129))
                     );
                     gl_contentPane.setVerticalGroup(
                               gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -207,69 +158,47 @@ public class SubjectManagerFrm extends JFrame {
                                                             .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(btnNewButton_2))
                                                   .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                                                  .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                                                   .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(label)
-                                                                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(18)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel)
-                                                                                .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(lblNewLabel_3)
-                                                                                .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(18))
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
                                                             .addGroup(gl_contentPane.createSequentialGroup()
                                                                       .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                                                                 .addComponent(lblNewLabel_2)
                                                                                 .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(58)))
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_2)
-                                                            .addComponent(textArea, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                .addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(label_2)))
                                                             .addGroup(gl_contentPane.createSequentialGroup()
                                                                       .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(label_1))
-                                                                      .addGap(19)
+                                                                                .addComponent(lblNewLabel_1)
+                                                                                .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                                      .addGap(18)
                                                                       .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel_4)
-                                                                                .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-                                                  .addGap(38)
+                                                                                .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(label_1))))
+                                                  .addGap(34)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(btnNewButton)
                                                             .addComponent(btnNewButton_1))
-                                                  .addGap(44))
+                                                  .addGap(88))
                     );
+                    
+                    JTextArea textArea = new JTextArea();
+                    scrollPane_1.setViewportView(textArea);
                     
                     table = new JTable();
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uAC1C\uC124\uBD80\uC11C", "\uB300\uC0C1", "\uB300\uC0C1\uD559\uB144", "\uB300\uC0C1\uD559\uAE30", "\uC124\uBA85"
+                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC57D\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uAC1C\uC124\uBD80\uC11C", "\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -277,15 +206,46 @@ public class SubjectManagerFrm extends JFrame {
                     });
                     table.getColumnModel().getColumn(1).setPreferredWidth(133);
                     table.getColumnModel().getColumn(2).setPreferredWidth(142);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(61);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(111);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(64);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(63);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(60);
-                    table.getColumnModel().getColumn(9).setPreferredWidth(134);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(64);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(61);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(111);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(134);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                   scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                  
+                  setTable(new Subjects());
           }
+          //setTable()
+          private void setTable(Subjects subjects) {
+                    DefaultTableModel dft = (DefaultTableModel) table.getModel();
+                    dft.setRowCount(0);
+                    SubjectsDao sbDao=new SubjectsDao();
+                    List<Subjects> abList = sbDao.getSubjectsList(new Subjects());
+                    for(Subjects sb : abList){
+                              Vector v=new Vector();
+                              v.add(sb.getSubCode());
+                              v.add(sb.getSubName());
+                              v.add(sb.getSubEname());
+                              v.add(sb.getSubMname());
+                              v.add(sb.getColType());
+                              v.add(sb.getLearnType());
+                              v.add(sb.getCreditType());
+                              v.add(this.getDeptNameById(sb.getOrgId()));
+                              v.add(sb.getSubExp());
+                              dft.addRow(v);
+                    }
+                    sbDao.closeDao();
+          }
+        //orgid에 통해서 deptName를 받는다
+          public String getDeptNameById(String id){
+                    OrgDao orgDao=new OrgDao();
+                    List<Org> orgList = orgDao.getOrgdeptNameList(new Org());
+                    for(Org org:orgList){
+                            if(org.getOrgCode().equals(id)) return org.getName();
+                    }
+                    return "";
+          }
+          
 }

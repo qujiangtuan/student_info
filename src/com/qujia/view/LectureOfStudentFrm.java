@@ -2,11 +2,9 @@ package com.qujia.view;
 
 import java.awt.EventQueue;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +26,7 @@ public class LectureOfStudentFrm extends JFrame {
           private JTextField textField_2;
           private JTable table;
           private JTextField textField_3;
+          private JTextField textField_4;
 
           /**
            * Launch the application.
@@ -51,7 +50,7 @@ public class LectureOfStudentFrm extends JFrame {
           public LectureOfStudentFrm() {
                     setTitle("\uC218\uAC15\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 877, 540);
+                    setBounds(100, 100, 877, 476);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -65,7 +64,7 @@ public class LectureOfStudentFrm extends JFrame {
                     textField = new JTextField();
                     textField.setColumns(10);
                     
-                    JLabel lblNewLabel_1 = new JLabel("\uC218\uAC15\uBA85:");
+                    JLabel lblNewLabel_1 = new JLabel("\uAD50\uACFC\uBAA9\uBA85:");
                     
                     textField_1 = new JTextField();
                     textField_1.setColumns(10);
@@ -87,21 +86,21 @@ public class LectureOfStudentFrm extends JFrame {
                     
                     DatePicker datePicker_1 = new DatePicker();
                     
-                    JLabel lblNewLabel_4 = new JLabel("\uC218\uAC15\uC0C1\uD0DC:");
-                    
-                    JComboBox comboBox = new JComboBox();
-                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124", "\uD3D0\uAC15"}));
-                    
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0DD\uD559\uBC88:");
                     
                     textField_3 = new JTextField();
                     textField_3.setColumns(10);
                     
-                    JButton btnNewButton_1 = new JButton("\uBCC0 \uACBD");
-                    
-                    JButton btnNewButton_2 = new JButton("\uD655 \uC778");
-                    
                     JButton btnNewButton_3 = new JButton("\uAE30\uAC04\uBCC0\uACBD");
+                    
+                    JLabel lblNewLabel_4 = new JLabel("\uD559\uC218\uBC88\uD638:");
+                    
+                    textField_4 = new JTextField();
+                    textField_4.setColumns(10);
+                    
+                    JButton btnNewButton_1 = new JButton("\uD655 \uC778");
+                    
+                    JButton btnNewButton_2 = new JButton("\uC218\uAC15\uC0AD\uC81C");
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -130,34 +129,30 @@ public class LectureOfStudentFrm extends JFrame {
                                                                       .addComponent(lblNewLabel_3)
                                                                       .addPreferredGap(ComponentPlacement.UNRELATED)
                                                                       .addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                                                                       .addComponent(label, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
                                                                       .addPreferredGap(ComponentPlacement.RELATED)
                                                                       .addComponent(datePicker_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(btnNewButton)
-                                                                      .addGap(138))
+                                                            .addComponent(btnNewButton)
                                                             .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(26)
-                                                                      .addComponent(btnNewButton_3)
-                                                                      .addContainerGap())))
+                                                                      .addGap(36)
+                                                                      .addComponent(btnNewButton_3)))
+                                                  .addGap(84))
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(25)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel_5)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_3))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel_4)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)))
-                                                  .addGap(26)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                            .addComponent(btnNewButton_2, 0, 0, Short.MAX_VALUE)
-                                                            .addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                  .addContainerGap(529, Short.MAX_VALUE))
+                                                  .addGap(27)
+                                                  .addComponent(lblNewLabel_5)
+                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                  .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(37)
+                                                  .addComponent(lblNewLabel_4)
+                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                  .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(36)
+                                                  .addComponent(btnNewButton_1)
+                                                  .addGap(37)
+                                                  .addComponent(btnNewButton_2)
+                                                  .addContainerGap(119, Short.MAX_VALUE))
                     );
                     gl_contentPane.setVerticalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -183,44 +178,38 @@ public class LectureOfStudentFrm extends JFrame {
                                                   .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton_1))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(lblNewLabel_5)
                                                             .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel_4)
+                                                            .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(btnNewButton_1)
                                                             .addComponent(btnNewButton_2))
-                                                  .addContainerGap(76, Short.MAX_VALUE))
+                                                  .addContainerGap(119, Short.MAX_VALUE))
                     );
                     
                     table = new JTable();
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC218\uAC15\uC0C1\uD0DC", "\uAD6C\uBD84", "\uD559\uB144", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC708", "\uD604\uC6D0", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                        "\uC218\uAC15\uBC88\uD638", "\uD559\uBC88", "\uD559\uC0DD\uBA85", "\uD559\uC218\uBC88\uD638", "\uAC1C\uC124\uAD50\uACFC\uBAA9\uBA85", "\uBD84\uBC18", "\uB2F4\uB2F9\uAD50\uC218", "\uD559\uC810", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false, false, false
+                                        false, true, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
                               }
                     });
-                    table.getColumnModel().getColumn(2).setPreferredWidth(68);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(84);
                     table.getColumnModel().getColumn(3).setPreferredWidth(95);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(56);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(90);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(57);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(56);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(177);
-                    table.getColumnModel().getColumn(9).setPreferredWidth(63);
-                    table.getColumnModel().getColumn(10).setPreferredWidth(79);
-                    table.getColumnModel().getColumn(11).setPreferredWidth(179);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(101);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(56);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(63);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(179);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);

@@ -64,7 +64,13 @@ public class CourseListProFrm extends JFrame {
                     
                     JScrollPane scrollPane = new JScrollPane();
                     
-                    JButton button = new JButton("\uC218\uAC15\uD559\uC0DD\uB9AC\uC2A4\uD2B8");
+                    JButton button = new JButton("\uC131\uC801\uD655\uC778");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        ScoreShowForProFrm ssfp=new ScoreShowForProFrm();
+                                        ssfp.setVisible(true);
+                              }
+                    });
                     
                     JButton btnNewButton = new JButton("\uC131\uC801\uD391\uAC00");
                     btnNewButton.addActionListener(new ActionListener() {
