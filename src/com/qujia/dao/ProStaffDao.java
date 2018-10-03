@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qujia.model.Admin;
 import com.qujia.model.ProStaff;
-import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
 public class ProStaffDao extends BaseDao {
@@ -115,22 +113,28 @@ public class ProStaffDao extends BaseDao {
 	}
 	 //update ProStaff
     public boolean updateProStaff(ProStaff ps){
-              String sql="update pro_staff set pname = ? , pename=?,pro_type=?,per_type=?,"
-              		+ "tea_type=?,sex=?,orgid=?,address=?,tel=?,email=?,sup_id=?  where pno=?";
+//              String sql="update pro_staff set pname = ? , pename=?,pro_type=?,per_type=?,"
+//                                  + "tea_type=?,sex=?,orgid=?,address=?,tel=?,email=?,sup_id=?  where pno=?";
+              String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=? where pno=?";
               try {
                       PreparedStatement prst=con.prepareStatement(sql);
-                      prst.setString(1,ps.getpName());
-                      prst.setString(2, ps.getPeName());
-                      prst.setString(3, ps.getProType());
-                      prst.setString(4, ps.getPerType());
-                      prst.setString(5, ps.getTeaType());
-                      prst.setString(6, ps.getSex());
-                      prst.setString(7, ps.getOrgId());
-                      prst.setString(8, ps.getAddress());
-                      prst.setString(9, ps.getTel());
-                      prst.setString(10, ps.getEmail());
-                      prst.setString(11, ps.getSupId());
-                      prst.setString(12, ps.getpNo());
+                      prst.setString(1, ps.getPerType());
+                      prst.setString(2, ps.getTeaType());
+                      prst.setString(3, ps.getOrgId());
+                      prst.setString(4, ps.getSupId());
+                      prst.setString(5, ps.getpNo());
+//                      prst.setString(1,ps.getpName());
+//                      prst.setString(2, ps.getPeName());
+//                      prst.setString(3, ps.getProType());
+//                      prst.setString(4, ps.getPerType());
+//                      prst.setString(5, ps.getTeaType());
+//                      prst.setString(6, ps.getSex());
+//                      prst.setString(7, ps.getOrgId());
+//                      prst.setString(8, ps.getAddress());
+//                      prst.setString(9, ps.getTel());
+//                      prst.setString(10, ps.getEmail());
+//                      prst.setString(11, ps.getSupId());
+//                      prst.setString(12, ps.getpNo());
                       if(prst.executeUpdate()>0){ 
                                 return true;
                       }

@@ -251,30 +251,34 @@ public class OrgManagerFrm extends JFrame {
                     });
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
-                    	new Object[][] {
-                    		{null, null, null, null, null, null, null, null},
-                    	},
-                    	new String[] {
-                    		"\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uD559\uBD80/\uD559\uACFC/\uC804\uACF5\uAD6C\uBD84", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1\uCF54\uB4DC"
-                    	}
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1\uCF54\uB4DC", "\uB4F1\uB85D\uC77C\uC790"
+                              }
                     ) {
-                    	boolean[] columnEditables = new boolean[] {
-                    		false, false, false, false, false, false, false, true
-                    	};
-                    	public boolean isCellEditable(int row, int column) {
-                    		return columnEditables[column];
-                    	}
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, true, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
                     });
                     table.getColumnModel().getColumn(0).setPreferredWidth(69);
-                    table.getColumnModel().getColumn(1).setPreferredWidth(111);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(74);
+                    table.getColumnModel().getColumn(1).setPreferredWidth(137);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(116);
                     table.getColumnModel().getColumn(3).setPreferredWidth(103);
                     table.getColumnModel().getColumn(4).setPreferredWidth(107);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(121);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(135);
                     table.getColumnModel().getColumn(6).setPreferredWidth(89);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(87);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(98);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(89);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
+                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    
                     setOrgName();
                     setTable(new Org());
           }
@@ -369,6 +373,7 @@ public class OrgManagerFrm extends JFrame {
                               v.add(o.getGsDepMajCode());
                               v.add(o.getAftType());
                               v.add(o.getParCode());
+                              v.add(o.getTodayDate());
                               dft.addRow(v);
                     }
                     orgDao.closeDao();

@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.OrgDao;
 import com.qujia.model.Org;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
@@ -300,7 +301,7 @@ public class AddOrgFrm extends JFrame {
           protected void addOrg(ActionEvent e) {
                     // TODO Auto-generated method stub
                     
-                    String orgCode,name,sName,orgType,coGrCode,gsDepMajCode,aftType,parCode;
+                    String orgCode,name,sName,orgType,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
 //                    orgCode="";
                     name=textField_orgName.getText().toString();
                     sName=textField_sName.getText().toString();
@@ -322,7 +323,7 @@ public class AddOrgFrm extends JFrame {
                               return;
                     }
                     orgCode = MakeOrgCode(radioButton_1,radioButton_2,comboBox_1,comboBox_2);
-                    
+                    todayDate=DateUtil.getTodayDate();
                     Org org=new Org();
                     org.setOrgCode(orgCode);
                     org.setName(name);
@@ -332,6 +333,7 @@ public class AddOrgFrm extends JFrame {
                     org.setGsDepMajCode(gsDepMajCode);
                     org.setAftType(aftType);
                     org.setParCode(parCode);
+                    org.setTodayDate(todayDate);
                     OrgDao orgDao=new OrgDao();
                     if(orgDao.addOrg(org)){
                               JOptionPane.showMessageDialog(this, "조직 등록 성공!");

@@ -106,14 +106,15 @@ public class ProStaff {
 	public void setSupId(String supId) {
 		this.supId = supId;
 	}
-	@Override
-	public String toString() {
-		if(teaType==null) {
-			return "["+perType+"]-"+pName;
-		}else {
-			return "["+perType+"]-["+teaType+"]-"+pName;
-		}
-		
-	}
+          @Override
+          public String toString() {
+                    if(teaType==null) {
+//                            return "["+perType+"]-"+pName;
+                                    return pName+"-["+perType+"]";
+                          }else {
+//                            return "["+perType+"]-["+teaType+"]-"+pName;
+                                    return pName+"-["+perType+"]";
+                          }
+          }
 	
 }

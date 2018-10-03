@@ -1,38 +1,31 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-
-import java.awt.Font;
-import java.awt.LayoutManager;
-import java.awt.FlowLayout;
-
+import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 import com.qujia.util.ViewUtil;
  
  
-public class CourseApplicationFrm extends JFrame {
+public class CourseApplicationStudentFrm extends JFrame {
     private JPanel panel_one;
     private JPanel panel_one_button;
     private CardLayout card = null; // CardLayout布局管理器
@@ -63,8 +56,9 @@ public class CourseApplicationFrm extends JFrame {
     private JLabel label_4;
     private JLabel label_5;
     private JLabel lblNewLabel_1;
+    private JButton btnNewButton_3;
    
-    public CourseApplicationFrm() {
+    public CourseApplicationStudentFrm() {
         super("CardLayout Test");
         setTitle("수강신청");
         
@@ -151,27 +145,37 @@ public class CourseApplicationFrm extends JFrame {
                            JLabel label_apply_list = new JLabel("수강신청목록");
                            
                            JScrollPane scrollPane = new JScrollPane();
+                           
+                           btnNewButton_3 = new JButton("삭 제");
                            GroupLayout gl_p_1 = new GroupLayout(p_1);
                            gl_p_1.setHorizontalGroup(
                                      gl_p_1.createParallelGroup(Alignment.LEADING)
                                                .addGroup(gl_p_1.createSequentialGroup()
                                                          .addContainerGap()
                                                          .addGroup(gl_p_1.createParallelGroup(Alignment.LEADING)
-                                                                   .addComponent(label_apply_list)
-                                                                   .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE))
-                                                         .addContainerGap())
+                                                                   .addGroup(gl_p_1.createSequentialGroup()
+                                                                             .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE)
+                                                                             .addContainerGap())
+                                                                   .addGroup(gl_p_1.createSequentialGroup()
+                                                                             .addComponent(label_apply_list)
+                                                                             .addPreferredGap(ComponentPlacement.RELATED, 523, Short.MAX_VALUE)
+                                                                             .addComponent(btnNewButton_3)
+                                                                             .addGap(67))))
                            );
                            gl_p_1.setVerticalGroup(
                                      gl_p_1.createParallelGroup(Alignment.LEADING)
                                                .addGroup(gl_p_1.createSequentialGroup()
                                                          .addContainerGap()
-                                                         .addComponent(label_apply_list)
+                                                         .addGroup(gl_p_1.createParallelGroup(Alignment.BASELINE)
+                                                                   .addComponent(label_apply_list)
+                                                                   .addComponent(btnNewButton_3))
                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                         .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                                                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                         .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                                         .addContainerGap())
                            );
                            
                            table = new JTable();
+                           table.setRowHeight(25);
                            table.setModel(new DefaultTableModel(
                                      new Object[][] {
                                                {null, null, null, null, null, null, null, null},
@@ -208,6 +212,7 @@ public class CourseApplicationFrm extends JFrame {
                            );
                            
                            schedule = new JTable();
+                           schedule.setRowHeight(25);
                            schedule.setModel(new DefaultTableModel(
                                      new Object[][] {
                                                {null, null, null, null, null, null, null, null, null},
@@ -261,6 +266,7 @@ public class CourseApplicationFrm extends JFrame {
                            );
                            
                            table_show = new JTable();
+                           table_show.setRowHeight(25);
                            table_show.setModel(new DefaultTableModel(
                                      new Object[][] {
                                                {null, null, null, null, null, null, null, null, null, "", null},
@@ -319,6 +325,9 @@ public class CourseApplicationFrm extends JFrame {
                                      card_2.show(panel_two,"panel_5");
                            }
                  });
+                 
+                 JButton btnNewButton_2 = new JButton("신청");
+                 btnNewButton_2.setBackground(new Color(175, 238, 238));
                  GroupLayout gl_panel_two_button = new GroupLayout(panel_two_button);
                  gl_panel_two_button.setHorizontalGroup(
                            gl_panel_two_button.createParallelGroup(Alignment.LEADING)
@@ -333,7 +342,9 @@ public class CourseApplicationFrm extends JFrame {
                                                .addComponent(button_other, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
                                                .addPreferredGap(ComponentPlacement.UNRELATED)
                                                .addComponent(button_master, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                                               .addGap(299))
+                                               .addGap(201)
+                                               .addComponent(btnNewButton_2)
+                                               .addGap(21))
                  );
                  gl_panel_two_button.setVerticalGroup(
                            gl_panel_two_button.createParallelGroup(Alignment.LEADING)
@@ -344,7 +355,8 @@ public class CourseApplicationFrm extends JFrame {
                                                                    .addComponent(button_self)
                                                                    .addComponent(button_liberal)
                                                                    .addComponent(button_other)
-                                                                   .addComponent(button_master))
+                                                                   .addComponent(button_master)
+                                                                   .addComponent(btnNewButton_2))
                                                          .addComponent(button_no))
                                                .addContainerGap())
                  );
@@ -353,12 +365,12 @@ public class CourseApplicationFrm extends JFrame {
                   groupLayout.setHorizontalGroup(
                             groupLayout.createParallelGroup(Alignment.TRAILING)
                                       .addGroup(groupLayout.createSequentialGroup()
-                                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                                          .addComponent(panel_one_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                          .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE)
-                                                          .addComponent(panel_two, GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE)
+                                                .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+                                                          .addComponent(panel_two, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                          .addComponent(panel_one_button, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
+                                                          .addComponent(panel_one, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                                                           .addComponent(panel_show, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
-                                                          .addComponent(panel_two_button, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE))
+                                                          .addComponent(panel_two_button, GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE))
                                                 .addContainerGap())
                   );
                   groupLayout.setVerticalGroup(
@@ -367,13 +379,13 @@ public class CourseApplicationFrm extends JFrame {
                                                 .addGap(4)
                                                 .addComponent(panel_one_button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(2)
-                                                .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(panel_one, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                                                 .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(panel_show, GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                                                .addComponent(panel_show, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(ComponentPlacement.RELATED)
                                                 .addComponent(panel_two_button, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(1)
-                                                .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(ComponentPlacement.RELATED)
+                                                .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(4))
                   );
                   
@@ -456,7 +468,7 @@ public class CourseApplicationFrm extends JFrame {
                                                                     .addComponent(label)
                                                                     .addPreferredGap(ComponentPlacement.RELATED)
                                                                     .addComponent(textField, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-                                                                    .addPreferredGap(ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
+                                                                    .addPreferredGap(ComponentPlacement.RELATED, 384, Short.MAX_VALUE)
                                                                     .addComponent(btnNewButton)
                                                                     .addGap(32))))
                   );
@@ -469,11 +481,12 @@ public class CourseApplicationFrm extends JFrame {
                                                           .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                           .addComponent(btnNewButton))
                                                 .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(scrollPane_list_no, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(scrollPane_list_no, GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                                                .addContainerGap())
                   );
                   
                   table_1 = new JTable();
+                  table_1.setRowHeight(25);
                   table_1.setModel(new DefaultTableModel(
                             new Object[][] {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -513,6 +526,7 @@ public class CourseApplicationFrm extends JFrame {
                   );
                   
                   table_2 = new JTable();
+                  table_2.setRowHeight(25);
                   table_2.setModel(new DefaultTableModel(
                             new Object[][] {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -546,6 +560,7 @@ public class CourseApplicationFrm extends JFrame {
                   );
                   
                   table_3 = new JTable();
+                  table_3.setRowHeight(25);
                   table_3.setModel(new DefaultTableModel(
                             new Object[][] {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -618,6 +633,7 @@ public class CourseApplicationFrm extends JFrame {
                   );
                   
                   table_4 = new JTable();
+                  table_4.setRowHeight(25);
                   table_4.setModel(new DefaultTableModel(
                             new Object[][] {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -650,7 +666,7 @@ public class CourseApplicationFrm extends JFrame {
                   panel_5.setLayout(gl_panel_5);
                   
                   getContentPane().setLayout(groupLayout);
-        this.setSize(797, 520);
+        this.setSize(797, 644);
         
         ViewUtil view =new ViewUtil();
         view.showCenter(this);
@@ -666,5 +682,4 @@ public class CourseApplicationFrm extends JFrame {
                                   spinner, "HH:mm");
               spinner.setEditor(editor);
     }
-
 }

@@ -182,7 +182,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                        JOptionPane.showMessageDialog(null, "수정할 행을 선택해주세요!");
                                        return;
                              }
-                    		AddAppendMajor aam=new AddAppendMajor();
+                    		AddAppendMajorStudentFrm aam=new AddAppendMajorStudentFrm();
                     		aam.setVisible(true);
                     	}
                     });

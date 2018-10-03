@@ -27,7 +27,7 @@ import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
-public class AddAppendMajor extends JFrame {
+public class AddAppendMajorStudentFrm extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel label_name;
@@ -41,7 +41,7 @@ public class AddAppendMajor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddAppendMajor frame = new AddAppendMajor();
+					AddAppendMajorStudentFrm frame = new AddAppendMajorStudentFrm();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class AddAppendMajor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddAppendMajor() {
+	public AddAppendMajorStudentFrm() {
 		setTitle("\uCD94\uAC00\uC804\uACF5");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 525, 369);

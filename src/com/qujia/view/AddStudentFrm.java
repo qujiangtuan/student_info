@@ -98,7 +98,7 @@ public class AddStudentFrm extends JInternalFrame {
                     studentSexLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
-                    JButton submitButton = new JButton("확  인");
+                    JButton submitButton = new JButton("등   록");
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         studentAddAction(ae);

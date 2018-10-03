@@ -9,7 +9,14 @@ public class Org {
           private String gsDepMajCode;
           private String aftType;
           private String parCode;
+          private String todayDate;
           
+          public String getTodayDate() {
+                    return todayDate;
+          }
+          public void setTodayDate(String todayDate) {
+                    this.todayDate = todayDate;
+          }
           public String getParCode() {
                     return parCode;
           }

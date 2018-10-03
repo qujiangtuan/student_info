@@ -2,16 +2,17 @@ package com.qujia.view;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,9 +21,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.qujia.model.Admin;
+import com.qujia.model.ProStaff;
+import com.qujia.model.Student;
 import com.qujia.model.UserType;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
 
 public class MainFrm extends JFrame {
 
@@ -33,6 +35,9 @@ public class MainFrm extends JFrame {
           private JDesktopPane desktopPane_sys,desktopPane_pro,desktopPane_stu;
           private JLayeredPane layeredPane;
           private JMenu studentMenu,proMenu,systemManagerMenu;
+          private JLabel loginUserLabel;
+          private JPanel panel_menu;
+          private JButton loginButton;
           /**
            * Launch the application.
            */
@@ -53,9 +58,10 @@ public class MainFrm extends JFrame {
                     setBounds(100, 100, 1136, 707);
                     
                     JMenuBar menuBar = new JMenuBar();
+                    menuBar.setBackground(new Color(230, 230, 250));
                     setJMenuBar(menuBar);
                     
-                    systemManagerMenu = new JMenu("시스템");
+                    systemManagerMenu = new JMenu("관리자");
                     systemManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/system.png")));
                     systemManagerMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
                     menuBar.add(systemManagerMenu);
@@ -76,7 +82,7 @@ public class MainFrm extends JFrame {
                     menuItem_4.setFont(new Font("Dialog", Font.BOLD, 13));
                     orgManagerMenu.add(menuItem_4);
                     
-                    JMenuItem menuItem_6 = new JMenuItem("조직관리");
+                    JMenuItem menuItem_6 = new JMenuItem("조직목록");
                     menuItem_6.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         OrgManagerFrm omf=new OrgManagerFrm();
@@ -98,11 +104,11 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
                     
-                    JMenu menu = new JMenu("학과기준");
+                    JMenu menu = new JMenu("학사기준관리");
                     menu.setFont(new Font("Dialog", Font.BOLD, 13));
                     orgManagerMenu.add(menu);
                     
-                    JMenuItem menuItem_2 = new JMenuItem("학과기준등록");
+                    JMenuItem menuItem_2 = new JMenuItem("학사기준등록");
                     menuItem_2.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         AddDeptStandFrm adsf=new AddDeptStandFrm();
@@ -114,7 +120,7 @@ public class MainFrm extends JFrame {
                     menuItem_2.setFont(new Font("Dialog", Font.BOLD, 13));
                     menu.add(menuItem_2);
                     
-                    JMenuItem menuItem_3 = new JMenuItem("학과기준관리");
+                    JMenuItem menuItem_3 = new JMenuItem("학사기준목록");
                     menuItem_3.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         DeptStandManagerFrm dsmf=new DeptStandManagerFrm();
@@ -127,8 +133,8 @@ public class MainFrm extends JFrame {
                     menu.add(menuItem_3);
                     
                     JMenu mnNewMenu_5 = new JMenu("학년별학과기준");
+                    menu.add(mnNewMenu_5);
                     mnNewMenu_5.setFont(new Font("Dialog", Font.BOLD, 13));
-                    orgManagerMenu.add(mnNewMenu_5);
                     
                     JMenuItem mntmNewMenuItem_6 = new JMenuItem("학년별학과기준등록");
                     mntmNewMenuItem_6.addActionListener(new ActionListener() {
@@ -141,7 +147,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_5.add(mntmNewMenuItem_6);
                     
-                    JMenuItem menuItem_10 = new JMenuItem("학년별학과기준관리");
+                    JMenuItem menuItem_10 = new JMenuItem("학년별학과기준목록");
                     menuItem_10.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		YearStandManagerFrm ysmf=new YearStandManagerFrm();
@@ -151,6 +157,32 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_10.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_5.add(menuItem_10);
+                    
+                    JMenu mnNewMenu_6 = new JMenu("복수부전공허용관리");
+                    mnNewMenu_6.setFont(new Font("Dialog", Font.BOLD, 13));
+                    orgManagerMenu.add(mnNewMenu_6);
+                    
+                    JMenuItem mntmNewMenuItem_8 = new JMenuItem("복수부전공허용추가");
+                    mntmNewMenuItem_8.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        AddAppendMajorOrgFrm aamof=new AddAppendMajorOrgFrm();
+                                        layeredPane.setLayer(aamof, 200);
+                                        aamof.setVisible(true);
+                              }
+                    });
+                    mntmNewMenuItem_8.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_6.add(mntmNewMenuItem_8);
+                    
+                    JMenuItem mntmNewMenuItem_9 = new JMenuItem("복수부전공허용목록");
+                    mntmNewMenuItem_9.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        AppendMajorOrgManagerFrm amomf=new AppendMajorOrgManagerFrm();
+                                        layeredPane.setLayer(amomf, 200);
+                                        amomf.setVisible(true);
+                              }
+                    });
+                    mntmNewMenuItem_9.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mnNewMenu_6.add(mntmNewMenuItem_9);
                     
                     JMenu managerStudentMenu = new JMenu("학생관리");
                     managerStudentMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
@@ -179,6 +211,18 @@ public class MainFrm extends JFrame {
                     });
                     studentListMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
                     managerStudentMenu.add(studentListMenuItem);
+                    
+                    JMenuItem mntmNewMenuItem_10 = new JMenuItem("성적확인");
+                    mntmNewMenuItem_10.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreSearch.png")));
+                    mntmNewMenuItem_10.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        ScoreShowToAdminFrm sstaf=new ScoreShowToAdminFrm();
+                                        layeredPane.setLayer(sstaf, 200);
+                                        sstaf.setVisible(true);
+                              }
+                    });
+                    mntmNewMenuItem_10.setFont(new Font("Dialog", Font.BOLD, 13));
+                    managerStudentMenu.add(mntmNewMenuItem_10);
                     
                     JMenu mnNewMenu_1 = new JMenu("교직원관리");
                     mnNewMenu_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/teacher.png")));
@@ -212,11 +256,11 @@ public class MainFrm extends JFrame {
                     mnNewMenu_1.add(menuItem_1);
                     
                     JMenu mnNewMenu_3 = new JMenu("교과목관리");
-                    mnNewMenu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreManager.png")));
+                    mnNewMenu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/newObject.png")));
                     mnNewMenu_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     systemManagerMenu.add(mnNewMenu_3);
                     
-                    JMenuItem menuItemAddCourse = new JMenuItem("개설교과목등록");
+                    JMenuItem menuItemAddCourse = new JMenuItem("교과목개설");
                     menuItemAddCourse.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         AddCourseArrangeFrm acaf=new AddCourseArrangeFrm();
@@ -264,15 +308,24 @@ public class MainFrm extends JFrame {
                     mnNewMenu_3.add(menuItemManagerCourse);
                     
                     JMenu mnNewMenu = new JMenu("수강관리");
+                    mnNewMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreManager.png")));
                     mnNewMenu.setFont(new Font("Dialog", Font.BOLD, 13));
                     systemManagerMenu.add(mnNewMenu);
                     
                     JMenuItem mntmNewMenuItem_7 = new JMenuItem("수강목록");
+                    mntmNewMenuItem_7.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        LectureOfStudentFrm losf=new LectureOfStudentFrm();
+                                        layeredPane.setLayer(losf, 200);
+                                        losf.setVisible(true);
+                              }
+                    });
                     mntmNewMenuItem_7.setFont(new Font("Dialog", Font.BOLD, 13));
                     mntmNewMenuItem_7.setSelected(true);
                     mnNewMenu.add(mntmNewMenuItem_7);
                     
                     JMenu mnNewMenu_4 = new JMenu("강의평가관리");
+                    mnNewMenu_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/pingjia4.png")));
                     systemManagerMenu.add(mnNewMenu_4);
                     mnNewMenu_4.setFont(new Font("Dialog", Font.BOLD, 13));
                     
@@ -320,6 +373,7 @@ public class MainFrm extends JFrame {
                     menuBar.add(studentMenu);
                     
                     JMenuItem mntmNewMenuItem_2 = new JMenuItem("개인정보");
+                    mntmNewMenuItem_2.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
                     mntmNewMenuItem_2.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		PersonalInfo_stu pis=new PersonalInfo_stu();
@@ -331,9 +385,10 @@ public class MainFrm extends JFrame {
                     studentMenu.add(mntmNewMenuItem_2);
                     
                     JMenuItem mntmNewMenuItem = new JMenuItem("수강신청");
+                    mntmNewMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/applySubject3.png")));
                     mntmNewMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
-                                        CourseApplicationFrm caf=new CourseApplicationFrm();
+                                        CourseApplicationStudentFrm caf=new CourseApplicationStudentFrm();
                                         layeredPane.setLayer(caf, 200);
                                         caf.setVisible(true);
                                         //desktopPane.add(caf);
@@ -343,15 +398,17 @@ public class MainFrm extends JFrame {
                     studentMenu.add(mntmNewMenuItem);
                     
                     JMenuItem mntmNewMenuItem_1 = new JMenuItem("성적조희");
+                    mntmNewMenuItem_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreSearch.png")));
                     mntmNewMenuItem_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        ScoreShowFrm ssf=new ScoreShowFrm();
+                                        ScoreShowToStudentFrm ssf=new ScoreShowToStudentFrm();
                                         layeredPane.setLayer(ssf, 200);
                                         ssf.setVisible(true);
                               }
                     });
                     
                     JMenu menu_1 = new JMenu("수강목록");
+                    menu_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/subjectList.png")));
                     menu_1.setFont(new Font("Dialog", Font.BOLD, 13));
                     studentMenu.add(menu_1);
                     mntmNewMenuItem_1.setFont(new Font("휴먼고딕", Font.BOLD, 13));
@@ -359,10 +416,11 @@ public class MainFrm extends JFrame {
                     
                     proMenu = new JMenu("교원");
                     proMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    proMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/teacher.png")));
+                    proMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/proInfo.png")));
                     menuBar.add(proMenu);
                     
                     JMenuItem mntmNewMenuItem_3 = new JMenuItem("개인정보");
+                    mntmNewMenuItem_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/teacher.png")));
                     mntmNewMenuItem_3.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		PersonalInfo_pro pip=new PersonalInfo_pro();
@@ -374,6 +432,7 @@ public class MainFrm extends JFrame {
                     proMenu.add(mntmNewMenuItem_3);
                     
                     JMenuItem mntmNewMenuItem_4 = new JMenuItem("개인수강");
+                    mntmNewMenuItem_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classList.png")));
                     mntmNewMenuItem_4.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         CourseListProFrm clp=new CourseListProFrm();
@@ -384,7 +443,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_4.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     proMenu.add(mntmNewMenuItem_4);
                     
-                    JMenu settingMenu = new JMenu("설정");
+                    JMenu settingMenu = new JMenu("시스템");
                     settingMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
                     settingMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/systemsetting.png")));
                     menuBar.add(settingMenu);
@@ -396,6 +455,21 @@ public class MainFrm extends JFrame {
                                         editPassword(ae);
                               }
                     });
+                    
+                    JMenu menu_3 = new JMenu("도움");
+                    settingMenu.add(menu_3);
+                    menu_3.setFont(new Font("휴먼고딕", Font.BOLD, 14));
+                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
+                    
+                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
+                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    menuItem_5.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent ae) {
+                                        aboutUs(ae);
+                              }
+                    });
+                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
+                    menu_3.add(menuItem_5);
                     editPasswordMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/password.png")));
                     settingMenu.add(editPasswordMenuItem);
                     
@@ -411,20 +485,27 @@ public class MainFrm extends JFrame {
                     exitSystemMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/exit.png")));
                     settingMenu.add(exitSystemMenuItem);
                     
-                    JMenu menu_3 = new JMenu("도움");
-                    menu_3.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
-                    menuBar.add(menu_3);
-                    
-                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
-                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    menuItem_5.addActionListener(new ActionListener() {
+                    panel_menu = new JPanel();
+                    panel_menu.setBackground(new Color(230, 230, 250));
+                    menuBar.add(panel_menu);
+                    loginButton = new JButton("로그아웃");
+                    loginButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
-                                        aboutUs(ae);
+                                        closeCurrentWindow(ae);
+                                        
                               }
                     });
-                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
-                    menu_3.add(menuItem_5);
+
+
+                    panel_menu.setLayout(new FlowLayout(FlowLayout.RIGHT, 8, 1));
+                    
+                    JLabel label = new JLabel("");
+                    panel_menu.add(label);
+                    
+                    loginUserLabel = new JLabel("학생  ");
+                    loginUserLabel.setFont(new Font("Dialog", Font.BOLD, 13));
+                    panel_menu.add(loginUserLabel);
+                    panel_menu.add(loginButton);
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
@@ -491,26 +572,46 @@ public class MainFrm extends JFrame {
                     lblTest.setBounds(225, 273, 200, 50);
                     desktopPane_stu.add(lblTest);
                     setLocationRelativeTo(null);
-                    setAuthority();
+//                    setAuthority();
                     
+          } 
+          //close currentWindow open login window
+          protected void closeCurrentWindow(ActionEvent ae) {
+                    if(JOptionPane.showConfirmDialog(MainFrm.this, "로그아웃 하겠습니까？")==JOptionPane.OK_OPTION){
+                              this.setVisible(false);
+                              this.disable();
+                              new LoginFrm().setVisible(true);
+                    }
           }
-//          권한
+          //          권한
           private  void setAuthority() {
         	  if("관리자".equals(userType.getName())) {
         		  proMenu.setEnabled(false);
             	  studentMenu.setEnabled(false);
               	card.show(layeredPane, "desktopPane_sys");
 //              	card.show(layeredPane, "desktopPane");
+              	
+              	Admin admin=(Admin)userObject;
+              	String username="【"+ userType.getName()+ "】：" + admin.getName();
+              	loginUserLabel.setText(username);
               }else if("교직원".equals(userType.getName())) {
             	  systemManagerMenu.setEnabled(false);
             	  studentMenu.setEnabled(false);
               	card.show(layeredPane, "desktopPane_pro");
 //              	card.show(layeredPane, "desktopPane");
+              	
+              	ProStaff ps=(ProStaff)userObject;
+                String username="【"+ userType.getName()+ "】：" + ps.getpName();
+                loginUserLabel.setText(username);
               }else {
             	  systemManagerMenu.setEnabled(false);
             	  proMenu.setEnabled(false);
-              	card.show(layeredPane, "desktopPane_stu");
+              	  card.show(layeredPane, "desktopPane_stu");
 //              	card.show(layeredPane, "desktopPane");
+              	  
+              	Student st=(Student)userObject;
+                String username="【"+ userType.getName()+ "】：" + st.getName();
+                loginUserLabel.setText(username);
               }
           }
           //添加学生

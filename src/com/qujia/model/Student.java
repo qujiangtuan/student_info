@@ -16,6 +16,10 @@ public class Student {
           private String major;
           private String applyDate;
           
+          private String inSchState;//재학상태
+          private String degreeProcess;//학사과정
+          private String inSchYear;//학년
+          
           
 
           

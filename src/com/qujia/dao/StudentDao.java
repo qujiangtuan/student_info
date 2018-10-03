@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qujia.model.Admin;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
@@ -134,16 +133,16 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set name = ? , orgid=?,sex=?,email=? , tel= ?, address=? where sno=?";
+                      String sql="update student set orgid=? where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
-                              prst.setString(1,student.getName());
-                              prst.setString(2,student.getOrgId());
-                              prst.setString(3, student.getSex());
-                              prst.setString(4,student.getEmail());
-                              prst.setString(5,student.getTel());
-                              prst.setString(6,student.getAdress());
-                              prst.setString(7, student.getsNo());
+                              prst.setString(1,student.getOrgId());
+                              prst.setString(2,student.getsNo());
+//                              prst.setString(3, student.getSex());
+//                              prst.setString(4,student.getEmail());
+//                              prst.setString(5,student.getTel());
+//                              prst.setString(6,student.getAdress());
+//                              prst.setString(7, student.getsNo());
                               
                               if(prst.executeUpdate()>0){ 
                                         return true;

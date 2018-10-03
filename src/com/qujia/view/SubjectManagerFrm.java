@@ -124,7 +124,7 @@ public class SubjectManagerFrm extends JFrame {
                     JTextArea textArea = new JTextArea();
                     textArea.setLineWrap(true);
                     
-                    JLabel lblNewLabel_4 = new JLabel("\uC18C\uC18D\uD559\uACFC:");
+                    JLabel lblNewLabel_4 = new JLabel("\uAC1C\uC124\uBD80\uC11C:");
                     lblNewLabel_4.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JComboBox comboBox_4 = new JComboBox();
@@ -265,12 +265,27 @@ public class SubjectManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uD559\uACFC", "\uB300\uC0C1", "\uB300\uC0C1\uD559\uB144", "\uB300\uC0C1\uD559\uAE30", "\uC124\uBA85"
+                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uAC1C\uC124\uBD80\uC11C", "\uB300\uC0C1", "\uB300\uC0C1\uD559\uB144", "\uB300\uC0C1\uD559\uAE30", "\uC124\uBA85"
                               }
-                    ));
-                    table.getColumnModel().getColumn(0).setPreferredWidth(84);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(56);
+                    ) {
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
+                    });
+                    table.getColumnModel().getColumn(1).setPreferredWidth(133);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(142);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(61);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(111);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(64);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(63);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(60);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(134);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
+                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+                  scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
           }
 }

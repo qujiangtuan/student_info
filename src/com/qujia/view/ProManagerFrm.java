@@ -53,6 +53,7 @@ public class ProManagerFrm extends JFrame {
           private  JComboBox comboBox_sup2;
           private String proTypeList[],perTypeList1[],perTypeList2[],teaTypeList[];
           private JCheckBox checkBox_searchOrg;
+          private JLabel label_per;
           /**
            * Launch the application.
            */
@@ -86,7 +87,7 @@ public class ProManagerFrm extends JFrame {
                     
                     proTypeList=new String[] {"", "교원", "직원"};
                     
-                    JLabel lblNewLabel_2 = new JLabel("\uAD50\uC6D0\uAD6C\uBD84:");
+                    label_per = new JLabel("\uAD50\uC6D0\uAD6C\uBD84:");
                     
                     comboBox_editperType = new JComboBox();
                     comboBox_editperType.addItemListener(new ItemListener() {
@@ -210,7 +211,7 @@ public class ProManagerFrm extends JFrame {
                                                                                           .addPreferredGap(ComponentPlacement.UNRELATED)
                                                                                           .addComponent(comboBox_editOrgName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                                                 .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_2)
+                                                                                          .addComponent(label_per)
                                                                                           .addPreferredGap(ComponentPlacement.UNRELATED)
                                                                                           .addComponent(comboBox_editperType, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
                                                                                           .addPreferredGap(ComponentPlacement.RELATED)
@@ -281,7 +282,7 @@ public class ProManagerFrm extends JFrame {
                                                             .addComponent(btnNewButton_1))
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_2)
+                                                            .addComponent(label_per)
                                                             .addComponent(comboBox_editperType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(comboBox_eidtteaType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(btnNewButton_2))
@@ -440,6 +441,8 @@ public class ProManagerFrm extends JFrame {
                     	comboBox_editperType.setSelectedIndex(i);
                     }
                 }
+          		comboBox_sup2.setEnabled(false);
+          		label_per.setText("교원구분:");
           		//교원 직속상사
 //          		for(int i=0;i<comboBox_sup1.getItemCount();i++){
 //          			try {
@@ -475,6 +478,7 @@ public class ProManagerFrm extends JFrame {
 //          		comboBox_sup1.setEnabled(false);//직소상사 
 //          		comboBox_sup1.setSelectedIndex(0);
           		comboBox_sup2.setEnabled(true);//직소상사 
+          		label_per.setText("직원구분:");
           	}
           	
           	
