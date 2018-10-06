@@ -378,6 +378,11 @@ public class StudentManagerFrm extends JInternalFrame {
         	  String name = studentListTable.getValueAt(selectIndex, 1).toString();
         	  return name;
 		}
+          protected String getStudentDept() {
+                    // TODO Auto-generated method stub
+                      String deptName = studentListTable.getValueAt(selectIndex, 2).toString();
+                      return deptName;
+                }
 		//수정 submit event
           protected void submiEditAct(ActionEvent ae) {
                     setDeptName();

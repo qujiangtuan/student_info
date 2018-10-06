@@ -360,6 +360,7 @@ public class ProManagerFrm extends JFrame {
               psDao.closeDao();
               setTable(new ProStaff());
               restvalues();
+              setSuperiorStaff();
 		}
 
 		//update Pro 교직원 수정 submit 
@@ -410,7 +411,7 @@ public class ProManagerFrm extends JFrame {
              
              psDao.closeDao();
              setTable(new ProStaff());
-              
+             setSuperiorStaff();
               
 		}
 
@@ -420,11 +421,6 @@ public class ProManagerFrm extends JFrame {
            //edit 교원/직원
           	String proType;
           	proType=dft.getValueAt(table.getSelectedRow(), 3).toString();
-//          	for(int i=0;i<comboBox_editProType.getItemCount();i++){
-//              if(proType.equals(proTypeList[i])){
-//            	  comboBox_editProType.setSelectedIndex(i);
-//              }
-//          	}
           	//교원구분:전임교수/겸임교수......부장/차장....  수정
           	String perType=dft.getValueAt(table.getSelectedRow(), 4).toString();//교원
           	String supId;
@@ -442,6 +438,7 @@ public class ProManagerFrm extends JFrame {
                     }
                 }
           		comboBox_sup2.setEnabled(false);
+          		comboBox_sup2.setSelectedIndex(0);
           		label_per.setText("교원구분:");
           		//교원 직속상사
 //          		for(int i=0;i<comboBox_sup1.getItemCount();i++){
@@ -509,20 +506,11 @@ public class ProManagerFrm extends JFrame {
 		}
         //직속상사 从数据库中把数据填充选择框
           protected void setSuperiorStaff() {
-                    // TODO Auto-generated method stub
-//                    comboBox_editPar.removeAllItems();
                    ProStaffDao psDao=new ProStaffDao();
-                   ProStaff ps1=new ProStaff();
-                   ps1.setProType("교원");
                    ProStaff ps2=new ProStaff();
                    ps2.setProType("직원");
-                    List<ProStaff> pslist1 = psDao.getProStaffList(ps1);
                     List<ProStaff> pslist2 = psDao.getProStaffList(ps2);
                     String str=null;
-//                    comboBox_sup2.addItem(str);
-//                    for (ProStaff ps1Date : pslist1) {
-//                    	comboBox_sup1.addItem(ps1Date);
-//                    }
                     for (ProStaff ps2Date : pslist2) {
                     	comboBox_sup2.addItem(ps2Date);
                     }

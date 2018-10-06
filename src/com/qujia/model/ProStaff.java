@@ -108,13 +108,7 @@ public class ProStaff {
 	}
           @Override
           public String toString() {
-                    if(teaType==null) {
-//                            return "["+perType+"]-"+pName;
-                                    return pName+"-["+perType+"]";
-                          }else {
-//                            return "["+perType+"]-["+teaType+"]-"+pName;
-                                    return pName+"-["+perType+"]";
-                          }
+                    return "["+perType+"]-"+pName;
           }
 	
 }

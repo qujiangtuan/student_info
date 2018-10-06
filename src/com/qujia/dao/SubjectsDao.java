@@ -72,4 +72,36 @@ public class SubjectsDao extends BaseDao {
                     
                     return retList;
           }
+          //교과목 수정
+          public boolean updateSubjects(Subjects sub) {
+                    String sql="update subject set learn_type=?,credit_type=?,col_type=?,sub_exp=?  where sub_cod=?";
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sub.getLearnType());
+                              prst.setString(2, sub.getCreditType());
+                              prst.setString(3,sub.getColType());
+                              prst.setString(4,sub.getSubExp());
+                              prst.setString(5,sub.getSubCode());
+                              if(prst.executeUpdate()>0) return true;
+                    } catch (SQLException e) {
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
+          //교과목삭제
+          public boolean deleteSubjects(String subNO) {
+                    String sql="delete from subject where sub_cod=?";
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, subNO);
+                              if(prst.executeUpdate()>0){
+                                        return true;
+                              }
+                    } catch (SQLException e) {    
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
 }

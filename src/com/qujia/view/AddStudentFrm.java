@@ -491,7 +491,7 @@ public class AddStudentFrm extends JInternalFrame {
                     }
                     return threeNumber;
           }
-          //学科 从数据库中把数据填充选择框
+          //학과 받기
           protected void setDeptName() {
                     // TODO Auto-generated method stub
                     OrgDao orgDao=new OrgDao();
