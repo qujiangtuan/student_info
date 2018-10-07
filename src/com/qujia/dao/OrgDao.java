@@ -11,7 +11,7 @@ import com.qujia.util.StringUtil;
 
 public class OrgDao extends BaseDao {
          public boolean addOrg(Org org){
-                   String sql = "insert into org values(?,?,?,?,?,?,?,?)";
+                   String sql = "insert into org values(?,?,?,?,?,?,?,?,?)";
                    try {
                     PreparedStatement prst=con.prepareStatement(sql);
                     prst.setString(1, org.getOrgCode());
@@ -22,6 +22,7 @@ public class OrgDao extends BaseDao {
                     prst.setString(6,org.getGsDepMajCode());
                     prst.setString(7,org.getAftType());
                     prst.setString(8,org.getParCode());
+                    prst.setString(9,org.getTodayDate());
                     if (prst.executeUpdate() > 0)
                               return true;            
           } catch (SQLException e) {
@@ -39,6 +40,7 @@ public class OrgDao extends BaseDao {
                   start with node=2  
                   connect by prior node_id=up_node );  
           */
+         //조직 천제 list
          public List<Org> getOrgList(Org org){
                    List<Org> retList=new ArrayList<Org>();
                    StringBuffer sqlString=new StringBuffer("select * from org");
@@ -71,6 +73,7 @@ public class OrgDao extends BaseDao {
                                        o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
                                        o.setAftType(executeQuery.getString("aft_type"));
                                        o.setParCode(executeQuery.getString("par_org"));
+                                       o.setTodayDate(executeQuery.getString("login_date"));
                                        retList.add(o);
                              }
                    } catch (SQLException e) {
@@ -80,9 +83,36 @@ public class OrgDao extends BaseDao {
                    
                    return retList;
          }
+         //대학,대학원 list
+         public List<Org> getColNameList(Org org){
+                   List<Org> retList=new ArrayList<Org>();
+                   String sqlString ="select * from org where CO_GR_CODE is not null";
+                   try {
+                             PreparedStatement prst=con.prepareStatement(sqlString);
+                             ResultSet executeQuery = prst.executeQuery();
+                             while(executeQuery.next()){
+                                       Org o=new Org();
+                                       o.setOrgCode(executeQuery.getString("org_code"));
+                                       o.setName(executeQuery.getString("name"));
+                                       o.setsName(executeQuery.getString("sname"));
+                                       o.setOrgType(executeQuery.getString("org_type"));
+                                       o.setCoGrCode(executeQuery.getString("co_gr_code"));
+                                       o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
+                                       o.setAftType(executeQuery.getString("aft_type"));
+                                       o.setParCode(executeQuery.getString("par_org"));
+                                       retList.add(o);
+                             }
+                   } catch (SQLException e) {
+                             // TODO Auto-generated catch block
+                             e.printStackTrace();
+                   }
+                   
+                   return retList;
+         }
+         //학부,학과,전공 list
          public List<Org> getOrgdeptNameList(Org org){
                    List<Org> retList=new ArrayList<Org>();
-                   String sqlString ="select * from org where gs_dpt_maj_code is not null";
+                   String sqlString ="select * from org where gs_dpt_maj_code is not null or co_gr_code='대학원'";
                    try {
                              PreparedStatement prst=con.prepareStatement(sqlString);
                              ResultSet executeQuery = prst.executeQuery();

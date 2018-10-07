@@ -8,9 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -105,6 +102,13 @@ public class DateUtil extends DatePicker{
               String dateString = formatter.format(date);
               return dateString;
     }
+    //금년 년도
+    public static String getThisYear(){
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy");
+            String dateString = formatter.format(date);
+            return dateString;
+  }
     /*调用方法
      *  DateUtil du=new DateUtil();
                     //JSpinner spinner = new JSpinner();
@@ -191,5 +195,13 @@ public class DateUtil extends DatePicker{
 //                        }
 //              }
 //    });
-    
+ // 数据库中获取日期
+    public static String getTodayDate( ) {
+              String stringDate;
+              SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd");
+              Date date;
+              date=new Date();
+              stringDate = form.format(date);
+              return stringDate;
+    }
 }

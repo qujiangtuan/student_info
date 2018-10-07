@@ -10,8 +10,35 @@ import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
 public class StudentDao extends BaseDao{
+			//student login
+	public Student login(Student student){
+
+        String sql = "select * from student where sno=? and password= ?";
+        Student studentRst=null;
+       ResultSet rs=null;
+        try {
+                  //把sql语句传给数据库操作对象
+                  PreparedStatement prst = con.prepareStatement(sql);
+                  prst.setString(1, student.getsNo());
+                  prst.setString(2, student.getPassword());
+                  rs = prst.executeQuery();;
+                  while(rs.next()){
+                	  studentRst = new Student();
+                	  studentRst.setsNo(rs.getString("sno"));
+                	  studentRst.setName(rs.getString("name"));
+                	  studentRst.setPassword(rs.getString("password"));
+                 }
+        } catch (SQLException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+        }
+        this.closeDao();
+        return studentRst;
+       
+	}
+			//add student
             public boolean addStudent(Student student){
-                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null)";
+                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학중',?,?)";
                       try {
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());
@@ -24,6 +51,8 @@ public class StudentDao extends BaseDao{
                                 prst.setString(8,student.getPassword());
                                 prst.setString(9,student.getTel());
                                 prst.setString(10,student.getAdress());
+                                prst.setString(11,student.getDegreeProcess());
+                                prst.setString(12,student.getInSchYear());
                                 
                                 if(prst.executeUpdate()>0) return true;
                       } catch (SQLException e) {
@@ -57,8 +86,8 @@ public class StudentDao extends BaseDao{
                       if(!StringUtil.isEmpty(student.getsNo())){
                                 sqlString.append(" and sno like '%"+student.getsNo()+"%'");
                       }
-                      if(student.getOrgId()!=null){
-                                sqlString.append(" and deptid = '"+student.getOrgId()+"'");
+                      if(!StringUtil.isEmpty(student.getOrgId())){
+                                sqlString.append(" and orgid = '"+student.getOrgId()+"'");
                       }
                       try {
                                 PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
@@ -79,6 +108,9 @@ public class StudentDao extends BaseDao{
                                           s.setMajorType(executeQuery.getString("major_type"));
                                           s.setMajor(executeQuery.getString("major"));
                                           s.setApplyDate(executeQuery.getString("applydate"));
+                                          s.setInSchState(executeQuery.getString("insch_status"));
+                                          s.setDegreeProcess(executeQuery.getString("degree"));
+                                          s.setInSchYear(executeQuery.getString("sch_year"));
                                           retList.add(s);
                                 }
                       } catch (SQLException e) {
@@ -106,17 +138,13 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set name = ? , orgid=?,sex=?,email=? , tel= ?, address=? where sno=?";
+                      String sql="update student set orgid=?,insch_status=?,degree=?  where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
-                              prst.setString(1,student.getName());
-                              prst.setString(2,student.getOrgId());
-                              prst.setString(3, student.getSex());
-                              prst.setString(4,student.getEmail());
-                              prst.setString(5,student.getTel());
-                              prst.setString(6,student.getAdress());
-                              prst.setString(7, student.getsNo());
-                              
+                              prst.setString(1,student.getOrgId());
+                              prst.setString(2,student.getInSchState());
+                              prst.setString(3,student.getDegreeProcess());
+                              prst.setString(4,student.getsNo());
                               if(prst.executeUpdate()>0){ 
                                         return true;
                               }
@@ -126,5 +154,45 @@ public class StudentDao extends BaseDao{
                               e.printStackTrace();
                     }
                       return false;
+            }
+          //update password
+            public String editPassword(Student student,String newPasswrod){
+                      String sql = "select * from student where sno= ? and password= ?";
+                      PreparedStatement prst =null;
+                      ResultSet rs;
+                      //String sno=null;
+                      try {
+                                prst= con.prepareStatement(sql);
+                                prst.setString(1, student.getsNo());
+                                prst.setString(2, student.getPassword());
+                                rs = prst.executeQuery();
+                                if(!rs.next()){
+                                          String retString ="옛 암호 오류！";
+                                          return retString;
+                                }
+                                //sno=rs.getString("sno");
+                                //id=rs.getInt("id");
+                                //System.out.println("id:"+id);
+                      } catch (SQLException e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                      }
+                      String retString ="수정 실패";
+                      String sqlString = "update student set password = ? where sno = ?";
+                       
+                      try {
+                                prst = con.prepareStatement(sqlString);
+                                prst.setString(1, newPasswrod);
+                                prst.setString(2, student.getsNo());
+                               int rst= prst.executeUpdate();
+                                if(rst>0){
+                                          retString="암호 수정 성공했습니다！";
+                                }
+                      } catch ( Exception e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                      }
+                      
+                      return retString;
             }
 }

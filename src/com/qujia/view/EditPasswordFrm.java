@@ -13,12 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.AdminDao;
+import com.qujia.dao.ProStaffDao;
+import com.qujia.dao.StudentDao;
 import com.qujia.model.Admin;
+import com.qujia.model.ProStaff;
+import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
 
 public class EditPasswordFrm extends JInternalFrame {
@@ -79,22 +82,22 @@ public class EditPasswordFrm extends JInternalFrame {
                     confirmPasswordTextField = new JPasswordField();
                     confirmPasswordTextField.setColumns(10);
                      
-                    JButton submitButton = new JButton("수정");
+                    JButton submitButton = new JButton("수 정");
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         submitEdit(ae);
                               }
                     });
                     submitButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    submitButton.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/submit.png")));
+                    submitButton.setIcon(null);
                     
-                    JButton resetButton = new JButton("초기화");
+                    JButton resetButton = new JButton("최 소");
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         resetValue(ae);
                               }
                     });
-                    resetButton.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/reset.png")));
+                    resetButton.setIcon(null);
                     resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JLabel currentUserLabel_1 = new JLabel("사 용 자：");
@@ -159,6 +162,12 @@ public class EditPasswordFrm extends JInternalFrame {
                     if("관리자".equals(MainFrm.userType.getName())){
                               Admin admin =(Admin)MainFrm.userObject;
                               currentUserLabel.setText("【관리자】 "+admin.getName());
+                    }else if("학생".equals(MainFrm.userType.getName())) {
+                    	Student student =(Student) MainFrm.userObject;
+                    	currentUserLabel.setText("【학생】 "+student.getName());
+                    }else {
+                    	ProStaff ps=(ProStaff) MainFrm.userObject;
+                    	currentUserLabel.setText("【교직원】 "+ps.getpName());
                     }
           }
           //密码提交修改
@@ -187,14 +196,34 @@ public class EditPasswordFrm extends JInternalFrame {
                               AdminDao adminDao=new AdminDao();
                               Admin adminTmp=new Admin();
                               Admin admin=(Admin)MainFrm.userObject;
+                              System.out.println(admin);
                               adminTmp.setName(admin.getName());
                               adminTmp.setPassword(oldPassword);
                               
                               JOptionPane.showMessageDialog(this, adminDao.editPassword(adminTmp, newPassword));
                               adminDao.closeDao();
                               return;
+                    }else if("학생".equals(MainFrm.userType.getName())) {
+                    		StudentDao sDao=new StudentDao();
+                    		Student sTmp=new Student();
+                    		Student student=(Student) MainFrm.userObject;
+                    		sTmp.setName(student.getName());
+                    		sTmp.setPassword(student.getPassword());
+                    		sTmp.setsNo(student.getsNo());
+                    		JOptionPane.showMessageDialog(this, sDao.editPassword(sTmp,newPassword));
+                    	    sDao.closeDao();
+                    	    return;
+                    }else {
+                    		ProStaffDao psDao=new ProStaffDao();
+                    		ProStaff psTmp=new ProStaff();
+                    	    ProStaff ps = (ProStaff) MainFrm.userObject;
+                    	    psTmp.setpNo(ps.getpNo());
+                    	    psTmp.setpName(ps.getpName());
+                    	    psTmp.setPassword(ps.getPassword());
+                    	    JOptionPane.showMessageDialog(this, psDao.editPassword(psTmp,newPassword));
+                    	    psDao.closeDao();
+                    	    return;
                     }
-                    AdminDao admindao=new AdminDao();
                     
           }
           //修改密码重置按钮事件方法

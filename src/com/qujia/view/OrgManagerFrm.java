@@ -61,7 +61,7 @@ public class OrgManagerFrm extends JFrame {
           public OrgManagerFrm() {
                     setTitle("조직관리");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 786, 388);
+                    setBounds(100, 100, 899, 512);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -151,7 +151,7 @@ public class OrgManagerFrm extends JFrame {
                                         org.setCoGrCode(coGrCode);
                                         org.setGsDepMajCode(gdmCode);
                                         setTable(org);
-                                        setValues();
+                                        resetValues();
                               }
                     });
                     
@@ -166,74 +166,80 @@ public class OrgManagerFrm extends JFrame {
                     comboBox_gdm.setModel(new DefaultComboBoxModel(new String[] {"", "학부", "학과", "전공"}));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addContainerGap()
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addComponent(lblNewLabel_1)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(lblNewLabel_2)
-                    					.addGap(18)
-                    					.addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(lblNewLabel_3)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, 136, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(updateButton)
-                    					.addGap(18)
-                    					.addComponent(deleteButton))
-                    				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 735, GroupLayout.PREFERRED_SIZE)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addComponent(lblNewLabel)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(lblNewLabel_5)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(lblNewLabel_4)
-                    					.addGap(12)
-                    					.addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.UNRELATED)
-                    					.addComponent(lblNewLabel_6)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-                    					.addGap(18)
-                    					.addComponent(searchButton)))
-                    			.addContainerGap(15, Short.MAX_VALUE))
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(22)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                .addComponent(lblNewLabel_3)
+                                                                                .addComponent(lblNewLabel_1))
+                                                                      .addGap(18)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                .addComponent(comboBox_editPar, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(textField_editName, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                                                                      .addGap(29)
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addComponent(lblNewLabel_2)
+                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                          .addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGap(18)
+                                                                                          .addComponent(updateButton))
+                                                                                .addComponent(deleteButton)))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(lblNewLabel)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(lblNewLabel_5)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(lblNewLabel_4)
+                                                                      .addGap(12)
+                                                                      .addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(lblNewLabel_6)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(28)
+                                                                      .addComponent(searchButton))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)))
+                                                  .addContainerGap())
                     );
                     gl_contentPane.setVerticalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGap(27)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel)
-                    				.addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel_4)
-                    				.addComponent(lblNewLabel_5)
-                    				.addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel_6)
-                    				.addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(searchButton))
-                    			.addGap(18)
-                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(28)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel_2)
-                    				.addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel_3)
-                    				.addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(updateButton)
-                    				.addComponent(deleteButton)
-                    				.addComponent(lblNewLabel_1))
-                    			.addContainerGap(45, Short.MAX_VALUE))
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGap(19)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(lblNewLabel)
+                                                            .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel_4)
+                                                            .addComponent(lblNewLabel_5)
+                                                            .addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel_6)
+                                                            .addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(searchButton))
+                                                  .addGap(18)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE)
+                                                  .addPreferredGap(ComponentPlacement.RELATED)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel_2)
+                                                            .addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(lblNewLabel_1)
+                                                            .addComponent(updateButton))
+                                                  .addGap(32)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(lblNewLabel_3)
+                                                            .addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(deleteButton))
+                                                  .addContainerGap(70, Short.MAX_VALUE))
                     );
                     
                     table = new JTable();
@@ -245,30 +251,34 @@ public class OrgManagerFrm extends JFrame {
                     });
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
-                    	new Object[][] {
-                    		{null, null, null, null, null, null, null, null},
-                    	},
-                    	new String[] {
-                    		"\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uD559\uBD80/\uD559\uACFC/\uC804\uACF5\uAD6C\uBD84", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1\uCF54\uB4DC"
-                    	}
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1\uCF54\uB4DC", "\uB4F1\uB85D\uC77C\uC790"
+                              }
                     ) {
-                    	boolean[] columnEditables = new boolean[] {
-                    		false, false, false, false, false, false, false, true
-                    	};
-                    	public boolean isCellEditable(int row, int column) {
-                    		return columnEditables[column];
-                    	}
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, true, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
                     });
                     table.getColumnModel().getColumn(0).setPreferredWidth(69);
-                    table.getColumnModel().getColumn(1).setPreferredWidth(111);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(74);
+                    table.getColumnModel().getColumn(1).setPreferredWidth(137);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(116);
                     table.getColumnModel().getColumn(3).setPreferredWidth(103);
                     table.getColumnModel().getColumn(4).setPreferredWidth(107);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(121);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(135);
                     table.getColumnModel().getColumn(6).setPreferredWidth(89);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(87);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(98);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(89);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
+                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    
                     setOrgName();
                     setTable(new Org());
           }
@@ -302,6 +312,7 @@ public class OrgManagerFrm extends JFrame {
                     
                     orgDao.closeDao();
                     setTable(new Org());
+                    resetValues();
                              
           }
 
@@ -345,6 +356,7 @@ public class OrgManagerFrm extends JFrame {
                     }
                     orgDao.closeDao();
                     setTable(new Org());
+                    resetValues();
                     
           }
 
@@ -363,6 +375,7 @@ public class OrgManagerFrm extends JFrame {
                               v.add(o.getGsDepMajCode());
                               v.add(o.getAftType());
                               v.add(o.getParCode());
+                              v.add(o.getTodayDate());
                               dft.addRow(v);
                     }
                     orgDao.closeDao();
@@ -414,7 +427,7 @@ public class OrgManagerFrm extends JFrame {
                               
                     }
           }
-          private void setValues(){
+          private void resetValues(){
                     textField_editName.setText("");
                     textField_editsName.setText("");
                     comboBox_editPar.setSelectedIndex(0);

@@ -34,10 +34,10 @@ import com.qujia.util.ViewUtil;
 public class AddDeptStandFrm extends JFrame {
 
           private JPanel contentPane;
-          private JTextField textField_num;
+          private JTextField textField_max;
           private JTextField textField_year1;
           private JTextField textField_year2;
-          private JTextField textField_credit;
+          private JTextField textField_min;
           private DatePicker datePicker;
           private JComboBox comboBox_name;
           private JTextArea textArea_explain;
@@ -72,14 +72,14 @@ public class AddDeptStandFrm extends JFrame {
                     setContentPane(contentPane);
 
                     JLabel label_credit = new JLabel(
-                                        "\uC878\uC5C5\uC774\uC218\uD559\uC810:");
+                                        "학기당최소이수학점:");
                     label_credit.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
-                    textField_num = new JTextField();
-                    textField_num.setColumns(10);
+                    textField_max = new JTextField();
+                    textField_max.setColumns(10);
 
-                    JLabel label_num = new JLabel("\uBAA8\uC9D1\uC778\uC6D0:");
+                    JLabel label_num = new JLabel("학기당최대이수학점:");
                     label_num.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     label_num.setBackground(new Color(175, 238, 238));
 
@@ -110,8 +110,8 @@ public class AddDeptStandFrm extends JFrame {
                     button_submit.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 
-                    textField_credit = new JTextField();
-                    textField_credit.setColumns(10);
+                    textField_min = new JTextField();
+                    textField_min.setColumns(10);
 
                     JLabel label_name = new JLabel("\uD559\uACFC/\uC804\uACF5\uC774\uB984:");
                     label_name.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -165,8 +165,8 @@ public class AddDeptStandFrm extends JFrame {
                                                                                 .addComponent(textField_year2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                                                 .addComponent(datePicker, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                                                 .addComponent(comboBox_name, 0, 163, Short.MAX_VALUE)
-                                                                                .addComponent(textField_credit, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                                .addComponent(textField_num, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                                                                .addComponent(textField_min, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                                                                .addComponent(textField_max, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                                                 .addComponent(textField_year1, 125, 163, Short.MAX_VALUE))))
                                                   .addGap(110))
                     );
@@ -179,11 +179,11 @@ public class AddDeptStandFrm extends JFrame {
                                                             .addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(textField_min, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(label_credit))
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(textField_num, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(textField_max, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(label_num))
                                                   .addGap(18)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -227,15 +227,15 @@ public class AddDeptStandFrm extends JFrame {
           // 등록 submit
           protected void addDept(ActionEvent e) {
                     String orgid,deptName,loginDate, dept_exp;
-                    int pNum, credit, year1, year2;
+                    int max, min, year1, year2;
                     Org org1 = (Org) comboBox_name.getSelectedItem();
                     orgid=org1.getOrgCode();
                     deptName=org1.getName();
                     try {
-                              pNum = Integer.parseInt(textField_num.getText());
+                              max = Integer.parseInt(textField_max.getText());
 
                               loginDate = getStringDate(datePicker);
-                              credit = Integer.parseInt(textField_credit
+                              min = Integer.parseInt(textField_min
                                                   .getText());
                               year1 = Integer.parseInt(textField_year1
                                                   .getText());
@@ -253,14 +253,14 @@ public class AddDeptStandFrm extends JFrame {
                                                   "학과이름을 선택해주세요!");
                               return;
                     }
-                    if (StringUtil.isEmpty(credit)) {
+                    if (StringUtil.isEmpty(min)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "졸업이수학점을 입력해주세요!");
+                                                  "학기당최소이수학점을 입력해주세요!");
                               return;
                     }
-                    if (StringUtil.isEmpty(pNum)) {
+                    if (StringUtil.isEmpty(max)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "모집인원을 입력해주세요!");
+                                                  "학기당최대이수학점을 입력해주세요!");
                               return;
                     }
 
@@ -275,8 +275,8 @@ public class AddDeptStandFrm extends JFrame {
                               return;
                     }
                     if (StringUtil.isEmpty(deptName)
-                                        || StringUtil.isEmpty(credit)
-                                        || StringUtil.isEmpty(pNum)
+                                        || StringUtil.isEmpty(min)
+                                        || StringUtil.isEmpty(max)
                                         || StringUtil.isEmpty(year1)
                                         || StringUtil.isEmpty(year2)) {
                               JOptionPane.showMessageDialog(this,
@@ -286,9 +286,9 @@ public class AddDeptStandFrm extends JFrame {
                    DeptStand dStand=new DeptStand();
                    dStand.setOrgid(orgid);
                    dStand.setOrgName(deptName);
-                   dStand.setpNum(pNum);
+                   dStand.setMin(min);
+                   dStand.setMax(max);
                    dStand.setLoginDate(loginDate);
-                   dStand.setCredit(credit);
                    dStand.setYear1(year1);
                    dStand.setYear2(year2);
                    dStand.setDeptExplain(dept_exp);
@@ -321,10 +321,10 @@ public class AddDeptStandFrm extends JFrame {
 //                    textField_name.setText("");
 //                    comboBox_uni.setSelectedIndex(0);
                     comboBox_name.setSelectedIndex(0);
-                    textField_num.setText("");
+                    textField_max.setText("");
 
                     // datePicker.getValue();
-                    textField_credit.setText("");
+                    textField_min.setText("");
                     textField_year1.setText("");
                     textField_year2.setText("");
                     textArea_explain.setText("");
