@@ -450,7 +450,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/applySubject3.png")));
                     mntmNewMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
-                                        CourseApplicationStudentFrm caf=new CourseApplicationStudentFrm();
+                                        CourseApplicationFrm caf=new CourseApplicationFrm();
                                         layeredPane.setLayer(caf, 200);
                                         caf.setVisible(true);
                                         //desktopPane.add(caf);
@@ -463,7 +463,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreSearch.png")));
                     mntmNewMenuItem_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        ScoreShowToStudentFrm ssf=new ScoreShowToStudentFrm();
+                                        ScoreShowForProFrm ssf=new ScoreShowForProFrm();
                                         layeredPane.setLayer(ssf, 200);
                                         ssf.setVisible(true);
                               }
