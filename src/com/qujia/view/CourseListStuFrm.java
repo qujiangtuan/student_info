@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import com.eltima.components.ui.DatePicker;
 import com.qujia.util.ViewUtil;
 
-public class LectureOfStudentFrm extends JFrame {
+public class CourseListStuFrm extends JFrame {
 
           private JPanel contentPane;
           private JTextField textField;
@@ -35,7 +35,7 @@ public class LectureOfStudentFrm extends JFrame {
                     EventQueue.invokeLater(new Runnable() {
                               public void run() {
                                         try {
-                                                  LectureOfStudentFrm frame = new LectureOfStudentFrm();
+                                                  CourseListStuFrm frame = new CourseListStuFrm();
                                                   frame.setVisible(true);
                                         } catch (Exception e) {
                                                   e.printStackTrace();
@@ -47,7 +47,7 @@ public class LectureOfStudentFrm extends JFrame {
           /**
            * Create the frame.
            */
-          public LectureOfStudentFrm() {
+          public CourseListStuFrm() {
                     setTitle("\uC218\uAC15\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 877, 476);

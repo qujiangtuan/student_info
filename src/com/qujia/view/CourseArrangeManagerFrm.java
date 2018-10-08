@@ -74,7 +74,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                     textField = new JTextField();
                     textField.setColumns(10);
                     
-                    JButton btnNewButton = new JButton("\uCEF4  \uC0C9");
+                    JButton btnNewButton = new JButton("검  색");
                     
                     JScrollPane scrollPane = new JScrollPane();
                     
@@ -424,24 +424,14 @@ public class CourseArrangeManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uACC4\uD68D", "\uD3C9\uAC00\uBC29\uC2DD\uAD6C\uBD84"
+                                        "\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -450,8 +440,6 @@ public class CourseArrangeManagerFrm extends JFrame {
                     table.getColumnModel().getColumn(2).setPreferredWidth(127);
                     table.getColumnModel().getColumn(4).setPreferredWidth(73);
                     table.getColumnModel().getColumn(9).setPreferredWidth(146);
-                    table.getColumnModel().getColumn(10).setPreferredWidth(97);
-                    table.getColumnModel().getColumn(11).setPreferredWidth(93);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);

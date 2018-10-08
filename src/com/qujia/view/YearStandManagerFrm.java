@@ -1,42 +1,55 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.Vector;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.dao.OrgDao;
+import com.qujia.dao.YearDeptStandDao;
+import com.qujia.model.Org;
+import com.qujia.model.YearDeptStand;
 import com.qujia.util.ViewUtil;
-
-import java.awt.Font;
-import javax.swing.JRadioButton;
-import java.awt.Color;
 
 public class YearStandManagerFrm extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textField_schYear;
 	private JTable table;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField textField_major;
+	private JTextField textField_recTatio;
+	private JTextField textField_recTemp;
+	private JTextField textField_majorMust;
+	private JTextField textField_recForm;
+	private JTextField textField_culMust;
+	private JComboBox comboBox_deptName;
+	private List<Org> orgList;
+	private JCheckBox CheckBox_dept;
+	private JLabel label_editDept;
+	private JTextField textField_credit;
 
 	/**
 	 * Launch the application.
@@ -73,226 +86,402 @@ public class YearStandManagerFrm extends JFrame {
 		JLabel lblNewLabel = new JLabel("\uD559\uB144:");
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textField_schYear = new JTextField();
+		textField_schYear.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 13));
+		comboBox_deptName = new JComboBox();
+        comboBox_deptName.setEnabled(false);
+		  CheckBox_dept = new JCheckBox("");
+		  CheckBox_dept.addItemListener(new ItemListener() {
+		            public void itemStateChanged(ItemEvent e) {
+		                      if(CheckBox_dept.isSelected()){
+		                                comboBox_deptName.setEnabled(true);
+		                      }else{
+		                                comboBox_deptName.setEnabled(false);
+		                      }
+		            }
+		  });
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		
-		JComboBox comboBox = new JComboBox();
-		
+		  
 		JButton btnNewButton = new JButton("\uAC80  \uC0C9");
+		btnNewButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    serarchYearDeptStandAction(e);
+		          }
+		});
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 13));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
 		
-		JLabel lblNewLabel_3 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
-		
-		JLabel lblNewLabel_4 = new JLabel("\uC801\uC6A9\uC885\uB8CC\uB144\uB3C4:");
-		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
+		 label_editDept = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
 		
 		JLabel lblNewLabel_5 = new JLabel("\uC804\uACF5\uC774\uC218\uD559\uC810:");
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textField_major = new JTextField();
+		textField_major.setColumns(10);
 		
-		JLabel label = new JLabel("\uC804\uACF5\uD544\uC218\uD559\uC810:");
+		JLabel label = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728:");
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textField_recTatio = new JTextField();
+		textField_recTatio.setColumns(10);
 		
-		JLabel label_1 = new JLabel("\uAD50\uC591\uC774\uC218\uD559\uC810:");
+		JLabel label_2 = new JLabel("수시모집인원:");
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textField_recTemp = new JTextField();
+		textField_recTemp.setColumns(10);
 		
-		JLabel label_2 = new JLabel("\uAD50\uC591\uD544\uC218\uD559\uC810:");
+		JLabel lblNewLabel_6 = new JLabel("\uC804\uACF5\uD544\uC218\uD559\uC810:");
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textField_majorMust = new JTextField();
+		textField_majorMust.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728:");
+		JLabel label_3 = new JLabel("정시모집인원:");
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		textField_recForm = new JTextField();
+		textField_recForm.setColumns(10);
 		
-		JLabel label_3 = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0:");
+		JLabel lblNewLabel_7 = new JLabel("\uAD50\uC591\uD544\uC218\uD559\uC810:");
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
+		textField_culMust = new JTextField();
+		textField_culMust.setColumns(10);
 		
-		JLabel lblNewLabel_7 = new JLabel("\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0:");
+		JButton updateButton = new JButton("\uC218 \uC815");
+		updateButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    updateYearDeptStand(e);
+		          }
+		});
+		updateButton.setBackground(new Color(224, 255, 255));
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
+		JButton deleteButton = new JButton("\uC0AD \uC81C");
+		deleteButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    deleteYearDeptStand(e);
+		          }
+		});
+		deleteButton.setBackground(new Color(255, 99, 71));
 		
-		JLabel lblNewLabel_8 = new JLabel("\uBD80\uAC00\uC804\uACF5\uD5C8\uC6A9\uC5EC\uBD80:");
+		JLabel label_1 = new JLabel("졸업이수학점:");
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("yes");
-		
-		JRadioButton rdbtnNo = new JRadioButton("no");
-		
-		JButton button = new JButton("\uC218 \uC815");
-		button.setBackground(new Color(224, 255, 255));
-		
-		JButton button_1 = new JButton("\uC0AD \uC81C");
-		button_1.setBackground(new Color(255, 99, 71));
+		textField_credit = new JTextField();
+		textField_credit.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(75)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-							.addGap(44)
-							.addComponent(chckbxNewCheckBox)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
-							.addGap(32)
-							.addComponent(btnNewButton))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(59)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_3)
-										.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-									.addGap(42)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(label_3, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-										.addComponent(label_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(lblNewLabel_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblNewLabel_8)))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField_3, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-										.addComponent(textField_5, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-										.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-										.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 159, GroupLayout.PREFERRED_SIZE))
-									.addGap(75)
-									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-										.addComponent(button)
-										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-									.addGap(155))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addComponent(rdbtnNewRadioButton)
-									.addGap(18)
-									.addComponent(rdbtnNo, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 831, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+		          gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                    .addGroup(gl_contentPane.createSequentialGroup()
+		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                        .addGroup(gl_contentPane.createSequentialGroup()
+		                                                  .addGap(75)
+		                                                  .addComponent(lblNewLabel)
+		                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+		                                                  .addComponent(textField_schYear, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+		                                                  .addGap(44)
+		                                                  .addComponent(CheckBox_dept)
+		                                                  .addPreferredGap(ComponentPlacement.RELATED)
+		                                                  .addComponent(lblNewLabel_1)
+		                                                  .addPreferredGap(ComponentPlacement.RELATED)
+		                                                  .addComponent(comboBox_deptName, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
+		                                                  .addGap(32)
+		                                                  .addComponent(btnNewButton))
+		                                        .addGroup(gl_contentPane.createSequentialGroup()
+		                                                  .addGap(59)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                            .addGroup(gl_contentPane.createSequentialGroup()
+		                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+		                                                                                          .addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                                                                          .addComponent(lblNewLabel_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		                                                                                .addComponent(lblNewLabel_7))
+		                                                                      .addGap(18))
+		                                                            .addGroup(gl_contentPane.createSequentialGroup()
+		                                                                      .addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+		                                                                      .addPreferredGap(ComponentPlacement.RELATED)))
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                            .addComponent(textField_majorMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                            .addComponent(label_editDept)
+		                                                            .addComponent(textField_major, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                            .addComponent(textField_culMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		                                                  .addGap(54)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+		                                                                      .addComponent(label_3, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+		                                                                      .addComponent(label_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                                                      .addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		                                                            .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
+		                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                                      .addComponent(textField_recTatio, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+		                                                                      .addComponent(textField_recTemp, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+		                                                                      .addComponent(textField_recForm, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+		                                                            .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+		                                                  .addGap(75)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                                            .addComponent(updateButton)
+		                                                            .addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
+		                                                  .addGap(155))
+		                                        .addGroup(gl_contentPane.createSequentialGroup()
+		                                                  .addContainerGap()
+		                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 831, GroupLayout.PREFERRED_SIZE)))
+		                              .addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(chckbxNewCheckBox, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNewLabel)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
-					.addGap(32)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(lblNewLabel_2)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_4)
-						.addComponent(button))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_5)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label)
-						.addComponent(button_1))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_2))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_6)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label_3))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_7)
-						.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_8)
-						.addComponent(rdbtnNewRadioButton)
-						.addComponent(rdbtnNo))
-					.addContainerGap(62, Short.MAX_VALUE))
+		          gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                    .addGroup(gl_contentPane.createSequentialGroup()
+		                              .addGap(18)
+		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+		                                        .addComponent(CheckBox_dept, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                                  .addComponent(lblNewLabel)
+		                                                  .addComponent(textField_schYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                  .addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
+		                                                  .addComponent(comboBox_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                  .addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		                              .addGap(18)
+		                              .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
+		                              .addGap(32)
+		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                        .addComponent(label_editDept)
+		                                        .addComponent(lblNewLabel_2)
+		                                        .addComponent(updateButton)
+		                                        .addComponent(label_1)
+		                                        .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		                              .addGap(18)
+		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                        .addComponent(lblNewLabel_5)
+		                                        .addComponent(textField_major, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                        .addComponent(textField_recTatio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                        .addComponent(label)
+		                                        .addComponent(deleteButton))
+		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+		                                        .addGroup(gl_contentPane.createSequentialGroup()
+		                                                  .addGap(18)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                                            .addComponent(textField_recTemp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                            .addComponent(label_2)
+		                                                            .addComponent(textField_majorMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                            .addComponent(lblNewLabel_6))
+		                                                  .addGap(18)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                                            .addComponent(textField_recForm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                            .addComponent(label_3)))
+		                                        .addGroup(gl_contentPane.createSequentialGroup()
+		                                                  .addGap(60)
+		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+		                                                            .addComponent(lblNewLabel_7)
+		                                                            .addComponent(textField_culMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+		                              .addContainerGap(100, Short.MAX_VALUE))
 		);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+		          @Override
+		          public void mouseClicked(MouseEvent e) {
+		                    selectRow(e);
+		          }
+		});
 		table.setRowHeight(25);
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"\uB144\uB3C4", "\uC870\uC9C1\uC774\uB984", "\uC801\uC6A9\uC2DC\uC791\uB144\uB3C4", "\uC801\uC6A9\uC885\uB8CC\uB144\uB3C4", "\uC804\uACF5\uC774\uC218\uD559\uC810", "\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uBD80\uAC00\uC804\uACF5\uD5C8\uC6A9\uC5EC\uBD80", "\uBD80\uAC00\uC804\uACF5\uD544\uC218\uD559\uC810", "\uBD80\uAC00\uC804\uACF5\uD544\uC218\uAD50\uC591"
-			}
+		          new Object[][] {
+		                    {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+		          },
+		          new String[] {
+		                    "\uAE30\uC900\uBC88\uD638", "\uD559\uACFC\uC774\uB984", "\uC801\uC6A9\uC2DC\uC791\uB144\uB3C4", "\uC801\uC6A9\uC885\uB8CC\uB144\uB3C4", "*\uC878\uC5C5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "*\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0"
+		          }
 		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
+		          boolean[] columnEditables = new boolean[] {
+		                    false, false, false, false, false, false, true, true, false, false, false, false, false, false
+		          };
+		          public boolean isCellEditable(int row, int column) {
+		                    return columnEditables[column];
+		          }
 		});
 		table.getColumnModel().getColumn(2).setPreferredWidth(89);
 		table.getColumnModel().getColumn(3).setPreferredWidth(84);
-		table.getColumnModel().getColumn(4).setPreferredWidth(86);
-		table.getColumnModel().getColumn(5).setPreferredWidth(92);
-		table.getColumnModel().getColumn(6).setPreferredWidth(90);
-		table.getColumnModel().getColumn(7).setPreferredWidth(88);
-		table.getColumnModel().getColumn(8).setPreferredWidth(92);
-		table.getColumnModel().getColumn(9).setPreferredWidth(91);
-		table.getColumnModel().getColumn(10).setPreferredWidth(86);
-		table.getColumnModel().getColumn(11).setPreferredWidth(89);
+		table.getColumnModel().getColumn(4).setPreferredWidth(106);
+		table.getColumnModel().getColumn(5).setPreferredWidth(96);
+		table.getColumnModel().getColumn(6).setPreferredWidth(92);
+		table.getColumnModel().getColumn(7).setPreferredWidth(90);
+		table.getColumnModel().getColumn(8).setPreferredWidth(88);
+		table.getColumnModel().getColumn(9).setPreferredWidth(92);
+		table.getColumnModel().getColumn(10).setPreferredWidth(91);
+		table.getColumnModel().getColumn(11).setPreferredWidth(86);
 		table.getColumnModel().getColumn(12).setPreferredWidth(89);
-		table.getColumnModel().getColumn(13).setPreferredWidth(107);
-		table.getColumnModel().getColumn(14).setPreferredWidth(111);
-		table.getColumnModel().getColumn(15).setPreferredWidth(113);
+		table.getColumnModel().getColumn(13).setPreferredWidth(89);
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		contentPane.setLayout(gl_contentPane);
+		
+		setDeptName();
+		setTable(new YearDeptStand());
 	}
+	          //학년별 학사기준 삭제
+	          protected void deleteYearDeptStand(ActionEvent e) {
+	                    int row=table.getSelectedRow();
+	                    if(row==-1){
+	                              JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
+	                              return;
+	                    }
+	                    if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
+	                              return;
+	                    }
+	                    YearDeptStandDao ydsDao =new YearDeptStandDao();
+	                    String yearNo=table.getValueAt(row, 0).toString();
+	                    if(ydsDao.delete(yearNo)){
+	                              JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+	                    }else{
+	                              JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+	                    }
+	                    ydsDao.closeDao();
+	                    setTable(new YearDeptStand());
+	                    resetValues();
+          }
+
+                    //학년별 학사기준 변경
+	          protected void updateYearDeptStand(ActionEvent e) {
+	                    DefaultTableModel dft = (DefaultTableModel) table.getModel();
+	                    int index=table.getSelectedRow();
+	                    if(index==-1){
+	                              JOptionPane.showMessageDialog(this, "데이터 라인을 선택하십시오!");
+	                              return;
+	                    }
+//	                  textField_credit.setText("");
+//	                   textField_majorMust.setText("");
+//	                   textField_culMust.setText("");
+//	                   textField_recTatio.setText("");
+//	                   textField_recTemp.setText("");
+//	                   textField_recForm.setText("");
+	                    int credit,major,majorMust,culMust,recTatio,recTemp,recForm;
+	                    try {
+	                              
+	                              credit = Integer.parseInt(textField_credit.getText());
+	                              major=Integer.parseInt(textField_major.getText());
+	                               majorMust = Integer.parseInt(textField_majorMust.getText());
+	                               culMust = Integer.parseInt(textField_culMust.getText());
+	                               recTatio= Integer.parseInt(textField_recTatio.getText());
+	                               recTemp = Integer.parseInt(textField_recTemp.getText());
+	                               recForm = Integer.parseInt(textField_recForm.getText());
+                    } catch (Exception e2) {
+                              JOptionPane.showMessageDialog(this, "변경할 데이터를 입력합시오!");
+                              return;
+                    }
+	                    String yearNo=dft.getValueAt(table.getSelectedRow(),0).toString();
+	                    YearDeptStand ydStand=new YearDeptStand();
+	                    ydStand.setCredit(credit);
+	                    ydStand.setMajor(major);
+	                    ydStand.setMajorMust(majorMust);
+	                    ydStand.setCulMust(culMust);
+	                    ydStand.setRecTatio(recTatio);
+	                    ydStand.setRecTemp(recTemp);
+	                    ydStand.setRecForm(recForm);
+	                    ydStand.setYearNo(yearNo);
+	                    YearDeptStandDao ydsDao=new YearDeptStandDao();
+	                    if(ydsDao.updateDStand(ydStand)){
+	                              JOptionPane.showMessageDialog(this, "수정 성공했습니다!");
+	                    }else{
+	                              JOptionPane.showMessageDialog(this, "수정 실패했습니다!");
+	                    }
+	                    ydsDao.closeDao();
+	                    setTable(new YearDeptStand());
+          }
+
+          //한행 선택
+	     protected void selectRow(MouseEvent e) {
+	               DefaultTableModel dft = (DefaultTableModel) table.getModel();
+                   // 得到选中表格中的哪一行，那一列的值
+
+	               label_editDept.setText(dft.getValueAt(table.getSelectedRow(),1).toString());
+	               textField_credit.setText(dft.getValueAt(table.getSelectedRow(),4).toString());
+	               textField_major.setText(dft.getValueAt(table.getSelectedRow(),5).toString());
+	               textField_majorMust.setText(dft.getValueAt(table.getSelectedRow(),6).toString());
+	               textField_culMust.setText(dft.getValueAt(table.getSelectedRow(),9).toString());
+	               textField_recTatio.setText(dft.getValueAt(table.getSelectedRow(),10).toString());
+	               textField_recTemp.setText(dft.getValueAt(table.getSelectedRow(),11).toString());
+	               textField_recForm.setText(dft.getValueAt(table.getSelectedRow(),12).toString());
+          }
+
+          //검색
+    	protected void serarchYearDeptStandAction(ActionEvent e) {
+    	          YearDeptStand yds=new YearDeptStand();
+                  String yearNo,orgid;
+                  try {
+                            yearNo = textField_schYear.getText().toString();
+                  } catch (Exception e2) {
+                            yearNo =null;
+                  }
+                  yds.setYearNo(yearNo);
+                  if(CheckBox_dept.isSelected()){
+                            Org org = (Org) comboBox_deptName.getSelectedItem();
+                            orgid = org.getOrgCode();
+                            yds.setOrgId(orgid);
+                  }else{
+                            orgid=null;
+                            yds.setOrgId(null);
+                  }
+                  setTable(yds);
+                  resetValues();
+                  
+                    
+          }
+
+          private void resetValues() {
+                    textField_major.setText("");
+                    textField_majorMust.setText("");
+                    textField_culMust.setText("");
+                    textField_recTatio.setText("");
+                    textField_recTemp.setText("");
+                    textField_recForm.setText("");
+          }
+
+          //table 다시 설정
+    	private void setTable(YearDeptStand ydStand) {
+    	          DefaultTableModel dft = (DefaultTableModel) table.getModel();
+                  dft.setRowCount(0);
+                  YearDeptStandDao ydDao=new YearDeptStandDao();
+                  List<YearDeptStand> ydList = ydDao.getYDSList2(ydStand);
+                  for(YearDeptStand yds : ydList){
+                            Vector v=new Vector();
+                            v.add(yds.getYearNo());
+                            v.add(this.getDeptNameById(yds.getOrgId()));
+                            v.add(yds.getYearStart());
+                            v.add(yds.getYearEnd());
+                            v.add(yds.getCredit());
+                            v.add(yds.getMajor());
+                            v.add(yds.getMajorMust());
+                            v.add(yds.getMajorChose());
+                            v.add(yds.getCul());
+                            v.add(yds.getCulMust());
+                            v.add(yds.getCulChose());
+                            v.add(yds.getRecTatio());
+                            v.add(yds.getRecTemp());
+                            v.add(yds.getRecForm());
+                            dft.addRow(v);
+                  }
+                  ydDao.closeDao();
+                   
+        }
+    	//classId에 통해서 className를 받는다
+        public String getDeptNameById(String id){
+                  OrgDao orgDao=new OrgDao();
+                  orgList = orgDao.getOrgdeptNameList(new Org());
+                  for(Org org:orgList){
+                          if(org.getOrgCode().equals(id)) return org.getName();
+                  }
+                  return "";
+        }
+    	//학과 받기
+    	protected void setDeptName() {
+              // TODO Auto-generated method stub
+              OrgDao orgDao=new OrgDao();
+              List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
+              for (Org org: orgList) {
+                        comboBox_deptName.addItem(org);
+              }
+              orgDao.closeDao();
+    }
 }

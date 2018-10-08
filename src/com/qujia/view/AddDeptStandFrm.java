@@ -63,7 +63,7 @@ public class AddDeptStandFrm extends JFrame {
           public AddDeptStandFrm() {
                     setTitle("교육부서학사기준등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 492, 481);
+                    setBounds(100, 100, 664, 481);
 
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -283,6 +283,8 @@ public class AddDeptStandFrm extends JFrame {
                                                   "데이터를 입력해주세요!");
                               return;
                     }
+                    DeptStandDao dsDao=new DeptStandDao();
+                    int inNum=dsDao.getStudentCount(orgid);
                    DeptStand dStand=new DeptStand();
                    dStand.setOrgid(orgid);
                    dStand.setOrgName(deptName);
@@ -292,8 +294,9 @@ public class AddDeptStandFrm extends JFrame {
                    dStand.setYear1(year1);
                    dStand.setYear2(year2);
                    dStand.setDeptExplain(dept_exp);
+                   dStand.setInNum(inNum);
 
-                    DeptStandDao dsDao=new DeptStandDao();
+                    
                     
                     if (dsDao.addDeptStand(dStand)) {
                               JOptionPane.showMessageDialog(this, "등록 성공 !");

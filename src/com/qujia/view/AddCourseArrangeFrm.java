@@ -81,7 +81,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
 
-                    lebel_name = new JLabel("\uC218\uAC15\uC774\uB984:");
+                    lebel_name = new JLabel("과목이름:");
 
                     comboBox_name = new JComboBox();
                     comboBox_name.setModel(new DefaultComboBoxModel(

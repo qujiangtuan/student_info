@@ -145,9 +145,16 @@ public class ScoreShowToStudentFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uB144\uB3C4/\uD559\uAE30", "\uACFC\uBAA9\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uD559\uC810", "\uB4F1\uAE09", "\uC131\uC801\uC720\uD6A8\uAD6C\uBD84", "\uBE44\uACE0"
+                                        "\uB144\uB3C4/\uD559\uAE30", "\uACFC\uBAA9\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uD559\uC810", "\uB4F1\uAE09", "\uC131\uC801\uC720\uD6A8\uAD6C\uBD84", "\uAC15\uC758\uD3C9\uAC00\uC644\uB8CC\uC5EC\uBD80"
                               }
-                    ));
+                    ) {
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
+                    });
                     table_scoreAll.getColumnModel().getColumn(2).setPreferredWidth(162);
                     table_scoreAll.getColumnModel().getColumn(3).setPreferredWidth(58);
                     table_scoreAll.getColumnModel().getColumn(4).setPreferredWidth(44);
@@ -276,7 +283,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                     
                     JLabel lblNewLabel_3 = new JLabel("\uACF5\uACFC\uB300\uD559");
                     
-                    JLabel lblNewLabel_4 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD558\uACFC");
+                    JLabel lblNewLabel_4 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
                     
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0AC\uACFC\uC815");
                     GroupLayout gl_panel_one = new GroupLayout(panel_one);
@@ -431,6 +438,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                                                   .addContainerGap(14, Short.MAX_VALUE))
                     );
                     panel_two.setLayout(gl_panel_two);
+                    
                     contentPane.setLayout(gl_contentPane);
           }
 }

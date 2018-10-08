@@ -357,7 +357,7 @@ public class MainFrm extends JFrame {
                     JMenuItem mntmNewMenuItem_7 = new JMenuItem("수강목록");
                     mntmNewMenuItem_7.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        LectureOfStudentFrm losf=new LectureOfStudentFrm();
+                                        CourseListStuFrm losf=new CourseListStuFrm();
                                         layeredPane.setLayer(losf, 200);
                                         losf.setVisible(true);
                               }
@@ -469,7 +469,13 @@ public class MainFrm extends JFrame {
                               }
                     });
                     
-                    JMenu menu_1 = new JMenu("수강목록");
+                    JMenuItem menu_1 = new JMenuItem("수강목록");
+                    menu_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        PersonLectureOfStuFrm plof=new PersonLectureOfStuFrm();
+                                        plof.setVisible(true);
+                              }
+                    });
                     menu_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/subjectList.png")));
                     menu_1.setFont(new Font("Dialog", Font.BOLD, 13));
                     studentMenu.add(menu_1);
