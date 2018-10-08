@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -73,21 +72,6 @@ public class MainFrm extends JFrame {
                                         editPassword(ae);
                               }
                     });
-                    
-                    JMenu menu_3 = new JMenu("도움");
-                    settingMenu.add(menu_3);
-                    menu_3.setFont(new Font("휴먼고딕", Font.BOLD, 14));
-                    menu_3.setIcon(new ImageIcon(MainFrm.class.getResource("/images/help.png")));
-                    
-                    JMenuItem menuItem_5 = new JMenuItem("우리에 대함");
-                    menuItem_5.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    menuItem_5.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent ae) {
-                                        aboutUs(ae);
-                              }
-                    });
-                    menuItem_5.setIcon(new ImageIcon(MainFrm.class.getResource("/images/aboutUs.png")));
-                    menu_3.add(menuItem_5);
                     editPasswordMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/password.png")));
                     settingMenu.add(editPasswordMenuItem);
                     
@@ -640,7 +624,7 @@ public class MainFrm extends JFrame {
                 loginUserLabel.setText(username);
               }
           }
-          //添加学生
+          //add student
           protected void addStudent(ActionEvent ae) {
                     AddStudentFrm asf=new AddStudentFrm();
                     layeredPane.setLayer(asf, 200);
@@ -648,7 +632,7 @@ public class MainFrm extends JFrame {
                     desktopPane_sys.add(asf);
                     
           }
-          //修改密码
+          //update password
           protected void editPassword(ActionEvent ae) {
                     // TODO Auto-generated method stub
                     EditPasswordFrm editPasswordFrm =new EditPasswordFrm();
@@ -660,38 +644,6 @@ public class MainFrm extends JFrame {
                     	desktopPane_pro.add(editPasswordFrm);
                     }else {
                     	desktopPane_stu.add(editPasswordFrm);
-                    }
-          }
-          //关于我们 
-          protected void aboutUs(ActionEvent ae) {
-                    String info="【취 지앙투안】出品 \n";
-                    info+="URL：https://github.com/qujiangtuan/student_info \n";
-                    info+="환영합니다！";
-                   // JOptionPane.showMessageDialog(this, info);
-                    String[] buttons={"가 보자","다음 가"};
-                    int ret = JOptionPane.showOptionDialog(this, info, "우리에 대함", JOptionPane.YES_NO_CANCEL_OPTION, 
-                                        JOptionPane.DEFAULT_OPTION, 
-                                        new ImageIcon(LoginFrm.class.getResource("/images/student2.png")), buttons, null);
-                    if(ret==0){
-                              //采用Java调用系统浏览其打开制定网址
-                              try {
-                                        URI uri=new URI("https://github.com/qujiangtuan/student_info");
-                                        //以下两种方式都可以访问网站
-                                        //Desktop.getDesktop().browse(uri);
-                                        Runtime.getRuntime().exec("explorer https://github.com/qujiangtuan/student_info");
-                              } catch ( Exception e) {
-                                        // TODO Auto-generated catch block 
-                                        e.printStackTrace();
-                              }
-                              
-//                             JOptionPane.showMessageDialog(this, "迫不及待");
-                    }else{
-                              JOptionPane.showMessageDialog(this, "다음에 꼭 오세요！");
-                    }
-          }
-          private static class __Tmp {
-                    private static void __tmp() {
-                                javax.swing.JPanel __wbp_panel = new javax.swing.JPanel();
                     }
           }
 }
