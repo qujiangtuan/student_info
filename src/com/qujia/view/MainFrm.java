@@ -357,7 +357,7 @@ public class MainFrm extends JFrame {
                     JMenuItem mntmNewMenuItem_7 = new JMenuItem("수강목록");
                     mntmNewMenuItem_7.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        CourseListStuFrm losf=new CourseListStuFrm();
+                                        CourseListAdminFrm losf=new CourseListAdminFrm();
                                         layeredPane.setLayer(losf, 200);
                                         losf.setVisible(true);
                               }
@@ -472,7 +472,7 @@ public class MainFrm extends JFrame {
                     JMenuItem menu_1 = new JMenuItem("수강목록");
                     menu_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        PersonLectureOfStuFrm plof=new PersonLectureOfStuFrm();
+                                        CourseListStuFrm plof=new CourseListStuFrm();
                                         plof.setVisible(true);
                               }
                     });
