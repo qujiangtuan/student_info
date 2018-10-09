@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/com/qujia/dao/AddressDao.java=UTF-8
 encoding//src/com/qujia/dao/AdminDao.java=UTF-8
 encoding//src/com/qujia/dao/BaseDao.java=UTF-8
 encoding//src/com/qujia/dao/ClassDao.java=UTF-8
@@ -26,6 +27,7 @@ encoding//src/com/qujia/test/TestOracle.java=UTF-8
 encoding//src/com/qujia/test/UploadFileFrm.java=UTF-8
 encoding//src/com/qujia/test/photoAction.java=UTF-8
 encoding//src/com/qujia/test/photoDao.java=UTF-8
+encoding//src/com/qujia/test3/JDialogTest.java=UTF-8
 encoding//src/com/qujia/test3/RowHeaderRenderer.java=UTF-8
 encoding//src/com/qujia/test3/RowHeaderTable.java=UTF-8
 encoding//src/com/qujia/test3/RowHeaderTableModel.java=UTF-8

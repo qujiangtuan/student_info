@@ -1,7 +1,10 @@
 package com.qujia.view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -14,9 +17,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.util.ViewUtil;
-import java.awt.Dialog.ModalExclusionType;
-import java.awt.Color;
-import java.awt.Font;
 
 public class FindPassword extends JFrame {
 
@@ -68,26 +68,37 @@ public class FindPassword extends JFrame {
                     textField_1.setColumns(10);
                     
                     JButton button = new JButton("\uD655 \uC778");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                              }
+                    });
                     button.setBackground(new Color(240, 248, 255));
+                    
+                    JButton button_1 = new JButton("\uCDE8 \uC18C");
+                    button_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button_1.setBackground(new Color(240, 248, 255));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                  .addGap(52)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                                                             .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(52)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(label)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(textField, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(label_1)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(textField_1))))
+                                                                      .addComponent(button)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                      .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
                                                             .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(132)
-                                                                      .addComponent(button)))
+                                                                      .addComponent(label)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(textField, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addComponent(label_1)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(textField_1)))
                                                   .addContainerGap(57, Short.MAX_VALUE))
                     );
                     gl_contentPane.setVerticalGroup(
@@ -101,9 +112,11 @@ public class FindPassword extends JFrame {
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(label_1)
                                                             .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addComponent(button)
-                                                  .addContainerGap(62, Short.MAX_VALUE))
+                                                  .addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(button)
+                                                            .addComponent(button_1))
+                                                  .addGap(34))
                     );
                     contentPane.setLayout(gl_contentPane);
           }

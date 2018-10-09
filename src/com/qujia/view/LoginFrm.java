@@ -7,19 +7,16 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -37,7 +34,8 @@ public class LoginFrm extends JFrame {
           private JPanel contentPane;
           private JTextField userNameTextField;
           private JPasswordField passwordTextField;
-          private JComboBox userTypeComboBox;
+          private JRadioButton studentRadioButton,proRadioButton,adminButton;
+          private ButtonGroup bgroup;
 
           /**
            * Launch the application.
@@ -65,50 +63,42 @@ public class LoginFrm extends JFrame {
                                                             .getResource("/images/student1.png")));
                     setTitle("학사관리시스템");
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    setBounds(100, 100, 554, 368);
+                    setBounds(100, 100, 554, 436);
                     contentPane = new JPanel();
                     contentPane.setBackground(new Color(230, 230, 250));
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
                     setLocationRelativeTo(null);
                     JLabel label = new JLabel("학사관리시스템");
+                    label.setBounds(161, 51, 169, 32);
                     label.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/student2.png")));
                     label.setFont(new Font("NanumMyeongjo", Font.BOLD, 18));
 
                     JLabel userNameLabel_1 = new JLabel(" 아 이 디：");
+                    userNameLabel_1.setBounds(110, 139, 103, 19);
                     userNameLabel_1.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/username.png")));
                     userNameLabel_1.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
                     userNameTextField = new JTextField();
+                    userNameTextField.setBounds(243, 138, 155, 21);
                     userNameTextField.setColumns(10);
 
                     JLabel passwordLabel = new JLabel("비밀번호：");
+                    passwordLabel.setBounds(110, 178, 105, 19);
                     passwordLabel.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/password.png")));
                     passwordLabel.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
                     passwordTextField = new JPasswordField();
+                    passwordTextField.setBounds(243, 177, 155, 21);
                     passwordTextField.setColumns(10);
 
-                    JLabel userTypeLabel = new JLabel(" 역     할 ：");
-                    userTypeLabel.setIcon(new ImageIcon(LoginFrm.class
-                                        .getResource("/images/userType.png")));
-                    userTypeLabel.setFont(new Font("NanumMyeongjo", Font.BOLD,
-                                        13));
-
-                    userTypeComboBox = new JComboBox();
-                    userTypeComboBox.setModel(new DefaultComboBoxModel(
-                                        new UserType[] { UserType.STUDENT,
-                                                            UserType.TEACHER,
-                                                            UserType.ADMIN }));
-                    userTypeComboBox.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
-
                     JButton loginButton = new JButton("    로그인");
+                    loginButton.setBounds(121, 267, 111, 29);
                     loginButton.setHorizontalAlignment(SwingConstants.LEFT);
                     loginButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
@@ -119,6 +109,7 @@ public class LoginFrm extends JFrame {
                     loginButton.setIcon(null);
 
                     JButton resetButton = new JButton("비밀번호 찾기");
+                    resetButton.setBounds(262, 267, 137, 29);
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         FindPassword fp = new FindPassword();
@@ -127,115 +118,49 @@ public class LoginFrm extends JFrame {
                     });
                     resetButton.setIcon(null);
                     resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 14));
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(gl_contentPane
-                                        .createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane
-                                                            .createSequentialGroup()
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addGap(156)
-                                                                                                    .addComponent(label))
-                                                                                .addGroup(gl_contentPane
-                                                                                                    .createSequentialGroup()
-                                                                                                    .addContainerGap(121,
-                                                                                                                        Short.MAX_VALUE)
-                                                                                                    .addGroup(gl_contentPane
-                                                                                                                        .createParallelGroup(
-                                                                                                                                            Alignment.LEADING)
-                                                                                                                        .addComponent(loginButton,
-                                                                                                                                            GroupLayout.PREFERRED_SIZE,
-                                                                                                                                            111,
-                                                                                                                                            GroupLayout.PREFERRED_SIZE)
-                                                                                                                        .addComponent(userTypeLabel)
-                                                                                                                        .addComponent(passwordLabel)
-                                                                                                                        .addComponent(userNameLabel_1))
-                                                                                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                    .addGroup(gl_contentPane
-                                                                                                                        .createParallelGroup(
-                                                                                                                                            Alignment.TRAILING)
-                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                            .createParallelGroup(
-                                                                                                                                                                Alignment.LEADING)
-                                                                                                                                            .addGroup(gl_contentPane
-                                                                                                                                                                .createParallelGroup(
-                                                                                                                                                                                    Alignment.TRAILING,
-                                                                                                                                                                                    false)
-                                                                                                                                                                .addComponent(passwordTextField)
-                                                                                                                                                                .addComponent(userNameTextField,
-                                                                                                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                                                                                                    155,
-                                                                                                                                                                                    Short.MAX_VALUE))
-                                                                                                                                            .addComponent(userTypeComboBox,
-                                                                                                                                                                0,
-                                                                                                                                                                155,
-                                                                                                                                                                Short.MAX_VALUE))
-                                                                                                                        .addGroup(gl_contentPane
-                                                                                                                                            .createSequentialGroup()
-                                                                                                                                            .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                                                            .addComponent(resetButton)))))
-                                                            .addGap(135)));
-                    gl_contentPane.setVerticalGroup(gl_contentPane
-                                        .createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane
-                                                            .createSequentialGroup()
-                                                            .addGap(46)
-                                                            .addComponent(label)
-                                                            .addGap(55)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(userNameTextField,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(userNameLabel_1))
-                                                            .addGap(18)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(passwordTextField,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(passwordLabel))
-                                                            .addGap(18)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(userTypeLabel)
-                                                                                .addComponent(userTypeComboBox,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    GroupLayout.DEFAULT_SIZE,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addPreferredGap(ComponentPlacement.RELATED,
-                                                                                27,
-                                                                                Short.MAX_VALUE)
-                                                            .addGroup(gl_contentPane
-                                                                                .createParallelGroup(
-                                                                                                    Alignment.BASELINE)
-                                                                                .addComponent(resetButton,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    29,
-                                                                                                    GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(loginButton,
-                                                                                                    GroupLayout.PREFERRED_SIZE,
-                                                                                                    29,
-                                                                                                    GroupLayout.PREFERRED_SIZE))
-                                                            .addGap(31)));
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(label);
+                    contentPane.add(loginButton);
+                    contentPane.add(passwordLabel);
+                    contentPane.add(userNameLabel_1);
+                    contentPane.add(passwordTextField);
+                    contentPane.add(userNameTextField);
+                    contentPane.add(resetButton);
+                    
+                    studentRadioButton = new JRadioButton(UserType.STUDENT.getName());
+                    studentRadioButton.setSelected(true);
+                    studentRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
+                    studentRadioButton.setBounds(144, 216, 57, 23);
+                    contentPane.add(studentRadioButton);
+                    
+                    proRadioButton = new JRadioButton(UserType.TEACHER.getName());
+                    proRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
+                    proRadioButton.setBounds(222, 216, 83, 23);
+                    contentPane.add(proRadioButton);
+                    
+                    adminButton = new JRadioButton(UserType.ADMIN.getName());
+                    adminButton.setFont(new Font("Dialog", Font.BOLD, 13));
+                    adminButton.setBounds(321, 216, 77, 23);
+                    contentPane.add(adminButton);
+                    bgroup=new ButtonGroup();
+                    bgroup.add(studentRadioButton);
+                    bgroup.add(proRadioButton);
+                    bgroup.add(adminButton);
           }
 
           protected void loginAction(ActionEvent ae) {
-                    // TODO Auto-generated method stub
                     String userName = userNameTextField.getText().toString();
                     String password = passwordTextField.getText().toString();
-                    UserType selectedItem = (UserType) userTypeComboBox
-                                        .getSelectedItem();
-                    // 判断用户输入的字符串是否为空
+                    UserType selectedItem;
+                    String selectedName = studentRadioButton.isSelected() ? studentRadioButton.getText() : 
+                              (proRadioButton.isSelected()? proRadioButton.getText():adminButton.getText());
+                    if(studentRadioButton.isSelected()){
+                              selectedItem=UserType.STUDENT;
+                    }else if(proRadioButton.isSelected()){
+                              selectedItem=UserType.TEACHER;
+                    }else{
+                              selectedItem=UserType.ADMIN;
+                    }
                     if (StringUtil.isEmpty(userName)) {
                               JOptionPane.showMessageDialog(this,
                                                   "사용자 이름을 입력해주세요！");
@@ -247,8 +172,7 @@ public class LoginFrm extends JFrame {
                               return;
                     }
                     Admin admin = null;
-                    if ("관리자".equals(selectedItem.getName())) {
-                              // 系统管理员登陆
+                    if ("관리자".equals(selectedName)) {
                               AdminDao adminDao = new AdminDao();
                               Admin adminTmp = new Admin();
                               adminTmp.setName(userName);
@@ -266,8 +190,7 @@ public class LoginFrm extends JFrame {
                                                   + " , 환영합니다 !");
                               this.dispose();
                               new MainFrm(selectedItem, admin).setVisible(true);
-                    } else if ("교직원".equals(selectedItem.getName())) {
-                              // 教师登陆
+                    } else if ("교직원".equals(selectedName)) {
                     			ProStaff ps=null;
                     			ProStaffDao psDao=new ProStaffDao();
                     			ProStaff psTmp=new ProStaff();
@@ -287,7 +210,6 @@ public class LoginFrm extends JFrame {
                         		new MainFrm(selectedItem, ps).setVisible(true);
                     			
                     } else {
-                              // 学生登陆
                     		Student student=null;
                     		StudentDao sDao=new StudentDao();
                     		Student stemp=new Student();
@@ -308,11 +230,4 @@ public class LoginFrm extends JFrame {
                     		
                     }
           }
-
-          // protected void resetValue(ActionEvent ae) {
-          // // TODO Auto-generated method stub
-          // userNameTextField.setText("");
-          // passwordTextField.setText("");
-          // userTypeComboBox.setSelectedIndex(0);
-          // }
 }

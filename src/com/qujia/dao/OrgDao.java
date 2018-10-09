@@ -112,9 +112,16 @@ public class OrgDao extends BaseDao {
          //학부,학과,전공 list
          public List<Org> getOrgdeptNameList(Org org){
                    List<Org> retList=new ArrayList<Org>();
-                   String sqlString ="select * from org where gs_dpt_maj_code is not null or co_gr_code='대학원'";
+                   StringBuffer sqlString=new StringBuffer("select * from org where (gs_dpt_maj_code is not null or co_gr_code='대학원') ");
+                   if(!StringUtil.isEmpty(org.getName())){
+                             sqlString.append(" and name like '%"+org.getName()+"%'");
+                   }
+                   if(!StringUtil.isEmpty(org.getGsDepMajCode())){
+                             sqlString.append(" and gs_dpt_maj_code = '"+org.getGsDepMajCode()+"'");
+                   }
                    try {
-                             PreparedStatement prst=con.prepareStatement(sqlString);
+//                             PreparedStatement prst=con.prepareStatement(sqlString);
+                             PreparedStatement prst=con.prepareStatement(sqlString.toString());
                              ResultSet executeQuery = prst.executeQuery();
                              while(executeQuery.next()){
                                        Org o=new Org();
@@ -185,5 +192,29 @@ public class OrgDao extends BaseDao {
                            e.printStackTrace();
                  }
                    return false;
+         }
+         public Org getSearchDept(Org org){
+
+                   String sql = "select * from org where org_code= ?";
+                   Org orgRst=null;
+                  ResultSet rs=null;
+                   try {
+                             //把sql语句传给数据库操作对象
+                             PreparedStatement prst = con.prepareStatement(sql);
+                             prst.setString(1, org.getOrgCode());
+                             rs = prst.executeQuery();;
+                             while(rs.next()){
+                                       orgRst = new Org();
+                                       orgRst.setName(rs.getString("name"));
+                                       orgRst.setOrgCode(rs.getString("org_code"));
+                                       orgRst.setCoGrCode(rs.getString("co_gr_code"));
+                            }
+                   } catch (SQLException e) {
+                             // TODO Auto-generated catch block
+                             e.printStackTrace();
+                   }
+                   this.closeDao();
+                   return orgRst;
+                  
          }
 }

@@ -28,7 +28,7 @@ import com.qujia.util.ViewUtil;
 public class CourseApplicationStudentFrm extends JFrame {
     private JPanel panel_one;
     private JPanel panel_one_button;
-    private CardLayout card = null; // CardLayout布局管理器
+    private CardLayout card = null; // CardLayout
     private CardLayout card_2=null;
     
     private JButton b_1 = null, b_2 = null, b_3 = null; // 三个可直接翻转到JPanel组件的按钮

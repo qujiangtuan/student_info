@@ -120,6 +120,11 @@ public class AddSubjectFrm extends JFrame {
                                         14));
 
                     cancelButton = new JButton("\uCDE8  \uC18C");
+                    cancelButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
                     cancelButton.setBackground(new Color(224, 255, 255));
                     cancelButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));

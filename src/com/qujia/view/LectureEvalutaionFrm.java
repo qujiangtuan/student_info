@@ -1,7 +1,4 @@
 package com.qujia.view;
-import com.qujia.test3.*;
-import com.qujia.util.ViewUtil;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -28,6 +25,7 @@ import javax.swing.table.TableColumn;
 
 import com.qujia.test1.MyRadioCellEditor;
 import com.qujia.test1.MyRadioCellRenderer;
+import com.qujia.util.ViewUtil;
 
 public class LectureEvalutaionFrm extends JFrame {
 
@@ -103,7 +101,7 @@ public class LectureEvalutaionFrm extends JFrame {
                     
                     JLabel lblNewLabel_4 = new JLabel("");
 //                    [매우그렇다]:(5) [대체로 그렇다]:(4) [그저 그렇다]:(3) [대체로 아니다]:(2) [전혀 아니다]:(1)
-                    JButton btnNewButton = new JButton("\uD655\uC778");
+                    JButton btnNewButton = new JButton("확 인");
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                             	  Integer index;
@@ -133,68 +131,77 @@ public class LectureEvalutaionFrm extends JFrame {
                     JLabel lblNewLabel_5 = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4");
                     
                     JLabel lblNewLabel_6 = new JLabel("\uAE40\uBBF8\uC601");
+                    
+                    JButton button = new JButton("취 소");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBackground(new Color(250, 240, 230));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    					.addGroup(gl_contentPane.createSequentialGroup()
-                    						.addGap(19)
-                    						.addComponent(lblNewLabel)
-                    						.addPreferredGap(ComponentPlacement.RELATED)
-                    						.addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                    						.addGap(18)
-                    						.addComponent(lblNewLabel_1)
-                    						.addPreferredGap(ComponentPlacement.UNRELATED)
-                    						.addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
-                    					.addGroup(gl_contentPane.createSequentialGroup()
-                    						.addContainerGap()
-                    						.addComponent(lblNewLabel_2)
-                    						.addPreferredGap(ComponentPlacement.UNRELATED)
-                    						.addComponent(lblNewLabel_4))
-                    					.addGroup(gl_contentPane.createSequentialGroup()
-                    						.addContainerGap()
-                    						.addComponent(lblNewLabel_3)
-                    						.addPreferredGap(ComponentPlacement.RELATED)
-                    						.addComponent(label)))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addContainerGap()
-                    					.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 672, Short.MAX_VALUE)))
-                    			.addContainerGap())
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addContainerGap(587, Short.MAX_VALUE)
-                    			.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(29))
-                    		.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                    			.addContainerGap()
-                    			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
-                    			.addContainerGap())
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addGap(19)
+                                                                      .addComponent(lblNewLabel)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(18)
+                                                                      .addComponent(lblNewLabel_1)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(lblNewLabel_6, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(lblNewLabel_2)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(lblNewLabel_4))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(lblNewLabel_3)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(label))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(scrollPane_1))
+                                                            .addGroup(gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap()
+                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE))
+                                                            .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+                                                                      .addContainerGap(533, Short.MAX_VALUE)
+                                                                      .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(49)
+                                                                      .addComponent(button, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)))
+                                                  .addContainerGap())
                     );
                     gl_contentPane.setVerticalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGap(10)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel)
-                    				.addComponent(lblNewLabel_1)
-                    				.addComponent(lblNewLabel_5)
-                    				.addComponent(lblNewLabel_6))
-                    			.addGap(14)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel_2)
-                    				.addComponent(lblNewLabel_4))
-                    			.addPreferredGap(ComponentPlacement.RELATED)
-                    			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-                    			.addPreferredGap(ComponentPlacement.UNRELATED)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel_3)
-                    				.addComponent(label))
-                    			.addGap(18)
-                    			.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(18)
-                    			.addComponent(btnNewButton)
-                    			.addContainerGap(35, Short.MAX_VALUE))
+                              gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                        .addGroup(gl_contentPane.createSequentialGroup()
+                                                  .addGap(10)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(lblNewLabel)
+                                                            .addComponent(lblNewLabel_1)
+                                                            .addComponent(lblNewLabel_5)
+                                                            .addComponent(lblNewLabel_6))
+                                                  .addGap(14)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(lblNewLabel_2)
+                                                            .addComponent(lblNewLabel_4))
+                                                  .addPreferredGap(ComponentPlacement.RELATED)
+                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
+                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(lblNewLabel_3)
+                                                            .addComponent(label))
+                                                  .addGap(18)
+                                                  .addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(18)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(btnNewButton)
+                                                            .addComponent(button))
+                                                  .addContainerGap(40, Short.MAX_VALUE))
                     );
                     
                     JTextArea textArea = new JTextArea();

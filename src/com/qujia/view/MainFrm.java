@@ -37,17 +37,14 @@ public class MainFrm extends JFrame {
           private JLabel loginUserLabel;
           private JPanel panel_menu;
           private JButton loginButton;
-          /**
-           * Launch the application.
-           */
           
-
-
-
-
-          /**
-           * Create the frame.
-           */
+         
+          public JDesktopPane getDesktopPane_sys() {
+                    return desktopPane_sys;
+          }
+          public void setDesktopPane_sys(JDesktopPane desktopPane_sys) {
+                    this.desktopPane_sys = desktopPane_sys;
+          }
           public MainFrm(UserType userType,Object userObject) {
                     this.userType=userType;
                     this.userObject=userObject;
@@ -65,7 +62,7 @@ public class MainFrm extends JFrame {
                     settingMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/systemsetting.png")));
                     menuBar.add(settingMenu);
                     
-                    JMenuItem editPasswordMenuItem = new JMenuItem("안호변경");
+                    JMenuItem editPasswordMenuItem = new JMenuItem("비밀번호변경");
                     editPasswordMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     editPasswordMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
@@ -629,7 +626,7 @@ public class MainFrm extends JFrame {
                     AddStudentFrm asf=new AddStudentFrm();
                     layeredPane.setLayer(asf, 200);
                     asf.setVisible(true);
-                    desktopPane_sys.add(asf);
+//                    desktopPane_sys.add(asf);
                     
           }
           //update password

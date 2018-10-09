@@ -15,41 +15,65 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.eltima.components.ui.DatePicker;
-import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
-import com.qujia.model.Org;
 import com.qujia.model.Student;
 import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
+import com.qujia.util.ViewUtil;
 
-public class AddStudentFrm extends JInternalFrame {
+public class AddStudentFrm extends JFrame {
           private JTextField studentNameTextField;
           private JRadioButton studentSexManRadioButton;
           private JRadioButton studentSexFemalRadioButton;
           private ButtonGroup sexButtonGroup;
-          private JComboBox orgComboBox;
           private JTextField identityTextField_1;
           private JTextField identityTextField_2;
           private JLabel emailLabel;
           private JTextField emailTextField;
-          private DatePicker datePicker;
           private JLabel lblNewLabel;
-          private JTextField textField_tel;
-          private JTextField textField_address;
+          private JTextField textField_tel2;
+          private JTextField textField_address1;
           private JLabel label;
+          private JTextField textField_deptName;
+          private JButton btnNewButton;
+          private static String deptNameFine;
+          private JLabel lblNewLabel_2;
+          private JComboBox comboBox_degree;
+          private JComboBox email2comboBox;
+          private JLabel label_ait;
+          private JComboBox comboBox_tel1;
+          private JTextField textField_tel3;
+          private JLabel label_1;
+          private JLabel label_2;
+          private JButton btnNewButton_1;
+          private JTextField textField_address2;
+          
+          
+          public static String getDeptNameFine(String str) {
+                    return deptNameFine=str;
+          }
+
+          public static void setDeptNameFine(String deptNameFine) {
+                    AddStudentFrm.deptNameFine = deptNameFine;
+          }
+
+          public JTextField getTextField_deptName() {
+                    return textField_deptName;
+          }
+
+          public void setTextField_deptName(JTextField textField_deptName) {
+                    this.textField_deptName = textField_deptName;
+          }
 
           /**
            * Launch the application.
@@ -72,35 +96,39 @@ public class AddStudentFrm extends JInternalFrame {
            */
           public AddStudentFrm() {
                     getContentPane().setFont(new Font("휴먼고딕", Font.BOLD, 13));
-                   
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setTitle("학생등록");
-                    setBounds(100, 50, 502, 462);
-                    setClosable(true);
-                    setIconifiable(true);
-
-                    // this.add
+                    setBounds(100, 50, 502, 496);
+//                    setClosable(true);
+//                    setIconifiable(true);
+                    
+                    ViewUtil vu=new ViewUtil();
+                    vu.showCenter(this);
 
                     JLabel studentNameLabel = new JLabel("학생이름:");
+                    studentNameLabel.setBounds(71, 36, 60, 19);
                     studentNameLabel.setIcon(null);
                     studentNameLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
                     studentNameTextField = new JTextField();
+                    studentNameTextField.setBounds(141, 36, 235, 21);
                     studentNameTextField.setColumns(10);
 
                     JLabel studentClassLabel = new JLabel("소속조직:");
+                    studentClassLabel.setBounds(71, 76, 60, 19);
                     studentClassLabel.setIcon(null);
                     studentClassLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
-                    orgComboBox = new JComboBox();
-
                     JLabel studentSexLabel = new JLabel(" 성    별 :");
+                    studentSexLabel.setBounds(75, 117, 56, 19);
                     studentSexLabel.setIcon(null);
                     studentSexLabel.setFont(new Font("NanumMyeongjo",
                                         Font.BOLD, 13));
 
                     JButton submitButton = new JButton("등   록");
+                    submitButton.setBounds(144, 389, 88, 27);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         studentAddAction(ae);
@@ -111,22 +139,26 @@ public class AddStudentFrm extends JInternalFrame {
                                         13));
 
                     studentSexManRadioButton = new JRadioButton("남");
+                    studentSexManRadioButton.setBounds(141, 116, 91, 23);
                     studentSexManRadioButton.setSelected(true);
 
                     studentSexFemalRadioButton = new JRadioButton("여");
+                    studentSexFemalRadioButton.setBounds(257, 115, 81, 23);
 
                     sexButtonGroup = new ButtonGroup();
                     sexButtonGroup.add(studentSexManRadioButton);
                     sexButtonGroup.add(studentSexFemalRadioButton);
                     JButton cancelButton = new JButton("취  소");
+                    cancelButton.setBounds(295, 389, 81, 27);
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
 //                                        resetValue(ae);
-                                        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//                                        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-                                        AddStudentFrm asf=new AddStudentFrm();
+//                                        AddStudentFrm asf=new AddStudentFrm();
 //                                        asf.dispatchEvent(new WindowEvent(asf,WindowEvent.WINDOW_CLOSING) );
-                                        asf.dispose();
+//                                        asf.dispose();
+                                        dispose();
 //                                        try {
 //                                                  asf.setClosed(true);
 //                                        } catch (PropertyVetoException e) {
@@ -139,10 +171,12 @@ public class AddStudentFrm extends JInternalFrame {
                     cancelButton.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JLabel identityLabel = new JLabel("주민등록번호:");
+                    identityLabel.setBounds(44, 157, 88, 19);
                     identityLabel.setIcon(null);
                     identityLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
 
                     identityTextField_1 = new JTextField();
+                    identityTextField_1.setBounds(142, 156, 110, 21);
                     identityTextField_1.addKeyListener(new KeyAdapter() {
                               @Override
                               public void keyTyped(KeyEvent ke) {
@@ -175,6 +209,7 @@ public class AddStudentFrm extends JInternalFrame {
                     identityTextField_1.setColumns(10);
 
                     identityTextField_2 = new JTextField();
+                    identityTextField_2.setBounds(266, 156, 110, 21);
                     identityTextField_2.addKeyListener(new KeyAdapter() {
                               @Override
                               public void keyTyped(KeyEvent ke) {
@@ -206,121 +241,187 @@ public class AddStudentFrm extends JInternalFrame {
                     });
                     identityTextField_2.setColumns(10);
 
-                    JLabel joinDateLabel = new JLabel("입학일자:");
-                    joinDateLabel.setIcon(null);
-                    joinDateLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
-
                     emailLabel = new JLabel("이메일:");
+                    emailLabel.setBounds(85, 238, 46, 19);
                     emailLabel.setIcon(null);
                     emailLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     emailTextField = new JTextField();
+                    emailTextField.setBounds(141, 238, 110, 21);
                     emailTextField.setColumns(10);
-
-                    datePicker = new DatePicker();
                     //注释下列一行才能打开 界面编辑
                     //datePicker = getDatePicker();
                     lblNewLabel = new JLabel("전화번호:");
+                    lblNewLabel.setBounds(70, 279, 61, 16);
                     lblNewLabel.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
-                    textField_tel = new JTextField();
-                    textField_tel.setColumns(10);
+                    textField_tel2 = new JTextField();
+                    textField_tel2.addKeyListener(new KeyAdapter() {
+                              @Override
+                              public void keyTyped(KeyEvent ke) {
+                                        int keyChar = ke.getKeyChar();
+                                        if (keyChar >= KeyEvent.VK_0
+                                                            && keyChar <= KeyEvent.VK_9
+                                                            || keyChar == KeyEvent.VK_BACK_SPACE
+                                                            || keyChar == KeyEvent.VK_DELETE) {
+
+                                        } else {
+                                                  ke.consume();
+                                                  JOptionPane.showMessageDialog(
+                                                                      null,
+                                                                      "숫자 입력해주세요!");
+                                                  return;
+                                        }
+                                        int len = textField_tel2.getText()
+                                                            .length();
+                                        if (len > 3) {
+                                                  ke.consume();
+                                                  // JOptionPane.showMessageDialog(null,
+                                                  // "6짜리 초과하면 안 됩니다!");
+                                                  KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                                                                      .focusNextComponent();
+                                                  return;
+                                        }
+                              }
+                    });
+                    textField_tel2.setBounds(222, 276, 56, 21);
+                    textField_tel2.setColumns(10);
 
                     JLabel lblNewLabel_1 = new JLabel("집주소:");
+                    lblNewLabel_1.setBounds(84, 318, 47, 16);
                     lblNewLabel_1.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
-                    textField_address = new JTextField();
-                    textField_address.setColumns(10);
+                    textField_address1 = new JTextField();
+                    textField_address1.setBounds(141, 316, 235, 21);
+                    textField_address1.setColumns(10);
                     
                     label = new JLabel("-");
+                    label.setBounds(254, 159, 13, 15);
+                    
+                    textField_deptName = new JTextField();
+                    textField_deptName.setBounds(141, 76, 235, 21);
+                    textField_deptName.setColumns(10);
+                    btnNewButton = new JButton("조회");
+                    btnNewButton.setBounds(386, 74, 62, 23);
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchDeptFrm sdf=new SearchDeptFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_deptName.setText(addSearch());
+                              }
+                    });
+                    
+                    lblNewLabel_2 = new JLabel("학사과정:");
+                    lblNewLabel_2.setBounds(71, 197, 60, 19);
+                    lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 13));
+                    
+                    comboBox_degree = new JComboBox();
+                    comboBox_degree.setBounds(141, 195, 235, 25);
+                    comboBox_degree.setFont(new Font("Dialog", Font.BOLD, 13));
+                    comboBox_degree.setModel(new DefaultComboBoxModel(new String[] {"학사과정", "석사과정", "박사과정"}));
+                    
+                    email2comboBox = new JComboBox();
+                    email2comboBox.setBounds(272, 238, 104, 21);
+                    email2comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "naver.com", "google.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
+                    email2comboBox.setEditable(true);
+                    
+                    label_ait = new JLabel("@");
+                    label_ait.setBounds(254, 239, 13, 19);
+                    label_ait.setFont(new Font("Dialog", Font.BOLD, 13));
+                    getContentPane().setLayout(null);
+                    getContentPane().add(email2comboBox);
+                    getContentPane().add(label_ait);
+                    getContentPane().add(submitButton);
+                    getContentPane().add(cancelButton);
+                    getContentPane().add(identityLabel);
+                    getContentPane().add(studentSexLabel);
+                    getContentPane().add(studentClassLabel);
+                    getContentPane().add(studentNameLabel);
+                    getContentPane().add(emailLabel);
+                    getContentPane().add(lblNewLabel_1);
+                    getContentPane().add(lblNewLabel);
+                    getContentPane().add(lblNewLabel_2);
+                    getContentPane().add(textField_address1);
+                    getContentPane().add(textField_tel2);
+                    getContentPane().add(comboBox_degree);
+                    getContentPane().add(studentNameTextField);
+                    getContentPane().add(textField_deptName);
+                    getContentPane().add(btnNewButton);
+                    getContentPane().add(emailTextField);
+                    getContentPane().add(identityTextField_1);
+                    getContentPane().add(label);
+                    getContentPane().add(studentSexManRadioButton);
+                    getContentPane().add(studentSexFemalRadioButton);
+                    getContentPane().add(identityTextField_2);
+                    
+                    comboBox_tel1 = new JComboBox();
+                    comboBox_tel1.setModel(new DefaultComboBoxModel(new String[] {"010", "02", "032", "062", "051", "053", "042", "052", "031", "033", "043", "041", "063", "061", "054", "055", "064"}));
+                    comboBox_tel1.setBounds(141, 276, 67, 21);
+                    getContentPane().add(comboBox_tel1);
+                    
+                    textField_tel3 = new JTextField();
+                    textField_tel3.addKeyListener(new KeyAdapter() {
+                              @Override
+                              public void keyTyped(KeyEvent ke) {
+                                        int keyChar = ke.getKeyChar();
+                                        if (keyChar >= KeyEvent.VK_0
+                                                            && keyChar <= KeyEvent.VK_9
+                                                            || keyChar == KeyEvent.VK_BACK_SPACE
+                                                            || keyChar == KeyEvent.VK_DELETE) {
 
-                    GroupLayout groupLayout = new GroupLayout(getContentPane());
-                    groupLayout.setHorizontalGroup(
-                    	groupLayout.createParallelGroup(Alignment.TRAILING)
-                    		.addGroup(groupLayout.createSequentialGroup()
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addGap(121)
-                    					.addComponent(submitButton)
-                    					.addPreferredGap(ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                    					.addComponent(cancelButton))
-                    				.addGroup(groupLayout.createSequentialGroup()
-                    					.addGap(65)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-                    						.addComponent(identityLabel)
-                    						.addComponent(studentSexLabel)
-                    						.addComponent(joinDateLabel)
-                    						.addComponent(studentClassLabel)
-                    						.addComponent(studentNameLabel)
-                    						.addComponent(emailLabel)
-                    						.addComponent(lblNewLabel)
-                    						.addComponent(lblNewLabel_1))
-                    					.addGap(18)
-                    					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(textField_address, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    						.addGroup(groupLayout.createSequentialGroup()
-                    							.addComponent(studentSexManRadioButton)
-                    							.addGap(18)
-                    							.addComponent(studentSexFemalRadioButton))
-                    						.addGroup(groupLayout.createSequentialGroup()
-                    							.addComponent(identityTextField_1, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(7)
-                    							.addComponent(label, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(5)
-                    							.addComponent(identityTextField_2, GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                    						.addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    						.addComponent(datePicker, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    						.addComponent(textField_tel, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    						.addComponent(studentNameTextField, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                    						.addComponent(orgComboBox, 0, 240, Short.MAX_VALUE))))
-                    			.addGap(58))
-                    );
-                    groupLayout.setVerticalGroup(
-                    	groupLayout.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(groupLayout.createSequentialGroup()
-                    			.addGap(36)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(studentNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(studentNameLabel))
-                    			.addGap(18)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(orgComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(studentClassLabel))
-                    			.addGap(18)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(studentSexManRadioButton)
-                    				.addComponent(studentSexFemalRadioButton)
-                    				.addComponent(studentSexLabel))
-                    			.addGap(17)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(identityLabel)
-                    				.addComponent(identityTextField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(identityTextField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(label))
-                    			.addGap(18)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                    				.addComponent(joinDateLabel)
-                    				.addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    			.addGap(13)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(emailLabel))
-                    			.addGap(18)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel)
-                    				.addComponent(textField_tel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    			.addGap(18)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel_1)
-                    				.addComponent(textField_address, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    			.addGap(52)
-                    			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(submitButton, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(cancelButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    			.addGap(38))
-                    );
-                    getContentPane().setLayout(groupLayout);
-                    setDeptName();
+                                        } else {
+                                                  ke.consume();
+                                                  JOptionPane.showMessageDialog(
+                                                                      null,
+                                                                      "숫자 입력해주세요!");
+                                                  ke.consume();
+                                                  return;
+                                        }
+                                        int len = textField_tel3.getText()
+                                                            .length();
+                                        if (len > 3) {
+                                                  ke.consume();
+                                                  JOptionPane.showMessageDialog(
+                                                                      null,
+                                                                      "4짜리 초과하면 안 됩니다!");
+                                                  ke.consume();
+                                                  return;
+                                        }
+                              }
+                    });
+                    textField_tel3.setColumns(10);
+                    textField_tel3.setBounds(288, 276, 88, 21);
+                    getContentPane().add(textField_tel3);
+                    
+                    label_1 = new JLabel("-");
+                    label_1.setBounds(211, 279, 8, 15);
+                    getContentPane().add(label_1);
+                    
+                    label_2 = new JLabel("-");
+                    label_2.setBounds(279, 279, 8, 15);
+                    getContentPane().add(label_2);
+                    
+                    btnNewButton_1 = new JButton("조회");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchAddressFrm saf=new SearchAddressFrm(new JFrame());
+                                        saf.setVisible(true);
+                                        textField_address1.setText(addSearchAddress());
+                              }
+                    });
+                    btnNewButton_1.setBounds(386, 314, 62, 23);
+                    getContentPane().add(btnNewButton_1);
+                    
+                    textField_address2 = new JTextField();
+                    textField_address2.setBounds(141, 347, 235, 21);
+                    getContentPane().add(textField_address2);
+                    textField_address2.setColumns(10);
+//                    setDeptName();
+          }
+
+          protected String addSearchAddress() {
+//                    SearchAddressFrm saf=new SearchAddressFrm(new JFrame());
+                    return SearchAddressFrm.getSearchAddr();
           }
 
           // 添加学生，确认提交
@@ -340,21 +441,28 @@ public class AddStudentFrm extends JInternalFrame {
                                         .toString();
                     String idCardNo = idCardNo_1 + "-" + idCardNo_2;
 
-                    String joinDate = getStringDate(datePicker);
+                    String joinDate = DateUtil.getTodayDate();
+                    //이메일
+                    String email1=emailTextField.getText().toString();
+                    String label=label_ait.getText().toString();
+                    String email2 = email2comboBox.getSelectedItem().toString();
+                    String email=email1+label+email2;
                     
-                    // System.out.println(joinDate);
-                    String email = emailTextField.getText().toString();
+                    String orgid=SearchDeptFrm.getOrdId();//조직코드
+//                    System.out.println("orgid="+orgid);
+//                    Org org1,org2;
+//                    org1=new Org();
+//                    org1.setOrgCode(orgid);
+//                    OrgDao orgDao=new OrgDao();
+//                    org2=orgDao.getSearchDept(org1);
+//                    String col=org2.getCoGrCode();
+//                    System.out.println("col="+col);
                     
                     String degreeProcess;//학사과정
-                   Org org=(Org)orgComboBox.getSelectedItem();
-                    String orgid=org.getOrgCode();
-                    String col=org.getCoGrCode();
-                    if("대학".equals(col)){
-                              degreeProcess="학사과정";
-                    }else{
-                              degreeProcess="석사과정";
-                    }
+                    degreeProcess = comboBox_degree.getSelectedItem().toString();
+                    
                     String inSchYear=getSchYear(joinDate);//학년
+                    
                     String sNo;//학번종복학인
                     sNo = getStudentNumber(joinDate,orgid);
                     while(this.isRepeat(sNo)){
@@ -365,18 +473,20 @@ public class AddStudentFrm extends JInternalFrame {
                                         .getText() : studentSexFemalRadioButton
                                         .getText();
                     String passWord = identityTextField_1.getText().toString();
-                    String tel=textField_tel.getText().toString();
-                    String address=textField_address.getText().toString();
-//                    if(StringUtil.isEmpty(studentName)
-//                                        &&StringUtil.isEmpty(idCardNo)
-//                                        &&StringUtil.isEmpty(joinDate)
-//                                        &&StringUtil.isEmpty(email)
-//                                        &&StringUtil.isEmpty(tel)
-//                                        &&StringUtil.isEmpty(address)){
-//                              JOptionPane.showMessageDialog(this,
-//                                                  "데이터를 입력하십시오！");
-//                              return;
-//                    }
+                    //전화번호
+                    String tel1=comboBox_tel1.getSelectedItem().toString();
+                    String tel2=textField_tel2.getText().toString();
+                    String tel3=textField_tel3.getText().toString();
+                    String tel=tel1+tel2+tel3;
+                    //주소
+                    String address1=textField_address1.getText().toString();
+                    String address2;
+                    try {
+                              address2=textField_address2.getText().toString();
+                    } catch (Exception e) {
+                              address2="";
+                    }
+                    String address=address1+address2;
                     if (StringUtil.isEmpty(idCardNo_1)||StringUtil.isEmpty(idCardNo_2)) {
                               JOptionPane.showMessageDialog(this,
                                                   "주민등록번호를 입력하십시오！");
@@ -388,17 +498,17 @@ public class AddStudentFrm extends JInternalFrame {
                                                   "입학일짜을 입력하십시오！");
                               return;
                     }
-                    if (StringUtil.isEmpty(email)) {
+                    if (StringUtil.isEmpty(email1)||StringUtil.isEmpty(email2)) {
                               JOptionPane.showMessageDialog(this,
                                                   "이메일을 입력하십시오！");
                               return;
                     }
-                    if (StringUtil.isEmpty(tel)) {
+                    if (StringUtil.isEmpty(tel1)||StringUtil.isEmpty(tel1)) {
                               JOptionPane.showMessageDialog(this,
                                                   "전화번호를 입력하십시오！");
                               return;
                     }
-                    if (StringUtil.isEmpty(address)) {
+                    if (StringUtil.isEmpty(address1)) {
                               JOptionPane.showMessageDialog(this,
                                                   "주소를 입력하십시오！");
                               return;
@@ -420,10 +530,10 @@ public class AddStudentFrm extends JInternalFrame {
                     StudentDao studentDao = new StudentDao();
                     if (studentDao.addStudent(student)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "학생이 등록 성공! ");
+                                                  "학생이 등록 성공했습니다! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "학생이 등록 실패！");
+                                                  "학생이 등록 실패했습니다！");
                     }
                     resetValue(ae);
                     studentDao.closeDao();
@@ -491,32 +601,33 @@ public class AddStudentFrm extends JInternalFrame {
                     }
                     return threeNumber;
           }
-          //학과 받기
-          protected void setDeptName() {
-                    // TODO Auto-generated method stub
-                    OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-                    for (Org org: orgList) {
-                              orgComboBox.addItem(org);
-                    }
-                    orgDao.closeDao();
-          }
+//          //학과 받기
+//          protected void setDeptName() {
+//                    // TODO Auto-generated method stub
+//                    OrgDao orgDao=new OrgDao();
+//                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
+//                    for (Org org: orgList) {
+//                              orgComboBox.addItem(org);
+//                    }
+//                    orgDao.closeDao();
+//          }
 
           // 添加学生的重置按钮事件
           protected void resetValue(ActionEvent ae) {
-                    // TODO Auto-generated method stub
                     studentNameTextField.setText("");
-                    // studentPasswordField.setText("");
-                    orgComboBox.setSelectedIndex(0);
                     sexButtonGroup.clearSelection();
                     studentSexManRadioButton.setSelected(true);
                     identityTextField_1.setText("");
                     identityTextField_2.setText("");
-                    // datePicker=getDatePicker();
                     emailTextField.setText("");
-                    textField_tel.setText("");
-                    textField_address.setText("");
-
+                    comboBox_tel1.setSelectedIndex(0);
+                    textField_tel2.setText("");
+                    textField_tel3.setText("");
+                    textField_address1.setText("");
+                    textField_deptName.setText("");
+                    email2comboBox.setSelectedIndex(0);
+                    textField_address2.setText("");
+                    
           }
 
           // 数据库中获取日期
@@ -549,5 +660,11 @@ public class AddStudentFrm extends JInternalFrame {
                                         dimension);
                     datepick.setTimePanleVisible(true);
                     return datepick;
+          }
+          
+          public String addSearch(){
+                     
+//                    return AddStudentFrm.deptNameFine;
+                    return SearchDeptFrm.getDeptName();
           }
 }

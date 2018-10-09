@@ -29,6 +29,7 @@ public class AddAppendMajorOrgFrm extends JFrame {
           private JComboBox comboBox_base,comboBox_allow;
           private JSpinner spinner_start,spinner_end;
           private JComboBox comboBox_allowType,comboBox_rangetype;
+          private JButton btnNewButton;
           
           /**
            * Launch the application.
@@ -119,6 +120,15 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     contentPane.add(lblNewLabel_3);
                     contentPane.add(spinner_end);
                     contentPane.add(comboBox_rangetype);
+                    
+                    btnNewButton = new JButton("취 소");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    btnNewButton.setBounds(362, 226, 63, 23);
+                    contentPane.add(btnNewButton);
                     
                     
                     setDeptName();

@@ -94,7 +94,8 @@ public class EditPasswordFrm extends JInternalFrame {
                     JButton resetButton = new JButton("최 소");
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
-                                        resetValue(ae);
+                                        dispose();
+//                                        resetValue(ae);
                               }
                     });
                     resetButton.setIcon(null);

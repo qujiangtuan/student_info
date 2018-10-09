@@ -1,6 +1,8 @@
 package com.qujia.view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -111,6 +113,11 @@ public class GradeCheckFrm extends JFrame {
                     JLabel lblB = new JLabel("B+");
                     
                     JButton btnNewButton = new JButton("\uD655\uC778");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)

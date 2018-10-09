@@ -129,6 +129,11 @@ public class AddYearStandFrm extends JFrame {
 		submitButton.setBounds(180, 410, 69, 23);
 		
 		JButton cancleButton = new JButton("\uCD5C  \uC18C");
+		cancleButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    dispose();
+		          }
+		});
 		cancleButton.setBounds(348, 410, 69, 23);
 		contentPane.setLayout(null);
 		contentPane.add(submitButton);

@@ -90,6 +90,11 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		});
 		
 		JButton cancelButton = new JButton("\uCDE8 \uC18C");
+		cancelButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    dispose();
+		          }
+		});
 		cancelButton.setBounds(283, 241, 63, 23);
 		contentPane.setLayout(null);
 		contentPane.add(lblNewLabel_2);

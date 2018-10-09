@@ -131,6 +131,11 @@ public class AddOrgFrm extends JFrame {
                     });
                     
                     cancelButton = new JButton("\uCDE8 \uC18C");
+                    cancelButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
                     
                     label_3 = new JLabel("\uC0C1\uC704\uC870\uC9C1:");
                     

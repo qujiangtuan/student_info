@@ -121,12 +121,7 @@ public class AddDeptStandFrm extends JFrame {
                     JButton button_cancel = new JButton("\uCDE8 \uC18C");
                     button_cancel.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-//                                        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                                        AddDeptFrm adf=new AddDeptFrm();
-////                                        adf.dispose();
-////                                        adf.setVisible(false);
-////                                        
-//                                        adf.dispatchEvent(new WindowEvent(adf, WindowEvent.WINDOW_CLOSING));
+                                       dispose();
                               }
                     });
                     button_cancel.setFont(new Font("Dialog", Font.BOLD, 14));

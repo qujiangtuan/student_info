@@ -1,14 +1,16 @@
 package com.qujia.view;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,38 +22,56 @@ import javax.swing.table.DefaultTableModel;
 
 import com.qujia.dao.OrgDao;
 import com.qujia.model.Org;
+import com.qujia.util.ViewUtil;
 
-public class SearchDeptFrm extends JFrame {
+public class SearchDeptFrm extends JDialog {
 
           private JPanel contentPane;
           private JTextField textField_deptName;
-          private JTable table;
+          private static JTable table;
           private JComboBox comboBox_deptType;
           private List<Org> orgList;
+          private static int index;
+          private AddStudentFrm af;
+          private static String deptName;
+          
 
           /**
            * Launch the application.
            */
-          public static void main(String[] args) {
-                    EventQueue.invokeLater(new Runnable() {
-                              public void run() {
-                                        try {
-                                                  SearchDeptFrm frame = new SearchDeptFrm();
-                                                  frame.setVisible(true);
-                                        } catch (Exception e) {
-                                                  e.printStackTrace();
-                                        }
-                              }
-                    });
-          }
+//          public static void main(String[] args) {
+//                    EventQueue.invokeLater(new Runnable() {
+//                              public void run() {
+//                                        try {
+//                                                  SearchDeptFrm frame = new SearchDeptFrm();
+//                                                  frame.setVisible(true);
+//                                        } catch (Exception e) {
+//                                                  e.printStackTrace();
+//                                        }
+//                              }
+//                    });
+//          }
 
+          public static String getDeptName() {
+                    return deptName;
+          }
+          public static void setDeptName(String deptName) {
+                    SearchDeptFrm.deptName = deptName;
+          }
           /**
            * Create the frame.
            */
-          public SearchDeptFrm() {
+          public SearchDeptFrm(JFrame fr) {
+                    super(fr, "", true);
+                    
                     setTitle("\uD559\uACFC\uC870\uD68C");
-                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 645, 383);
+                    
+                    ViewUtil vu=new ViewUtil();
+                    vu.showCenter(this);
+                    
+                    
                     contentPane = new JPanel();
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
@@ -89,39 +109,95 @@ public class SearchDeptFrm extends JFrame {
                     contentPane.add(scrollPane);
                     
                     table = new JTable();
+                    table.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent e) {
+                                        selectRow(e);
+                              }
+                    });
+                    table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null},
+                                        {null, null, null, null},
                               },
                               new String[] {
-                                        "\uC774\uB984", "\uAD6C\uBD84", "\uC0C1\uC704\uC870\uC9C1"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC774\uB984", "\uAD6C\uBD84", "\uC0C1\uC704\uC870\uC9C1"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false
+                                        false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
                               }
                     });
-                    table.getColumnModel().getColumn(0).setPreferredWidth(126);
                     table.getColumnModel().getColumn(1).setPreferredWidth(126);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(111);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(126);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(111);
                     scrollPane.setViewportView(table);
                     
                     JButton submitButton = new JButton("\uD655 \uC778");
+                    submitButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        submitAction(e);
+                              }
+                    });
                     submitButton.setBounds(382, 288, 93, 23);
                     contentPane.add(submitButton);
                     
                     JButton cancelButton = new JButton("\uCDE8 \uC18C");
+                    cancelButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
                     cancelButton.setBounds(485, 288, 93, 23);
                     contentPane.add(cancelButton);
                     
                     setTable(new Org());
           }
+        //submit
+          protected void submitAction(ActionEvent e) {
+                    DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                    this.setVisible(false);
+                    this.disable();
+                    deptName=dft.getValueAt(index, 1).toString();
+          }
+          public static String getOrdId(){
+                    String orgid;
+                    try {
+                              DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                              orgid=dft.getValueAt(index,0).toString();
+                    } catch (Exception e) {
+                              orgid=null;
+                    }
+                    
+                    return orgid;
+          }
+
+          //한행선택 event
+          protected void selectRow(MouseEvent e) {
+                    index=table.getSelectedRow();
+          }
+
           //조회 
           protected void searchDept(ActionEvent e) {
+                    Org org=new Org();
+                    String searchName,gdmCode;
                     
+                    try {
+                              searchName = textField_deptName.getText().toString();
+                    } catch (NullPointerException e4) {
+                              searchName=null;
+                    }
+                    try {
+                              gdmCode=comboBox_deptType.getSelectedItem().toString();
+                    } catch (NullPointerException e4) {
+                              gdmCode=null;
+                    }
+                    org.setName(searchName);
+                    org.setGsDepMajCode(gdmCode);
+                    setTable(org);
           }
 
           private void setTable(Org org) {
@@ -131,6 +207,7 @@ public class SearchDeptFrm extends JFrame {
                     orgList = orgDao.getOrgdeptNameList(org);
                     for(Org o:orgList){
                               Vector v=new Vector();
+                              v.add(o.getOrgCode());
                               v.add(o.getName());
                               v.add(o.getGsDepMajCode());
                               v.add(this.getDeptNameById(o.getParCode()));

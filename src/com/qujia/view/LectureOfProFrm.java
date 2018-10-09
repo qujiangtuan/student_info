@@ -1,6 +1,8 @@
 package com.qujia.view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -46,7 +48,7 @@ public class LectureOfProFrm extends JFrame {
           public LectureOfProFrm() {
                     setTitle("\uAC15\uC758\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 742, 356);
+                    setBounds(100, 100, 742, 372);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -68,6 +70,13 @@ public class LectureOfProFrm extends JFrame {
                     
                     textField = new JTextField();
                     textField.setColumns(10);
+                    
+                    JButton btnNewButton_1 = new JButton("\uB2EC \uAE30");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -87,6 +96,10 @@ public class LectureOfProFrm extends JFrame {
                                                   .addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                                   .addComponent(btnNewButton)
                                                   .addGap(60))
+                                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+                                                  .addContainerGap(613, Short.MAX_VALUE)
+                                                  .addComponent(btnNewButton_1)
+                                                  .addContainerGap())
                     );
                     gl_contentPane.setVerticalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -100,7 +113,9 @@ public class LectureOfProFrm extends JFrame {
                                                             .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                   .addPreferredGap(ComponentPlacement.UNRELATED)
                                                   .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(32, Short.MAX_VALUE))
+                                                  .addGap(18)
+                                                  .addComponent(btnNewButton_1)
+                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     );
                     
                     table = new JTable();

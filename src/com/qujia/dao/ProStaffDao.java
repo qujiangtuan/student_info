@@ -197,4 +197,37 @@ public class ProStaffDao extends BaseDao {
               
               return retString;
     }
+  //get ProStaffDao List
+    public List<ProStaff> getSearchProStaffList(ProStaff ps){
+        List<ProStaff> retList=new ArrayList<ProStaff>();
+        StringBuffer sqlString=new StringBuffer("select * from pro_staff where pro_type='직원'");
+        if(!StringUtil.isEmpty(ps.getpName())){
+                  sqlString.append(" and pname like '%"+ps.getpName()+"%'");
+        }
+        if(!StringUtil.isEmpty(ps.getPerType())){
+            sqlString.append(" and per_type like '%"+ps.getPerType()+"%'");
+        }
+        if(!StringUtil.isEmpty(ps.getOrgId())){
+            sqlString.append(" and orgid like '%"+ps.getOrgId()+"%'");
+        }
+        try {
+                  PreparedStatement prst=con.prepareStatement(sqlString.toString());
+                  ResultSet e = prst.executeQuery();
+                  while(e.next()){
+                      ProStaff psDate =new ProStaff();
+                         psDate.setpNo(e.getString("pno"));
+                         psDate.setpName(e.getString("pname"));
+                         psDate.setProType(e.getString("pro_type"));
+                         psDate.setPerType(e.getString("per_type"));
+                         psDate.setSex(e.getString("sex"));
+                         psDate.setOrgId(e.getString("orgid"));
+                         psDate.setSupId(e.getString("sup_id"));     
+                         retList.add(psDate);
+                  }
+        } catch (SQLException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+        }
+        return retList;
+    }
 }
