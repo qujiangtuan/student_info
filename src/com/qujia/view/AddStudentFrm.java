@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 
 import com.eltima.components.ui.DatePicker;
 import com.qujia.dao.StudentDao;
+import com.qujia.model.SendEmailToSP;
 import com.qujia.model.Student;
 import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
@@ -322,7 +323,7 @@ public class AddStudentFrm extends JFrame {
                     
                     email2comboBox = new JComboBox();
                     email2comboBox.setBounds(272, 238, 104, 21);
-                    email2comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "naver.com", "google.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
+                    email2comboBox.setModel(new DefaultComboBoxModel(new String[] {"naver.com", "gmail.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
                     email2comboBox.setEditable(true);
                     
                     label_ait = new JLabel("@");
@@ -465,6 +466,11 @@ public class AddStudentFrm extends JFrame {
                     
                     String sNo;//학번종복학인
                     sNo = getStudentNumber(joinDate,orgid);
+                    if (StringUtil.isEmpty(orgid)) {
+                              JOptionPane.showMessageDialog(this,
+                                                  "소속학과를 입력하십시오！");
+                              return;
+                    }
                     while(this.isRepeat(sNo)){
                             //학번종복학인
                               sNo = getStudentNumber(joinDate,orgid);
@@ -513,6 +519,8 @@ public class AddStudentFrm extends JFrame {
                                                   "주소를 입력하십시오！");
                               return;
                     }
+                    
+                    
                     Student student = new Student();
                     student.setsNo(sNo);
                     student.setName(studentName);
@@ -529,6 +537,14 @@ public class AddStudentFrm extends JFrame {
                     //System.out.println(student);
                     StudentDao studentDao = new StudentDao();
                     if (studentDao.addStudent(student)) {
+                            //id,password 학생의 이메일에 보내기
+                              try {
+                                        new SendEmailToSP(sNo,passWord, email);
+                              } catch (Exception e) {
+//                                        if(JOptionPane.showConfirmDialog(this, "이메일주소가 무효입니다, 다시입력하시겠습니까？예:다시입력하기 아니요:건너가기") != JOptionPane.OK_OPTION){
+//                                                return;
+//                                        }
+                              }
                               JOptionPane.showMessageDialog(this,
                                                   "학생이 등록 성공했습니다! ");
                     } else {
@@ -661,7 +677,6 @@ public class AddStudentFrm extends JFrame {
                     datepick.setTimePanleVisible(true);
                     return datepick;
           }
-          
           public String addSearch(){
                      
 //                    return AddStudentFrm.deptNameFine;

@@ -32,6 +32,7 @@ import javax.swing.border.EmptyBorder;
 import com.eltima.components.ui.DatePicker;
 import com.qujia.dao.ProStaffDao;
 import com.qujia.model.ProStaff;
+import com.qujia.model.SendEmailToSP;
 import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
@@ -213,7 +214,12 @@ public class AddProFrm extends JFrame {
                     btnNewButton.setBounds(280, 311, 63, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
-                    		addProSubmit(ae);
+                    		try {
+                                                  addProSubmit(ae);
+                                        } catch (Exception e) {
+                                                  // TODO Auto-generated catch block
+                                                  e.printStackTrace();
+                                        }
                     	}
                     });
                     btnNewButton.setBackground(new Color(224, 255, 255));
@@ -428,7 +434,7 @@ public class AddProFrm extends JFrame {
                     btnNewButton_2 = new JButton("조회");
                     btnNewButton_2.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchDeptFrm sdf=new SearchDeptFrm(new JFrame());
+                                        SearchOrgFrm sdf=new SearchOrgFrm(new JFrame());
                                         sdf.setVisible(true);
                                         textField_org.setText(addSearch());
                               }
@@ -500,7 +506,7 @@ public class AddProFrm extends JFrame {
                     contentPane.add(label_ait);
                     
                     comboBox_email2 = new JComboBox();
-                    comboBox_email2.setModel(new DefaultComboBoxModel(new String[] {"", "naver.com", "google.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
+                    comboBox_email2.setModel(new DefaultComboBoxModel(new String[] {"naver.com", "gmail.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
                     comboBox_email2.setEditable(true);
                     comboBox_email2.setBounds(579, 260, 105, 21);
                     contentPane.add(comboBox_email2);
@@ -516,11 +522,11 @@ public class AddProFrm extends JFrame {
           }
 
           protected String addSearch() {
-                    return SearchDeptFrm.getDeptName();
+                    return SearchOrgFrm.getDeptName();
           }
 
           //submit add pro action
-		protected void addProSubmit(ActionEvent ae) {
+		protected void addProSubmit(ActionEvent ae) throws Exception {
 			String pno,name,ename,staffType,sex,personType,teacherType=null,supid=null;
 			String cardid1,cardid2,cardid,orgId,orgName,address,address1,address2,email,email1,email2,ait,tel,tel1,tel2,tel3,date;
 			name=textField_name.getText().toString();
@@ -558,7 +564,7 @@ public class AddProFrm extends JFrame {
 			
 			//조직코드
 			orgName = textField_org.getText().toString();
-			orgId=SearchDeptFrm.getOrdId();
+			orgId=SearchOrgFrm.getOrdId();
 			if(StringUtil.isEmpty(orgId)||StringUtil.isEmpty(orgName)) {
                       JOptionPane.showMessageDialog(this, "소속조직을 선택해주세요!");
                       return;
@@ -620,6 +626,8 @@ public class AddProFrm extends JFrame {
 			 ps.setSupId(supid);
 			 ProStaffDao psDao=new ProStaffDao();
 			 if(psDao.addProStaff(ps)) {
+			         //id,password 학생의 이메일에 보내기
+                     new SendEmailToSP(pno,cardid1, email);
                      JOptionPane.showMessageDialog(this,
                                          "교직원이 등록 성공! ");
            } else {

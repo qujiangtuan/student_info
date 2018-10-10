@@ -25,7 +25,7 @@ import com.qujia.dao.OrgDao;
 import com.qujia.model.Org;
 import com.qujia.util.ViewUtil;
 
-public class SearchDeptFrm extends JDialog {
+public class SearchOrgFrm extends JDialog {
 
           private JPanel contentPane;
           private JTextField textField_deptName;
@@ -35,7 +35,7 @@ public class SearchDeptFrm extends JDialog {
           private static int index;
           private AddStudentFrm af;
           private static String deptName;
-          private static String orgid;
+          private JComboBox comboBox_orgType;
           
 
           /**
@@ -45,7 +45,7 @@ public class SearchDeptFrm extends JDialog {
                     EventQueue.invokeLater(new Runnable() {
                               public void run() {
                                         try {
-                                                  SearchDeptFrm frame = new SearchDeptFrm(null);
+                                                  SearchOrgFrm frame = new SearchOrgFrm(null);
                                                   frame.setVisible(true);
                                         } catch (Exception e) {
                                                   e.printStackTrace();
@@ -58,17 +58,17 @@ public class SearchDeptFrm extends JDialog {
                     return deptName;
           }
           public static void setDeptName(String deptName) {
-                    SearchDeptFrm.deptName = deptName;
+                    SearchOrgFrm.deptName = deptName;
           }
           /**
            * Create the frame.
            */
-          public SearchDeptFrm(JFrame fr) {
+          public SearchOrgFrm(JFrame fr) {
                     super(fr, "", true);
                     
-                    setTitle("\uD559\uACFC\uC870\uD68C");
+                    setTitle("\uC870\uC9C1\uC870\uD68C");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 645, 383);
+                    setBounds(100, 100, 750, 383);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -79,22 +79,22 @@ public class SearchDeptFrm extends JDialog {
                     setContentPane(contentPane);
                     contentPane.setLayout(null);
                     
-                    JLabel lblNewLabel = new JLabel("\uD559\uACFC\uC774\uB984:");
+                    JLabel lblNewLabel = new JLabel("\uC870\uC9C1\uC774\uB984:");
                     lblNewLabel.setBounds(34, 27, 68, 15);
                     contentPane.add(lblNewLabel);
                     
                     textField_deptName = new JTextField();
-                    textField_deptName.setBounds(112, 24, 142, 21);
+                    textField_deptName.setBounds(112, 24, 115, 21);
                     contentPane.add(textField_deptName);
                     textField_deptName.setColumns(10);
                     
                       comboBox_deptType = new JComboBox();
                     comboBox_deptType.setModel(new DefaultComboBoxModel(new String[] {"", "\uD559\uBD80", "\uD559\uACFC", "\uC804\uACF5"}));
-                    comboBox_deptType.setBounds(360, 24, 115, 21);
+                    comboBox_deptType.setBounds(531, 24, 115, 21);
                     contentPane.add(comboBox_deptType);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5:");
-                    lblNewLabel_1.setBounds(272, 27, 78, 15);
+                    lblNewLabel_1.setBounds(443, 27, 78, 15);
                     contentPane.add(lblNewLabel_1);
                     
                     JButton searchButton = new JButton("\uC870\uD68C");
@@ -103,11 +103,11 @@ public class SearchDeptFrm extends JDialog {
                                         searchDept(e);
                               }
                     });
-                    searchButton.setBounds(485, 23, 93, 23);
+                    searchButton.setBounds(656, 23, 68, 23);
                     contentPane.add(searchButton);
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(10, 64, 609, 200);
+                    scrollPane.setBounds(10, 64, 714, 200);
                     contentPane.add(scrollPane);
                     
                     table = new JTable();
@@ -120,22 +120,23 @@ public class SearchDeptFrm extends JDialog {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null},
+                                        {null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC774\uB984", "\uAD6C\uBD84", "\uC0C1\uC704\uC870\uC9C1"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC774\uB984", "\uAE30\uAD00\uAD6C\uBD84", "\uD559\uBD80\uACFC\uC804\uACF5\uAD6C\uBD84", "\uC0C1\uC704\uC870\uC9C1"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false
+                                        false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
                               }
                     });
                     table.getColumnModel().getColumn(1).setPreferredWidth(126);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(126);
-                    table.getColumnModel().getColumn(3).setPreferredWidth(111);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(128);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(126);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(111);
                     scrollPane.setViewportView(table);
                     
                     JButton submitButton = new JButton("\uD655 \uC778");
@@ -150,14 +151,22 @@ public class SearchDeptFrm extends JDialog {
                     JButton cancelButton = new JButton("\uCDE8 \uC18C");
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        index=-1;
-                                        deptName=null;
-                                        orgid=null;
+//                                        ProManagerFrm pmf=new ProManagerFrm();
+//                                        pmf.getTextField_editOrgName().setText(ProManagerFrm.getOrgName());
                                         dispose();
                               }
                     });
                     cancelButton.setBounds(485, 288, 93, 23);
                     contentPane.add(cancelButton);
+                    
+                    JLabel lblNewLabel_2 = new JLabel("\uAE30\uAD00\uAD6C\uBD84:");
+                    lblNewLabel_2.setBounds(237, 27, 64, 15);
+                    contentPane.add(lblNewLabel_2);
+                    
+                     comboBox_orgType = new JComboBox();
+                    comboBox_orgType.setModel(new DefaultComboBoxModel(new String[] {"", "\uAD50\uC721\uAE30\uAD00", "\uBD80\uC18D\uAE30\uAD00", "\uBCF8\uBD80\uD589\uC815\uAE30\uAD00"}));
+                    comboBox_orgType.setBounds(300, 24, 115, 21);
+                    contentPane.add(comboBox_orgType);
                     
                     setTable(new Org());
           }
@@ -169,7 +178,7 @@ public class SearchDeptFrm extends JDialog {
                     deptName=dft.getValueAt(index, 1).toString();
           }
           public static String getOrdId(){
-                    
+                    String orgid;
                     try {
                               DefaultTableModel   dft = (DefaultTableModel) table.getModel();
                               orgid=dft.getValueAt(index,0).toString();
@@ -188,7 +197,7 @@ public class SearchDeptFrm extends JDialog {
           //Á¶È¸ 
           protected void searchDept(ActionEvent e) {
                     Org org=new Org();
-                    String searchName,gdmCode;
+                    String searchName,gdmCode,orgType;
                     
                     try {
                               searchName = textField_deptName.getText().toString();
@@ -196,11 +205,17 @@ public class SearchDeptFrm extends JDialog {
                               searchName=null;
                     }
                     try {
+                              orgType = comboBox_orgType.getSelectedItem().toString();
+                    } catch (Exception e2) {
+                              orgType=null;
+                    }
+                    try {
                               gdmCode=comboBox_deptType.getSelectedItem().toString();
                     } catch (NullPointerException e4) {
                               gdmCode=null;
                     }
                     org.setName(searchName);
+                    org.setOrgType(orgType);
                     org.setGsDepMajCode(gdmCode);
                     setTable(org);
           }
@@ -209,11 +224,12 @@ public class SearchDeptFrm extends JDialog {
                     DefaultTableModel dft = (DefaultTableModel) table.getModel();
                     dft.setRowCount(0);
                     OrgDao orgDao=new OrgDao();
-                    orgList = orgDao.getOrgdeptNameList(org);
+                    orgList = orgDao.getOrgList(org);
                     for(Org o:orgList){
                               Vector v=new Vector();
                               v.add(o.getOrgCode());
                               v.add(o.getName());
+                              v.add(o.getOrgType());
                               v.add(o.getGsDepMajCode());
                               v.add(this.getDeptNameById(o.getParCode()));
                               dft.addRow(v);

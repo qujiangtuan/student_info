@@ -42,5 +42,19 @@ public class StringUtil {
                     }
                     return twoNumber;
           }
+          public static String getRandom4() {
+                    String threeNumber;
+                    Random random = new Random();
+                    int i = random.nextInt(1000);
+                    String str = i + "";
+                    if (i >= 0 && i <= 9) {
+                              threeNumber = "00" + str;
+                    } else if (i >= 10 && i <= 99) {
+                              threeNumber = "0" + str;
+                    } else {
+                              threeNumber = str;
+                    }
+                    return threeNumber;
+          }
 
 }

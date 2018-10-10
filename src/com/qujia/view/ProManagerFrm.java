@@ -13,8 +13,6 @@ import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -26,7 +24,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,14 +43,30 @@ public class ProManagerFrm extends JFrame {
           private JScrollPane scrollPane;
           private JRadioButton radioButtonName,radioButtonNo;
           private List<Org> orgList;
-          private JComboBox comboBox_sOrgName,comboBox_editOrgName;
+          private List<ProStaff> psList;
+          private JComboBox comboBox_sOrgName;
           private JComboBox comboBox_editperType;
           private  JComboBox comboBox_eidtteaType,comboBox_proType;
           private ButtonGroup bgroup1,bgroup2;
-          private  JComboBox comboBox_sup2;
           private String proTypeList[],perTypeList1[],perTypeList2[],teaTypeList[];
           private JCheckBox checkBox_searchOrg;
           private JLabel label_per;
+          private JTextField textField_editOrgName;
+          private JButton btnNewButton;
+          private JTextField textField_sup2;
+          private JButton button_searchSup;
+          private static String orgId;
+          private static String orgName;
+          private static String superName;
+          
+          public static String getOrgName() {
+                    return orgName;
+          }
+
+          public static void setOrgName(String orgName) {
+                    ProManagerFrm.orgName = orgName;
+          }
+
           /**
            * Launch the application.
            */
@@ -88,8 +101,10 @@ public class ProManagerFrm extends JFrame {
                     proTypeList=new String[] {"", "교원", "직원"};
                     
                     label_per = new JLabel("\uAD50\uC6D0\uAD6C\uBD84:");
+                    label_per.setBounds(18, 413, 63, 15);
                     
                     comboBox_editperType = new JComboBox();
+                    comboBox_editperType.setBounds(91, 410, 164, 21);
                     comboBox_editperType.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent ie) {
                     		if(ie.getStateChange()==ItemEvent.SELECTED) {
@@ -108,22 +123,27 @@ public class ProManagerFrm extends JFrame {
                     comboBox_editperType.setModel(new DefaultComboBoxModel(perTypeList1));
                     
                     JLabel lblNewLabel_5 = new JLabel("소속조직:");
-                    
-                    comboBox_editOrgName = new JComboBox();
+                    lblNewLabel_5.setBounds(18, 372, 63, 15);
                     
                     JLabel lblNewLabel_10 = new JLabel("\uAD50\uC218\uC774\uB984:");
+                    lblNewLabel_10.setBounds(45, 19, 57, 19);
                     
                     textField_proName = new JTextField();
+                    textField_proName.setBounds(112, 17, 67, 21);
                     textField_proName.setColumns(10);
                     
                     JLabel lblNewLabel_11 = new JLabel("\uAD50\uC218\uBC88\uD638:");
+                    lblNewLabel_11.setBounds(216, 18, 61, 20);
                     
                     textField_proNo = new JTextField();
+                    textField_proNo.setBounds(287, 17, 67, 21);
                     textField_proNo.setColumns(10);
                     
                     scrollPane = new JScrollPane();
+                    scrollPane.setBounds(15, 66, 888, 284);
                     
                     JButton searchButton = new JButton("\uCEF4  \uC0C9");
+                    searchButton.setBounds(834, 15, 69, 23);
                     searchButton.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		searchProStaff(ae);
@@ -131,6 +151,7 @@ public class ProManagerFrm extends JFrame {
                     });
                     
                     JButton btnNewButton_1 = new JButton("\uC218  \uC815");
+                    btnNewButton_1.setBounds(504, 368, 69, 23);
                     btnNewButton_1.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		updateProAction(ae);
@@ -139,6 +160,7 @@ public class ProManagerFrm extends JFrame {
                     btnNewButton_1.setBackground(new Color(224, 255, 255));
                     
                     JButton btnNewButton_2 = new JButton("사  직");
+                    btnNewButton_2.setBounds(504, 409, 69, 23);
                     btnNewButton_2.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		deleteProStaffAction(ae);
@@ -147,6 +169,7 @@ public class ProManagerFrm extends JFrame {
                     btnNewButton_2.setBackground(new Color(255, 182, 193));
                     
                     radioButtonName = new JRadioButton("");
+                    radioButtonName.setBounds(18, 19, 21, 19);
                     radioButtonName.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                     		textField_proNo.setText("");
@@ -156,6 +179,7 @@ public class ProManagerFrm extends JFrame {
                     });
                     radioButtonName.setSelected(true);
                     radioButtonNo = new JRadioButton("");
+                    radioButtonNo.setBounds(189, 17, 21, 21);
                     radioButtonNo.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                     		textField_proName.setText("");
@@ -168,26 +192,30 @@ public class ProManagerFrm extends JFrame {
                     bgroup1.add(radioButtonName);
                     
                     JLabel lblNewLabel_12 = new JLabel("직속상사:");
-                    
-                    comboBox_sup2 = new JComboBox();
-                    comboBox_sup2.setModel(new DefaultComboBoxModel(new String[] {""}));
+                    lblNewLabel_12.setBounds(18, 454, 63, 15);
                    
                     comboBox_eidtteaType = new JComboBox();
+                    comboBox_eidtteaType.setBounds(261, 410, 179, 21);
                     teaTypeList=new String[] {"", "정교수", "부교수", "조교수", "전임강사"};
                     comboBox_eidtteaType.setModel(new DefaultComboBoxModel(teaTypeList));
                     
                     JLabel lblNewLabel_13 = new JLabel("교직원구분:");
+                    lblNewLabel_13.setBounds(365, 15, 76, 23);
                     
                     comboBox_proType = new JComboBox();
+                    comboBox_proType.setBounds(445, 17, 69, 21);
                     comboBox_proType.setModel(new DefaultComboBoxModel(new String[] {"", "교원", "직원"}));
                     
                     JLabel lblNewLabel_14 = new JLabel("소속조직:");
+                    lblNewLabel_14.setBounds(562, 15, 62, 23);
                     
                     comboBox_sOrgName = new JComboBox();
+                    comboBox_sOrgName.setBounds(624, 17, 200, 21);
                     comboBox_sOrgName.setEnabled(false);
                     bgroup2=new ButtonGroup();
                     
                     checkBox_searchOrg = new JCheckBox("");
+                    checkBox_searchOrg.setBounds(535, 17, 21, 21);
                     checkBox_searchOrg.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                                 if(checkBox_searchOrg.isSelected()){
@@ -197,101 +225,36 @@ public class ProManagerFrm extends JFrame {
                                 }
                       }
                     });
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(12)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_5)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(comboBox_editOrgName, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(label_per)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(comboBox_editperType, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                          .addComponent(comboBox_eidtteaType, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_12)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(comboBox_sup2, GroupLayout.PREFERRED_SIZE, 349, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addGap(100)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(btnNewButton_1)
-                                                                                .addComponent(btnNewButton_2)))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(9)
-                                                                      .addComponent(radioButtonName, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(lblNewLabel_10)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(textField_proName, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(radioButtonNo, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(lblNewLabel_11)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(textField_proNo, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(lblNewLabel_13)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(comboBox_proType, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(checkBox_searchOrg, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(lblNewLabel_14)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(comboBox_sOrgName, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(12)
-                                                                      .addComponent(searchButton))
-                                                            .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 888, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(23))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                      .addComponent(radioButtonName, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(lblNewLabel_10)
-                                                                                .addComponent(textField_proName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(comboBox_proType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(lblNewLabel_13)
-                                                                                .addComponent(searchButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(lblNewLabel_14)
-                                                                                .addComponent(comboBox_sOrgName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                      .addComponent(radioButtonNo)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                                .addComponent(textField_proNo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(lblNewLabel_11)))
-                                                            .addComponent(checkBox_searchOrg, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(28)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 284, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(comboBox_editOrgName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton_1))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_per)
-                                                            .addComponent(comboBox_editperType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_eidtteaType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton_2))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_12)
-                                                            .addComponent(comboBox_sup2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(187))
-                    );
+                    
+                    textField_editOrgName = new JTextField();
+                    textField_editOrgName.setEditable(false);
+                    textField_editOrgName.setBounds(91, 369, 267, 21);
+                    textField_editOrgName.setColumns(10);
+                    
+                    btnNewButton = new JButton("조회");
+                    btnNewButton.setBounds(368, 368, 73, 23);
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchOrgFrm sdf=new SearchOrgFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_editOrgName.setText(addSearch());
+                              }
+                    });
+                    
+                    textField_sup2 = new JTextField();
+                    textField_sup2.setEditable(false);
+                    textField_sup2.setBounds(91, 451, 267, 21);
+                    textField_sup2.setColumns(10);
+                    
+                    button_searchSup = new JButton("조회");
+                    button_searchSup.setBounds(368, 450, 73, 23);
+                    button_searchSup.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchSuperiorFrm ssf=new SearchSuperiorFrm(new JFrame());
+                                        ssf.setVisible(true);
+                                        textField_sup2.setText(addSearchSuperior());
+                              }
+                    });
                     
                     table = new JTable();
                     table.addMouseListener(new MouseAdapter() {
@@ -302,20 +265,20 @@ public class ProManagerFrm extends JFrame {
                     });
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
-                    	new Object[][] {
-                    		{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                    		{null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                    	},
-                    	new String[] {
-                    		"\uAD50\uC6D0\uBC88\uD638", "\uC774\uB984", "\uC601\uC5B4\uC774\uB984", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18D\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC804\uD654\uBC88\uD638", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC9DC", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
-                    	}
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uAD50\uC6D0\uBC88\uD638", "\uC774\uB984", "\uC601\uC5B4\uC774\uB984", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18D\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC804\uD654\uBC88\uD638", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC9DC", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
+                              }
                     ) {
-                    	boolean[] columnEditables = new boolean[] {
-                    		false, false, false, false, false, true, false, false, false, false, false, false, false, false, true
-                    	};
-                    	public boolean isCellEditable(int row, int column) {
-                    		return columnEditables[column];
-                    	}
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
                     });
                     table.getColumnModel().getColumn(1).setPreferredWidth(80);
                     table.getColumnModel().getColumn(2).setPreferredWidth(88);
@@ -331,15 +294,47 @@ public class ProManagerFrm extends JFrame {
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setViewportView(table);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(lblNewLabel_5);
+                    contentPane.add(textField_editOrgName);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(label_per);
+                    contentPane.add(comboBox_editperType);
+                    contentPane.add(comboBox_eidtteaType);
+                    contentPane.add(lblNewLabel_12);
+                    contentPane.add(textField_sup2);
+                    contentPane.add(button_searchSup);
+                    contentPane.add(btnNewButton_1);
+                    contentPane.add(btnNewButton_2);
+                    contentPane.add(radioButtonName);
+                    contentPane.add(lblNewLabel_10);
+                    contentPane.add(textField_proName);
+                    contentPane.add(radioButtonNo);
+                    contentPane.add(lblNewLabel_11);
+                    contentPane.add(textField_proNo);
+                    contentPane.add(lblNewLabel_13);
+                    contentPane.add(comboBox_proType);
+                    contentPane.add(checkBox_searchOrg);
+                    contentPane.add(lblNewLabel_14);
+                    contentPane.add(comboBox_sOrgName);
+                    contentPane.add(searchButton);
+                    contentPane.add(scrollPane);
                     //这两条是显示横滚动条
 //                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 //                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                     
                     setTable(new ProStaff());
                     setOrgName();//조직 갖다온다
-                    setSuperiorStaff();//직속상사 갖다온다
+//                    setSuperiorStaff();//직속상사 갖다온다
           }
+          protected String addSearchSuperior() {
+                    return SearchSuperiorFrm.getpName();
+          }
+
+          protected String addSearch() {
+                    return SearchOrgFrm.getDeptName();
+          }
+
           // delete ProStaff 교직원 삭제 
           protected void deleteProStaffAction(ActionEvent ae) {
         	  int row=table.getSelectedRow();
@@ -360,7 +355,7 @@ public class ProManagerFrm extends JFrame {
               psDao.closeDao();
               setTable(new ProStaff());
               restvalues();
-              setSuperiorStaff();
+//              setSuperiorStaff();
 		}
 
 		//update Pro 교직원 수정 submit 
@@ -376,8 +371,9 @@ public class ProManagerFrm extends JFrame {
               String perType=comboBox_editperType.getSelectedItem().toString();
               String teaType=comboBox_eidtteaType.getSelectedItem().toString();
               
-              Org org =(Org) comboBox_editOrgName.getSelectedItem();
-              String orgId = org.getOrgCode();
+              orgName=textField_editOrgName.getText().toString();
+              orgId=this.getOrgidByOrgName(orgName);
+//              orgId = SearchOrgFrm.getOrdId();
               ProStaff ps=new ProStaff();
               ps.setpNo(proId);
               ps.setPerType(perType);
@@ -386,22 +382,20 @@ public class ProManagerFrm extends JFrame {
               ProStaff ps1,ps2;
               String superior1,superior2;
               if("교원".equals(proType)) {
-//            	  try {
-//            		  ps1 = (ProStaff) comboBox_sup1.getSelectedItem();
-//                      superior1=ps1.getpNo();
-//				} catch (Exception e) {
-//					superior1=null;
-//				}
-//            	  ps.setSupId(superior1);
               }else {
             	  try {
-            		  ps2 = (ProStaff) comboBox_sup2.getSelectedItem();
-                      superior2=ps2.getpNo();
+//                      superior2=SearchSuperiorFrm.getpNo();
+            	            superName=textField_sup2.getText();
+            	            superior2=this.getProNoByProName(superName);
 				} catch (Exception e) {
 					superior2=null;
 				}
             	  ps.setSupId(superior2);
               }
+              
+              if(JOptionPane.showConfirmDialog(this, "수정 하시겠습니까？") != JOptionPane.OK_OPTION){
+                        return;
+                }
              ProStaffDao psDao=new ProStaffDao();
              if(psDao.updateProStaff(ps)) {
             	 JOptionPane.showMessageDialog(this, "수정 성공했습니다.");
@@ -411,7 +405,7 @@ public class ProManagerFrm extends JFrame {
              
              psDao.closeDao();
              setTable(new ProStaff());
-             setSuperiorStaff();
+//             setSuperiorStaff();
               
 		}
 
@@ -423,11 +417,11 @@ public class ProManagerFrm extends JFrame {
           	proType=dft.getValueAt(table.getSelectedRow(), 3).toString();
           	//교원구분:전임교수/겸임교수......부장/차장....  수정
           	String perType=dft.getValueAt(table.getSelectedRow(), 4).toString();//교원
-          	String supId;
+          	String supName;
           	try {
-          		supId=dft.getValueAt(table.getSelectedRow(), 14).toString();//직속상사 id
+          		supName=dft.getValueAt(table.getSelectedRow(), 14).toString();//직속상사 id
 			} catch (Exception e) {
-				supId=null;
+			    supName=null;
 			}
           	
           	if("교원".equals(proType)) {
@@ -437,8 +431,9 @@ public class ProManagerFrm extends JFrame {
                     	comboBox_editperType.setSelectedIndex(i);
                     }
                 }
-          		comboBox_sup2.setEnabled(false);
-          		comboBox_sup2.setSelectedIndex(0);
+          		textField_sup2.setEnabled(false);
+          		textField_sup2.setText("");
+          		button_searchSup.setEnabled(false);
           		label_per.setText("교원구분:");
           		//교원 직속상사
 //          		for(int i=0;i<comboBox_sup1.getItemCount();i++){
@@ -462,19 +457,18 @@ public class ProManagerFrm extends JFrame {
                     }
                 }
           	//직원 직속상사
-          		for(int i=0;i<comboBox_sup2.getItemCount();i++){
-          			try {
-          				ProStaff psPro=(ProStaff) comboBox_sup2.getItemAt(i);
-                        if(supId.equals(psPro.getpNo())){
-                        	comboBox_sup2.setSelectedIndex(i);
-                        }
-					} catch (Exception e) {
-						comboBox_sup2.setSelectedIndex(0);
-					}
-                }
+//          		for(int i=0;i<comboBox_sup2.getItemCount();i++){
+//          			try {
+//          				ProStaff psPro=(ProStaff) comboBox_sup2.getItemAt(i);
+//					} catch (Exception e) {
+//						textField_sup2.sett
+//					}
+//                }
 //          		comboBox_sup1.setEnabled(false);//직소상사 
 //          		comboBox_sup1.setSelectedIndex(0);
-          		comboBox_sup2.setEnabled(true);//직소상사 
+          		textField_sup2.setText(supName);
+          		textField_sup2.setEnabled(true);//직소상사 
+          		button_searchSup.setEnabled(true);
           		label_per.setText("직원구분:");
           	}
           	
@@ -496,26 +490,9 @@ public class ProManagerFrm extends JFrame {
           	String sex=dft.getValueAt(table.getSelectedRow(), 6).toString();
           	bgroup2.clearSelection();
             //소속조직
-            String orgName=dft.getValueAt(table.getSelectedRow(), 8).toString();
-            for(int i=0;i<comboBox_editOrgName.getItemCount();i++){
-                      Org org = (Org) comboBox_editOrgName.getItemAt(i);
-                      if(orgName.equals(org.getName())){
-                    	  comboBox_editOrgName.setSelectedIndex(i);
-                      }
-            }
+            orgName=dft.getValueAt(table.getSelectedRow(), 8).toString();
+            textField_editOrgName.setText(orgName);
 		}
-        //직속상사 从数据库中把数据填充选择框
-          protected void setSuperiorStaff() {
-                   ProStaffDao psDao=new ProStaffDao();
-                   ProStaff ps2=new ProStaff();
-                   ps2.setProType("직원");
-                    List<ProStaff> pslist2 = psDao.getProStaffList(ps2);
-                    String str=null;
-                    for (ProStaff ps2Date : pslist2) {
-                    	comboBox_sup2.addItem(ps2Date);
-                    }
-                    psDao.closeDao();
-          }
 		//교직원 검색
           protected void searchProStaff(ActionEvent ae) {
 //                    setDeptName();
@@ -542,28 +519,18 @@ public class ProManagerFrm extends JFrame {
                     setTable(ps);
           }
         private void restvalues() {
-			// TODO Auto-generated method stub
         	comboBox_editperType.setSelectedIndex(0);
         	comboBox_eidtteaType.setSelectedIndex(0);
         	bgroup2.clearSelection();
-//        	textField_idCard1.setText("");
-//        	textField_idCard2.setText("");
-        	comboBox_editOrgName.setSelectedIndex(0);
-//        	comboBox_empType.setSelectedIndex(0);
-//        	comboBox_sup1.setSelectedIndex(0);
-        	comboBox_sup2.setSelectedIndex(0);
+        	textField_editOrgName.setText("");
+        	textField_sup2.setText("");
 		}
 
 		//学科 从数据库中把数据填充选择框
           protected void setOrgName() {
-                    // TODO Auto-generated method stub
                     OrgDao orgDao=new OrgDao();
                     List<Org> orgList=orgDao.getOrgList(new Org());
-//                    String str="";
-//                    comboBox_editOrgName.addItem(str);
-//                	comboBox_sOrgName.addItem(str);
                     for (Org org: orgList) {
-                    	comboBox_editOrgName.addItem(org);
                     	comboBox_sOrgName.addItem(org);
                     }
                     orgDao.closeDao();
@@ -590,7 +557,7 @@ public class ProManagerFrm extends JFrame {
                              v.add(pslist.getEmail());
                              v.add(pslist.getLoginDate());
                              v.add(pslist.getPassword());
-                             v.add(pslist.getSupId());
+                             v.add(this.getProSupNameById(pslist.getSupId()));
                              dft.addRow(v);
                    }
                    psDao.closeDao();
@@ -602,6 +569,33 @@ public class ProManagerFrm extends JFrame {
         	        orgList = orgDao.getOrgList(new Org());
 					for(Org org:orgList){
                             if(org.getOrgCode().equals(id)) return org.getName();
+                    }
+                    return "";
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
+          }
+        //proSup에 통해서 proSupName를 받는다
+          public String getProSupNameById(String id){
+                    ProStaffDao psDao=new ProStaffDao();
+                    psList = psDao.getProStaffList(new ProStaff());
+                    for(ProStaff ps:psList){
+                            if(ps.getpNo().equals(id)) return ps.getpName();
+                    }
+                    return "";
+          }
+        //proSup에 통해서 proSupName를 받는다
+          public String getProNoByProName(String name){
+                    ProStaffDao psDao=new ProStaffDao();
+                    psList = psDao.getProStaffList(new ProStaff());
+                    for(ProStaff ps:psList){
+                            if(ps.getpName().equals(name)) return ps.getpNo();
                     }
                     return "";
           }

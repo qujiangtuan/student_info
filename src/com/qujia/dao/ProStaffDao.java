@@ -229,5 +229,35 @@ public class ProStaffDao extends BaseDao {
                   e.printStackTrace();
         }
         return retList;
-    }
+        }
+        public boolean isProStaff(ProStaff ps) {
+              String sql="select * from pro_staff where pno=? and email=?";
+              try {
+                        PreparedStatement prst=con.prepareStatement(sql);
+                        prst.setString(1, ps.getpNo());
+                        prst.setString(2, ps.getEmail());
+                        if(prst.executeUpdate()>0) return true;
+              } catch (SQLException e) {
+                        e.printStackTrace();
+              }
+              return false;
+        }
+        
+        public boolean updatePassword(ProStaff ps, String random) {
+                  String sql = "update pro_staff set password=?  where pno=?";
+                  PreparedStatement prst =null;
+                  ResultSet rs;
+                  try {
+                            prst= con.prepareStatement(sql);
+                            prst.setString(1, random);
+                            prst.setString(2, ps.getpNo());
+                            if(prst.executeUpdate()>0){
+                                      return true;
+                            }
+                  } catch (SQLException e) {    
+                            e.printStackTrace();
+                  }
+                  return false;
+        }
+        
 }

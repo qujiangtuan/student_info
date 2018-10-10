@@ -145,6 +145,8 @@ public class SearchAddressFrm extends JDialog {
                     JButton btnNewButton_2 = new JButton("\uCDE8 \uC18C");
                     btnNewButton_2.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        index=-1;
+                                        searchAddr=null;
                                         dispose();
                               }
                     });

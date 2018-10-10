@@ -195,4 +195,36 @@ public class StudentDao extends BaseDao{
                       
                       return retString;
             }
+            //학번과 이메일 있는 지 확인
+          public boolean isStudent(Student stu) {
+                    String sql="select * from student where sno=? and email=?";
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, stu.getsNo());
+                              prst.setString(2, stu.getEmail());
+                              if(prst.executeUpdate()>0) return true;
+                    } catch (SQLException e) {
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
+          //이메일로 비밀번호 수정
+          public boolean updatePassword(Student stu, String random) {
+                    String sql = "update student set password=?  where sno=?";
+                    PreparedStatement prst =null;
+                    ResultSet rs;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, random);
+                              prst.setString(2, stu.getsNo());
+                              if(prst.executeUpdate()>0){
+                                        return true;
+                              }
+                    } catch (SQLException e) {    
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
 }

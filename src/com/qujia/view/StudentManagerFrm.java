@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -39,7 +40,6 @@ public class StudentManagerFrm extends JInternalFrame {
           private JTextField nameTextField;
           private JTable studentListTable;
           private JComboBox searchOrgComboBox;
-          private JComboBox editOrgComboBox;
 //          private List<StudentClass> studentClassList;
           private List<Org> orgList;
           private ButtonGroup editSexButtonGroup;
@@ -53,6 +53,8 @@ public class StudentManagerFrm extends JInternalFrame {
           private JComboBox inSchStatusComboBox,degreeComboBox;
           private String isInSchool[];
           private String degreeP[];
+          private JTextField textField_deptName;
+          private JButton deptSearchButton;
 
           /**
            * Launch the application.
@@ -110,9 +112,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     JLabel editClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
                     editClassLabel.setIcon(null);
                     editClassLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
-                    
-                    editOrgComboBox = new JComboBox();
-                    editOrgComboBox.setEditable(true);
                     
                     editSexButtonGroup=new ButtonGroup();
                     
@@ -198,6 +197,19 @@ public class StudentManagerFrm extends JInternalFrame {
                     degreeComboBox = new JComboBox();
                     degreeP=new String[] {"", "학사과정", "석사과정", "박사과정"};
                     degreeComboBox.setModel(new DefaultComboBoxModel(degreeP));
+                    
+                    textField_deptName = new JTextField();
+                    textField_deptName.setColumns(10);
+                    
+                    deptSearchButton = new JButton("조회");
+                    deptSearchButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchDeptFrm sdf=new SearchDeptFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_deptName.setText(addSearch());
+                              }
+                    });
+                    deptSearchButton.setFont(new Font("Dialog", Font.BOLD, 13));
                     GroupLayout groupLayout = new GroupLayout(getContentPane());
                     groupLayout.setHorizontalGroup(
                               groupLayout.createParallelGroup(Alignment.LEADING)
@@ -228,31 +240,35 @@ public class StudentManagerFrm extends JInternalFrame {
                                                                       .addGap(22)
                                                                       .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                                                 .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addComponent(label, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(inSchStatusComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
-                                                                                .addGroup(groupLayout.createSequentialGroup()
-                                                                                          .addComponent(editClassLabel)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addGap(38)
-                                                                                          .addComponent(submitEidtButton)
-                                                                                          .addGap(10)
-                                                                                          .addComponent(button))
-                                                                                .addGroup(groupLayout.createSequentialGroup()
                                                                                           .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                                                                                           .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(degreeComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addGap(579))
+                                                                                          .addComponent(degreeComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
+                                                                                .addGroup(groupLayout.createSequentialGroup()
+                                                                                          .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+                                                                                                    .addGroup(groupLayout.createSequentialGroup()
+                                                                                                              .addComponent(editClassLabel)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(textField_deptName)
+                                                                                                              .addGap(18)
+                                                                                                              .addComponent(deptSearchButton))
+                                                                                                    .addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+                                                                                                              .addComponent(label, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                                                                                                              .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                                              .addComponent(inSchStatusComboBox, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)))
+                                                                                          .addGap(157)
+                                                                                          .addComponent(submitEidtButton)
+                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                                          .addComponent(button)))
+                                                                      .addGap(488))
                                                             .addGroup(groupLayout.createSequentialGroup()
                                                                       .addContainerGap()
-                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1199, Short.MAX_VALUE)))
+                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1227, Short.MAX_VALUE)))
                                                   .addContainerGap())
                     );
                     groupLayout.setVerticalGroup(
                               groupLayout.createParallelGroup(Alignment.LEADING)
                                         .addGroup(groupLayout.createSequentialGroup()
-                                                  .addContainerGap(23, Short.MAX_VALUE)
+                                                  .addContainerGap(25, Short.MAX_VALUE)
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                                             .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
                                                                       .addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,9 +289,10 @@ public class StudentManagerFrm extends JInternalFrame {
                                                   .addGap(18)
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(editClassLabel)
-                                                            .addComponent(editOrgComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(submitEidtButton)
-                                                            .addComponent(button))
+                                                            .addComponent(textField_deptName, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(deptSearchButton)
+                                                            .addComponent(button)
+                                                            .addComponent(submitEidtButton))
                                                   .addGap(18)
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(label, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
@@ -284,7 +301,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                                   .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(degreeComboBox, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                                                  .addContainerGap(37, Short.MAX_VALUE))
+                                                  .addContainerGap(38, Short.MAX_VALUE))
                     );
                     
                     
@@ -346,6 +363,9 @@ public class StudentManagerFrm extends JInternalFrame {
                     setDeptName();
                     setTable(new Student());
           }
+          protected String addSearch() {
+                    return SearchDeptFrm.getDeptName();
+          }
           protected String getStudentName() {
 			// TODO Auto-generated method stub
         	  String name = studentListTable.getValueAt(selectIndex, 1).toString();
@@ -358,6 +378,7 @@ public class StudentManagerFrm extends JInternalFrame {
                 }
 		//수정 submit event
           protected void submiEditAct(ActionEvent ae) {
+                    String orgid;
                     setDeptName();
                     int row=studentListTable.getSelectedRow();
                     if(row==-1){
@@ -369,12 +390,14 @@ public class StudentManagerFrm extends JInternalFrame {
                     
                     Student student=new Student();
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
-                   Org org=(Org) editOrgComboBox.getSelectedItem();
-                    student.setOrgId(org.getOrgCode());
+                     orgid=SearchDeptFrm.getOrdId();
+                    student.setOrgId(orgid);
                     student.setInSchState(inSchStatus);
                     student.setDegreeProcess(degreeProcess);
                     student.setsNo(studentListTable.getValueAt(row, 0).toString());
-                     
+                    if(JOptionPane.showConfirmDialog(this, "수정 하시겠습니까？") != JOptionPane.OK_OPTION){
+                            return;
+                    }
                     StudentDao studentDao=new StudentDao();
                     if(studentDao.updateStudent(student)){
                               JOptionPane.showMessageDialog(this, "수정 성공했습니다");
@@ -392,12 +415,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     selectIndex=studentListTable.getSelectedRow();
                     //소속학과
                     String orgName=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
-                    for(int i=0;i<editOrgComboBox.getItemCount();i++){
-                              Org org=(Org)editOrgComboBox.getItemAt(i);
-                              if(orgName.equals(org.getName())){
-                                        editOrgComboBox.setSelectedIndex(i);
-                              }
-                    }
+                    textField_deptName.setText(orgName);
                     //재학상태
                     String inSchStatus;
                     try {
@@ -476,7 +494,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     setTable(student);
           }
           private void restvalues() {
-                          editOrgComboBox.setSelectedIndex(0);
+                          textField_deptName.setText("");
                           editSexButtonGroup.clearSelection();
           }
           // table다시 설정
@@ -516,7 +534,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     orgList = orgDao.getOrgdeptNameList(new Org());
                     for (Org org : orgList) {
                               searchOrgComboBox.addItem(org);
-                              editOrgComboBox.addItem(org);
                     }
                     orgDao.closeDao();
           }

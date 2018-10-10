@@ -151,6 +151,8 @@ public class SearchSuperiorFrm extends JDialog {
                     JButton button = new JButton("\uCDE8 \uC18C");
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        pNo=null;
+                                        pName=null;
                                         dispose();
                               }
                     });
