@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.OrgDao;
@@ -44,8 +43,9 @@ public class AddOrgFrm extends JFrame {
           private JButton cancelButton;
           private JComboBox comboBox_2,comboBox_1,comboBox_3;
           private JLabel label_3;
-          private JComboBox comboBox_par;
           private JPanel panel_3;
+          private JTextField textField_par;
+          private List<Org> orgList;
           /**
            * Launch the application.
            */
@@ -78,18 +78,24 @@ public class AddOrgFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uC870\uC9C1\uBA85:");
+                    lblNewLabel.setBounds(76, 43, 54, 15);
                     
                     textField_orgName = new JTextField();
+                    textField_orgName.setBounds(148, 40, 106, 21);
                     textField_orgName.setColumns(10);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uC57D\uC5B4\uBA85:");
+                    lblNewLabel_1.setBounds(284, 43, 54, 15);
                     
                     textField_sName = new JTextField();
+                    textField_sName.setBounds(342, 40, 127, 21);
                     textField_sName.setColumns(10);
                     
                     JLabel label = new JLabel("\uC870\uC9C1\uAD6C\uBD84:");
+                    label.setBounds(63, 83, 67, 15);
                     
                     radioButton_1 = new JRadioButton("\uAD50\uC721\uAE30\uAD00");
+                    radioButton_1.setBounds(148, 79, 84, 23);
                     radioButton_1.setSelected(true);
                     radioButton_1.addItemListener(new ItemListener() {
                               public void itemStateChanged(ItemEvent e) {
@@ -100,6 +106,7 @@ public class AddOrgFrm extends JFrame {
                     });
                     
                     radioButton_2 = new JRadioButton("\uBD80\uC18D\uAE30\uAD00");
+                    radioButton_2.setBounds(247, 79, 85, 23);
                     radioButton_2.addItemListener(new ItemListener() {
                               public void itemStateChanged(ItemEvent e) {
                                         if(radioButton_2.isSelected()){
@@ -108,6 +115,7 @@ public class AddOrgFrm extends JFrame {
                               }
                     });
                     radioButton_3 = new JRadioButton("본부행정기관");
+                    radioButton_3.setBounds(342, 79, 118, 23);
                     radioButton_3.addItemListener(new ItemListener() {
                         public void itemStateChanged(ItemEvent e) {
                                   if(radioButton_3.isSelected()){
@@ -122,8 +130,10 @@ public class AddOrgFrm extends JFrame {
                     
                     card=new CardLayout(5,5);
                     panel = new JPanel(card);
+                    panel.setBounds(15, 108, 491, 60);
                     
                     submitButton = new JButton("\uB4F1 \uB85D");
+                    submitButton.setBounds(142, 226, 78, 23);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         addOrg(e);
@@ -131,6 +141,7 @@ public class AddOrgFrm extends JFrame {
                     });
                     
                     cancelButton = new JButton("\uCDE8 \uC18C");
+                    cancelButton.setBounds(300, 225, 74, 23);
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
@@ -138,79 +149,22 @@ public class AddOrgFrm extends JFrame {
                     });
                     
                     label_3 = new JLabel("\uC0C1\uC704\uC870\uC9C1:");
+                    label_3.setBounds(110, 186, 74, 15);
                     
-                    comboBox_par = new JComboBox();
+                    textField_par = new JTextField();
+                    textField_par.setEditable(false);
+                    textField_par.setBounds(192, 184, 202, 21);
+                    textField_par.setColumns(10);
                     
-                    
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(71)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                    						.addComponent(lblNewLabel)
-                    						.addComponent(label))
-                    					.addGap(18)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-                    							.addGap(42)
-                    							.addComponent(lblNewLabel_1)
-                    							.addPreferredGap(ComponentPlacement.RELATED))
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(radioButton_1)
-                    							.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                    							.addComponent(radioButton_2)
-                    							.addGap(22)))
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-                    						.addComponent(radioButton_3, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE))
-                    					.addGap(37))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addContainerGap()
-                    					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 491, GroupLayout.PREFERRED_SIZE))
-                    				.addGroup(gl_contentPane.createSequentialGroup()
-                    					.addGap(22)
-                    					.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-                    					.addPreferredGap(ComponentPlacement.RELATED)
-                    					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    						.addGroup(gl_contentPane.createSequentialGroup()
-                    							.addComponent(submitButton)
-                    							.addGap(113)
-                    							.addComponent(cancelButton))
-                    						.addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, 359, GroupLayout.PREFERRED_SIZE))
-                    					.addPreferredGap(ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
-                    			.addGap(39))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                    	gl_contentPane.createParallelGroup(Alignment.LEADING)
-                    		.addGroup(gl_contentPane.createSequentialGroup()
-                    			.addGap(35)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(lblNewLabel)
-                    				.addComponent(textField_orgName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(lblNewLabel_1)
-                    				.addComponent(textField_sName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    			.addGap(18)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    				.addComponent(radioButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    				.addComponent(radioButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    				.addComponent(radioButton_3))
-                    			.addPreferredGap(ComponentPlacement.UNRELATED)
-                    			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                    			.addGap(18)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(comboBox_par, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    				.addComponent(label_3))
-                    			.addGap(18)
-                    			.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                    				.addComponent(submitButton)
-                    				.addComponent(cancelButton))
-                    			.addContainerGap())
-                    );
+                    JButton searchButton = new JButton("조회");
+                    searchButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame());
+                                        sof.setVisible(true);
+                                        textField_par.setText(addSearchOrg());
+                              }
+                    });
+                    searchButton.setBounds(404, 182, 69, 23);
                     
                     panel_1 = new JPanel();
                     panel_1.setBackground(new Color(240, 240, 240));
@@ -229,8 +183,8 @@ public class AddOrgFrm extends JFrame {
                     gl_panel_1.setHorizontalGroup(
                               gl_panel_1.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_panel_1.createSequentialGroup()
-                                                  .addGap(59)
-                                                  .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(50)
+                                                  .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                                                   .addGap(18)
                                                   .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
                                                   .addGap(18)
@@ -288,10 +242,27 @@ public class AddOrgFrm extends JFrame {
                                         .addGap(0, 50, Short.MAX_VALUE)
                     );
                     panel_3.setLayout(gl_panel_3);
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(textField_par);
+                    contentPane.add(searchButton);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(label);
+                    contentPane.add(textField_orgName);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(radioButton_1);
+                    contentPane.add(radioButton_2);
+                    contentPane.add(textField_sName);
+                    contentPane.add(radioButton_3);
+                    contentPane.add(panel);
+                    contentPane.add(label_3);
+                    contentPane.add(submitButton);
+                    contentPane.add(cancelButton);
                     
-                    setOrgName();
           }
+          protected String addSearchOrg() {
+                    return SearchOrgForOrgFrm.getOrgName();
+          }
+
           //org login
           protected void addOrg(ActionEvent e) {
                     // TODO Auto-generated method stub
@@ -305,9 +276,9 @@ public class AddOrgFrm extends JFrame {
                     coGrCode=comboBox_1.getSelectedItem().toString();
                     gsDepMajCode=comboBox_2.getSelectedItem().toString();
                     aftType=comboBox_3.getSelectedItem().toString();
-                    Org orgPar = (Org) comboBox_par.getSelectedItem();
+                    String orgParName = textField_par.getText().toString();
                     try {
-                              parCode=orgPar.getOrgCode();
+                              parCode=this.getOrgidByOrgName(orgParName);
                     } catch (NullPointerException e2) {
                               parCode=null;
                     }
@@ -341,7 +312,6 @@ public class AddOrgFrm extends JFrame {
                     }
                     orgDao.closeDao();
                     resetValue();
-                    setOrgName();
                     
           }
           // get orgCode 조직코드 생성
@@ -406,19 +376,35 @@ public class AddOrgFrm extends JFrame {
                     comboBox_1.setSelectedIndex(0);
                     comboBox_2.setSelectedIndex(0);
                     comboBox_3.setSelectedIndex(0);
-                    comboBox_par.setSelectedIndex(0);
+                    textField_par.setText("");
           }
-        //상위 조직 从数据库中把数据填充选择框
-          protected void setOrgName() {
-                    comboBox_par.removeAllItems();
-                    // TODO Auto-generated method stub
-                   OrgDao orgDao=new OrgDao();
-                    List<Org> orgList = orgDao.getOrgList(new Org());
-                    String str=null;
-                    comboBox_par.addItem(str);
-                    for (Org org : orgList) {
-                              comboBox_par.addItem(org);
+//        //상위 조직 从数据库中把数据填充选择框
+//          protected void setOrgName() {
+//                    // TODO Auto-generated method stub
+//                   OrgDao orgDao=new OrgDao();
+//                    List<Org> orgList = orgDao.getOrgList(new Org());
+//                    String str=null;
+//                    for (Org org : orgList) {
+//                              comboBox_par.addItem(org);
+//                    }
+//                    orgDao.closeDao();
+//          }
+        //orgid에 통해서 orgName를 받는다
+          public String getOrgNameById(String id){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getOrgCode().equals(id)) return org.getName();
                     }
-                    orgDao.closeDao();
+                    return "";
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
           }
 }

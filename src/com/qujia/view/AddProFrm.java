@@ -434,7 +434,7 @@ public class AddProFrm extends JFrame {
                     btnNewButton_2 = new JButton("조회");
                     btnNewButton_2.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchOrgFrm sdf=new SearchOrgFrm(new JFrame());
+                                        SearchOrgForProFrm sdf=new SearchOrgForProFrm(new JFrame());
                                         sdf.setVisible(true);
                                         textField_org.setText(addSearch());
                               }
@@ -522,7 +522,7 @@ public class AddProFrm extends JFrame {
           }
 
           protected String addSearch() {
-                    return SearchOrgFrm.getDeptName();
+                    return SearchOrgForProFrm.getDeptName();
           }
 
           //submit add pro action
@@ -564,7 +564,7 @@ public class AddProFrm extends JFrame {
 			
 			//조직코드
 			orgName = textField_org.getText().toString();
-			orgId=SearchOrgFrm.getOrdId();
+			orgId=SearchOrgForProFrm.getOrdId();
 			if(StringUtil.isEmpty(orgId)||StringUtil.isEmpty(orgName)) {
                       JOptionPane.showMessageDialog(this, "소속조직을 선택해주세요!");
                       return;

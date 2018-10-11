@@ -235,7 +235,7 @@ public class ProManagerFrm extends JFrame {
                     btnNewButton.setBounds(368, 368, 73, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchOrgFrm sdf=new SearchOrgFrm(new JFrame());
+                                        SearchOrgForProFrm sdf=new SearchOrgForProFrm(new JFrame());
                                         sdf.setVisible(true);
                                         textField_editOrgName.setText(addSearch());
                               }
@@ -332,7 +332,7 @@ public class ProManagerFrm extends JFrame {
           }
 
           protected String addSearch() {
-                    return SearchOrgFrm.getDeptName();
+                    return SearchOrgForProFrm.getDeptName();
           }
 
           // delete ProStaff 교직원 삭제 

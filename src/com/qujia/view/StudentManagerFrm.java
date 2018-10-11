@@ -204,7 +204,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     deptSearchButton = new JButton("조회");
                     deptSearchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchDeptFrm sdf=new SearchDeptFrm(new JFrame());
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
                                         sdf.setVisible(true);
                                         textField_deptName.setText(addSearch());
                               }
@@ -364,7 +364,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     setTable(new Student());
           }
           protected String addSearch() {
-                    return SearchDeptFrm.getDeptName();
+                    return SearchDeptForStuFrm.getDeptName();
           }
           protected String getStudentName() {
 			// TODO Auto-generated method stub
@@ -390,7 +390,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     
                     Student student=new Student();
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
-                     orgid=SearchDeptFrm.getOrdId();
+                     orgid=SearchDeptForStuFrm.getOrdId();
                     student.setOrgId(orgid);
                     student.setInSchState(inSchStatus);
                     student.setDegreeProcess(degreeProcess);

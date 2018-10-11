@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -21,7 +19,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +34,9 @@ public class OrgManagerFrm extends JFrame {
           private JTable table;
           private JTextField textField_editName;
           private JTextField textField_editsName;
-          private JComboBox comboBox_editPar,comboBox_co,comboBox_type,comboBox_gdm;
+          private JComboBox comboBox_co,comboBox_type,comboBox_gdm;
+          private JTextField textField_editPar;
+          private List<Org> orgList;
 
           /**
            * Launch the application.
@@ -71,23 +70,31 @@ public class OrgManagerFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uC870\uC9C1\uBA85:");
+                    lblNewLabel.setBounds(15, 28, 53, 15);
                     
                     textField_name = new JTextField();
+                    textField_name.setBounds(78, 25, 83, 22);
                     textField_name.setColumns(10);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(15, 65, 853, 277);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uC870\uC9C1\uBA85:");
+                    lblNewLabel_1.setBounds(39, 362, 51, 15);
                     
                     textField_editName = new JTextField();
+                    textField_editName.setBounds(99, 359, 248, 21);
                     textField_editName.setColumns(10);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uC57D\uC5B4\uBA85");
+                    lblNewLabel_2.setBounds(424, 362, 51, 15);
                     
                     textField_editsName = new JTextField();
+                    textField_editsName.setBounds(502, 359, 132, 21);
                     textField_editsName.setColumns(10);
                     
                     JButton updateButton = new JButton("\uC218 \uC815");
+                    updateButton.setBounds(760, 358, 79, 23);
                     updateButton.setBackground(new Color(102, 205, 170));
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -96,6 +103,7 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
+                    deleteButton.setBounds(760, 403, 79, 23);
                     deleteButton.setBackground(new Color(255, 99, 71));
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -104,15 +112,17 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC0C1\uC704\uC870\uC9C1:");
-                    
-                     comboBox_editPar = new JComboBox();
+                    lblNewLabel_3.setBounds(27, 407, 63, 15);
                     
                     JLabel lblNewLabel_4 = new JLabel("대학/대학원:");
+                    lblNewLabel_4.setBounds(331, 28, 83, 15);
                     
                      comboBox_co = new JComboBox();
+                     comboBox_co.setBounds(424, 25, 79, 21);
                      comboBox_co.setModel(new DefaultComboBoxModel(new String[] {"", "대학", "대학원"}));
                     
                     JButton searchButton = new JButton("\uAC80 \uC0C9");
+                    searchButton.setBounds(760, 24, 63, 23);
                     searchButton.setBackground(new Color(224, 255, 255));
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -156,91 +166,32 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JLabel lblNewLabel_5 = new JLabel("기관:");
+                    lblNewLabel_5.setBounds(171, 28, 42, 15);
                     
                     comboBox_type = new JComboBox();
+                    comboBox_type.setBounds(223, 25, 98, 21);
                     comboBox_type.setModel(new DefaultComboBoxModel(new String[] {"", "교육기관", "부속기관", "본부행정기관"}));
                     
                     JLabel lblNewLabel_6 = new JLabel("학부/과/전공:");
+                    lblNewLabel_6.setBounds(547, 28, 87, 15);
                     
                     comboBox_gdm = new JComboBox();
+                    comboBox_gdm.setBounds(644, 25, 65, 21);
                     comboBox_gdm.setModel(new DefaultComboBoxModel(new String[] {"", "학부", "학과", "전공"}));
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(22)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(lblNewLabel_3)
-                                                                                .addComponent(lblNewLabel_1))
-                                                                      .addGap(18)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(comboBox_editPar, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(textField_editName, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
-                                                                      .addGap(29)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_2)
-                                                                                          .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                                          .addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addGap(18)
-                                                                                          .addComponent(updateButton))
-                                                                                .addComponent(deleteButton)))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(lblNewLabel_5)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(lblNewLabel_4)
-                                                                      .addGap(12)
-                                                                      .addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, 79, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(lblNewLabel_6)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(28)
-                                                                      .addComponent(searchButton))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 853, Short.MAX_VALUE)))
-                                                  .addContainerGap())
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(19)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_co, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(comboBox_type, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_6)
-                                                            .addComponent(comboBox_gdm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(searchButton))
-                                                  .addGap(18)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 277, GroupLayout.PREFERRED_SIZE)
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(textField_editsName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(updateButton))
-                                                  .addGap(32)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_3)
-                                                            .addComponent(comboBox_editPar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(deleteButton))
-                                                  .addContainerGap(70, Short.MAX_VALUE))
-                    );
+                    
+                    textField_editPar = new JTextField();
+                    textField_editPar.setBounds(99, 404, 171, 21);
+                    textField_editPar.setColumns(10);
+                    
+                    JButton btnNewButton = new JButton("조회");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame());
+                                        sof.setVisible(true);
+                                        textField_editPar.setText(addSearchOrg());
+                              }
+                    });
+                    btnNewButton.setBounds(280, 403, 67, 23);
                     
                     table = new JTable();
                     table.addMouseListener(new MouseAdapter() {
@@ -255,11 +206,11 @@ public class OrgManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1\uCF54\uB4DC", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, true, false
+                                        false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -275,13 +226,35 @@ public class OrgManagerFrm extends JFrame {
                     table.getColumnModel().getColumn(7).setPreferredWidth(98);
                     table.getColumnModel().getColumn(8).setPreferredWidth(89);
                     scrollPane.setViewportView(table);
-                    contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    contentPane.setLayout(null);
+                    contentPane.add(textField_editPar);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(textField_editName);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(textField_editsName);
+                    contentPane.add(updateButton);
+                    contentPane.add(deleteButton);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField_name);
+                    contentPane.add(lblNewLabel_5);
+                    contentPane.add(comboBox_type);
+                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(comboBox_co);
+                    contentPane.add(lblNewLabel_6);
+                    contentPane.add(comboBox_gdm);
+                    contentPane.add(searchButton);
+                    contentPane.add(scrollPane);
                     
-                    setOrgName();
                     setTable(new Org());
           }
+          protected String addSearchOrg() {
+                    return SearchOrgForOrgFrm.getOrgName();
+          }
+
           //조직 삭제
           protected void deleteOrg(ActionEvent e) {
                     int row=table.getSelectedRow();
@@ -324,7 +297,7 @@ public class OrgManagerFrm extends JFrame {
                               return;
                     }
                     
-                    String orgsName,orgCode;
+                    String orgsName,orgParCode,orgParName;
                     String orgName=textField_editName.getText().toString();
                     try {
                               orgsName=textField_editsName.getText().toString();
@@ -332,10 +305,10 @@ public class OrgManagerFrm extends JFrame {
                               orgsName=null;
                     }
                     try {
-                              Org org1= (Org) comboBox_editPar.getSelectedItem();
-                              orgCode = org1.getOrgCode();
+                              orgParName= textField_editPar.getText().toString();
+                              orgParCode = this.getOrgidByOrgName(orgParName);
                     } catch (NullPointerException e2) {
-                              orgCode=null;
+                              orgParCode=null;
                     }
                     
                     if(StringUtil.isEmpty(orgName)){
@@ -346,7 +319,7 @@ public class OrgManagerFrm extends JFrame {
                     Org org=new Org();
                     org.setName(orgName);
                     org.setsName(orgsName);
-                    org.setParCode(orgCode);
+                    org.setParCode(orgParCode);
                     org.setOrgCode(table.getValueAt(row, 0).toString());
                     OrgDao orgDao=new OrgDao();
                     if(orgDao.updateOrg(org)){
@@ -374,26 +347,13 @@ public class OrgManagerFrm extends JFrame {
                               v.add(o.getCoGrCode());
                               v.add(o.getGsDepMajCode());
                               v.add(o.getAftType());
-                              v.add(o.getParCode());
+                              v.add(this.getOrgNameById(o.getParCode()));
                               v.add(o.getTodayDate());
                               dft.addRow(v);
                     }
                     orgDao.closeDao();
                     
            }
-        //상위 조직 从数据库中把数据填充选择框
-          protected void setOrgName() {
-                    // TODO Auto-generated method stub
-                    comboBox_editPar.removeAllItems();
-                   OrgDao orgDao=new OrgDao();
-                    List<Org> orgList = orgDao.getOrgList(new Org());
-                    String str=null;
-                    comboBox_editPar.addItem(str);
-                    for (Org org : orgList) {
-                              comboBox_editPar.addItem(org);
-                    }
-                    orgDao.closeDao();
-          }
         //Table중 행을 선택
           protected void selectedTableRow(MouseEvent me) {
                     String parCode=null;
@@ -410,27 +370,45 @@ public class OrgManagerFrm extends JFrame {
                               textField_editsName.setText("");
                     }
                     try {
-                              parCode=dft.getValueAt(table.getSelectedRow(),7).toString();
+                              textField_editPar.setText(dft.getValueAt(table.getSelectedRow(),7).toString());
                     } catch (NullPointerException e) {
-                              parCode=null;
+                              textField_editPar.setText("");
                     }
                     
-                    for(int i=0;i<comboBox_editPar.getItemCount();i++){
-                              Org org=(Org) comboBox_editPar.getItemAt(i);
-                              try {
-                                        if(parCode.equals(org.getOrgCode())){
-                                                  comboBox_editPar.setSelectedIndex(i);
-                                        }
-                              } catch (NullPointerException e) {
-                                        comboBox_editPar.setSelectedIndex(0);
-                              }
-                              
-                    }
+//                    for(int i=0;i<comboBox_editPar.getItemCount();i++){
+//                              Org org=(Org) comboBox_editPar.getItemAt(i);
+//                              try {
+//                                        if(parCode.equals(org.getOrgCode())){
+//                                                  comboBox_editPar.setSelectedIndex(i);
+//                                        }
+//                              } catch (NullPointerException e) {
+//                                        comboBox_editPar.setSelectedIndex(0);
+//                              }
+//                              
+//                    }
           }
           private void resetValues(){
                     textField_editName.setText("");
                     textField_editsName.setText("");
-                    comboBox_editPar.setSelectedIndex(0);
+                    textField_editPar.setText("");
+          }
+        //orgid에 통해서 orgName를 받는다
+          public String getOrgNameById(String id){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getOrgCode().equals(id)) return org.getName();
+                    }
+                    return "";
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
           }
 
 }

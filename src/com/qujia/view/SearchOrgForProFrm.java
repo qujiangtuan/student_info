@@ -25,7 +25,7 @@ import com.qujia.dao.OrgDao;
 import com.qujia.model.Org;
 import com.qujia.util.ViewUtil;
 
-public class SearchOrgFrm extends JDialog {
+public class SearchOrgForProFrm extends JDialog {
 
           private JPanel contentPane;
           private JTextField textField_deptName;
@@ -45,7 +45,7 @@ public class SearchOrgFrm extends JDialog {
                     EventQueue.invokeLater(new Runnable() {
                               public void run() {
                                         try {
-                                                  SearchOrgFrm frame = new SearchOrgFrm(null);
+                                                  SearchOrgForProFrm frame = new SearchOrgForProFrm(null);
                                                   frame.setVisible(true);
                                         } catch (Exception e) {
                                                   e.printStackTrace();
@@ -58,12 +58,12 @@ public class SearchOrgFrm extends JDialog {
                     return deptName;
           }
           public static void setDeptName(String deptName) {
-                    SearchOrgFrm.deptName = deptName;
+                    SearchOrgForProFrm.deptName = deptName;
           }
           /**
            * Create the frame.
            */
-          public SearchOrgFrm(JFrame fr) {
+          public SearchOrgForProFrm(JFrame fr) {
                     super(fr, "", true);
                     
                     setTitle("\uC870\uC9C1\uC870\uD68C");

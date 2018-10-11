@@ -306,7 +306,7 @@ public class AddStudentFrm extends JFrame {
                     btnNewButton.setBounds(386, 74, 62, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchDeptFrm sdf=new SearchDeptFrm(new JFrame());
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
                                         sdf.setVisible(true);
                                         textField_deptName.setText(addSearch());
                               }
@@ -449,7 +449,7 @@ public class AddStudentFrm extends JFrame {
                     String email2 = email2comboBox.getSelectedItem().toString();
                     String email=email1+label+email2;
                     
-                    String orgid=SearchDeptFrm.getOrdId();//조직코드
+                    String orgid=SearchDeptForStuFrm.getOrdId();//조직코드
 //                    System.out.println("orgid="+orgid);
 //                    Org org1,org2;
 //                    org1=new Org();
@@ -680,6 +680,6 @@ public class AddStudentFrm extends JFrame {
           public String addSearch(){
                      
 //                    return AddStudentFrm.deptNameFine;
-                    return SearchDeptFrm.getDeptName();
+                    return SearchDeptForStuFrm.getDeptName();
           }
 }
