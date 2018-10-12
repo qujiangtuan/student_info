@@ -23,9 +23,22 @@ public class ProStaffDao extends BaseDao {
                   rs = prst.executeQuery();;
                   while(rs.next()){
                 	  psRst = new ProStaff();
+                	  
                 	  psRst.setpNo(rs.getString("pno"));
                 	  psRst.setpName(rs.getString("pname"));
+                	  psRst.setPeName(rs.getString("pename"));
+                	  psRst.setProType(rs.getString("pro_type"));
+                	  psRst.setPerType(rs.getString("per_type"));
+                	  psRst.setTeaType(rs.getString("tea_type"));
+                	  psRst.setSex(rs.getString("sex"));
+                	  psRst.setIdCardNo(rs.getString("id_card_no"));
+                	  psRst.setOrgId(rs.getString("orgid"));
+                	  psRst.setAddress(rs.getString("address"));
+                	  psRst.setTel(rs.getString("tel"));
+                	  psRst.setEmail(rs.getString("email"));
+                	  psRst.setLoginDate(rs.getString("login_date"));
                 	  psRst.setPassword(rs.getString("password"));
+                	  psRst.setSupId(rs.getString("sup_id"));     
                  }
         } catch (SQLException e) {
                   // TODO Auto-generated catch block

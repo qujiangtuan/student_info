@@ -24,9 +24,23 @@ public class StudentDao extends BaseDao{
                   rs = prst.executeQuery();;
                   while(rs.next()){
                 	  studentRst = new Student();
+                	  
                 	  studentRst.setsNo(rs.getString("sno"));
                 	  studentRst.setName(rs.getString("name"));
+                	  studentRst.setOrgId(rs.getString("orgid"));
+                	  studentRst.setSex(rs.getString("sex"));
+                	  studentRst.setIdCardNo(rs.getString("idcardno"));
+                	  studentRst.setJoinDate(rs.getString("joindate"));
+                	  studentRst.setEmail(rs.getString("email"));
                 	  studentRst.setPassword(rs.getString("password"));
+                	  studentRst.setTel(rs.getString("tel"));
+                	  studentRst.setAdress(rs.getString("address"));
+                	  studentRst.setMajorType(rs.getString("major_type"));
+                	  studentRst.setMajor(rs.getString("major"));
+                	  studentRst.setApplyDate(rs.getString("applydate"));
+                	  studentRst.setInSchState(rs.getString("insch_status"));
+                	  studentRst.setDegreeProcess(rs.getString("degree"));
+                	  studentRst.setInSchYear(rs.getString("sch_year"));
                  }
         } catch (SQLException e) {
                   // TODO Auto-generated catch block
