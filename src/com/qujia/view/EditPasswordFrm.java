@@ -4,8 +4,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -13,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.AdminDao;
@@ -61,28 +58,35 @@ public class EditPasswordFrm extends JInternalFrame {
                     setContentPane(contentPane);
                     setClosable(true);
                     setIconifiable(true);
-                    JLabel oldPasswordLabel = new JLabel("옛  암호：");
+                    JLabel oldPasswordLabel = new JLabel("옛   비밀번호:");
+                    oldPasswordLabel.setBounds(58, 60, 119, 19);
                     oldPasswordLabel.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/password.png")));
                     oldPasswordLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
-                    JLabel newPasswordLable = new JLabel("새  안호：");
+                    JLabel newPasswordLable = new JLabel("새   비밀번호:");
+                    newPasswordLable.setBounds(58, 108, 119, 19);
                     newPasswordLable.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/editPassword.png")));
                     newPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     oldPasswordTextField = new JPasswordField();
+                    oldPasswordTextField.setBounds(201, 59, 124, 21);
                     oldPasswordTextField.setColumns(10);
                     
                     newPasswordTextField = new JPasswordField();
+                    newPasswordTextField.setBounds(201, 107, 124, 21);
                     newPasswordTextField.setColumns(10);
                     
-                    JLabel confirmPasswordLable = new JLabel("안호확인：");
+                    JLabel confirmPasswordLable = new JLabel("비밀번호확인:");
+                    confirmPasswordLable.setBounds(58, 157, 125, 19);
                     confirmPasswordLable.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/editPassword.png")));
                     confirmPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     confirmPasswordTextField = new JPasswordField();
+                    confirmPasswordTextField.setBounds(201, 156, 124, 21);
                     confirmPasswordTextField.setColumns(10);
                      
                     JButton submitButton = new JButton("수 정");
+                    submitButton.setBounds(83, 211, 76, 27);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         submitEdit(ae);
@@ -92,6 +96,7 @@ public class EditPasswordFrm extends JInternalFrame {
                     submitButton.setIcon(null);
                     
                     JButton resetButton = new JButton("최 소");
+                    resetButton.setBounds(249, 211, 76, 27);
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         dispose();
@@ -101,64 +106,26 @@ public class EditPasswordFrm extends JInternalFrame {
                     resetButton.setIcon(null);
                     resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
-                    JLabel currentUserLabel_1 = new JLabel("사 용 자：");
+                    JLabel currentUserLabel_1 = new JLabel("사 용 자:");
+                    currentUserLabel_1.setBounds(58, 15, 119, 19);
                     currentUserLabel_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     currentUserLabel_1.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/studentManager.png")));
                     
                     currentUserLabel = new JLabel("김진수");
+                    currentUserLabel.setBounds(201, 15, 124, 19);
                     currentUserLabel.setEnabled(true);
                     currentUserLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(89)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(currentUserLabel_1)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                      .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                          .addComponent(newPasswordLable)
-                                                                                          .addComponent(confirmPasswordLable)
-                                                                                          .addComponent(oldPasswordLabel))
-                                                                                .addGap(18)
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                          .addComponent(confirmPasswordTextField)
-                                                                                          .addComponent(newPasswordTextField)
-                                                                                          .addComponent(oldPasswordTextField, GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                                                                                          .addComponent(currentUserLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                                      .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                                                .addComponent(submitButton)
-                                                                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(resetButton))))
-                                                  .addContainerGap(103, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(currentUserLabel_1)
-                                                            .addComponent(currentUserLabel))
-                                                  .addGap(25)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(oldPasswordTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(oldPasswordLabel))
-                                                  .addGap(27)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(newPasswordTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(newPasswordLable))
-                                                  .addGap(28)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(confirmPasswordTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(confirmPasswordLable))
-                                                  .addPreferredGap(ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(resetButton)
-                                                            .addComponent(submitButton))
-                                                  .addGap(27))
-                    );
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(currentUserLabel_1);
+                    contentPane.add(newPasswordLable);
+                    contentPane.add(confirmPasswordLable);
+                    contentPane.add(oldPasswordLabel);
+                    contentPane.add(confirmPasswordTextField);
+                    contentPane.add(newPasswordTextField);
+                    contentPane.add(oldPasswordTextField);
+                    contentPane.add(currentUserLabel);
+                    contentPane.add(submitButton);
+                    contentPane.add(resetButton);
                     //当前用户设定
                     if("관리자".equals(MainFrm.userType.getName())){
                               Admin admin =(Admin)MainFrm.userObject;
