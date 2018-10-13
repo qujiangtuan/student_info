@@ -61,7 +61,7 @@ public class PersonLectureOfStuFrm extends JFrame {
                                         {null, null, null, null, null, "", null},
                               },
                               new String[] {
-                                        "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uD559\uC810", "\uC774\uC218\uAD6C\uBD84", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uACC4\uD68D\uC11C"
+                                        "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uD559\uC810", "\uC774\uC218\uAD6C\uBD84", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uACC4\uD68D\uC11C"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

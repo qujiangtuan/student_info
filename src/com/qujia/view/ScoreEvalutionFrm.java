@@ -235,7 +235,7 @@ public class ScoreEvalutionFrm extends JFrame {
                                         {null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC21C\uBC88", "\uC18C\uC18D\uD559\uACFC", "\uD559\uB144", "\uD559\uC0DD\uC774\uB984", "\uC131\uC801\uB4F1\uAE09"
+                                        "\uC18C\uC18D\uD559\uACFC", "\uD559\uC0DD\uC774\uB984", "\uD559\uBC88", "\uD559\uB144", "\uC131\uC801\uB4F1\uAE09"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -245,9 +245,9 @@ public class ScoreEvalutionFrm extends JFrame {
                                         return columnEditables[column];
                               }
                     });
-                    table.getColumnModel().getColumn(1).setPreferredWidth(121);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(59);
-                    table.getColumnModel().getColumn(3).setPreferredWidth(112);
+                    table.getColumnModel().getColumn(0).setPreferredWidth(121);
+                    table.getColumnModel().getColumn(1).setPreferredWidth(112);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(59);
                     table.getColumnModel().getColumn(4).setPreferredWidth(97);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);

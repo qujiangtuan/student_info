@@ -270,7 +270,7 @@ public class ProManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uC6D0\uBC88\uD638", "\uC774\uB984", "\uC601\uC5B4\uC774\uB984", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18D\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC804\uD654\uBC88\uD638", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC9DC", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
+                                        "\uAD50\uC6D0\uBC88\uD638", "\uC774\uB984", "\uC601\uC5B4\uC774\uB984", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18D\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC5F0\uB77D\uCC98", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC790", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

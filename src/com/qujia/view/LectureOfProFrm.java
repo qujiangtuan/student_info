@@ -125,7 +125,7 @@ public class LectureOfProFrm extends JFrame {
                                         {null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC21C\uBC88", "\uAD50\uC6D0\uBC88\uD638", "\uAD50\uC218\uBA85", "\uAC15\uC758\uBA85", "\uBD84\uBC18", "\uD559\uC810", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                        "\uAC15\uC758\uBC88\uD638", "\uAD50\uC6D0\uBC88\uD638", "\uAD50\uC218\uBA85", "\uAC15\uC758\uBA85", "\uBD84\uBC18", "\uD559\uC810", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

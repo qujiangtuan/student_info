@@ -58,7 +58,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
            */
           public DeptStandManagerFrm() {
                     setTitle("교육부서학사기준관리");
-                    setBounds(20, 20, 863, 482);
+                    setBounds(20, 20, 863, 561);
                     setClosable(true);
                     setIconifiable(true);
 
@@ -115,11 +115,11 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     textField_min.setColumns(10);
 
                     JLabel label_1 = new JLabel("재학년한\r\n:");
-                    label_1.setBounds(35, 362, 60, 19);
+                    label_1.setBounds(490, 363, 60, 19);
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_year2 = new JTextField();
-                    textField_year2.setBounds(105, 361, 139, 21);
+                    textField_year2.setBounds(562, 362, 123, 21);
                     textField_year2.setColumns(10);
 
                     JLabel lblNewLabel_2 = new JLabel("학기당최대이수학점:");
@@ -131,8 +131,8 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     textField_max.setBounds(402, 361, 66, 21);
                     textField_max.setColumns(10);
 
-                    JLabel lblNewLabel_3 = new JLabel("부가설명:");
-                    lblNewLabel_3.setBounds(490, 369, 60, 19);
+                    JLabel lblNewLabel_3 = new JLabel("학과설명:");
+                    lblNewLabel_3.setBounds(35, 363, 60, 19);
                     lblNewLabel_3.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
@@ -167,7 +167,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     textField_year1.setColumns(10);
                     
                     JScrollPane scrollPane_text = new JScrollPane();
-                    scrollPane_text.setBounds(560, 369, 125, 60);
+                    scrollPane_text.setBounds(105, 363, 125, 60);
                     
                     orgName = new JLabel();
                     orgName.setBounds(105, 315, 137, 21);
@@ -175,7 +175,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     
                     textArea = new JTextArea();
                     textArea.setLineWrap(true);
-                    scrollPane_text.setViewportView(textArea);
+                    scrollPane_text.setRowHeaderView(textArea);
 
                     deptListTable = new JTable();
                     deptListTable.setRowHeight(25);

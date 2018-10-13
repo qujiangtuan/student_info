@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -73,7 +74,7 @@ public class AddCourseArrangeFrm extends JFrame {
           public AddCourseArrangeFrm() {
                     setTitle("개설교과목등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 625, 560);
+                    setBounds(100, 100, 625, 589);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -97,7 +98,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     leabel_term = new JLabel(" 개설학기:");
 
                     comboBox_term = new JComboBox();
-                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "여름계절학기", "겨울계절학기"}));
+                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1학기", "2학기", "여름계절학기", "겨울계절학기"}));
 
                     DateUtil du = new DateUtil();
 
@@ -495,10 +496,10 @@ public class AddCourseArrangeFrm extends JFrame {
                     textField_1 = new JTextField();
                     textField_1.setColumns(10);
                     
-                    JLabel lblNewLabel_2 = new JLabel("개설년도:");
+                    JLabel lblNewLabel_2 = new JLabel("대상학년:");
                     
                     JComboBox comboBox = new JComboBox();
-                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "대학원1", "대학원2", "대학원3"}));
+                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"}));
                     
                     button = new JButton("취 소");
                     button.addActionListener(new ActionListener() {
@@ -506,6 +507,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         dispose();
                               }
                     });
+                    
+                    JLabel lblNewLabel_3 = new JLabel("평가방식:");
+                    
+                    JRadioButton rdbtnNewRadioButton = new JRadioButton("상대평가");
+                    
+                    JRadioButton radioButton = new JRadioButton("절대평가");
                     // btnNewButton.addActionListener(new ActionListener() {
                     // public void getdate(){
                     // Date cellEditorValue = (Date) new
@@ -556,7 +563,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                                                       .addGap(59)
                                                                       .addComponent(lblNewLabel)
                                                                       .addGap(18)
-                                                                      .addComponent(textField, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                                                                      .addComponent(textField, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                                                             .addGroup(gl_contentPane.createSequentialGroup()
                                                                       .addGap(42)
                                                                       .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -577,7 +584,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                                                                                               .addComponent(lblNewLabel_2)
                                                                                                               .addGap(18)))
                                                                                           .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addComponent(comboBox, 0, 134, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox, 0, 135, Short.MAX_VALUE)
                                                                                                     .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
                                                                                                               .addComponent(label_2)
                                                                                                               .addComponent(spinner_7_1, 0, 0, Short.MAX_VALUE)
@@ -590,44 +597,55 @@ public class AddCourseArrangeFrm extends JFrame {
                                                                                                     .addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)))
                                                                                 .addComponent(lebel_name))))
                                                   .addGap(34)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                            .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                                    .addComponent(spinner_2_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_1_2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_3_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_4_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_5_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_6_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
+                                                                                                    .addComponent(spinner_7_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
+                                                                                          .addGap(18)
+                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+                                                                                                    .addComponent(label_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_7, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_6, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_5, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_4, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_3, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_1, 0, 147, Short.MAX_VALUE)
+                                                                                                    .addComponent(comboBox_2, 0, 147, Short.MAX_VALUE)))
+                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+                                                                                          .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                    .addComponent(leabel_pro)
+                                                                                                    .addGap(10)
+                                                                                                    .addComponent(comboBox_pro, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+                                                                                          .addComponent(label_3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                                                                                          .addGroup(gl_contentPane.createSequentialGroup()
+                                                                                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+                                                                                                              .addComponent(lblNewLabel_1)
+                                                                                                              .addComponent(leabel_term))
+                                                                                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                                                                                    .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)))
+                                                                                .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
+                                                                      .addContainerGap(51, Short.MAX_VALUE))
                                                             .addGroup(gl_contentPane.createSequentialGroup()
                                                                       .addComponent(submitButton)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                      .addComponent(button, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(spinner_2_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_1_2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_3_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_4_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_5_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_6_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                .addComponent(spinner_7_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
-                                                                      .addGap(18)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addComponent(label_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_7, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_6, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_5, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_4, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_3, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_1, 0, 147, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_2, 0, 147, Short.MAX_VALUE)))
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                      .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addComponent(leabel_pro)
-                                                                                .addGap(10)
-                                                                                .addComponent(comboBox_pro, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-                                                                      .addComponent(label_3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                          .addComponent(lblNewLabel_1)
-                                                                                          .addComponent(leabel_term))
-                                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)))
-                                                            .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
-                                                  .addContainerGap(50, Short.MAX_VALUE))
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                                                      .addComponent(button, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(73))))
+                                        .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
+                                                  .addGap(73)
+                                                  .addComponent(lblNewLabel_3)
+                                                  .addGap(33)
+                                                  .addComponent(rdbtnNewRadioButton)
+                                                  .addGap(18)
+                                                  .addComponent(radioButton)
+                                                  .addContainerGap(229, Short.MAX_VALUE))
                     );
                     gl_contentPane.setVerticalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -699,11 +717,16 @@ public class AddCourseArrangeFrm extends JFrame {
                                                             .addComponent(spinner_7_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(checkBox_7)
                                                             .addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(26)
+                                                  .addGap(27)
                                                   .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(button)
-                                                            .addComponent(submitButton))
-                                                  .addContainerGap(52, Short.MAX_VALUE))
+                                                            .addComponent(lblNewLabel_3)
+                                                            .addComponent(rdbtnNewRadioButton)
+                                                            .addComponent(radioButton))
+                                                  .addGap(32)
+                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+                                                            .addComponent(submitButton)
+                                                            .addComponent(button))
+                                                  .addContainerGap(33, Short.MAX_VALUE))
                     );
                     // for (int i = 0; i < rowCount; i++) {
                     // model.setValueAt(new Boolean(false), i, 0);

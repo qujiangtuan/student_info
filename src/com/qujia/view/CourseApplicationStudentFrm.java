@@ -178,16 +178,16 @@ public class CourseApplicationStudentFrm extends JFrame {
                            table.setRowHeight(25);
                            table.setModel(new DefaultTableModel(
                                      new Object[][] {
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
-                                               {null, null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
+                                               {null, null, null, null, null, null, null},
                                      },
                                      new String[] {
-                                               "\uC0AD\uC81C", "\uAD6C\uBD84", "\uD559\uC218\uBC88\uD638 ", "\uBD84\uBC18 ", "\uACFC\uBAA9\uBA85 ", "\uD559\uC810 ", "\uB2F4\uB2F9\uAD50\uC218", " \uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                               "\uACFC\uBAA9\uBA85 ", "\uD559\uC218\uBC88\uD638 ", "\uC774\uC218\uAD6C\uBD84", "\uB2F4\uB2F9\uAD50\uC218", "\uBD84\uBC18 ", "\uD559\uC810 ", " \uC2DC\uAC04/\uAC15\uC758\uC2E4"
                                      }
                            ));
                            scrollPane.setViewportView(table);
@@ -498,7 +498,7 @@ public class CourseApplicationStudentFrm extends JFrame {
                                       {null, null, null, null, null, null, null, null, null, null, null, null},
                             },
                             new String[] {
-                                      "\uC0C1\uD0DC", "\uAD6C\uBD84 ", "\uD559\uB144", "\uD559\uC218\uBC88\uD638", "\uBD84\uBC18", "\uC218\uAC15\uB300\uC0C1", "\uC815\uC6D0", "\uD604\uC6D0 ", "\uACFC\uBAA9\uBA85", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
+                                      "\uC0C1\uD0DC", "\uACFC\uBAA9\uBA85", "\uD559\uC218\uBC88\uD638", "\uC218\uAC15\uB300\uC0C1", "\uD559\uB144", "\uC774\uC218\uAD6C\uBD84 ", "\uD559\uC810", "\uC815\uC6D0", "\uB2F4\uB2F9\uAD50\uC218", "\uD604\uC6D0 ", "\uBD84\uBC18", "\uC2DC\uAC04/\uAC15\uC758 \uC2E4"
                             }
                   ));
                   scrollPane_list_no.setViewportView(table_1);

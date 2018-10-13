@@ -194,20 +194,20 @@ public class ScoreShowToStudentFrm extends JFrame {
                     table_scoreAvg.setRowHeight(25);
                     table_scoreAvg.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uB144\uB3C4/\uD559\uAE30", "\uC2E0\uCCAD\uD559\uC810", "\uCDE8\uB4DD\uD559\uC810", "\uD3C9\uC810", "\uBC31\uBD84\uC728", "\uC11D\uCC28", "F\uC81C\uC678\uD3C9\uC810", "\uBE44\uACE0"
+                                        "\uB144\uB3C4/\uD559\uAE30", "\uC2E0\uCCAD\uD559\uC810", "\uCDE8\uB4DD\uD559\uC810", "\uD3C9\uC810", "\uBC31\uBD84\uC728", "F\uC81C\uC678\uD3C9\uC810", "\uBE44\uACE0"
                               }
                     ));
                     scrollPane_2.setViewportView(table_scoreAvg);
@@ -356,7 +356,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                     JSpinner spinner_year = new JSpinner();
                     spinner_year.setModel(new SpinnerListModel(new String[] {"2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049"}));
                     
-                    JButton all_Button = new JButton("\uCC9C\uC81C\uACFC\uBAA9\uC131\uC801");
+                    JButton all_Button = new JButton("\uC804\uC81C\uACFC\uBAA9\uC131\uC801");
                     all_Button.setBackground(new Color(0, 255, 255));
                     all_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
@@ -364,7 +364,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                               }
                     });
                     
-                    JButton term_Button = new JButton("\uB204\uAC8C\uC131\uC801");
+                    JButton term_Button = new JButton("\uB204\uACC4\uC131\uC801");
                     term_Button.setBackground(new Color(173, 255, 47));
                     term_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -383,7 +383,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                     	}
                     });
                     
-                    creditButton = new JButton("\uD559\uC810");
+                    creditButton = new JButton("\uD559\uC810\uD655\uC778");
                     creditButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         card.show(panel_three, "panel_c_3");

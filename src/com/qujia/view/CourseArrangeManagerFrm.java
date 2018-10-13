@@ -191,10 +191,10 @@ public class CourseArrangeManagerFrm extends JFrame {
                     JButton button = new JButton("삭 제");
                     button.setBackground(new Color(255, 160, 122));
                     
-                    JLabel lblNewLabel_5 = new JLabel("상태:");
+                    JLabel lblNewLabel_5 = new JLabel("개폐상태:");
                     
                     JComboBox comboBox_10 = new JComboBox();
-                    comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"", "계설", "폐강"}));
+                    comboBox_10.setModel(new DefaultComboBoxModel(new String[] {"", "개설", "폐강"}));
                     GroupLayout gl_contentPane = new GroupLayout(contentPane);
                     gl_contentPane.setHorizontalGroup(
                               gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -427,7 +427,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

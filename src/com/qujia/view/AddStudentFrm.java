@@ -109,8 +109,7 @@ public class AddStudentFrm extends JFrame {
                     JLabel studentNameLabel = new JLabel("학생이름:");
                     studentNameLabel.setBounds(71, 36, 60, 19);
                     studentNameLabel.setIcon(null);
-                    studentNameLabel.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
+                    studentNameLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     studentNameTextField = new JTextField();
                     studentNameTextField.setBounds(141, 36, 235, 21);
@@ -119,14 +118,12 @@ public class AddStudentFrm extends JFrame {
                     JLabel studentClassLabel = new JLabel("소속조직:");
                     studentClassLabel.setBounds(71, 76, 60, 19);
                     studentClassLabel.setIcon(null);
-                    studentClassLabel.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
+                    studentClassLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JLabel studentSexLabel = new JLabel(" 성    별 :");
-                    studentSexLabel.setBounds(75, 117, 56, 19);
+                    studentSexLabel.setBounds(64, 117, 67, 19);
                     studentSexLabel.setIcon(null);
-                    studentSexLabel.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
+                    studentSexLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JButton submitButton = new JButton("등   록");
                     submitButton.setBounds(144, 389, 88, 27);
@@ -174,7 +171,7 @@ public class AddStudentFrm extends JFrame {
                     JLabel identityLabel = new JLabel("주민등록번호:");
                     identityLabel.setBounds(44, 157, 88, 19);
                     identityLabel.setIcon(null);
-                    identityLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    identityLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     identityTextField_1 = new JTextField();
                     identityTextField_1.setBounds(142, 156, 110, 21);
@@ -191,7 +188,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   return;
                                         }
                                         int len = identityTextField_1.getText()
@@ -224,7 +221,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   ke.consume();
                                                   return;
                                         }
@@ -234,7 +231,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "7짜리 초과하면 안 됩니다!");
+                                                                      "7자리 초과하면 안됩니다!");
                                                   ke.consume();
                                                   return;
                                         }
@@ -252,8 +249,8 @@ public class AddStudentFrm extends JFrame {
                     emailTextField.setColumns(10);
                     //注释下列一行才能打开 界面编辑
                     //datePicker = getDatePicker();
-                    lblNewLabel = new JLabel("전화번호:");
-                    lblNewLabel.setBounds(70, 279, 61, 16);
+                    lblNewLabel = new JLabel("연락처:");
+                    lblNewLabel.setBounds(86, 278, 46, 16);
                     lblNewLabel.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
                     textField_tel2 = new JTextField();
@@ -270,7 +267,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   return;
                                         }
                                         int len = textField_tel2.getText()
@@ -288,8 +285,8 @@ public class AddStudentFrm extends JFrame {
                     textField_tel2.setBounds(222, 276, 56, 21);
                     textField_tel2.setColumns(10);
 
-                    JLabel lblNewLabel_1 = new JLabel("집주소:");
-                    lblNewLabel_1.setBounds(84, 318, 47, 16);
+                    JLabel lblNewLabel_1 = new JLabel("주소:");
+                    lblNewLabel_1.setBounds(100, 318, 32, 16);
                     lblNewLabel_1.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
                     textField_address1 = new JTextField();
@@ -312,7 +309,7 @@ public class AddStudentFrm extends JFrame {
                               }
                     });
                     
-                    lblNewLabel_2 = new JLabel("학사과정:");
+                    lblNewLabel_2 = new JLabel("학위과정:");
                     lblNewLabel_2.setBounds(71, 197, 60, 19);
                     lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 13));
                     
@@ -374,7 +371,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   ke.consume();
                                                   return;
                                         }
@@ -384,7 +381,7 @@ public class AddStudentFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "4짜리 초과하면 안 됩니다!");
+                                                                      "4자리 초과하면 안됩니다!");
                                                   ke.consume();
                                                   return;
                                         }
@@ -546,10 +543,10 @@ public class AddStudentFrm extends JFrame {
 //                                        }
                               }
                               JOptionPane.showMessageDialog(this,
-                                                  "학생이 등록 성공했습니다! ");
+                                                  "학생을 등록했습니다! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "학생이 등록 실패했습니다！");
+                                                  "학생등록을 실패했습니다！");
                     }
                     resetValue(ae);
                     studentDao.closeDao();

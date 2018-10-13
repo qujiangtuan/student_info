@@ -160,7 +160,7 @@ public class AddProFrm extends JFrame {
                                       ke.consume();
                                       JOptionPane.showMessageDialog(
                                                           null,
-                                                          "숫자 입력해주세요!");
+                                                          "숫자만 입력 가능합니다!");
                                       return;
                             }
                             int len = textField_cardid_1.getText()
@@ -192,7 +192,7 @@ public class AddProFrm extends JFrame {
                                        ke.consume();
                                        JOptionPane.showMessageDialog(
                                                            null,
-                                                           "숫자 입력해주세요!");
+                                                           "숫자만 입력 가능합니다!");
                                        ke.consume();
                                        return;
                              }
@@ -202,7 +202,7 @@ public class AddProFrm extends JFrame {
                                        ke.consume();
                                        JOptionPane.showMessageDialog(
                                                            null,
-                                                           "7짜리 초과하면 안 됩니다!");
+                                                           "7자리 초과하면 안 됩니다!");
                                        ke.consume();
                                        return;
                              }
@@ -263,7 +263,7 @@ public class AddProFrm extends JFrame {
                     panel = new JPanel();
                     panel.setBounds(51, 114, 292, 128);
                     
-                    JLabel lblNewLabel_3 = new JLabel("\uC804\uD654\uBC88\uD638:");
+                    JLabel lblNewLabel_3 = new JLabel("연락처:");
                     lblNewLabel_3.setBounds(51, 263, 63, 15);
                     
                     textField_tel2 = new JTextField();
@@ -280,7 +280,7 @@ public class AddProFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   return;
                                         }
                                         int len = textField_tel2.getText()
@@ -472,7 +472,7 @@ public class AddProFrm extends JFrame {
                                                   ke.consume();
                                                   JOptionPane.showMessageDialog(
                                                                       null,
-                                                                      "숫자 입력해주세요!");
+                                                                      "숫자만 입력 가능합니다!");
                                                   ke.consume();
                                                   return;
                                         }

@@ -91,7 +91,7 @@ public class MainFrm extends JFrame {
                     
                     JMenu orgManagerMenu = new JMenu("조직관리");
                     orgManagerMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/college.png")));
-                    orgManagerMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    orgManagerMenu.setFont(new Font("Dialog", Font.BOLD, 13));
                     systemManagerMenu.add(orgManagerMenu);
                     
                     JMenuItem menuItem_4 = new JMenuItem("조직등록");
@@ -115,17 +115,6 @@ public class MainFrm extends JFrame {
                     });
                     menuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
                     orgManagerMenu.add(menuItem_6);
-                    
-                    JMenuItem menuItem_11 = new JMenuItem("강의실관리");
-                    orgManagerMenu.add(menuItem_11);
-                    menuItem_11.addActionListener(new ActionListener() {
-                    	public void actionPerformed(ActionEvent e) {
-                    		ClassRoomFrm crf=new ClassRoomFrm();
-                    		layeredPane.setLayer(crf, 200);
-                    		crf.setVisible(true);
-                    	}
-                    });
-                    menuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     JMenu menu = new JMenu("학사기준관리");
                     menu.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -209,7 +198,7 @@ public class MainFrm extends JFrame {
                     
                     JMenu managerStudentMenu = new JMenu("학생관리");
                     managerStudentMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
-                    managerStudentMenu.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    managerStudentMenu.setFont(new Font("Dialog", Font.BOLD, 13));
                     systemManagerMenu.add(managerStudentMenu);
                     
                     JMenuItem studentAddMenuItem = new JMenuItem("학생등록");
@@ -219,7 +208,7 @@ public class MainFrm extends JFrame {
                                         addStudent(ae);
                               }
                     });
-                    studentAddMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    studentAddMenuItem.setFont(new Font("Dialog", Font.BOLD, 13));
                     managerStudentMenu.add(studentAddMenuItem);
                     
                     JMenuItem studentListMenuItem = new JMenuItem("학생목록");
@@ -232,7 +221,7 @@ public class MainFrm extends JFrame {
                                         desktopPane_sys.add(studentManagerFrm);
                               }
                     });
-                    studentListMenuItem.setFont(new Font("나눔명조", Font.BOLD, 13));
+                    studentListMenuItem.setFont(new Font("Dialog", Font.BOLD, 13));
                     managerStudentMenu.add(studentListMenuItem);
                     
                     JMenuItem mntmNewMenuItem_10 = new JMenuItem("성적확인");
@@ -329,6 +318,17 @@ public class MainFrm extends JFrame {
                     });
                     menuItemManagerCourse.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_3.add(menuItemManagerCourse);
+                    
+                    JMenuItem menuItem_11 = new JMenuItem("강의실관리");
+                    systemManagerMenu.add(menuItem_11);
+                    menuItem_11.addActionListener(new ActionListener() {
+                    	public void actionPerformed(ActionEvent e) {
+                    		ClassRoomFrm crf=new ClassRoomFrm();
+                    		layeredPane.setLayer(crf, 200);
+                    		crf.setVisible(true);
+                    	}
+                    });
+                    menuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     JMenu mnNewMenu = new JMenu("수강관리");
                     mnNewMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreManager.png")));

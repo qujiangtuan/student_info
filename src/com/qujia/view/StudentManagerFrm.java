@@ -189,9 +189,9 @@ public class StudentManagerFrm extends JInternalFrame {
                     inSchStatusComboBox = new JComboBox();
                     
                     isInSchool=new String[] {"", "재학중", "휴학중", "졸업", "자퇴", "퇴학"};
-                    inSchStatusComboBox.setModel(new DefaultComboBoxModel(isInSchool));
+                    inSchStatusComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "재학", "휴학", "졸업", "자퇴", "퇴학"}));
                     
-                    JLabel label_1 = new JLabel("학사과정:");
+                    JLabel label_1 = new JLabel("학위과정:");
                     label_1.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     degreeComboBox = new JComboBox();
@@ -332,7 +332,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                         {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC804\uD654\uBC88\uD638", "\uC785\uD559\uC77C\uC790", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638", "\uC9D1\uC8FC\uC18C", "\uCD94\uAC00\uC804\uACF5\uAD6C\uBD84", "\uCD94\uAC00\uC804\uACF5\uC774\uB984", "\uC2E0\uCCAD\uC77C\uC790", "\uC7AC\uD559\uC0C1\uD0DC", "\uD559\uC0AC\uACFC\uC815", "\uD559\uB144"
+                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC5F0\uB77D\uCC98", "\uC785\uD559\uC77C\uC790", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638", "\uC8FC\uC18C", "\uCD94\uAC00\uC804\uACF5\uAD6C\uBD84", "\uCD94\uAC00\uC804\uACF5\uC774\uB984", "\uC2E0\uCCAD\uC77C\uC790", "\uC7AC\uD559\uC0C1\uD0DC", "\uD559\uC704\uACFC\uC815", "\uD559\uB144"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

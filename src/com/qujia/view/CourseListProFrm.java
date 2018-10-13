@@ -139,7 +139,7 @@ public class CourseListProFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAC1C\uC124\uD559\uACFC", "\uC774\uC218\uAD6C\uBD84", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uBD84\uBC18", "\uD559\uC810", "\uAE30\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uD3C9\uAC00\uACB0\uACFC", "\uAC15\uC758\uACC4\uD68D\uC11C"
+                                        "\uAC1C\uC124\uD559\uACFC", "\uC774\uC218\uAD6C\uBD84", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uBD84\uBC18", "\uD559\uC810", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uAC15\uC758\uD3C9\uAC00\uACB0\uACFC", "\uAC15\uC758\uACC4\uD68D\uC11C"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
