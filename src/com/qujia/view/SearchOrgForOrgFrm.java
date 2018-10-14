@@ -37,6 +37,7 @@ public class SearchOrgForOrgFrm extends JDialog {
           private JComboBox comboBox_co,comboBox_type,comboBox_gdm;
           private static int index;
           private static String orgName;
+          private List<Org> orgList;
           
 
           public static String getOrgName() {
@@ -107,7 +108,7 @@ public class SearchOrgForOrgFrm extends JDialog {
                      comboBox_co = new JComboBox();
                      comboBox_co.setModel(new DefaultComboBoxModel(new String[] {"", "대학", "대학원"}));
                     
-                    JButton searchButton = new JButton("\uAC80 \uC0C9");
+                    JButton searchButton = new JButton("조 회");
                     searchButton.setBackground(new Color(224, 255, 255));
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -226,14 +227,14 @@ public class SearchOrgForOrgFrm extends JDialog {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -241,13 +242,12 @@ public class SearchOrgForOrgFrm extends JDialog {
                     });
                     table.getColumnModel().getColumn(0).setPreferredWidth(69);
                     table.getColumnModel().getColumn(1).setPreferredWidth(137);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(116);
-                    table.getColumnModel().getColumn(3).setPreferredWidth(103);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(107);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(135);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(89);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(98);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(89);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(103);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(107);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(135);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(89);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(126);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(89);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -278,12 +278,12 @@ public class SearchOrgForOrgFrm extends JDialog {
                               Vector v=new Vector();
                               v.add(o.getOrgCode());
                               v.add(o.getName());
-                              v.add(o.getsName());
+//                              v.add(o.getsName());
                               v.add(o.getOrgType());
                               v.add(o.getCoGrCode());
                               v.add(o.getGsDepMajCode());
                               v.add(o.getAftType());
-                              v.add(o.getParCode());
+                              v.add(this.getOrgNameById(o.getParCode()));
                               v.add(o.getTodayDate());
                               dft.addRow(v);
                     }
@@ -293,6 +293,15 @@ public class SearchOrgForOrgFrm extends JDialog {
         //Table중 행을 선택
           protected void selectedTableRow(MouseEvent me) {
                     index=table.getSelectedRow();
+          }
+        //classId에 통해서 className를 받는다
+          public String getOrgNameById(String id){
+                    OrgDao orgDao=new OrgDao();
+                    orgList=orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getOrgCode().equals(id)) return org.getName();
+                    }
+                    return "";
           }
 
 }

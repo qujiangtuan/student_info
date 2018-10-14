@@ -11,8 +11,6 @@ import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -24,7 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerListModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +39,6 @@ public class AppendMajorOrgManagerFrm extends JFrame {
           private JButton searchButton;
           private JScrollPane scrollPane;
           private JTable table;
-          private JComboBox comboBox_editAllowOrg;
           private JSpinner spinner_start,spinner_end;
           private JComboBox comboBox_allowType,comboBox_rangeType;
           private List<Org> orgList;
@@ -52,6 +48,8 @@ public class AppendMajorOrgManagerFrm extends JFrame {
           private JRadioButton yesRadioButton;
           private JRadioButton noRadioButton;
           private ButtonGroup bgroup;
+          private JTextField textField_editAllow;
+          private JButton btnNewButton;
           /**
            * Launch the application.
            */
@@ -84,16 +82,21 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uAE30\uC900\uD559\uACFC:");
+                    lblNewLabel.setBounds(32, 36, 72, 15);
                     
                     textField_baseOrg = new JTextField();
+                    textField_baseOrg.setBounds(109, 33, 88, 21);
                     textField_baseOrg.setColumns(10);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uD5C8\uC6A9\uD559\uACFC:");
+                    lblNewLabel_1.setBounds(233, 36, 61, 15);
                     
                      textField_allowOrg = new JTextField();
+                     textField_allowOrg.setBounds(312, 33, 96, 21);
                     textField_allowOrg.setColumns(10);
                     
                     searchButton = new JButton("\uAC80 \uC0C9");
+                    searchButton.setBounds(478, 32, 77, 23);
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         searchSecondMajorRange(e);
@@ -101,34 +104,43 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     });
                     
                     scrollPane = new JScrollPane();
+                    scrollPane.setBounds(17, 65, 618, 197);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uD5C8\uC6A9\uD559\uACFC:");
-                    
-                      comboBox_editAllowOrg = new JComboBox();
+                    lblNewLabel_2.setBounds(17, 284, 67, 15);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC2DC\uC791\uB144\uB3C4:");
+                    lblNewLabel_3.setBounds(17, 325, 67, 15);
                     
                       spinner_start = new JSpinner();
+                      spinner_start.setBounds(89, 322, 123, 22);
                     spinner_start.setModel(new SpinnerListModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031"}));
                     
                       spinner_end = new JSpinner();
+                      spinner_end.setBounds(341, 322, 123, 22);
                     spinner_end.setModel(new SpinnerListModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031"}));
                     
                     JLabel lblNewLabel_4 = new JLabel("\uD5C8\uC6A9\uAD6C\uBD84:");
+                    lblNewLabel_4.setBounds(17, 365, 67, 15);
                     
                     comboBox_allowType = new JComboBox();
+                    comboBox_allowType.setBounds(89, 362, 123, 21);
                     allowTypeList=new String[] {"복수전공", "부전공"};
                     comboBox_allowType.setModel(new DefaultComboBoxModel(allowTypeList));
                     
                     JLabel lblNewLabel_5 = new JLabel("\uC885\uB8CC\uB144\uB3C4:");
+                    lblNewLabel_5.setBounds(262, 325, 61, 15);
                     
                     JLabel lblNewLabel_6 = new JLabel("\uBC94\uC704\uAD6C\uBD84:");
+                    lblNewLabel_6.setBounds(262, 365, 61, 15);
                     
                     comboBox_rangeType = new JComboBox();
+                    comboBox_rangeType.setBounds(341, 362, 123, 21);
                     rangeTypeList=new String[] {"대학", "학부", "학과", "전공"};
                     comboBox_rangeType.setModel(new DefaultComboBoxModel(rangeTypeList));
                     
                     JButton updateButton = new JButton("\uC218 \uC815");
+                    updateButton.setBounds(531, 280, 77, 23);
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         updateSecondAllow(e);
@@ -137,6 +149,7 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     updateButton.setBackground(new Color(224, 255, 255));
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
+                    deleteButton.setBounds(531, 321, 79, 23);
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         deleteSecondAllow(e);
@@ -145,111 +158,30 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     deleteButton.setBackground(new Color(255, 127, 80));
                     
                     lblNewLabel_7 = new JLabel("허용여부:");
+                    lblNewLabel_7.setBounds(17, 405, 67, 15);
                     
                     yesRadioButton = new JRadioButton("Yes");
+                    yesRadioButton.setBounds(85, 401, 47, 23);
                     
                     noRadioButton = new JRadioButton("No");
+                    noRadioButton.setBounds(169, 401, 43, 23);
                     bgroup=new ButtonGroup();
                     bgroup.add(yesRadioButton);
                     bgroup.add(noRadioButton);
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(47)
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(textField_baseOrg, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(45)
-                                                                      .addComponent(lblNewLabel_1)
-                                                                      .addGap(18)
-                                                                      .addComponent(textField_allowOrg, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(70)
-                                                                      .addComponent(searchButton))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 618, GroupLayout.PREFERRED_SIZE)))
-                                                  .addContainerGap(14, Short.MAX_VALUE))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(27)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel_7)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(yesRadioButton)
-                                                                      .addGap(440))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(lblNewLabel_2)
-                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                          .addComponent(comboBox_editAllowOrg, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_4)
-                                                                                                              .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                              .addComponent(comboBox_allowType, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_3)
-                                                                                                              .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                              .addComponent(spinner_start, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-                                                                                                    .addComponent(noRadioButton, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE))
-                                                                                          .addGap(59)
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_5)
-                                                                                                              .addGap(18)
-                                                                                                              .addComponent(spinner_end, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE))
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_6)
-                                                                                                              .addGap(18)
-                                                                                                              .addComponent(comboBox_rangeType, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(updateButton)
-                                                                                .addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(37))))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(27)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_allowOrg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField_baseOrg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(searchButton))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 197, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(comboBox_editAllowOrg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(updateButton))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_3)
-                                                            .addComponent(spinner_start, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_end, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(deleteButton))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(comboBox_allowType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_6)
-                                                            .addComponent(comboBox_rangeType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_7)
-                                                            .addComponent(yesRadioButton)
-                                                            .addComponent(noRadioButton))
-                                                  .addContainerGap(48, Short.MAX_VALUE))
-                    );
+                    
+                    textField_editAllow = new JTextField();
+                    textField_editAllow.setBounds(89, 281, 123, 21);
+                    textField_editAllow.setColumns(10);
+                    
+                    btnNewButton = new JButton("조회");
+                    btnNewButton.setBounds(224, 280, 70, 23);
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_editAllow.setText(addSearch());
+                              }
+                    });
                     
                     table = new JTable();
                     table.addMouseListener(new MouseAdapter() {
@@ -283,23 +215,47 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                    
-                    contentPane.setLayout(gl_contentPane);
-                    setDeptName();
+                    contentPane.setLayout(null);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField_baseOrg);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(textField_allowOrg);
+                    contentPane.add(searchButton);
+                    contentPane.add(scrollPane);
+                    contentPane.add(lblNewLabel_7);
+                    contentPane.add(yesRadioButton);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(textField_editAllow);
+                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(comboBox_allowType);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(spinner_start);
+                    contentPane.add(noRadioButton);
+                    contentPane.add(lblNewLabel_5);
+                    contentPane.add(spinner_end);
+                    contentPane.add(lblNewLabel_6);
+                    contentPane.add(comboBox_rangeType);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(updateButton);
+                    contentPane.add(deleteButton);
                     setTable(new SecondMajorRange());
           }
+          protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
+          }
+
           //수정
           protected void updateSecondAllow(ActionEvent e) {
-                    setDeptName();
                     int row=table.getSelectedRow();
                     if(row==-1){
                               JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
                               return;
                     }
                     String allowNo=table.getValueAt(row, 0).toString();
-                    Org org=(Org) comboBox_editAllowOrg.getSelectedItem();
-                    String allowOrgId = org.getOrgCode();
-                    String allowOrgName=org.getName();
+//                    Org org=(Org) comboBox_editAllowOrg.getSelectedItem();
+                    String allowOrgName=textField_editAllow.getText().toString();
+                    String allowOrgId = this.getOrgidByOrgName(allowOrgName);
+                    
                     String startTime = spinner_start.getValue().toString();
                     String endTime=spinner_end.getValue().toString();
                     
@@ -316,32 +272,37 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     smr.setOrgidAllowName(allowOrgName);
                     smr.setAllowNo(allowNo);
                     SecondMajorRangeDao smrDao=new SecondMajorRangeDao();
-                    if(smrDao.updateSMR(smr)){
-                              JOptionPane.showMessageDialog(this, "수정 성공했습니다");
-                    }else{
-                              JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(smrDao.updateSMR(smr)){
+                                        JOptionPane.showMessageDialog(this, "수정 성공했습니다");
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                              } 
                     }
+                    
                     smrDao.closeDao();
                     setTable(new SecondMajorRange());
           }
 
           //delete 삭제 SecondMajorRange
          protected void deleteSecondAllow(ActionEvent e) {
-                   setDeptName();
                    int row=table.getSelectedRow();
                    if(row==-1){
                              JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
                              return;
                    }
-                   if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
-                             return;
-                   }
                    SecondMajorRangeDao amrDao =new SecondMajorRangeDao();
                    String allowNo=table.getValueAt(row, 0).toString();
-                   if(amrDao.delete(allowNo)){
-                             JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
-                   }else{
-                             JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                   int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                       JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                   if(showConfirmDialog==JOptionPane.YES_OPTION){
+                             if(amrDao.delete(allowNo)){
+                                       JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                             }else{
+                                       JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                             }
                    }
                    amrDao.closeDao();
                    setTable(new SecondMajorRange());
@@ -349,7 +310,6 @@ public class AppendMajorOrgManagerFrm extends JFrame {
 
 //검색SecondMajorRange
         protected void searchSecondMajorRange(ActionEvent e) {
-                  setDeptName();
                   SecondMajorRange smr=new SecondMajorRange();
                   String baseOrgName = textField_baseOrg.getText().toString();
                   String allowOrgName = textField_allowOrg.getText().toString();
@@ -361,16 +321,6 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                   setTable(smr);
           }
 
-//학과 받기
-          protected void setDeptName() {
-                    // TODO Auto-generated method stub
-                    OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-                    for (Org org: orgList) {
-                              comboBox_editAllowOrg.addItem(org);
-                    }
-                    orgDao.closeDao();
-          }
 //        selectedTableRow
         protected void selectedTableRow(MouseEvent me) {
                   // TODO Auto-generated method stub
@@ -378,12 +328,13 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                   int row=table.getSelectedRow();
                   //허용학과 편집
                   String allowOrgName=dft.getValueAt(table.getSelectedRow(), 2).toString();
-                  for(int i=0;i<comboBox_editAllowOrg.getItemCount();i++){
-                            Org org=(Org)comboBox_editAllowOrg.getItemAt(i);
-                            if(allowOrgName.equals(org.getName())){
-                                      comboBox_editAllowOrg.setSelectedIndex(i);
-                            }
-                  }
+                  textField_editAllow.setText(allowOrgName);
+//                  for(int i=0;i<comboBox_editAllowOrg.getItemCount();i++){
+//                            Org org=(Org)comboBox_editAllowOrg.getItemAt(i);
+//                            if(allowOrgName.equals(org.getName())){
+//                                      comboBox_editAllowOrg.setSelectedIndex(i);
+//                            }
+//                  }
                   //적용시간 수정
                   String start=dft.getValueAt(table.getSelectedRow(), 3).toString();
                   spinner_start.setValue(start);
@@ -438,6 +389,15 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                   orgList = orgDao.getOrgdeptNameList(new Org());
                   for(Org org:orgList){
                           if(org.getOrgCode().equals(id)) return org.getName();
+                  }
+                  return "";
+        }
+      //orgName에 통해서 orgid를 받는다
+        public String getOrgidByOrgName(String name){
+                  OrgDao orgDao=new OrgDao();
+                  orgList = orgDao.getOrgList(new Org());
+                  for(Org org:orgList){
+                          if(org.getName().equals(name)) return org.getOrgCode();
                   }
                   return "";
         }

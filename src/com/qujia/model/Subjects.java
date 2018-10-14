@@ -10,8 +10,16 @@ public class Subjects {
           private String orgId;//소속부서
           private String colType;//대상(대학생,대학원생)
           private String subExp;//교과목 설명
+          private String orgName;
           
           
+          
+          public String getOrgName() {
+                    return orgName;
+          }
+          public void setOrgName(String orgName) {
+                    this.orgName = orgName;
+          }
           public String getSubMname() {
                     return subMname;
           }

@@ -14,7 +14,7 @@ public class DeptStandDao extends BaseDao {
           public boolean addDeptStand(DeptStand dStand) {
                    // insert into dept_stand values(stand_seq.nextval,'11334',52,null,'2015-06-20',124,4,12,'')
 //                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,null,?,?,?,?)";
-                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,?,?,?,?,?)";
+                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst = con.prepareStatement(sql);
                               prst.setString(1, dStand.getOrgid());
@@ -25,6 +25,7 @@ public class DeptStandDao extends BaseDao {
                               prst.setInt(6, dStand.getYear1());
                               prst.setInt(7, dStand.getYear2());
                               prst.setString(8, dStand.getDeptExplain());
+                              prst.setString(9, dStand.getOrgName());
                               if (prst.executeUpdate() > 0)
                                         return true;
                     } catch (SQLException e) {
@@ -40,9 +41,9 @@ public class DeptStandDao extends BaseDao {
                     List<DeptStand> retList = new ArrayList<DeptStand>();
                     // String sqlString = "select * from dept_stand where id='01'";
                     String sqlString = "select * from dept_stand ";
-                    if(!StringUtil.isEmpty(dStand.getOrgid())){
+                    if(!StringUtil.isEmpty(dStand.getOrgName())){
                               //sqlString+="select * from dept_stand where org_id like '%2031%';";
-                              sqlString+="where org_id like '%"+dStand.getOrgid()+"%'";
+                              sqlString+="where deptname like '%"+dStand.getOrgName()+"%'";
                     }
                     try {
                               PreparedStatement prst = con
@@ -50,17 +51,18 @@ public class DeptStandDao extends BaseDao {
                               //prst.setString(1, dept.getDeptNo());
                               ResultSet rs = prst.executeQuery();
                               while (rs.next()) {
-                                        DeptStand dStandDate = new DeptStand();
-                                        dStandDate.setStandId(rs.getString("id"));
-                                        dStandDate.setOrgid(rs.getString("org_id"));;
-                                        dStandDate.setMin(rs.getInt("min"));
-                                        dStandDate.setMax(rs.getInt("max"));
-                                        dStandDate.setInNum(rs.getInt("in_num"));
-                                        dStandDate.setLoginDate(rs.getString("login_date"));
-                                        dStandDate.setYear1(rs.getInt("year1"));
-                                        dStandDate.setYear2(rs.getInt("year2"));
-                                        dStandDate.setDeptExplain(rs.getString("dept_exp"));
-                                        retList.add(dStandDate);
+                                        DeptStand dStandData = new DeptStand();
+                                        dStandData.setStandId(rs.getString("id"));
+                                        dStandData.setOrgid(rs.getString("org_id"));;
+                                        dStandData.setMin(rs.getInt("min"));
+                                        dStandData.setMax(rs.getInt("max"));
+                                        dStandData.setInNum(rs.getInt("in_num"));
+                                        dStandData.setLoginDate(rs.getString("login_date"));
+                                        dStandData.setYear1(rs.getInt("year1"));
+                                        dStandData.setYear2(rs.getInt("year2"));
+                                        dStandData.setDeptExplain(rs.getString("dept_exp"));
+                                        dStandData.setOrgName(rs.getString("deptname"));
+                                        retList.add(dStandData);
                               }
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block

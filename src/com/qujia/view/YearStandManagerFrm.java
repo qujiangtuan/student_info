@@ -16,7 +16,6 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,11 +44,11 @@ public class YearStandManagerFrm extends JFrame {
 	private JTextField textField_majorMust;
 	private JTextField textField_recForm;
 	private JTextField textField_culMust;
-	private JComboBox comboBox_deptName;
 	private List<Org> orgList;
 	private JCheckBox CheckBox_dept;
 	private JLabel label_editDept;
 	private JTextField textField_credit;
+	private JTextField textField_deptName;
 
 	/**
 	 * Launch the application.
@@ -91,15 +90,14 @@ public class YearStandManagerFrm extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 13));
-		comboBox_deptName = new JComboBox();
-        comboBox_deptName.setEnabled(false);
 		  CheckBox_dept = new JCheckBox("");
 		  CheckBox_dept.addItemListener(new ItemListener() {
 		            public void itemStateChanged(ItemEvent e) {
 		                      if(CheckBox_dept.isSelected()){
-		                                comboBox_deptName.setEnabled(true);
+		                                textField_deptName.setEnabled(true);
 		                      }else{
-		                                comboBox_deptName.setEnabled(false);
+		                                textField_deptName.setEnabled(false);
+		                                textField_deptName.setText("");
 		                      }
 		            }
 		  });
@@ -169,6 +167,10 @@ public class YearStandManagerFrm extends JFrame {
 		
 		textField_credit = new JTextField();
 		textField_credit.setColumns(10);
+		
+		textField_deptName = new JTextField();
+		textField_deptName.setEnabled(false);
+		textField_deptName.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 		          gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -183,9 +185,9 @@ public class YearStandManagerFrm extends JFrame {
 		                                                  .addComponent(CheckBox_dept)
 		                                                  .addPreferredGap(ComponentPlacement.RELATED)
 		                                                  .addComponent(lblNewLabel_1)
-		                                                  .addPreferredGap(ComponentPlacement.RELATED)
-		                                                  .addComponent(comboBox_deptName, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
-		                                                  .addGap(32)
+		                                                  .addGap(18)
+		                                                  .addComponent(textField_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+		                                                  .addGap(191)
 		                                                  .addComponent(btnNewButton))
 		                                        .addGroup(gl_contentPane.createSequentialGroup()
 		                                                  .addGap(59)
@@ -198,7 +200,7 @@ public class YearStandManagerFrm extends JFrame {
 		                                                                                .addComponent(lblNewLabel_7))
 		                                                                      .addGap(18))
 		                                                            .addGroup(gl_contentPane.createSequentialGroup()
-		                                                                      .addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+		                                                                      .addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
 		                                                                      .addPreferredGap(ComponentPlacement.RELATED)))
 		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 		                                                            .addComponent(textField_majorMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -239,8 +241,8 @@ public class YearStandManagerFrm extends JFrame {
 		                                                  .addComponent(lblNewLabel)
 		                                                  .addComponent(textField_schYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 		                                                  .addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-		                                                  .addComponent(comboBox_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                  .addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+		                                                  .addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+		                                                  .addComponent(textField_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 		                              .addGap(18)
 		                              .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
 		                              .addGap(32)
@@ -287,37 +289,34 @@ public class YearStandManagerFrm extends JFrame {
 		table.setRowHeight(25);
 		table.setModel(new DefaultTableModel(
 		          new Object[][] {
-		                    {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+		                    {null, null, null, null, null, null, null, null, null, null, null, null, null},
 		          },
 		          new String[] {
-		                    "\uAE30\uC900\uBC88\uD638", "\uD559\uACFC\uC774\uB984", "\uC801\uC6A9\uC2DC\uC791\uB144\uB3C4", "\uC801\uC6A9\uC885\uB8CC\uB144\uB3C4", "*\uC878\uC5C5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "*\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0"
+		                    "\uAE30\uC900\uBC88\uD638", "\uD559\uACFC\uC774\uB984", "*\uC878\uC5C5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "*\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790"
 		          }
 		) {
 		          boolean[] columnEditables = new boolean[] {
-		                    false, false, false, false, false, false, true, true, false, false, false, false, false, false
+		                    false, false, false, false, true, true, false, false, false, false, false, false, false
 		          };
 		          public boolean isCellEditable(int row, int column) {
 		                    return columnEditables[column];
 		          }
 		});
-		table.getColumnModel().getColumn(2).setPreferredWidth(89);
-		table.getColumnModel().getColumn(3).setPreferredWidth(84);
-		table.getColumnModel().getColumn(4).setPreferredWidth(106);
-		table.getColumnModel().getColumn(5).setPreferredWidth(96);
-		table.getColumnModel().getColumn(6).setPreferredWidth(92);
-		table.getColumnModel().getColumn(7).setPreferredWidth(90);
-		table.getColumnModel().getColumn(8).setPreferredWidth(88);
-		table.getColumnModel().getColumn(9).setPreferredWidth(92);
-		table.getColumnModel().getColumn(10).setPreferredWidth(91);
-		table.getColumnModel().getColumn(11).setPreferredWidth(86);
-		table.getColumnModel().getColumn(12).setPreferredWidth(89);
-		table.getColumnModel().getColumn(13).setPreferredWidth(89);
+		table.getColumnModel().getColumn(2).setPreferredWidth(106);
+		table.getColumnModel().getColumn(3).setPreferredWidth(96);
+		table.getColumnModel().getColumn(4).setPreferredWidth(92);
+		table.getColumnModel().getColumn(5).setPreferredWidth(90);
+		table.getColumnModel().getColumn(6).setPreferredWidth(88);
+		table.getColumnModel().getColumn(7).setPreferredWidth(92);
+		table.getColumnModel().getColumn(8).setPreferredWidth(91);
+		table.getColumnModel().getColumn(9).setPreferredWidth(86);
+		table.getColumnModel().getColumn(10).setPreferredWidth(89);
+		table.getColumnModel().getColumn(11).setPreferredWidth(89);
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		contentPane.setLayout(gl_contentPane);
 		
-		setDeptName();
 		setTable(new YearDeptStand());
 	}
 	          //학년별 학사기준 삭제
@@ -327,16 +326,21 @@ public class YearStandManagerFrm extends JFrame {
 	                              JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
 	                              return;
 	                    }
-	                    if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
-	                              return;
-	                    }
+ 
 	                    YearDeptStandDao ydsDao =new YearDeptStandDao();
 	                    String yearNo=table.getValueAt(row, 0).toString();
-	                    if(ydsDao.delete(yearNo)){
-	                              JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
-	                    }else{
-	                              JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
-	                    }
+	                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if(showConfirmDialog==JOptionPane.YES_OPTION){
+                                  if(ydsDao.delete(yearNo)){
+                                            JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                                  }else{
+                                            JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                                  }
+                        }else{
+                                  return;
+                        }
+	                    
 	                    ydsDao.closeDao();
 	                    setTable(new YearDeptStand());
 	                    resetValues();
@@ -381,11 +385,19 @@ public class YearStandManagerFrm extends JFrame {
 	                    ydStand.setRecForm(recForm);
 	                    ydStand.setYearNo(yearNo);
 	                    YearDeptStandDao ydsDao=new YearDeptStandDao();
-	                    if(ydsDao.updateDStand(ydStand)){
-	                              JOptionPane.showMessageDialog(this, "수정 성공했습니다!");
+	                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+	                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+	                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+	                              if(ydsDao.updateDStand(ydStand)){
+	                                        JOptionPane.showMessageDialog(this, "수정 성공했습니다!");
+	                              }else{
+	                                        JOptionPane.showMessageDialog(this, "수정 실패했습니다!");
+	                              }
 	                    }else{
-	                              JOptionPane.showMessageDialog(this, "수정 실패했습니다!");
+	                              return;
 	                    }
+	                    
+	                    
 	                    ydsDao.closeDao();
 	                    setTable(new YearDeptStand());
           }
@@ -396,19 +408,20 @@ public class YearStandManagerFrm extends JFrame {
                    // 得到选中表格中的哪一行，那一列的值
 
 	               label_editDept.setText(dft.getValueAt(table.getSelectedRow(),1).toString());
-	               textField_credit.setText(dft.getValueAt(table.getSelectedRow(),4).toString());
-	               textField_major.setText(dft.getValueAt(table.getSelectedRow(),5).toString());
-	               textField_majorMust.setText(dft.getValueAt(table.getSelectedRow(),6).toString());
-	               textField_culMust.setText(dft.getValueAt(table.getSelectedRow(),9).toString());
-	               textField_recTatio.setText(dft.getValueAt(table.getSelectedRow(),10).toString());
-	               textField_recTemp.setText(dft.getValueAt(table.getSelectedRow(),11).toString());
-	               textField_recForm.setText(dft.getValueAt(table.getSelectedRow(),12).toString());
+	               textField_credit.setText(dft.getValueAt(table.getSelectedRow(),2).toString());
+	               textField_major.setText(dft.getValueAt(table.getSelectedRow(),3).toString());
+	               textField_majorMust.setText(dft.getValueAt(table.getSelectedRow(),4).toString());
+	               textField_culMust.setText(dft.getValueAt(table.getSelectedRow(),7).toString());
+	               textField_recTatio.setText(dft.getValueAt(table.getSelectedRow(),9).toString());
+	               textField_recTemp.setText(dft.getValueAt(table.getSelectedRow(),10).toString());
+	               textField_recForm.setText(dft.getValueAt(table.getSelectedRow(),11).toString());
+	               
           }
 
           //검색
     	protected void serarchYearDeptStandAction(ActionEvent e) {
     	          YearDeptStand yds=new YearDeptStand();
-                  String yearNo,orgid;
+                  String yearNo,deptName;
                   try {
                             yearNo = textField_schYear.getText().toString();
                   } catch (Exception e2) {
@@ -416,12 +429,13 @@ public class YearStandManagerFrm extends JFrame {
                   }
                   yds.setYearNo(yearNo);
                   if(CheckBox_dept.isSelected()){
-                            Org org = (Org) comboBox_deptName.getSelectedItem();
-                            orgid = org.getOrgCode();
-                            yds.setOrgId(orgid);
+//                            Org org = (Org) comboBox_deptName.getSelectedItem();
+//                            orgid = org.getOrgCode();
+                            deptName=textField_deptName.getText().toString();
+                            yds.setDeptName(deptName);
                   }else{
-                            orgid=null;
-                            yds.setOrgId(null);
+                            deptName=null;
+                            yds.setDeptName(null);
                   }
                   setTable(yds);
                   resetValues();
@@ -448,8 +462,8 @@ public class YearStandManagerFrm extends JFrame {
                             Vector v=new Vector();
                             v.add(yds.getYearNo());
                             v.add(this.getDeptNameById(yds.getOrgId()));
-                            v.add(yds.getYearStart());
-                            v.add(yds.getYearEnd());
+//                            v.add(yds.getYearStart());
+//                            v.add(yds.getYearEnd());
                             v.add(yds.getCredit());
                             v.add(yds.getMajor());
                             v.add(yds.getMajorMust());
@@ -460,6 +474,7 @@ public class YearStandManagerFrm extends JFrame {
                             v.add(yds.getRecTatio());
                             v.add(yds.getRecTemp());
                             v.add(yds.getRecForm());
+                            v.add(yds.getLoginDate());
                             dft.addRow(v);
                   }
                   ydDao.closeDao();
@@ -474,14 +489,4 @@ public class YearStandManagerFrm extends JFrame {
                   }
                   return "";
         }
-    	//학과 받기
-    	protected void setDeptName() {
-              // TODO Auto-generated method stub
-              OrgDao orgDao=new OrgDao();
-              List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-              for (Org org: orgList) {
-                        comboBox_deptName.addItem(org);
-              }
-              orgDao.closeDao();
-    }
 }

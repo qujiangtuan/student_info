@@ -624,15 +624,17 @@ public class AddProFrm extends JFrame {
 			 ps.setLoginDate(date);
 			 ps.setPassword(cardid1);
 			 ps.setSupId(supid);
+			 ps.setOrgName(orgName);
 			 ProStaffDao psDao=new ProStaffDao();
+			 
 			 if(psDao.addProStaff(ps)) {
 			         //id,password 학생의 이메일에 보내기
                      new SendEmailToSP(pno,cardid1, email);
                      JOptionPane.showMessageDialog(this,
-                                         "교직원이 등록 성공! ");
+                                         "교직원이 등록 성공했습니다! ");
            } else {
                      JOptionPane.showMessageDialog(this,
-                                         "교직원이 등록 실패！");
+                                         "교직원이 등록 실패했습니다！");
            }
 			psDao.closeDao();	
 			resetValue();

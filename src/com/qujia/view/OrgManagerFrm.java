@@ -33,7 +33,6 @@ public class OrgManagerFrm extends JFrame {
           private JTextField textField_name;
           private JTable table;
           private JTextField textField_editName;
-          private JTextField textField_editsName;
           private JComboBox comboBox_co,comboBox_type,comboBox_gdm;
           private JTextField textField_editPar;
           private List<Org> orgList;
@@ -86,15 +85,8 @@ public class OrgManagerFrm extends JFrame {
                     textField_editName.setBounds(99, 359, 248, 21);
                     textField_editName.setColumns(10);
                     
-                    JLabel lblNewLabel_2 = new JLabel("\uC57D\uC5B4\uBA85");
-                    lblNewLabel_2.setBounds(424, 362, 51, 15);
-                    
-                    textField_editsName = new JTextField();
-                    textField_editsName.setBounds(502, 359, 132, 21);
-                    textField_editsName.setColumns(10);
-                    
                     JButton updateButton = new JButton("\uC218 \uC815");
-                    updateButton.setBounds(760, 358, 79, 23);
+                    updateButton.setBounds(492, 358, 79, 23);
                     updateButton.setBackground(new Color(102, 205, 170));
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -103,7 +95,7 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
-                    deleteButton.setBounds(760, 403, 79, 23);
+                    deleteButton.setBounds(492, 403, 79, 23);
                     deleteButton.setBackground(new Color(255, 99, 71));
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -203,28 +195,27 @@ public class OrgManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC57D\uC5B4\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
                               }
                     });
                     table.getColumnModel().getColumn(0).setPreferredWidth(69);
-                    table.getColumnModel().getColumn(1).setPreferredWidth(137);
-                    table.getColumnModel().getColumn(2).setPreferredWidth(116);
-                    table.getColumnModel().getColumn(3).setPreferredWidth(103);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(107);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(135);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(89);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(98);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(89);
+                    table.getColumnModel().getColumn(1).setPreferredWidth(155);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(103);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(107);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(135);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(89);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(98);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(89);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -234,8 +225,6 @@ public class OrgManagerFrm extends JFrame {
                     contentPane.add(lblNewLabel_3);
                     contentPane.add(lblNewLabel_1);
                     contentPane.add(textField_editName);
-                    contentPane.add(lblNewLabel_2);
-                    contentPane.add(textField_editsName);
                     contentPane.add(updateButton);
                     contentPane.add(deleteButton);
                     contentPane.add(lblNewLabel);
@@ -262,25 +251,30 @@ public class OrgManagerFrm extends JFrame {
                               JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
                               return;
                     }
-                    if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
-                              return;
-                    }
+//                    if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
+//                              return;
+//                    }
                     OrgDao orgDao =new OrgDao();
                     String orgCode=table.getValueAt(row, 0).toString();
-                    if(table.getValueAt(row, 7)==null){
-                              if(orgDao.deleteOrg(orgCode)){
-                                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "삭제 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(table.getValueAt(row, 7)==null){
+                                        if(orgDao.deleteOrg(orgCode)){
+                                                  JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                                        }
                               }else{
-                                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
-                              }
-                    }else{
-                              boolean updateParCode = orgDao.updateParCode(orgCode);
-                              if(orgDao.deleteOrg(orgCode)&&updateParCode){
-                                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
-                              }else{
-                                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                                        boolean updateParCode = orgDao.updateParCode(orgCode);
+                                        if(orgDao.deleteOrg(orgCode)&&updateParCode){
+                                                  JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                                        }
                               }
                     }
+                   
                     
                     
                     orgDao.closeDao();
@@ -299,11 +293,11 @@ public class OrgManagerFrm extends JFrame {
                     
                     String orgsName,orgParCode,orgParName;
                     String orgName=textField_editName.getText().toString();
-                    try {
-                              orgsName=textField_editsName.getText().toString();
-                    } catch (NullPointerException e2) {
-                              orgsName=null;
-                    }
+//                    try {
+//                              orgsName=textField_editsName.getText().toString();
+//                    } catch (NullPointerException e2) {
+//                              orgsName=null;
+//                    }
                     try {
                               orgParName= textField_editPar.getText().toString();
                               orgParCode = this.getOrgidByOrgName(orgParName);
@@ -318,14 +312,23 @@ public class OrgManagerFrm extends JFrame {
                     
                     Org org=new Org();
                     org.setName(orgName);
-                    org.setsName(orgsName);
+//                    org.setsName(orgsName);
                     org.setParCode(orgParCode);
                     org.setOrgCode(table.getValueAt(row, 0).toString());
                     OrgDao orgDao=new OrgDao();
-                    if(orgDao.updateOrg(org)){
-                              JOptionPane.showMessageDialog(this, "수정 성공했습니다");
+//                    if(JOptionPane.showConfirmDialog(this, "수정 하시겠습니까？") != JOptionPane.OK_OPTION){
+//                              return;
+//                      }
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(orgDao.updateOrg(org)){
+                                        JOptionPane.showMessageDialog(this, "수정 성공했습니다");
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                              }
                     }else{
-                              JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                              return;
                     }
                     orgDao.closeDao();
                     setTable(new Org());
@@ -342,7 +345,7 @@ public class OrgManagerFrm extends JFrame {
                               Vector v=new Vector();
                               v.add(o.getOrgCode());
                               v.add(o.getName());
-                              v.add(o.getsName());
+//                              v.add(o.getsName());
                               v.add(o.getOrgType());
                               v.add(o.getCoGrCode());
                               v.add(o.getGsDepMajCode());
@@ -364,13 +367,13 @@ public class OrgManagerFrm extends JFrame {
                     } catch (NullPointerException e) {
                               textField_editName.setText("");
                     }
+//                    try {
+//                              textField_editsName.setText(dft.getValueAt(table.getSelectedRow(), 2).toString());
+//                    } catch (NullPointerException e) {
+//                              textField_editsName.setText("");
+//                    }
                     try {
-                              textField_editsName.setText(dft.getValueAt(table.getSelectedRow(), 2).toString());
-                    } catch (NullPointerException e) {
-                              textField_editsName.setText("");
-                    }
-                    try {
-                              textField_editPar.setText(dft.getValueAt(table.getSelectedRow(),7).toString());
+                              textField_editPar.setText(dft.getValueAt(table.getSelectedRow(),6).toString());
                     } catch (NullPointerException e) {
                               textField_editPar.setText("");
                     }
@@ -389,7 +392,7 @@ public class OrgManagerFrm extends JFrame {
           }
           private void resetValues(){
                     textField_editName.setText("");
-                    textField_editsName.setText("");
+//                    textField_editsName.setText("");
                     textField_editPar.setText("");
           }
         //orgid에 통해서 orgName를 받는다

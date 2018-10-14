@@ -2,6 +2,7 @@ package com.qujia.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -44,7 +45,6 @@ public class ProManagerFrm extends JFrame {
           private JRadioButton radioButtonName,radioButtonNo;
           private List<Org> orgList;
           private List<ProStaff> psList;
-          private JComboBox comboBox_sOrgName;
           private JComboBox comboBox_editperType;
           private  JComboBox comboBox_eidtteaType,comboBox_proType;
           private ButtonGroup bgroup1,bgroup2;
@@ -58,6 +58,7 @@ public class ProManagerFrm extends JFrame {
           private static String orgId;
           private static String orgName;
           private static String superName;
+          private JTextField textField_orgName;
           
           public static String getOrgName() {
                     return orgName;
@@ -126,6 +127,7 @@ public class ProManagerFrm extends JFrame {
                     lblNewLabel_5.setBounds(18, 372, 63, 15);
                     
                     JLabel lblNewLabel_10 = new JLabel("\uAD50\uC218\uC774\uB984:");
+                    lblNewLabel_10.setFont(new Font("Dialog", Font.BOLD, 12));
                     lblNewLabel_10.setBounds(45, 19, 57, 19);
                     
                     textField_proName = new JTextField();
@@ -133,6 +135,7 @@ public class ProManagerFrm extends JFrame {
                     textField_proName.setColumns(10);
                     
                     JLabel lblNewLabel_11 = new JLabel("\uAD50\uC218\uBC88\uD638:");
+                    lblNewLabel_11.setFont(new Font("Dialog", Font.BOLD, 12));
                     lblNewLabel_11.setBounds(216, 18, 61, 20);
                     
                     textField_proNo = new JTextField();
@@ -143,7 +146,7 @@ public class ProManagerFrm extends JFrame {
                     scrollPane.setBounds(15, 66, 888, 284);
                     
                     JButton searchButton = new JButton("\uCEF4  \uC0C9");
-                    searchButton.setBounds(834, 15, 69, 23);
+                    searchButton.setBounds(803, 15, 69, 23);
                     searchButton.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		searchProStaff(ae);
@@ -166,7 +169,7 @@ public class ProManagerFrm extends JFrame {
                     		deleteProStaffAction(ae);
                     	}
                     });
-                    btnNewButton_2.setBackground(new Color(255, 182, 193));
+                    btnNewButton_2.setBackground(new Color(255, 105, 180));
                     
                     radioButtonName = new JRadioButton("");
                     radioButtonName.setBounds(18, 19, 21, 19);
@@ -200,6 +203,7 @@ public class ProManagerFrm extends JFrame {
                     comboBox_eidtteaType.setModel(new DefaultComboBoxModel(teaTypeList));
                     
                     JLabel lblNewLabel_13 = new JLabel("교직원구분:");
+                    lblNewLabel_13.setFont(new Font("Dialog", Font.BOLD, 12));
                     lblNewLabel_13.setBounds(365, 15, 76, 23);
                     
                     comboBox_proType = new JComboBox();
@@ -207,11 +211,8 @@ public class ProManagerFrm extends JFrame {
                     comboBox_proType.setModel(new DefaultComboBoxModel(new String[] {"", "교원", "직원"}));
                     
                     JLabel lblNewLabel_14 = new JLabel("소속조직:");
-                    lblNewLabel_14.setBounds(562, 15, 62, 23);
-                    
-                    comboBox_sOrgName = new JComboBox();
-                    comboBox_sOrgName.setBounds(624, 17, 200, 21);
-                    comboBox_sOrgName.setEnabled(false);
+                    lblNewLabel_14.setFont(new Font("Dialog", Font.BOLD, 12));
+                    lblNewLabel_14.setBounds(562, 19, 62, 19);
                     bgroup2=new ButtonGroup();
                     
                     checkBox_searchOrg = new JCheckBox("");
@@ -219,9 +220,10 @@ public class ProManagerFrm extends JFrame {
                     checkBox_searchOrg.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                                 if(checkBox_searchOrg.isSelected()){
-                                	comboBox_sOrgName.setEnabled(true);
+                                          textField_orgName.setEnabled(true);
                                 }else{
-                                	comboBox_sOrgName.setEnabled(false);
+                                          textField_orgName.setEnabled(false);
+                                          textField_orgName.setText("");
                                 }
                       }
                     });
@@ -316,16 +318,19 @@ public class ProManagerFrm extends JFrame {
                     contentPane.add(comboBox_proType);
                     contentPane.add(checkBox_searchOrg);
                     contentPane.add(lblNewLabel_14);
-                    contentPane.add(comboBox_sOrgName);
                     contentPane.add(searchButton);
                     contentPane.add(scrollPane);
+                    
+                    textField_orgName = new JTextField();
+                    textField_orgName.setEnabled(false);
+                    textField_orgName.setBounds(637, 19, 116, 19);
+                    contentPane.add(textField_orgName);
+                    textField_orgName.setColumns(10);
                     //这两条是显示横滚动条
 //                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 //                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                     
                     setTable(new ProStaff());
-                    setOrgName();//조직 갖다온다
-//                    setSuperiorStaff();//직속상사 갖다온다
           }
           protected String addSearchSuperior() {
                     return SearchSuperiorFrm.getpName();
@@ -347,11 +352,16 @@ public class ProManagerFrm extends JFrame {
               }
               ProStaffDao psDao=new ProStaffDao();
               String pNo=table.getValueAt(row, 0).toString();
-              if(psDao.deleteProStaff(pNo)){
-                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
-              }else{
-                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+              int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                  JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+              if(showConfirmDialog==JOptionPane.YES_OPTION){
+                        if(psDao.deleteProStaff(pNo)){
+                                  JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                        }else{
+                                  JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                        }
               }
+              
               psDao.closeDao();
               setTable(new ProStaff());
               restvalues();
@@ -379,6 +389,7 @@ public class ProManagerFrm extends JFrame {
               ps.setPerType(perType);
               ps.setTeaType(teaType);
               ps.setOrgId(orgId);
+              ps.setOrgName(orgName);
               ProStaff ps1,ps2;
               String superior1,superior2;
               if("교원".equals(proType)) {
@@ -392,16 +403,18 @@ public class ProManagerFrm extends JFrame {
 				}
             	  ps.setSupId(superior2);
               }
-              
-              if(JOptionPane.showConfirmDialog(this, "수정 하시겠습니까？") != JOptionPane.OK_OPTION){
-                        return;
-                }
+          
              ProStaffDao psDao=new ProStaffDao();
-             if(psDao.updateProStaff(ps)) {
-            	 JOptionPane.showMessageDialog(this, "수정 성공했습니다.");
-             }else {
-            	 JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+             int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                 JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+             if(showConfirmDialog==JOptionPane.YES_OPTION){
+                       if(psDao.updateProStaff(ps)) {
+                                 JOptionPane.showMessageDialog(this, "수정 성공했습니다.");
+                             }else {
+                                 JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                             }
              }
+             
              
              psDao.closeDao();
              setTable(new ProStaff());
@@ -502,14 +515,13 @@ public class ProManagerFrm extends JFrame {
                     }else{
                     	      ps.setpNo(textField_proNo.getText().toString());
                     }
-                    Org org;
+                    String orgName;
                     if(checkBox_searchOrg.isSelected()){
-                        org=(Org) comboBox_sOrgName.getSelectedItem();
-                        ps.setOrgId(org.getOrgCode());
+                              orgName = textField_orgName.getText().toString();
+                    }else{
+                              orgName=null;
                     }
-//                    	org=(Org) comboBox_sOrgName.getSelectedItem();
-//                    	ps.setOrgId(org.getOrgCode());
-					
+                    ps.setOrgName(orgName);
                     ps.setProType(comboBox_proType.getSelectedItem().toString());
                     
                     int row=table.getSelectedRow();
@@ -526,15 +538,6 @@ public class ProManagerFrm extends JFrame {
         	textField_sup2.setText("");
 		}
 
-		//学科 从数据库中把数据填充选择框
-          protected void setOrgName() {
-                    OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgList(new Org());
-                    for (Org org: orgList) {
-                    	comboBox_sOrgName.addItem(org);
-                    }
-                    orgDao.closeDao();
-          }
        // table다시 설정
           public void setTable(ProStaff ps){
                    DefaultTableModel dft = (DefaultTableModel) table.getModel();

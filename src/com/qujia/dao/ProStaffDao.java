@@ -50,7 +50,7 @@ public class ProStaffDao extends BaseDao {
 }
 	//add ProStaff
 	public boolean addProStaff(ProStaff ps){
-        String sql="insert into pro_staff values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into pro_staff values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
                   PreparedStatement prst=con.prepareStatement(sql);
                   prst.setString(1, ps.getpNo());
@@ -68,6 +68,7 @@ public class ProStaffDao extends BaseDao {
                   prst.setString(13, ps.getLoginDate());
                   prst.setString(14, ps.getPassword());
                   prst.setString(15, ps.getSupId());
+                  prst.setString(16,ps.getOrgName());
                   if(prst.executeUpdate()>0) return true;
         } catch (SQLException e) {
                   // TODO Auto-generated catch block
@@ -91,8 +92,8 @@ public class ProStaffDao extends BaseDao {
 //        if(!StringUtil.isEmpty(ps.getPerType())){
 //            sqlString.append(" and per_type like '%"+ps.getPerType()+"%'");
 //        }
-        if(!StringUtil.isEmpty(ps.getOrgId())){
-            sqlString.append(" and orgid like '%"+ps.getOrgId()+"%'");
+        if(!StringUtil.isEmpty(ps.getOrgName())){
+            sqlString.append(" and orgname like '%"+ps.getOrgName()+"%'");
         }
         try {
                   PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
@@ -115,6 +116,7 @@ public class ProStaffDao extends BaseDao {
 	         			 psDate.setLoginDate(e.getString("login_date"));
 	         			 psDate.setPassword(e.getString("password"));
 	         			 psDate.setSupId(e.getString("sup_id"));     
+	         			 psDate.setOrgName(e.getString("orgname"));
                       retList.add(psDate);
                   }
         } catch (SQLException e) {
@@ -128,26 +130,15 @@ public class ProStaffDao extends BaseDao {
     public boolean updateProStaff(ProStaff ps){
 //              String sql="update pro_staff set pname = ? , pename=?,pro_type=?,per_type=?,"
 //                                  + "tea_type=?,sex=?,orgid=?,address=?,tel=?,email=?,sup_id=?  where pno=?";
-              String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=? where pno=?";
+              String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=?,orgname=? where pno=?";
               try {
                       PreparedStatement prst=con.prepareStatement(sql);
                       prst.setString(1, ps.getPerType());
                       prst.setString(2, ps.getTeaType());
                       prst.setString(3, ps.getOrgId());
                       prst.setString(4, ps.getSupId());
-                      prst.setString(5, ps.getpNo());
-//                      prst.setString(1,ps.getpName());
-//                      prst.setString(2, ps.getPeName());
-//                      prst.setString(3, ps.getProType());
-//                      prst.setString(4, ps.getPerType());
-//                      prst.setString(5, ps.getTeaType());
-//                      prst.setString(6, ps.getSex());
-//                      prst.setString(7, ps.getOrgId());
-//                      prst.setString(8, ps.getAddress());
-//                      prst.setString(9, ps.getTel());
-//                      prst.setString(10, ps.getEmail());
-//                      prst.setString(11, ps.getSupId());
-//                      prst.setString(12, ps.getpNo());
+                      prst.setString(5,ps.getOrgName());
+                      prst.setString(6, ps.getpNo());
                       if(prst.executeUpdate()>0){ 
                                 return true;
                       }
@@ -234,7 +225,8 @@ public class ProStaffDao extends BaseDao {
                          psDate.setPerType(e.getString("per_type"));
                          psDate.setSex(e.getString("sex"));
                          psDate.setOrgId(e.getString("orgid"));
-                         psDate.setSupId(e.getString("sup_id"));     
+                         psDate.setSupId(e.getString("sup_id")); 
+                         psDate.setOrgName(e.getString("orgname"));
                          retList.add(psDate);
                   }
         } catch (SQLException e) {

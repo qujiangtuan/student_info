@@ -12,7 +12,7 @@ import com.qujia.util.StringUtil;
 public class SubjectsDao extends BaseDao {
           //subject login
           public boolean addSubjects(Subjects sbj){
-                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?)";
+                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sbj.getSubCode() );
@@ -24,6 +24,7 @@ public class SubjectsDao extends BaseDao {
                               prst.setString(7, sbj.getColType());
                               prst.setString(8, sbj.getSubExp());
                               prst.setString(9,sbj.getSubMname());
+                              prst.setString(10,sbj.getOrgName());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
@@ -34,20 +35,11 @@ public class SubjectsDao extends BaseDao {
           public List<Subjects> getSubjectsList(Subjects sb){
                     List<Subjects> retList=new ArrayList<Subjects>();
                     StringBuffer sqlString=new StringBuffer("select * from subject");
-                    if(!StringUtil.isEmpty(sb.getSubCode())){
-                              sqlString.append(" and sub_cod like '%"+sb.getSubCode()+"%'");
-                    }
                     if(!StringUtil.isEmpty(sb.getSubName())){
                               sqlString.append(" and sub_name like '%"+sb.getSubName()+"%'");
                     }
-                    if(!StringUtil.isEmpty(sb.getSubEname())){
-                              sqlString.append(" and sub_ename like '%"+sb.getSubEname()+"%'");
-                    }
-                    if(!StringUtil.isEmpty(sb.getSubMname())){
-                              sqlString.append(" and sub_mname like '%"+sb.getSubMname()+"%'");
-                    }
-                    if(!StringUtil.isEmpty(sb.getOrgId())){
-                              sqlString.append(" and orgid = '"+sb.getOrgId()+"'");
+                    if(!StringUtil.isEmpty(sb.getOrgName())){
+                              sqlString.append(" and orgname like '%"+sb.getOrgName()+"%'");
                     }
                     try {
                               PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
@@ -63,6 +55,7 @@ public class SubjectsDao extends BaseDao {
                                         sbj.setOrgId(e.getString("orgid"));
                                         sbj.setColType(e.getString("col_type"));
                                         sbj.setSubExp(e.getString("sub_exp"));
+                                        sbj.setOrgName(e.getString("orgname"));
                                         retList.add(sbj);
                               }
                     } catch (SQLException e) {

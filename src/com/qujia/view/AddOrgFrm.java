@@ -34,7 +34,7 @@ public class AddOrgFrm extends JFrame {
 
           private JPanel contentPane;
           private JTextField textField_orgName;
-          private JTextField textField_sName;
+//          private JTextField textField_sName;
           private JRadioButton radioButton_1,radioButton_2,radioButton_3;
           private ButtonGroup bGroup;
           private CardLayout card;
@@ -84,12 +84,12 @@ public class AddOrgFrm extends JFrame {
                     textField_orgName.setBounds(148, 40, 106, 21);
                     textField_orgName.setColumns(10);
                     
-                    JLabel lblNewLabel_1 = new JLabel("\uC57D\uC5B4\uBA85:");
-                    lblNewLabel_1.setBounds(284, 43, 54, 15);
+//                    JLabel lblNewLabel_1 = new JLabel("\uC57D\uC5B4\uBA85:");
+//                    lblNewLabel_1.setBounds(284, 43, 54, 15);
                     
-                    textField_sName = new JTextField();
-                    textField_sName.setBounds(342, 40, 127, 21);
-                    textField_sName.setColumns(10);
+//                    textField_sName = new JTextField();
+//                    textField_sName.setBounds(342, 40, 127, 21);
+//                    textField_sName.setColumns(10);
                     
                     JLabel label = new JLabel("\uC870\uC9C1\uAD6C\uBD84:");
                     label.setBounds(63, 83, 67, 15);
@@ -248,10 +248,10 @@ public class AddOrgFrm extends JFrame {
                     contentPane.add(lblNewLabel);
                     contentPane.add(label);
                     contentPane.add(textField_orgName);
-                    contentPane.add(lblNewLabel_1);
+//                    contentPane.add(lblNewLabel_1);
                     contentPane.add(radioButton_1);
                     contentPane.add(radioButton_2);
-                    contentPane.add(textField_sName);
+//                    contentPane.add(textField_sName);
                     contentPane.add(radioButton_3);
                     contentPane.add(panel);
                     contentPane.add(label_3);
@@ -270,7 +270,7 @@ public class AddOrgFrm extends JFrame {
                     String orgCode,name,sName,orgType,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
 //                    orgCode="";
                     name=textField_orgName.getText().toString();
-                    sName=textField_sName.getText().toString();
+//                    sName=textField_sName.getText().toString();
                     orgType=radioButton_1.isSelected() ? radioButton_1
                                         .getText() :  (radioButton_2.isSelected() ? radioButton_2.getText():radioButton_3.getText());
                     coGrCode=comboBox_1.getSelectedItem().toString();
@@ -297,7 +297,7 @@ public class AddOrgFrm extends JFrame {
                     Org org=new Org();
                     org.setOrgCode(orgCode);
                     org.setName(name);
-                    org.setsName(sName);
+//                    org.setsName(sName);
                     org.setOrgType(orgType);
                     org.setCoGrCode(coGrCode);
                     org.setGsDepMajCode(gsDepMajCode);
@@ -306,9 +306,9 @@ public class AddOrgFrm extends JFrame {
                     org.setTodayDate(todayDate);
                     OrgDao orgDao=new OrgDao();
                     if(orgDao.addOrg(org)){
-                              JOptionPane.showMessageDialog(this, "조직 등록 성공!");
+                              JOptionPane.showMessageDialog(this, "조직 등록 성공했습니다!");
                     }else{
-                              JOptionPane.showMessageDialog(this, "조직 등록 실패!");
+                              JOptionPane.showMessageDialog(this, "조직 등록 실패했습니다!");
                     }
                     orgDao.closeDao();
                     resetValue();
@@ -370,7 +370,7 @@ public class AddOrgFrm extends JFrame {
           private void resetValue() {
                     // TODO Auto-generated method stub
                     textField_orgName.setText("");
-                    textField_sName.setText("");
+//                    textField_sName.setText("");
                     bGroup.clearSelection();
                     radioButton_1.setSelected(true);
                     comboBox_1.setSelectedIndex(0);

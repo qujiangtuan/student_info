@@ -17,18 +17,16 @@ public class YearDeptStandDao extends BaseDao {
                     try {
                               PreparedStatement prst = con.prepareStatement(sql);
                               prst.setString(1, yds.getYearNo());
-                              prst.setString(2,yds.getYearStart());
-                              prst.setString(3,yds.getYearEnd());
-                              prst.setInt(4,yds.getCredit());
-                              prst.setInt(5,yds.getMajor());
-                              prst.setInt(6,yds.getMajorMust());
-//                              prst.setInt(7,yds.getCul());
-                              prst.setInt(7,yds.getCulMust());
-                              prst.setInt(8,yds.getRecTatio());
-                              prst.setInt(9,yds.getRecTemp());
-                              prst.setInt(10,yds.getRecForm());
-                              prst.setString(11,yds.getOrgId());
-                              
+                              prst.setString(2, yds.getLoginDate());
+                              prst.setInt(3,yds.getCredit());
+                              prst.setInt(4,yds.getMajor());
+                              prst.setInt(5,yds.getMajorMust());
+                              prst.setInt(6,yds.getCulMust());
+                              prst.setInt(7,yds.getRecTatio());
+                              prst.setInt(8,yds.getRecTemp());
+                              prst.setInt(9,yds.getRecForm());
+                              prst.setString(10,yds.getOrgId());
+                              prst.setString(11,yds.getDeptName());
                               if (prst.executeUpdate() > 0)
                                         return true;
                     } catch (SQLException e) {
@@ -41,24 +39,13 @@ public class YearDeptStandDao extends BaseDao {
 
           public List<YearDeptStand> getYDSList(YearDeptStand ydStand) {
                     List<YearDeptStand> retList=new ArrayList<YearDeptStand>();
-//                    StringBuffer sqlString=new StringBuffer("select * from year_stand");
-//                    StringBuffer sqlString=new StringBuffer("select * from year_stand");
                     String sqlString=new String("select * from year_stand");
-//                    if(!StringUtil.isEmpty(ydStand.getYearNo())){
-//                              sqlString.append(" and year_no like '%"+ydStand.getYearNo()+"%'");
-//                    }
-//                    if(!StringUtil.isEmpty(ydStand.getOrgId())){
-//                              sqlString.append(" and orgid like '%"+ydStand.getOrgId()+"%'");
-//                    }
                     try {
-//                              PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
                               PreparedStatement prst=con.prepareStatement(sqlString);
                               ResultSet e = prst.executeQuery();
                               while(e.next()){
                                         YearDeptStand yds =new YearDeptStand();
                                         yds.setYearNo(e.getString("year_no"));
-                                        yds.setYearStart(e.getString("year_start"));
-                                        yds.setYearEnd(e.getString("year_end"));
                                         Integer credit = e.getInt("credit");
                                         yds.setCredit(credit);
                                         int major = e.getInt("major");
@@ -75,10 +62,11 @@ public class YearDeptStandDao extends BaseDao {
                                         yds.setRecTemp(e.getInt("rec_temp"));
                                         yds.setRecForm(e.getInt("rec_form"));
                                         yds.setOrgId(e.getString("orgid"));
+                                        yds.setLoginDate(e.getString("logindate"));
+                                        yds.setDeptName(e.getString("deptname"));
                                         retList.add(yds);
                               }
                     } catch (SQLException e) {
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     
@@ -88,17 +76,17 @@ public class YearDeptStandDao extends BaseDao {
           public List<YearDeptStand> getYDSList2(YearDeptStand ydStand){
                     List<YearDeptStand> retList=new ArrayList<YearDeptStand>();
                     String sqlString=null;
-                    if(StringUtil.isEmpty(ydStand.getYearNo())&&StringUtil.isEmpty(ydStand.getOrgId())){
+                    if(StringUtil.isEmpty(ydStand.getYearNo())&&StringUtil.isEmpty(ydStand.getDeptName())){
                               sqlString=new String("select * from year_stand");
                     }
-                    if(!StringUtil.isEmpty(ydStand.getYearNo())&&StringUtil.isEmpty(ydStand.getOrgId())){
+                    if(!StringUtil.isEmpty(ydStand.getYearNo())&&StringUtil.isEmpty(ydStand.getDeptName())){
                               sqlString=new String("select * from year_stand where year_no like '%"+ydStand.getYearNo()+"%'");
                     }
-                    if(!StringUtil.isEmpty(ydStand.getOrgId())&&StringUtil.isEmpty(ydStand.getYearNo())){
-                              sqlString=new String("select * from year_stand where orgid like '%"+ydStand.getOrgId()+"%'");
+                    if(!StringUtil.isEmpty(ydStand.getDeptName())&&StringUtil.isEmpty(ydStand.getYearNo())){
+                              sqlString=new String("select * from year_stand where deptname like '%"+ydStand.getDeptName()+"%'");
                     }
-                    if(!StringUtil.isEmpty(ydStand.getOrgId())&&!StringUtil.isEmpty(ydStand.getYearNo())){
-                              sqlString=new String("select * from year_stand where orgid like '%"+ydStand.getOrgId()+"%' and orgid like '%"+ydStand.getOrgId()+"%'");
+                    if(!StringUtil.isEmpty(ydStand.getDeptName())&&!StringUtil.isEmpty(ydStand.getYearNo())){
+                              sqlString=new String("select * from year_stand where year_no like '%"+ydStand.getYearNo()+"%' and deptname like '%"+ydStand.getDeptName()+"%'");
                     }
                     try {
                               PreparedStatement prst=con.prepareStatement(sqlString );
@@ -107,8 +95,6 @@ public class YearDeptStandDao extends BaseDao {
                               while(e.next()){
                                         YearDeptStand yds=new YearDeptStand();
                                         yds.setYearNo(e.getString("year_no"));
-                                        yds.setYearStart(e.getString("year_start"));
-                                        yds.setYearEnd(e.getString("year_end"));
                                         Integer credit = e.getInt("credit");
                                         yds.setCredit(credit);
                                         int major = e.getInt("major");
@@ -125,10 +111,11 @@ public class YearDeptStandDao extends BaseDao {
                                         yds.setRecTemp(e.getInt("rec_temp"));
                                         yds.setRecForm(e.getInt("rec_form"));
                                         yds.setOrgId(e.getString("orgid"));
+                                        yds.setLoginDate(e.getString("logindate"));
+                                        yds.setDeptName(e.getString("deptname"));
                                         retList.add(yds);
                               }
                     } catch (SQLException e) {
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     
@@ -153,7 +140,6 @@ public class YearDeptStandDao extends BaseDao {
                                         return true;
                               }
                     } catch (SQLException e) {    
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     
@@ -169,7 +155,6 @@ public class YearDeptStandDao extends BaseDao {
                                         return true;
                               }
                     } catch (SQLException e) {    
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     

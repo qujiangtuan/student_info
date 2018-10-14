@@ -52,7 +52,7 @@ public class StudentDao extends BaseDao{
 	}
 			//add student
             public boolean addStudent(Student student){
-                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학중',?,?)";
+                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학중',?,?,?)";
                       try {
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());
@@ -67,6 +67,7 @@ public class StudentDao extends BaseDao{
                                 prst.setString(10,student.getAdress());
                                 prst.setString(11,student.getDegreeProcess());
                                 prst.setString(12,student.getInSchYear());
+                                prst.setString(13,student.getDeptName());
                                 
                                 if(prst.executeUpdate()>0) return true;
                       } catch (SQLException e) {
@@ -100,8 +101,8 @@ public class StudentDao extends BaseDao{
                       if(!StringUtil.isEmpty(student.getsNo())){
                                 sqlString.append(" and sno like '%"+student.getsNo()+"%'");
                       }
-                      if(!StringUtil.isEmpty(student.getOrgId())){
-                                sqlString.append(" and orgid = '"+student.getOrgId()+"'");
+                      if(!StringUtil.isEmpty(student.getDeptName())){
+                                sqlString.append(" and deptname like '%"+student.getDeptName()+"%'");
                       }
                       try {
                                 PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
@@ -125,6 +126,7 @@ public class StudentDao extends BaseDao{
                                           s.setInSchState(executeQuery.getString("insch_status"));
                                           s.setDegreeProcess(executeQuery.getString("degree"));
                                           s.setInSchYear(executeQuery.getString("sch_year"));
+                                          s.setDeptName(executeQuery.getString("deptname"));
                                           retList.add(s);
                                 }
                       } catch (SQLException e) {
@@ -152,13 +154,14 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set orgid=?,insch_status=?,degree=?  where sno=?";
+                      String sql="update student set orgid=?,insch_status=?,degree=?,deptname=?   where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,student.getOrgId());
                               prst.setString(2,student.getInSchState());
                               prst.setString(3,student.getDegreeProcess());
-                              prst.setString(4,student.getsNo());
+                              prst.setString(4, student.getDeptName());
+                              prst.setString(5,student.getsNo());
                               if(prst.executeUpdate()>0){ 
                                         return true;
                               }

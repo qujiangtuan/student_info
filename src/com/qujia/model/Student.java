@@ -19,9 +19,16 @@ public class Student {
           private String inSchState;//재학상태
           private String degreeProcess;//학사과정
           private String inSchYear;//학년
+          private String deptName;
           
 
           
+          public String getDeptName() {
+                    return deptName;
+          }
+          public void setDeptName(String deptName) {
+                    this.deptName = deptName;
+          }
           public String getInSchState() {
                     return inSchState;
           }

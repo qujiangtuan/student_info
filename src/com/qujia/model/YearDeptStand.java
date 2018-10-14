@@ -3,8 +3,8 @@ package com.qujia.model;
 public class YearDeptStand {
 	private  String yearNo;
 	private String orgId;//
-	private String yearStart;
-	private String yearEnd;
+//	private String yearStart;
+//	private String yearEnd;
 	private int credit;
 	private int major;
 	private int majorMust;
@@ -15,6 +15,22 @@ public class YearDeptStand {
 	private int recTatio;
 	private int recTemp;
 	private int recForm;
+	private String loginDate;
+	private String deptName;
+	
+	
+          public String getDeptName() {
+                    return deptName;
+          }
+          public void setDeptName(String deptName) {
+                    this.deptName = deptName;
+          }
+          public String getLoginDate() {
+                    return loginDate;
+          }
+          public void setLoginDate(String loginDate) {
+                    this.loginDate = loginDate;
+          }
           public String getYearNo() {
                     return yearNo;
           }
@@ -28,18 +44,18 @@ public class YearDeptStand {
                     this.orgId = orgId;
           }
           
-          public String getYearStart() {
-                    return yearStart;
-          }
-          public void setYearStart(String yearStart) {
-                    this.yearStart = yearStart;
-          }
-          public String getYearEnd() {
-                    return yearEnd;
-          }
-          public void setYearEnd(String yearEnd) {
-                    this.yearEnd = yearEnd;
-          }
+//          public String getYearStart() {
+//                    return yearStart;
+//          }
+//          public void setYearStart(String yearStart) {
+//                    this.yearStart = yearStart;
+//          }
+//          public String getYearEnd() {
+//                    return yearEnd;
+//          }
+//          public void setYearEnd(String yearEnd) {
+//                    this.yearEnd = yearEnd;
+//          }
           public int getCredit() {
                     return credit;
           }

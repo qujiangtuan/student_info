@@ -11,7 +11,7 @@ import java.sql.SQLException;
  *
  */
 public class DBUtil {
-          // private String dbUrl="jdbc:oracle:thin:@localhost:1522:XE";
+//           private String dbUrl="jdbc:oracle:thin:@localhost:1522:XE";
           private String dbUrl = "jdbc:oracle:thin:@210.110.136.106:1521:XE";
           private String dbUserName = "student";
           private String dbPassword = "6317800";
@@ -29,10 +29,7 @@ public class DBUtil {
                     }
                     Connection con = null;
                     try {
-                              con = (Connection) DriverManager
-                                                  .getConnection(dbUrl,
-                                                                      dbUserName,
-                                                                      dbPassword);
+                              con = (Connection) DriverManager.getConnection(dbUrl,dbUserName,dbPassword);
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
                               e.printStackTrace();

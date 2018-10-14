@@ -10,13 +10,23 @@ public class ProStaff {
 	private String sex;
 	private String idCardNo;
 	private String orgId;
+	private String orgName;
 	private String address;
 	private String tel;
 	private String email;
 	private String loginDate;
 	private String password;
 	private String supId;
-	public String getpNo() {
+	
+	
+	
+	public String getOrgName() {
+                    return orgName;
+          }
+          public void setOrgName(String orgName) {
+                    this.orgName = orgName;
+          }
+          public String getpNo() {
 		return pNo;
 	}
 	public void setpNo(String pNo) {

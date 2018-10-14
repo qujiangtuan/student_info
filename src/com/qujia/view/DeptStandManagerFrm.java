@@ -82,15 +82,15 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         DeptStand deptStand=new DeptStand();
-                                        String str = searchClassNameTextField
-                                                            .getText()
-                                                            .toString();
-                                        if(StringUtil.isEmpty(str)){
-                                                  JOptionPane.showMessageDialog(null, "이름을 입력해주세요!");
-                                        } 
-                                        deptStand.setOrgName(str);
+                                        String orgName ;
+                                       try {
+                                                 orgName = searchClassNameTextField.getText().toString();
+                                      } catch (Exception e) {
+                                                orgName=null;
+                                      }
+                                       deptStand.setOrgName(orgName);
                                         setTable(deptStand);
-                                        resetValut();
+                                        resetValue();
                               }
                     });
                     searchButton.setIcon(new ImageIcon(DeptStandManagerFrm.class
@@ -175,7 +175,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     
                     textArea = new JTextArea();
                     textArea.setLineWrap(true);
-                    scrollPane_text.setRowHeaderView(textArea);
+                    scrollPane_text.setViewportView(textArea);
 
                     deptListTable = new JTable();
                     deptListTable.setRowHeight(25);
@@ -259,10 +259,10 @@ public class DeptStandManagerFrm extends JInternalFrame {
                               if(dsDao.deleteStand(id)){
                                         JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
                               }else{
-                                        JOptionPane.showMessageDialog(this, "삭제 했습니다!");
+                                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
                               }
                               setTable(new DeptStand());
-                              resetValut();
+                              resetValue();
                     }else{
                               return;
                     }
@@ -353,13 +353,21 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     dStand.setYear2(edityear2);
                     dStand.setDeptExplain(editDeptExp);
                     DeptStandDao dsDao=new DeptStandDao();
-                    if(dsDao.updateDStand(dStand)){
-//                              deptListTable.setValueAt(dsName, index, 1);
-//                              deptListTable.setValueAt(college, index, 2);
-                              JOptionPane.showMessageDialog(this, "수정 성공!");
-                    }else{
-                              JOptionPane.showMessageDialog(this, "수정 실패!");
+//                    if(JOptionPane.showConfirmDialog(this, "수정 하시겠습니까？") != JOptionPane.OK_OPTION){
+//                              return;
+//                      }
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "삭제 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(dsDao.updateDStand(dStand)){
+//                                      deptListTable.setValueAt(dsName, index, 1);
+//                                      deptListTable.setValueAt(college, index, 2);
+                                      JOptionPane.showMessageDialog(this, "수정 성공했습니다!");
+                            }else{
+                                      JOptionPane.showMessageDialog(this, "수정 실패했습니다!");
+                            }
                     }
+                   
                     dsDao.closeDao();
                     setTable(new DeptStand());
                     
@@ -387,7 +395,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     
           }
           //重置编辑框的值
-         public void resetValut(){
+         public void resetValue(){
         	       orgName.setText("");
                    textField_min.setText("");
                    textField_year1.setText("");

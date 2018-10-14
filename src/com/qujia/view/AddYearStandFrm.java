@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -32,7 +31,8 @@ public class AddYearStandFrm extends JFrame {
 	private JTextField textField_recTatio;
 	private JTextField textField_recTemp;
 	private JTextField textField_recForm;
-	private JComboBox comboBox_deptName;
+	private JTextField textField_deptName;
+	private List<Org> orgList;
 
 	/**
 	 * Launch the application.
@@ -56,7 +56,7 @@ public class AddYearStandFrm extends JFrame {
 	public AddYearStandFrm() {
 		setTitle("\uD559\uB144\uBCC4\uD559\uC0AC\uAE30\uC900\uB4F1\uB85D");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 589, 559);
+		setBounds(100, 100, 589, 339);
 		
 		 ViewUtil vu = new ViewUtil();
          vu.showCenter(this);
@@ -66,58 +66,55 @@ public class AddYearStandFrm extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
-		lblNewLabel.setBounds(118, 48, 103, 15);
-		
-		  comboBox_deptName = new JComboBox();
-		comboBox_deptName.setBounds(234, 48, 238, 21);
+		lblNewLabel.setBounds(118, 33, 103, 15);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uC878\uC5C5\uC774\uC218\uD559\uC810:");
-		lblNewLabel_1.setBounds(130, 87, 91, 15);
+		lblNewLabel_1.setBounds(40, 76, 91, 15);
 		
 		textField_creditAll = new JTextField();
-		textField_creditAll.setBounds(234, 87, 238, 21);
+		textField_creditAll.setBounds(144, 76, 115, 21);
 		textField_creditAll.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uC804\uACF5\uC774\uC218\uD559\uC810:");
-		lblNewLabel_2.setBounds(130, 126, 91, 15);
+		lblNewLabel_2.setBounds(271, 76, 91, 15);
 		
 		textField_majorScore = new JTextField();
-		textField_majorScore.setBounds(234, 126, 238, 21);
+		textField_majorScore.setBounds(374, 76, 116, 21);
 		textField_majorScore.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("\uC804\uACF5\uD544\uC218\uD559\uC810:");
-		lblNewLabel_3.setBounds(130, 165, 91, 15);
+		lblNewLabel_3.setBounds(40, 113, 91, 15);
 		
 		textField_majorMustScore = new JTextField();
-		textField_majorMustScore.setBounds(234, 165, 238, 21);
+		textField_majorMustScore.setBounds(144, 113, 115, 21);
 		textField_majorMustScore.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("\uAD50\uC591\uD544\uC218\uD559\uC810:");
-		lblNewLabel_4.setBounds(130, 204, 91, 15);
+		lblNewLabel_4.setBounds(270, 113, 91, 15);
 		
 		textField_culMustScore = new JTextField();
-		textField_culMustScore.setBounds(234, 204, 238, 21);
+		textField_culMustScore.setBounds(374, 113, 116, 21);
 		textField_culMustScore.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728:");
-		lblNewLabel_6.setBounds(130, 245, 91, 15);
+		lblNewLabel_6.setBounds(40, 157, 91, 15);
 		
 		textField_recTatio = new JTextField();
-		textField_recTatio.setBounds(234, 245, 238, 21);
+		textField_recTatio.setBounds(143, 154, 116, 21);
 		textField_recTatio.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0:");
-		lblNewLabel_7.setBounds(130, 284, 91, 15);
+		lblNewLabel_7.setBounds(270, 157, 91, 15);
 		
 		textField_recTemp = new JTextField();
-		textField_recTemp.setBounds(234, 284, 238, 21);
+		textField_recTemp.setBounds(375, 154, 115, 21);
 		textField_recTemp.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0:");
-		lblNewLabel_8.setBounds(130, 323, 91, 15);
+		lblNewLabel_8.setBounds(40, 195, 91, 15);
 		
 		textField_recForm = new JTextField();
-		textField_recForm.setBounds(234, 323, 238, 21);
+		textField_recForm.setBounds(144, 195, 115, 21);
 		textField_recForm.setColumns(10);
 		
 		JButton submitButton = new JButton("\uB4F1  \uB85D");
@@ -126,7 +123,7 @@ public class AddYearStandFrm extends JFrame {
 		                    submitAction(e);
 		          }
 		});
-		submitButton.setBounds(180, 410, 69, 23);
+		submitButton.setBounds(190, 251, 69, 23);
 		
 		JButton cancleButton = new JButton("\uCD5C  \uC18C");
 		cancleButton.addActionListener(new ActionListener() {
@@ -134,7 +131,7 @@ public class AddYearStandFrm extends JFrame {
 		                    dispose();
 		          }
 		});
-		cancleButton.setBounds(348, 410, 69, 23);
+		cancleButton.setBounds(330, 251, 69, 23);
 		contentPane.setLayout(null);
 		contentPane.add(submitButton);
 		contentPane.add(lblNewLabel_8);
@@ -152,15 +149,32 @@ public class AddYearStandFrm extends JFrame {
 		contentPane.add(textField_majorMustScore);
 		contentPane.add(textField_majorScore);
 		contentPane.add(textField_creditAll);
-		contentPane.add(comboBox_deptName);
 		contentPane.add(cancleButton);
 		
-		setDeptName();
+		textField_deptName = new JTextField();
+		textField_deptName.setBounds(233, 30, 116, 21);
+		contentPane.add(textField_deptName);
+		textField_deptName.setColumns(10);
+		
+		JButton btnNewButton = new JButton("\uC870\uD68C");
+		btnNewButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent arg0) {
+		                    SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                            sdf.setVisible(true);
+                            textField_deptName.setText(addSearch());
+		          }
+		});
+		btnNewButton.setBounds(372, 29, 91, 23);
+		contentPane.add(btnNewButton);
 	}
-	          //학년별 학과기준 등록
+	          protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
+          }
+
+                    //학년별 학과기준 등록
 	          protected void submitAction(ActionEvent e) {
-	                    Org org = (Org) comboBox_deptName.getSelectedItem();
-	                    String orgCode = org.getOrgCode();//조직코드
+	                    String deptName = textField_deptName.getText().toString();
+	                    String orgCode = this.getOrgidByOrgName(deptName);//조직코드
 	                    String yearStart=DateUtil.getThisYear();//적용시작년한
 	                    String yearEnd=(Integer.parseInt(DateUtil.getThisYear())+1)+"";//적용종료년한
 	                    String yearNo=getYearNo(yearStart);//학년별기준번호
@@ -179,39 +193,11 @@ public class AddYearStandFrm extends JFrame {
                               JOptionPane.showMessageDialog(this,"숫자 데이터를 입력해주세요!");
                               return;
                     }
-	                    
-//	                    if (StringUtil.isEmpty(creditAll)) {
-//	                              JOptionPane.showMessageDialog(this,"졸업이수학점을 입력해주세요!");
-//	                              return;
-//	                    }
-//	                    if (StringUtil.isEmpty(majorScore)) {
-//                                  JOptionPane.showMessageDialog(this,"전공이수학점을 입력해주세요!");
-//                                  return;
-//                        }
-//	                    if (StringUtil.isEmpty(majorMustScore)) {
-//                                  JOptionPane.showMessageDialog(this,"전공필수학점을 입력해주세요!");
-//                                  return;
-//                        }
-//	                    if (StringUtil.isEmpty(culMustScore)) {
-//                                  JOptionPane.showMessageDialog(this,"교양필수학점을 입력해주세요!");
-//                                  return;
-//                        }
-//	                    if (StringUtil.isEmpty(recTatio)) {
-//                                  JOptionPane.showMessageDialog(this,"모집비율을 입력해주세요!");
-//                                  return;
-//                        }
-//	                    if (StringUtil.isEmpty(recTemp)) {
-//                                  JOptionPane.showMessageDialog(this,"수시모집인원을 입력해주세요!");
-//                                  return;
-//                        }
-//	                    if (StringUtil.isEmpty(recForm)) {
-//                                  JOptionPane.showMessageDialog(this,"정시모집인원을 선택해주세요!");
-//                                  return;
-//                        }
+	                    String loginDate=DateUtil.getTodayDate();
 	                    YearDeptStand yds=new YearDeptStand();
 	                    yds.setYearNo(yearNo);
-	                    yds.setYearStart(yearStart);
-	                    yds.setYearEnd(yearEnd);
+//	                    yds.setYearStart(yearStart);
+//	                    yds.setYearEnd(yearEnd);
 	                    yds.setCredit(creditAll);
 	                    yds.setMajor(majorScore);
 	                    yds.setMajorMust(majorMustScore);
@@ -221,6 +207,8 @@ public class AddYearStandFrm extends JFrame {
 	                    yds.setRecTemp(recTemp);
 	                    yds.setRecForm(recForm);
 	                    yds.setOrgId(orgCode);
+	                    yds.setLoginDate(loginDate);
+	                    yds.setDeptName(deptName);
 	                    YearDeptStandDao ydsDao=new YearDeptStandDao();
 	                    if(ydsDao.addYearStand(yds)){
 	                              JOptionPane.showMessageDialog(this, "학년벌학사기준 등록 성공했습니다!");
@@ -234,14 +222,13 @@ public class AddYearStandFrm extends JFrame {
                       return yearNO1;
               }
 
-          //학과 받기
-	      protected void setDeptName() {
-              // TODO Auto-generated method stub
-              OrgDao orgDao=new OrgDao();
-              List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-              for (Org org: orgList) {
-                        comboBox_deptName.addItem(org);
-              }
-              orgDao.closeDao();
-    }
+	    //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
+          }
 }

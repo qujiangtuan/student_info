@@ -11,18 +11,18 @@ import com.qujia.util.StringUtil;
 
 public class OrgDao extends BaseDao {
          public boolean addOrg(Org org){
-                   String sql = "insert into org values(?,?,?,?,?,?,?,?,?)";
+                   String sql = "insert into org values(?,?,?,?,?,?,?,?)";
                    try {
                     PreparedStatement prst=con.prepareStatement(sql);
                     prst.setString(1, org.getOrgCode());
                     prst.setString(2,org.getName());
-                    prst.setString(3,org.getsName());
-                    prst.setString(4,org.getOrgType());
-                    prst.setString(5,org.getCoGrCode());
-                    prst.setString(6,org.getGsDepMajCode());
-                    prst.setString(7,org.getAftType());
-                    prst.setString(8,org.getParCode());
-                    prst.setString(9,org.getTodayDate());
+//                    prst.setString(3,org.getsName());
+                    prst.setString(3,org.getOrgType());
+                    prst.setString(4,org.getCoGrCode());
+                    prst.setString(5,org.getGsDepMajCode());
+                    prst.setString(6,org.getAftType());
+                    prst.setString(7,org.getParCode());
+                    prst.setString(8,org.getTodayDate());
                     if (prst.executeUpdate() > 0)
                               return true;            
           } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class OrgDao extends BaseDao {
                                        Org o=new Org();
                                        o.setOrgCode(executeQuery.getString("org_code"));
                                        o.setName(executeQuery.getString("name"));
-                                       o.setsName(executeQuery.getString("sname"));
+//                                       o.setsName(executeQuery.getString("sname"));
                                        o.setOrgType(executeQuery.getString("org_type"));
                                        o.setCoGrCode(executeQuery.getString("co_gr_code"));
                                        o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
@@ -94,7 +94,7 @@ public class OrgDao extends BaseDao {
                                        Org o=new Org();
                                        o.setOrgCode(executeQuery.getString("org_code"));
                                        o.setName(executeQuery.getString("name"));
-                                       o.setsName(executeQuery.getString("sname"));
+//                                       o.setsName(executeQuery.getString("sname"));
                                        o.setOrgType(executeQuery.getString("org_type"));
                                        o.setCoGrCode(executeQuery.getString("co_gr_code"));
                                        o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
@@ -127,7 +127,7 @@ public class OrgDao extends BaseDao {
                                        Org o=new Org();
                                        o.setOrgCode(executeQuery.getString("org_code"));
                                        o.setName(executeQuery.getString("name"));
-                                       o.setsName(executeQuery.getString("sname"));
+//                                       o.setsName(executeQuery.getString("sname"));
                                        o.setOrgType(executeQuery.getString("org_type"));
                                        o.setCoGrCode(executeQuery.getString("co_gr_code"));
                                        o.setGsDepMajCode(executeQuery.getString("gs_dpt_maj_code"));
@@ -176,13 +176,13 @@ public class OrgDao extends BaseDao {
          }
          //update org
          public boolean updateOrg(Org org){
-                   String sql="update org set name = ? , sname= ? ,par_org=? where org_code=?";
+                   String sql="update org set name = ? ,par_org=? where org_code=?";
                    try {
                            PreparedStatement prst=con.prepareStatement(sql);
                            prst.setString(1,org.getName());
-                           prst.setString(2,org.getsName());
-                           prst.setString(3,org.getParCode());
-                           prst.setString(4,org.getOrgCode());
+//                           prst.setString(2,org.getsName());
+                           prst.setString(2,org.getParCode());
+                           prst.setString(3,org.getOrgCode());
                            if(prst.executeUpdate()>0){ 
                                      return true;
                            }

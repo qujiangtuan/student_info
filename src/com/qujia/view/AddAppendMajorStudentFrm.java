@@ -3,7 +3,6 @@ package com.qujia.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -12,12 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import com.qujia.dao.OrgDao;
 import com.qujia.dao.SecondMajorRangeDao;
 import com.qujia.dao.StudentDao;
-import com.qujia.model.Org;
 import com.qujia.model.SecondMajorRange;
 import com.qujia.model.Student;
 import com.qujia.util.DateUtil;
@@ -27,8 +25,9 @@ public class AddAppendMajorStudentFrm extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel label_name;
-	private JComboBox comboBox_major,comboBox_major_type;
+	private JComboBox comboBox_major_type;
 	private JLabel Label_dept;
+	private JTextField textField_major;
 
 	/**
 	 * Launch the application.
@@ -78,9 +77,6 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("\uCD94\uAC00\uC804\uACF5:");
 		lblNewLabel_2.setBounds(80, 166, 63, 15);
 		
-		comboBox_major = new JComboBox();
-		comboBox_major.setBounds(161, 163, 271, 21);
-		
 		JButton submitButton = new JButton("\uB4F1 \uB85D");
 		submitButton.setBounds(173, 241, 63, 23);
 		submitButton.addActionListener(new ActionListener() {
@@ -100,7 +96,6 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		contentPane.add(lblNewLabel_1);
 		contentPane.add(lblNewLabel);
-		contentPane.add(comboBox_major);
 		contentPane.add(label_name);
 		contentPane.add(comboBox_major_type);
 		contentPane.add(submitButton);
@@ -113,18 +108,38 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		  Label_dept = new JLabel("135465465");
 		Label_dept.setBounds(161, 88, 271, 15);
 		contentPane.add(Label_dept);
+		
+		textField_major = new JTextField();
+		textField_major.setBounds(161, 163, 116, 21);
+		contentPane.add(textField_major);
+		textField_major.setColumns(10);
+		
+		JButton btnNewButton = new JButton("조회");
+		btnNewButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                            sdf.setVisible(true);
+                            textField_major.setText(addSearch());
+		          }
+		});
+		btnNewButton.setBounds(289, 162, 97, 23);
+		contentPane.add(btnNewButton);
 		getStudentName();//填充姓名
 		getStudentDept();
-		setDeptStandName();//填充学科
 		
 	}
-	//추가전공 등록 event
+	protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
+          }
+
+          //추가전공 등록 event
 	protected void addAppendMajorAction(ActionEvent ae) {
 		String name = label_name.getText().toString();
 		String deptName=Label_dept.getText().toString();
 		String majorType=comboBox_major_type.getSelectedItem().toString();
-		Org org=(Org) comboBox_major.getSelectedItem();
-		String secondMajor = org.getName();
+//		Org org=(Org) comboBox_major.getSelectedItem();
+		
+		String secondMajor = textField_major.getText().toString();
 		String applyDate =DateUtil.getTodayDate();
 		
 		SecondMajorRange smr=new SecondMajorRange();
@@ -195,16 +210,5 @@ public class AddAppendMajorStudentFrm extends JFrame {
         StudentManagerFrm amf=new StudentManagerFrm();
         String deptName=amf.getStudentDept();
         Label_dept.setText(deptName);
-    }
-	 //学科 从数据库中把数据填充选择框
-    protected void setDeptStandName() {
-              // TODO Auto-generated method stub
-              OrgDao orgDao=new OrgDao();
-              List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-//              System.out.println(orgList);
-              for (Org org: orgList) {
-            	  comboBox_major.addItem(org);
-              }
-              orgDao.closeDao();
     }
 }

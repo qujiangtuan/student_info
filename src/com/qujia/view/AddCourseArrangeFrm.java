@@ -9,9 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -21,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerDateModel;
 import javax.swing.border.EmptyBorder;
 
@@ -34,23 +32,25 @@ public class AddCourseArrangeFrm extends JFrame {
 
           private JPanel contentPane;
           private JSpinner spinner_1_1, spinner_2_1, spinner_3_1, spinner_4_1,
-                              spinner_5_1, spinner_6_1, spinner_7_1,
+                              spinner_5_1, spinner_6_1,
                               spinner_1_2, spinner_2_2, spinner_3_2,
-                              spinner_4_2, spinner_5_2, spinner_6_2,
-                              spinner_7_2;
+                              spinner_4_2, spinner_5_2, spinner_6_2;
           private JCheckBox checkBox_1, checkBox_2, checkBox_3, checkBox_4,
-                              checkBox_5, checkBox_6, checkBox_7;
+                              checkBox_5, checkBox_6;
           private JLabel lebel_name, leabel_pro, leabel_term;
-          private JComboBox comboBox_name, comboBox_pro,
-                              comboBox_term;
+          private JComboBox comboBox_term;
           private JComboBox comboBox_1, comboBox_2, comboBox_3, comboBox_4,
-                              comboBox_5, comboBox_6, comboBox_7;
+                              comboBox_5, comboBox_6;
           DateUtil dux = new DateUtil();
           private JLabel lblNewLabel;
           private JTextField textField;
           private JLabel lblNewLabel_1;
           private JTextField textField_1;
           private JButton button;
+          private JRadioButton xRadioButton,cRadioButton;
+          private ButtonGroup bgroup;
+          private JTextField textField_2;
+          private JTextField textField_3;
 
           /**
            * Launch the application.
@@ -74,7 +74,7 @@ public class AddCourseArrangeFrm extends JFrame {
           public AddCourseArrangeFrm() {
                     setTitle("개설교과목등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 625, 589);
+                    setBounds(100, 100, 613, 547);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -84,25 +84,22 @@ public class AddCourseArrangeFrm extends JFrame {
                     setContentPane(contentPane);
 
                     lebel_name = new JLabel("과목이름:");
-
-                    comboBox_name = new JComboBox();
-                    comboBox_name.setModel(new DefaultComboBoxModel(
-                                        new String[] { "데이터베이스" }));
+                    lebel_name.setBounds(30, 35, 69, 15);
 
                     leabel_pro = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
-
-                    comboBox_pro = new JComboBox();
-                    comboBox_pro.setModel(new DefaultComboBoxModel(
-                                        new String[] { "김**" }));
+                    leabel_pro.setBounds(304, 35, 70, 15);
 
                     leabel_term = new JLabel(" 개설학기:");
+                    leabel_term.setBounds(314, 80, 74, 15);
 
                     comboBox_term = new JComboBox();
+                    comboBox_term.setBounds(386, 77, 102, 21);
                     comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1학기", "2학기", "여름계절학기", "겨울계절학기"}));
 
                     DateUtil du = new DateUtil();
 
                     JButton submitButton = new JButton("등  록");
+                    submitButton.setBounds(282, 444, 74, 23);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
                                         // ClassRoom[] cr=null;
@@ -310,22 +307,16 @@ public class AddCourseArrangeFrm extends JFrame {
 
                                         // 7
                                         ClassRoom cr7 = new ClassRoom();
-                                        Boolean bool7 = checkBox_7.isSelected();
-                                        String dateStart7 = dux
-                                                            .Date2String((Date) spinner_7_1
-                                                                                .getValue());
-                                        String dateEnd7 = dux
-                                                            .Date2String((Date) spinner_7_2
-                                                                                .getValue());
-                                        String className7 = comboBox_7
-                                                            .getSelectedItem()
-                                                            .toString();
-                                        cr7.setCrName(className7);
+//                                        Boolean bool7 = checkBox_7.isSelected();
+//                                        String dateStart7 = dux.Date2String((Date) spinner_7_1.getValue());
+//                                        String dateEnd7 = dux.Date2String((Date) spinner_7_2.getValue());
+//                                        String className7 = comboBox_7.getSelectedItem().toString();
+//                                        cr7.setCrName(className7);
 
                                         TableTime tt7 = new TableTime();
-                                        tt7.setBool(bool7);
-                                        tt7.setDateStart(dateStart7);
-                                        tt7.setDateEnd(dateEnd7);
+//                                        tt7.setBool(bool7);
+//                                        tt7.setDateStart(dateStart7);
+//                                        tt7.setDateEnd(dateEnd7);
                                         tt7.setCr(cr7);
                                         Map<Integer, Object> map7 = new HashMap<Integer, Object>();
                                         map7.put(1, tt7.getBool());
@@ -373,9 +364,9 @@ public class AddCourseArrangeFrm extends JFrame {
                                         if (bool6) {
                                                   list.add(map6);
                                         }
-                                        if (bool7) {
-                                                  list.add(map7);
-                                        }
+//                                        if (bool7) {
+//                                                  list.add(map7);
+//                                        }
                                         // System.out.println(list);
                                         Map<Integer, Object>[] mapOut = null;
 
@@ -388,61 +379,77 @@ public class AddCourseArrangeFrm extends JFrame {
                     });
 
                     JLabel label_1 = new JLabel("수강요일");
+                    label_1.setBounds(30, 196, 65, 15);
 
                     JLabel label_2 = new JLabel("시작시간");
+                    label_2.setBounds(117, 196, 65, 15);
 
                     JLabel label_3 = new JLabel("끝나시간");
+                    label_3.setBounds(263, 196, 62, 15);
 
                     JLabel label_4 = new JLabel("강의실");
+                    label_4.setBounds(365, 196, 147, 15);
 
                     checkBox_1 = new JCheckBox("월");
+                    checkBox_1.setBounds(47, 229, 48, 23);
 
                     checkBox_2 = new JCheckBox("화");
+                    checkBox_2.setBounds(47, 262, 48, 23);
 
                     checkBox_3 = new JCheckBox("수");
+                    checkBox_3.setBounds(47, 294, 48, 23);
 
                     checkBox_4 = new JCheckBox("목");
+                    checkBox_4.setBounds(47, 326, 48, 23);
 
                     checkBox_5 = new JCheckBox("금");
+                    checkBox_5.setBounds(47, 354, 48, 23);
 
                     checkBox_6 = new JCheckBox("토");
-
-                    checkBox_7 = new JCheckBox("일");
+                    checkBox_6.setBounds(47, 386, 48, 23);
 
                     // SpinnerDateModel model = new SpinnerDateModel();
                     spinner_1_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_1_1.setBounds(117, 230, 93, 22);
                     // spinner_1_1.setModel(new SpinnerDateModel(new
                     // Date(1536505200000L), new Date(1536505200000L), new
                     // Date(1536505200000L), Calendar.HOUR));
 
                     spinner_2_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_2_1.setBounds(117, 262, 93, 22);
 
                     spinner_3_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_3_1.setBounds(117, 294, 93, 22);
 
                     spinner_4_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_4_1.setBounds(117, 326, 93, 22);
 
                     spinner_5_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_5_1.setBounds(117, 354, 93, 22);
 
                     spinner_6_1 = new JSpinner(new SpinnerDateModel());
-
-                    spinner_7_1 = new JSpinner(new SpinnerDateModel());
+                    spinner_6_1.setBounds(117, 386, 93, 22);
 
                     spinner_1_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_1_2.setBounds(245, 230, 102, 22);
                     // spinner_1_2.setModel(new SpinnerDateModel(new
                     // Date(1536505200000L), new Date(1536505200000L), new
                     // Date(1536505200000L), Calendar.HOUR));
 
                     spinner_2_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_2_2.setBounds(245, 262, 102, 22);
 
                     spinner_3_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_3_2.setBounds(245, 294, 102, 22);
 
                     spinner_4_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_4_2.setBounds(245, 326, 102, 22);
 
                     spinner_5_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_5_2.setBounds(245, 354, 102, 22);
 
                     spinner_6_2 = new JSpinner(new SpinnerDateModel());
-
-                    spinner_7_2 = new JSpinner(new SpinnerDateModel());
+                    spinner_6_2.setBounds(245, 386, 102, 22);
                     this.setMyModel(spinner_1_1);
                     this.setMyModel(spinner_1_2);
                     this.setMyModel(spinner_2_1);
@@ -455,53 +462,60 @@ public class AddCourseArrangeFrm extends JFrame {
                     this.setMyModel(spinner_5_2);
                     this.setMyModel(spinner_6_1);
                     this.setMyModel(spinner_6_2);
-                    this.setMyModel(spinner_7_1);
-                    this.setMyModel(spinner_7_2);
 
                     comboBox_1 = new JComboBox();
+                    comboBox_1.setBounds(365, 230, 147, 21);
                     comboBox_1.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
                     comboBox_2 = new JComboBox();
+                    comboBox_2.setBounds(365, 263, 147, 21);
                     comboBox_2.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
                     comboBox_3 = new JComboBox();
+                    comboBox_3.setBounds(365, 295, 147, 21);
                     comboBox_3.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
                     comboBox_4 = new JComboBox();
+                    comboBox_4.setBounds(365, 327, 147, 21);
                     comboBox_4.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
                     comboBox_5 = new JComboBox();
+                    comboBox_5.setBounds(365, 354, 147, 21);
                     comboBox_5.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
                     comboBox_6 = new JComboBox();
+                    comboBox_6.setBounds(365, 387, 147, 21);
                     comboBox_6.setModel(new DefaultComboBoxModel(new String[] {
                                         "2001", "2002", "2003", "2004" }));
 
-                    comboBox_7 = new JComboBox();
-                    comboBox_7.setModel(new DefaultComboBoxModel(new String[] {
-                                        "2001", "2002", "2003", "2004" }));
-
                     lblNewLabel = new JLabel("분 반:");
+                    lblNewLabel.setBounds(48, 119, 48, 15);
 
                     textField = new JTextField();
+                    textField.setBounds(114, 116, 116, 21);
                     textField.setColumns(10);
 
                     lblNewLabel_1 = new JLabel("정 원:");
+                    lblNewLabel_1.setBounds(333, 119, 48, 15);
 
                     textField_1 = new JTextField();
+                    textField_1.setBounds(386, 116, 102, 21);
                     textField_1.setColumns(10);
                     
                     JLabel lblNewLabel_2 = new JLabel("대상학년:");
+                    lblNewLabel_2.setBounds(30, 80, 69, 15);
                     
                     JComboBox comboBox = new JComboBox();
+                    comboBox.setBounds(114, 77, 116, 21);
                     comboBox.setModel(new DefaultComboBoxModel(new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"}));
                     
                     button = new JButton("취 소");
+                    button.setBounds(406, 444, 86, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
@@ -509,230 +523,81 @@ public class AddCourseArrangeFrm extends JFrame {
                     });
                     
                     JLabel lblNewLabel_3 = new JLabel("평가방식:");
+                    lblNewLabel_3.setBounds(30, 157, 72, 15);
                     
-                    JRadioButton rdbtnNewRadioButton = new JRadioButton("상대평가");
+                    xRadioButton = new JRadioButton("상대평가");
+                    xRadioButton.setSelected(true);
+                    xRadioButton.setBounds(114, 153, 86, 23);
                     
-                    JRadioButton radioButton = new JRadioButton("절대평가");
-                    // btnNewButton.addActionListener(new ActionListener() {
-                    // public void getdate(){
-                    // Date cellEditorValue = (Date) new
-                    // JSpinnerColRender().getCellEditorValue();
-                    // }
-                    // public void actionPerformed(ActionEvent arg0) {
-                    //
-                    // ClassRoom cr =new ClassRoom();
-                    // Boolean bool = (Boolean)
-                    // table_1.getModel().getValueAt(1,0);
-                    // String dateStart =(String) new
-                    // JSpinnerColRender().getCellEditorValue();
-                    // String dateEnd =(String) new
-                    // JSpinnerColRender().getCellEditorValue();
-                    //
-                    // // Date dateStart =(Date) new
-                    // JSpinnerColRender().getCellEditorValue();
-                    // // Date dateEnd =(Date) new
-                    // JSpinnerColRender().getCellEditorValue();
-                    // // Date dateStart = (Date)
-                    // table_1.getModel().getValueAt(1, 1);
-                    // //Date dateEnd = (Date) table_1.getModel().getValueAt(1,
-                    // 2);
-                    // String crname=(String)
-                    // table_1.getModel().getValueAt(1,3);
-                    // cr.setCrName(crname);
-                    //
-                    // TableTime tt=new TableTime();
-                    // tt.setBool(bool);
-                    // tt.setDateStart(dateStart);
-                    // tt.setDateEnd(dateEnd);
-                    // tt.setCr(cr);
-                    // Map<Integer, Object> map =new HashMap<Integer, Object>();
-                    // map.put(1, tt.getBool());
-                    // map.put(2,tt.getDateStart());
-                    // map.put(3, tt.getDateEnd());
-                    // map.put(4, tt.getCr());
-                    // System.out.println(map);
-                    // //System.out.println(bool);
-                    // }
-                    // });
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(59)
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addGap(18)
-                                                                      .addComponent(textField, GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(42)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                                        .addComponent(label_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                                        .addComponent(checkBox_7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                                                                              .addGap(22))
-                                                                                                    .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                              .addComponent(lblNewLabel_2)
-                                                                                                              .addGap(18)))
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                                    .addComponent(comboBox, 0, 135, Short.MAX_VALUE)
-                                                                                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                              .addComponent(label_2)
-                                                                                                              .addComponent(spinner_7_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_6_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_5_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_4_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_3_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_2_1, 0, 0, Short.MAX_VALUE)
-                                                                                                              .addComponent(spinner_1_1, GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
-                                                                                                    .addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)))
-                                                                                .addComponent(lebel_name))))
-                                                  .addGap(34)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                    .addComponent(spinner_2_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_1_2, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 102, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_3_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_4_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_5_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_6_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                                                                    .addComponent(spinner_7_2, Alignment.TRAILING, 0, 0, Short.MAX_VALUE))
-                                                                                          .addGap(18)
-                                                                                          .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                                                    .addComponent(label_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_7, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_6, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_5, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_4, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_3, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_1, 0, 147, Short.MAX_VALUE)
-                                                                                                    .addComponent(comboBox_2, 0, 147, Short.MAX_VALUE)))
-                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                          .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                    .addComponent(leabel_pro)
-                                                                                                    .addGap(10)
-                                                                                                    .addComponent(comboBox_pro, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-                                                                                          .addComponent(label_3, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                                    .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                                              .addComponent(lblNewLabel_1)
-                                                                                                              .addComponent(leabel_term))
-                                                                                                    .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                                    .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)))
-                                                                                .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE))
-                                                                      .addContainerGap(51, Short.MAX_VALUE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(submitButton)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                                                                      .addComponent(button, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(73))))
-                                        .addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-                                                  .addGap(73)
-                                                  .addComponent(lblNewLabel_3)
-                                                  .addGap(33)
-                                                  .addComponent(rdbtnNewRadioButton)
-                                                  .addGap(18)
-                                                  .addComponent(radioButton)
-                                                  .addContainerGap(229, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(27)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lebel_name)
-                                                            .addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_pro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(leabel_pro))
-                                                  .addGap(24)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(leabel_term))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(37)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_1)
-                                                            .addComponent(label_2)
-                                                            .addComponent(label_3)
-                                                            .addComponent(label_4))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(checkBox_1)
-                                                            .addComponent(spinner_1_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_1_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(checkBox_2)
-                                                            .addComponent(spinner_2_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_2_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(checkBox_3)
-                                                            .addComponent(spinner_3_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_3_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(checkBox_4)
-                                                            .addComponent(spinner_4_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_4_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(spinner_5_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addComponent(spinner_5_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                            .addComponent(checkBox_5))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(spinner_6_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_6_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(checkBox_6)
-                                                            .addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(spinner_7_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(spinner_7_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(checkBox_7)
-                                                            .addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(27)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_3)
-                                                            .addComponent(rdbtnNewRadioButton)
-                                                            .addComponent(radioButton))
-                                                  .addGap(32)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(submitButton)
-                                                            .addComponent(button))
-                                                  .addContainerGap(33, Short.MAX_VALUE))
-                    );
-                    // for (int i = 0; i < rowCount; i++) {
-                    // model.setValueAt(new Boolean(false), i, 0);
-                    // }
-
-                    contentPane.setLayout(gl_contentPane);
+                    cRadioButton = new JRadioButton("절대평가");
+                    
+                    bgroup=new ButtonGroup();
+                    bgroup.add(xRadioButton);
+                    bgroup.add(cRadioButton);
+                    
+                    cRadioButton.setBounds(204, 153, 102, 23);
+                    contentPane.setLayout(null);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField);
+                    contentPane.add(label_1);
+                    contentPane.add(checkBox_1);
+                    contentPane.add(checkBox_2);
+                    contentPane.add(checkBox_3);
+                    contentPane.add(checkBox_4);
+                    contentPane.add(checkBox_5);
+                    contentPane.add(checkBox_6);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(comboBox);
+                    contentPane.add(label_2);
+                    contentPane.add(spinner_6_1);
+                    contentPane.add(spinner_5_1);
+                    contentPane.add(spinner_4_1);
+                    contentPane.add(spinner_3_1);
+                    contentPane.add(spinner_2_1);
+                    contentPane.add(spinner_1_1);
+                    contentPane.add(lebel_name);
+                    contentPane.add(spinner_2_2);
+                    contentPane.add(spinner_1_2);
+                    contentPane.add(spinner_3_2);
+                    contentPane.add(spinner_4_2);
+                    contentPane.add(spinner_5_2);
+                    contentPane.add(spinner_6_2);
+                    contentPane.add(label_4);
+                    contentPane.add(comboBox_6);
+                    contentPane.add(comboBox_5);
+                    contentPane.add(comboBox_4);
+                    contentPane.add(comboBox_3);
+                    contentPane.add(comboBox_1);
+                    contentPane.add(comboBox_2);
+                    contentPane.add(leabel_pro);
+                    contentPane.add(label_3);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(leabel_term);
+                    contentPane.add(textField_1);
+                    contentPane.add(comboBox_term);
+                    contentPane.add(submitButton);
+                    contentPane.add(button);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(xRadioButton);
+                    contentPane.add(cRadioButton);
+                    
+                    textField_2 = new JTextField();
+                    textField_2.setBounds(114, 32, 116, 21);
+                    contentPane.add(textField_2);
+                    textField_2.setColumns(10);
+                    
+                    JButton btnNewButton = new JButton("조회");
+                    btnNewButton.setBounds(230, 31, 65, 23);
+                    contentPane.add(btnNewButton);
+                    
+                    JButton button_1 = new JButton("조회");
+                    button_1.setBounds(489, 31, 65, 23);
+                    contentPane.add(button_1);
+                    
+                    textField_3 = new JTextField();
+                    textField_3.setBounds(386, 32, 102, 21);
+                    contentPane.add(textField_3);
+                    textField_3.setColumns(10);
           }
 
           // 设置jspinner 类型方法

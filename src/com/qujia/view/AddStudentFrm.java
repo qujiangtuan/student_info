@@ -25,7 +25,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.eltima.components.ui.DatePicker;
+import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
+import com.qujia.model.Org;
 import com.qujia.model.SendEmailToSP;
 import com.qujia.model.Student;
 import com.qujia.util.DateUtil;
@@ -58,6 +60,7 @@ public class AddStudentFrm extends JFrame {
           private JLabel label_2;
           private JButton btnNewButton_1;
           private JTextField textField_address2;
+          private List<Org> orgList;
           
           
           public static String getDeptNameFine(String str) {
@@ -446,7 +449,9 @@ public class AddStudentFrm extends JFrame {
                     String email2 = email2comboBox.getSelectedItem().toString();
                     String email=email1+label+email2;
                     
-                    String orgid=SearchDeptForStuFrm.getOrdId();//조직코드
+                    String deptName=textField_deptName.getText().toString();
+//                    String orgid=SearchDeptForStuFrm.getOrdId();//조직코드
+                    String orgid=this.getOrgidByOrgName(deptName);
 //                    System.out.println("orgid="+orgid);
 //                    Org org1,org2;
 //                    org1=new Org();
@@ -531,6 +536,7 @@ public class AddStudentFrm extends JFrame {
                     student.setAdress(address);
                     student.setDegreeProcess(degreeProcess);
                     student.setInSchYear(inSchYear);
+                    student.setDeptName(deptName);
                     //System.out.println(student);
                     StudentDao studentDao = new StudentDao();
                     if (studentDao.addStudent(student)) {
@@ -678,5 +684,14 @@ public class AddStudentFrm extends JFrame {
                      
 //                    return AddStudentFrm.deptNameFine;
                     return SearchDeptForStuFrm.getDeptName();
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
           }
 }

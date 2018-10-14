@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerListModel;
 import javax.swing.border.EmptyBorder;
 
@@ -26,10 +27,14 @@ import com.qujia.util.ViewUtil;
 public class AddAppendMajorOrgFrm extends JFrame {
 
           private JPanel contentPane;
-          private JComboBox comboBox_base,comboBox_allow;
           private JSpinner spinner_start,spinner_end;
           private JComboBox comboBox_allowType,comboBox_rangetype;
           private JButton btnNewButton;
+          private JTextField textField_base;
+          private JButton btnNewButton_1;
+          private JTextField textField_allow;
+          private JButton button;
+          private List<Org> orgList;
           
           /**
            * Launch the application.
@@ -65,12 +70,6 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     
                     JLabel lblNewLabel = new JLabel("\uAE30\uC900\uD559\uACFC:");
                     lblNewLabel.setBounds(67, 45, 72, 15);
-                    
-                    comboBox_base = new JComboBox();
-                    comboBox_base.setBounds(163, 42, 309, 21);
-                    
-                    comboBox_allow = new JComboBox();
-                    comboBox_allow.setBounds(163, 82, 309, 21);
                     
                     JLabel label = new JLabel("\uD5C8\uC6A9\uD559\uACFC:");
                     label.setBounds(67, 85, 72, 15);
@@ -113,8 +112,6 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     contentPane.add(lblNewLabel_1);
                     contentPane.add(lblNewLabel_2);
                     contentPane.add(AddButton);
-                    contentPane.add(comboBox_allow);
-                    contentPane.add(comboBox_base);
                     contentPane.add(comboBox_allowType);
                     contentPane.add(spinner_start);
                     contentPane.add(lblNewLabel_3);
@@ -130,23 +127,57 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     btnNewButton.setBounds(362, 226, 63, 23);
                     contentPane.add(btnNewButton);
                     
+                    textField_base = new JTextField();
+                    textField_base.setBounds(163, 42, 116, 21);
+                    contentPane.add(textField_base);
+                    textField_base.setColumns(10);
                     
-                    setDeptName();
+                    btnNewButton_1 = new JButton("조회");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_base.setText(addSearch());
+                              }
+                    });
+                    btnNewButton_1.setBounds(291, 41, 97, 23);
+                    contentPane.add(btnNewButton_1);
+                    
+                    textField_allow = new JTextField();
+                    textField_allow.setColumns(10);
+                    textField_allow.setBounds(163, 82, 116, 21);
+                    contentPane.add(textField_allow);
+                    
+                    button = new JButton("조회");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_allow.setText(addSearch());
+                              }
+                    });
+                    button.setBounds(291, 81, 97, 23);
+                    contentPane.add(button);
                     
           }
-          //복수부전공 허용범위 추가 event
+          protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
+          }
+
+//복수부전공 허용범위 추가 event
         protected void AddAppendMajorAciton(ActionEvent e) {
-                  Org org1=(Org)comboBox_base.getSelectedItem();
-                  String orgidBase=org1.getOrgCode();
-                  Org org2=(Org)comboBox_allow.getSelectedItem();
-                  String orgidAllow=org2.getOrgCode();
+//                  Org org1=(Org)comboBox_base.getSelectedItem();
+                  String orgNameBase = textField_base.getText().toString();
+                  String orgidBase=this.getOrgidByOrgName(orgNameBase);
+//                  Org org2=(Org)comboBox_allow.getSelectedItem();
+                  String orgNameAllow = textField_allow.getText().toString();
+                  String orgidAllow=this.getOrgidByOrgName(orgNameAllow);
+//                  String orgidAllow=org2.getOrgCode();
                   String startTime = spinner_start.getValue().toString();
                   String endTime=spinner_end.getValue().toString();
                   String allowType = comboBox_allowType.getSelectedItem().toString();
                   String rangeType = comboBox_rangetype.getSelectedItem().toString();
                   String loginDate=DateUtil.getTodayDate();
-                  String orgidBaseNm=org1.getName();
-                  String orgidAllowNm=org2.getName();
                   String isAllow=getIsAllow(endTime,loginDate);
                   
                   SecondMajorRange smr=new SecondMajorRange();
@@ -157,8 +188,8 @@ public class AddAppendMajorOrgFrm extends JFrame {
                   smr.setAllowType(allowType);
                   smr.setRangeType(rangeType);
                   smr.setLoginDate(loginDate);
-                  smr.setOrgidBaseName(orgidBaseNm);
-                  smr.setOrgidAllowName(orgidAllowNm);
+                  smr.setOrgidBaseName(orgNameBase);
+                  smr.setOrgidAllowName(orgNameAllow);
                   smr.setIsAllow(isAllow);
                   SecondMajorRangeDao amrDao=new SecondMajorRangeDao();
                   if(amrDao.addSecondMajorRange(smr)){
@@ -181,16 +212,14 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     return flag;
           }
 
-//학과 받기
-          protected void setDeptName() {
-                    // TODO Auto-generated method stub
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
                     OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-                    for (Org org: orgList) {
-                              comboBox_base.addItem(org);
-                              comboBox_allow.addItem(org);
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
                     }
-                    orgDao.closeDao();
+                    return "";
           }
           
 }

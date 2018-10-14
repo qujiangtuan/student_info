@@ -9,10 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.eltima.components.ui.DatePicker;
@@ -28,6 +24,7 @@ import com.qujia.dao.DeptStandDao;
 import com.qujia.dao.OrgDao;
 import com.qujia.model.DeptStand;
 import com.qujia.model.Org;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
@@ -38,9 +35,9 @@ public class AddDeptStandFrm extends JFrame {
           private JTextField textField_year1;
           private JTextField textField_year2;
           private JTextField textField_min;
-          private DatePicker datePicker;
-          private JComboBox comboBox_name;
           private JTextArea textArea_explain;
+          private JTextField textField_deptName;
+          private List<Org> orgList;
           /**
            * Launch the application.
            */
@@ -63,7 +60,7 @@ public class AddDeptStandFrm extends JFrame {
           public AddDeptStandFrm() {
                     setTitle("교육부서학사기준등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 664, 481);
+                    setBounds(100, 100, 664, 355);
 
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -73,34 +70,37 @@ public class AddDeptStandFrm extends JFrame {
 
                     JLabel label_credit = new JLabel(
                                         "학기당최소이수학점:");
+                    label_credit.setBounds(81, 65, 123, 15);
                     label_credit.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
                     textField_max = new JTextField();
+                    textField_max.setBounds(233, 101, 116, 21);
                     textField_max.setColumns(10);
 
                     JLabel label_num = new JLabel("학기당최대이수학점:");
+                    label_num.setBounds(81, 104, 123, 15);
                     label_num.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     label_num.setBackground(new Color(175, 238, 238));
 
-                    JLabel label_loginDate = new JLabel(
-                                        "\uB4F1\uB85D\uC77C\uC790:");
-                    label_loginDate.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
-
                     JLabel label_year1 = new JLabel("\uC218\uD559\uB144\uD55C:");
+                    label_year1.setBounds(370, 68, 58, 15);
                     label_year1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_year1 = new JTextField();
+                    textField_year1.setBounds(457, 65, 116, 21);
                     textField_year1.setColumns(10);
 
                     JLabel label_year2 = new JLabel("\uC7AC\uD559\uB144\uD55C:");
+                    label_year2.setBounds(370, 107, 58, 15);
                     label_year2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_year2 = new JTextField();
+                    textField_year2.setBounds(457, 104, 116, 21);
                     textField_year2.setColumns(10);
 
                     JButton button_submit = new JButton("\uB4F1 \uB85D");
+                    button_submit.setBounds(142, 259, 71, 25);
                     button_submit.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         addDept(e);
@@ -111,14 +111,15 @@ public class AddDeptStandFrm extends JFrame {
                                         14));
 
                     textField_min = new JTextField();
+                    textField_min.setBounds(233, 62, 116, 21);
                     textField_min.setColumns(10);
 
                     JLabel label_name = new JLabel("\uD559\uACFC/\uC804\uACF5\uC774\uB984:");
+                    label_name.setBounds(112, 25, 92, 19);
                     label_name.setFont(new Font("Dialog", Font.BOLD, 13));
 
-                    datePicker = new DatePicker();
-
                     JButton button_cancel = new JButton("\uCDE8 \uC18C");
+                    button_cancel.setBounds(380, 257, 77, 29);
                     button_cancel.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                        dispose();
@@ -129,85 +130,49 @@ public class AddDeptStandFrm extends JFrame {
 
                     JLabel label_explain = new JLabel(
                                         "\uD559\uACFC\uC124\uBA85:");
+                    label_explain.setBounds(142, 153, 60, 19);
                     label_explain.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JScrollPane scrollPane = new JScrollPane();
-                    
-                    comboBox_name = new JComboBox();
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(123)
-                                                                      .addComponent(button_submit, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                                                                      .addComponent(button_cancel, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(76)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(label_explain, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                                                .addComponent(label_year2)
-                                                                                .addComponent(label_year1)
-                                                                                .addComponent(label_loginDate)
-                                                                                .addComponent(label_name)
-                                                                                .addComponent(label_credit)
-                                                                                .addComponent(label_num))
-                                                                      .addGap(29)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(scrollPane, Alignment.TRAILING)
-                                                                                .addComponent(textField_year2, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                                .addComponent(datePicker, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                                .addComponent(comboBox_name, 0, 163, Short.MAX_VALUE)
-                                                                                .addComponent(textField_min, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                                .addComponent(textField_max, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                                                                .addComponent(textField_year1, 125, 163, Short.MAX_VALUE))))
-                                                  .addGap(110))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(20)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_name)
-                                                            .addComponent(comboBox_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(textField_min, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label_credit))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(textField_max, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label_num))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(label_loginDate)
-                                                            .addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_year1)
-                                                            .addComponent(textField_year1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_year2)
-                                                            .addComponent(textField_year2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(label_explain, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 82, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(44)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(button_submit)
-                                                            .addComponent(button_cancel, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(156))
-                    );
+                    scrollPane.setBounds(233, 153, 224, 82);
                     
                     textArea_explain = new JTextArea();
                     textArea_explain.setLineWrap(true);
                     scrollPane.setViewportView(textArea_explain);
-                    contentPane.setLayout(gl_contentPane);
-                    setDeptStandName();
+                    contentPane.setLayout(null);
+                    contentPane.add(button_submit);
+                    contentPane.add(button_cancel);
+                    contentPane.add(label_explain);
+                    contentPane.add(label_year2);
+                    contentPane.add(label_year1);
+                    contentPane.add(label_name);
+                    contentPane.add(label_credit);
+                    contentPane.add(label_num);
+                    contentPane.add(scrollPane);
+                    contentPane.add(textField_year2);
+                    contentPane.add(textField_min);
+                    contentPane.add(textField_max);
+                    contentPane.add(textField_year1);
+                    
+                    textField_deptName = new JTextField();
+                    textField_deptName.setBounds(233, 24, 116, 21);
+                    contentPane.add(textField_deptName);
+                    textField_deptName.setColumns(10);
+                    
+                    JButton btnNewButton = new JButton("조회");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                                        sdf.setVisible(true);
+                                        textField_deptName.setText(addSearch());
+                              }
+                    });
+                    btnNewButton.setBounds(360, 23, 97, 23);
+                    contentPane.add(btnNewButton);
+          }
+
+          protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
           }
 
           public String getStringDate(DatePicker datepick) {
@@ -223,13 +188,14 @@ public class AddDeptStandFrm extends JFrame {
           protected void addDept(ActionEvent e) {
                     String orgid,deptName,loginDate, dept_exp;
                     int max, min, year1, year2;
-                    Org org1 = (Org) comboBox_name.getSelectedItem();
-                    orgid=org1.getOrgCode();
-                    deptName=org1.getName();
+//                    Org org1 = (Org) comboBox_name.getSelectedItem();
+                    deptName = textField_deptName.getText().toString();
+                    orgid=this.getOrgidByOrgName(deptName);
+//                    deptName=org1.getName();
                     try {
                               max = Integer.parseInt(textField_max.getText());
 
-                              loginDate = getStringDate(datePicker);
+                              loginDate = DateUtil.getTodayDate();
                               min = Integer.parseInt(textField_min
                                                   .getText());
                               year1 = Integer.parseInt(textField_year1
@@ -294,23 +260,12 @@ public class AddDeptStandFrm extends JFrame {
                     
                     
                     if (dsDao.addDeptStand(dStand)) {
-                              JOptionPane.showMessageDialog(this, "등록 성공 !");
+                              JOptionPane.showMessageDialog(this, "등록 성공했습니다 !");
                     } else {
-                              JOptionPane.showMessageDialog(this, "등록 실패 !");
+                              JOptionPane.showMessageDialog(this, "등록 실패했습니다 !");
                     }
                     dsDao.closeDao();
                     resetValue(e);
-          }
-        //学科 从数据库中把数据填充选择框
-          protected void setDeptStandName() {
-                    // TODO Auto-generated method stub
-                    OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-//                    System.out.println(orgList);
-                    for (Org org: orgList) {
-                              comboBox_name.addItem(org);
-                    }
-                    orgDao.closeDao();
           }
           // 초기화
           private void resetValue(ActionEvent e) {
@@ -318,7 +273,7 @@ public class AddDeptStandFrm extends JFrame {
 //                    textField_no.setText("");
 //                    textField_name.setText("");
 //                    comboBox_uni.setSelectedIndex(0);
-                    comboBox_name.setSelectedIndex(0);
+                    textField_deptName.setText("");
                     textField_max.setText("");
 
                     // datePicker.getValue();
@@ -326,5 +281,14 @@ public class AddDeptStandFrm extends JFrame {
                     textField_year1.setText("");
                     textField_year2.setText("");
                     textArea_explain.setText("");
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
           }
 }

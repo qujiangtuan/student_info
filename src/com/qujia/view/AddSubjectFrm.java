@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -20,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.OrgDao;
@@ -36,11 +33,13 @@ public class AddSubjectFrm extends JFrame {
           private JTextField textField_name;
           private JTextField textField_eName,textField_mname;
           private JComboBox comboBox_colType,
-          comboBox_learnType,comboBox_creditType,comboBox_deptOrg;
+          comboBox_learnType,comboBox_creditType;
           private JButton submitButton,cancelButton;
           private JLabel lblNewLabel_6;
           private JTextArea textArea;
           private JLabel label_2;
+          private JTextField textField_orgName;
+          private List<Org> orgList;
           /**
            * Launch the application.
            */
@@ -63,7 +62,7 @@ public class AddSubjectFrm extends JFrame {
           public AddSubjectFrm() {
                     setTitle("\uAD50\uACFC\uBAA9\uB4F1\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 589, 385);
+                    setBounds(100, 100, 631, 375);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -73,43 +72,53 @@ public class AddSubjectFrm extends JFrame {
                     setContentPane(contentPane);
 
                     JLabel label = new JLabel("\uACFC\uBAA9\uC774\uB984:");
+                    label.setBounds(12, 31, 72, 15);
                     label.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_name = new JTextField();
+                    textField_name.setBounds(96, 28, 146, 21);
                     textField_name.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     textField_name.setColumns(10);
 
                     JLabel lblNewLabel = new JLabel("\uC601\uC5B4\uC774\uB984:");
+                    lblNewLabel.setBounds(12, 70, 72, 15);
                     lblNewLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     textField_eName = new JTextField();
+                    textField_eName.setBounds(96, 67, 146, 21);
                     textField_eName.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     textField_eName.setColumns(10);
 
                     JLabel lblNewLabel_1 = new JLabel(
                                         "\uC774\uC218\uAD6C\uBD84:");
+                    lblNewLabel_1.setBounds(330, 70, 58, 15);
                     lblNewLabel_1.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
                     comboBox_learnType  = new JComboBox();
+                    comboBox_learnType.setBounds(406, 67, 146, 21);
                     comboBox_learnType.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     comboBox_learnType.setModel(new DefaultComboBoxModel(new String[] {
                                         "\uC804\uD544", "\uC804\uC120",
                                         "\uAD50\uD544", "\uAD50\uC120" }));
 
                     JLabel label_1 = new JLabel("\uC57D \uC5B4 \uBA85:");
+                    label_1.setBounds(12, 111, 74, 15);
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
                     JLabel lblNewLabel_2 = new JLabel("\uB300\uC0C1\uAD6C\uBD84 :");
+                    lblNewLabel_2.setBounds(325, 31, 63, 15);
                     lblNewLabel_2.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
                     
                     comboBox_colType = new JComboBox();
+                    comboBox_colType.setBounds(406, 28, 146, 21);
                     comboBox_colType.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     comboBox_colType.setModel(new DefaultComboBoxModel(new String[] {
                                         "\uB300\uD559", "\uB300\uD559\uC6D0" }));
 
                     submitButton = new JButton("\uB4F1  \uB85D");
+                    submitButton.setBounds(168, 268, 83, 25);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         submitAction(ae);
@@ -120,6 +129,7 @@ public class AddSubjectFrm extends JFrame {
                                         14));
 
                     cancelButton = new JButton("\uCDE8  \uC18C");
+                    cancelButton.setBounds(334, 268, 90, 25);
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
@@ -130,135 +140,75 @@ public class AddSubjectFrm extends JFrame {
                                         14));
 
                     comboBox_creditType = new JComboBox();
+                    comboBox_creditType.setBounds(406, 108, 146, 21);
                     comboBox_creditType.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     comboBox_creditType.setModel(new DefaultComboBoxModel(new String[] {
                                         "3", "2", "1" }));
                     
                     label_2 = new JLabel("\uC774\uC218\uD559\uC810:");
-                    label_2.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
-                    JPanel panel = new JPanel();
+                    label_2.setBounds(328, 109, 60, 19);
+                    label_2.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
                     textField_mname = new JTextField();
+                    textField_mname.setBounds(96, 106, 146, 25);
                     textField_mname.setFont(new Font("Dialog", Font.BOLD, 13));
                     textField_mname.setColumns(10);
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(21)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(label)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_name, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_eName, GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_mname, GroupLayout.PREFERRED_SIZE, 153, GroupLayout.PREFERRED_SIZE)))
-                                                  .addGap(74)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(comboBox_creditType, 0, 145, Short.MAX_VALUE)
-                                                            .addComponent(comboBox_learnType, 0, 145, Short.MAX_VALUE)
-                                                            .addComponent(comboBox_colType, Alignment.TRAILING, 0, 145, Short.MAX_VALUE))
-                                                  .addGap(30))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(92)
-                                                  .addComponent(submitButton)
-                                                  .addGap(166)
-                                                  .addComponent(cancelButton)
-                                                  .addContainerGap(175, Short.MAX_VALUE))
-                                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                  .addComponent(panel, GroupLayout.PREFERRED_SIZE, 565, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(23)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(comboBox_colType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label)
-                                                            .addComponent(textField_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_2))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField_eName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(comboBox_learnType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(label_1)
-                                                            .addComponent(comboBox_creditType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(textField_mname, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addComponent(panel, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(submitButton)
-                                                            .addComponent(cancelButton))
-                                                  .addContainerGap(36, Short.MAX_VALUE))
-                    );
-                    
-                    JLabel lblNewLabel_4 = new JLabel("\uC18C\uC18D\uBD80\uC11C:");
-                    lblNewLabel_4.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
-                    comboBox_deptOrg = new JComboBox();
+                    contentPane.setLayout(null);
+                    contentPane.add(label);
+                    contentPane.add(textField_name);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField_eName);
+                    contentPane.add(label_1);
+                    contentPane.add(textField_mname);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(label_2);
+                    contentPane.add(comboBox_creditType);
+                    contentPane.add(comboBox_learnType);
+                    contentPane.add(comboBox_colType);
+                    contentPane.add(submitButton);
+                    contentPane.add(cancelButton);
                     
                     lblNewLabel_6 = new JLabel("\uAD50\uACFC\uBAA9\uC124\uBA85:");
-                    lblNewLabel_6.setFont(new Font("Dialog", Font.BOLD, 13));
+                    lblNewLabel_6.setBounds(325, 155, 74, 19);
+                    contentPane.add(lblNewLabel_6);
+                    lblNewLabel_6.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(406, 152, 146, 60);
+                    contentPane.add(scrollPane);
                     
                      textArea = new JTextArea();
                      textArea.setLineWrap(true);
                      scrollPane.setViewportView(textArea);
-                    GroupLayout gl_panel = new GroupLayout(panel);
-                    gl_panel.setHorizontalGroup(
-                              gl_panel.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                  .addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-                                                            .addGroup(gl_panel.createSequentialGroup()
-                                                                      .addGap(16)
-                                                                      .addComponent(lblNewLabel_4)
-                                                                      .addGap(18)
-                                                                      .addComponent(comboBox_deptOrg, GroupLayout.PREFERRED_SIZE, 443, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_panel.createSequentialGroup()
-                                                                      .addGap(2)
-                                                                      .addComponent(lblNewLabel_6)
-                                                                      .addGap(18)
-                                                                      .addComponent(scrollPane)))
-                                                  .addContainerGap(28, Short.MAX_VALUE))
-                    );
-                    gl_panel.setVerticalGroup(
-                              gl_panel.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(comboBox_deptOrg, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_6))
-                                                  .addContainerGap(12, Short.MAX_VALUE))
-                    );
-                    panel.setLayout(gl_panel);
-                    contentPane.setLayout(gl_contentPane);
+                     
+                     JLabel lblNewLabel_4 = new JLabel("\uC18C\uC18D\uBD80\uC11C:");
+                     lblNewLabel_4.setBounds(12, 152, 74, 19);
+                     contentPane.add(lblNewLabel_4);
+                     lblNewLabel_4.setFont(new Font("나눔명조", Font.BOLD, 13));
+                     
+                     textField_orgName = new JTextField();
+                     textField_orgName.setBounds(96, 151, 146, 23);
+                     contentPane.add(textField_orgName);
+                     textField_orgName.setColumns(10);
+                     
+                     JButton searchButton = new JButton("\uC870\uD68C");
+                     searchButton.addActionListener(new ActionListener() {
+                               public void actionPerformed(ActionEvent arg0) {
+                                         SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
+                                         sdf.setVisible(true);
+                                         textField_orgName.setText(addSearch());
+                               }
+                     });
+                     searchButton.setBounds(241, 152, 72, 22);
+                     contentPane.add(searchButton);
                     
-                    setDeptName();
+//                    setDeptName();
           }
+          protected String addSearch() {
+                    return SearchDeptForStuFrm.getDeptName();
+          }
+
           //교과목등록 event
           protected void submitAction(ActionEvent ae) {
                     String name=textField_name.getText().toString();
@@ -266,8 +216,10 @@ public class AddSubjectFrm extends JFrame {
                     String colType=comboBox_colType.getSelectedItem().toString();
                     String learnType= comboBox_learnType.getSelectedItem().toString();
                     String creditType=comboBox_creditType.getSelectedItem().toString();
-                    Org org = (Org) comboBox_deptOrg.getSelectedItem();
-                    String orgId=org.getOrgCode();
+                    
+                    String deptName=textField_orgName.getText().toString();
+                    String orgId=this.getOrgidByOrgName(deptName);
+                    
                     String subExp=textArea.getText().toString();
                     String subCode;//중복확인
                     subCode=getStudentNumber(orgId);
@@ -288,6 +240,7 @@ public class AddSubjectFrm extends JFrame {
                     sbj.setOrgId(orgId);
                     sbj.setColType(colType);
                     sbj.setSubMname(subMname);
+                    sbj.setOrgName(deptName);
 //                    sbj.setSchYear(schYear);
 //                    sbj.setTerm(term);
                     sbj.setSubExp(subExp);
@@ -295,10 +248,10 @@ public class AddSubjectFrm extends JFrame {
                     SubjectsDao sbjDao=new SubjectsDao();
                     if (sbjDao.addSubjects(sbj)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "교과목이 등록 성공! ");
+                                                  "교과목이 등록 성공했습니다! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "교과목이 등록 실패！");
+                                                  "교과목이 등록 실패했습니다！");
                     }
                     resetValue(ae);
                     sbjDao.closeDao();
@@ -313,20 +266,20 @@ public class AddSubjectFrm extends JFrame {
                     comboBox_learnType.setSelectedIndex(0);
 //                    comboBox_term.setSelectedIndex(0);
                     comboBox_creditType.setSelectedIndex(0);
-                    comboBox_deptOrg.setSelectedIndex(0);
+                    textField_orgName.setText("");
                     textField_mname.setText("");
                     textArea.setText("");
           }
-        //교과목의 소속부서 갖다왓다
-          protected void setDeptName() {
-                    // TODO Auto-generated method stub
-                    OrgDao orgDao=new OrgDao();
-                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-                    for (Org org: orgList) {
-                              comboBox_deptOrg.addItem(org);
-                    }
-                    orgDao.closeDao();
-          }
+//        //교과목의 소속부서 갖다왓다
+//          protected void setDeptName() {
+//                    // TODO Auto-generated method stub
+//                    OrgDao orgDao=new OrgDao();
+//                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
+//                    for (Org org: orgList) {
+//                              comboBox_deptOrg.addItem(org);
+//                    }
+//                    orgDao.closeDao();
+//          }
 
           // set subject code
           public String getStudentNumber(String str1) {
@@ -350,4 +303,13 @@ public class AddSubjectFrm extends JFrame {
                             return true;
                   }
         }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
+                    }
+                    return "";
+          }
 }
