@@ -65,7 +65,6 @@ public class SubjectsDao extends BaseDao {
                     
                     return retList;
           }
-          //교과목 수정
           public boolean updateSubjects(Subjects sub) {
                     String sql="update subject set learn_type=?,credit_type=?,col_type=?,sub_exp=?  where sub_cod=?";
                     try {
@@ -82,7 +81,6 @@ public class SubjectsDao extends BaseDao {
                     }
                     return false;
           }
-          //교과목삭제
           public boolean deleteSubjects(String subNO) {
                     String sql="delete from subject where sub_cod=?";
                     try {

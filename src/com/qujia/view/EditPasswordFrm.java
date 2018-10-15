@@ -28,6 +28,10 @@ public class EditPasswordFrm extends JInternalFrame {
           private JPasswordField newPasswordTextField;
           private JPasswordField confirmPasswordTextField;
           private JLabel currentUserLabel;//修改密码时的当前用户
+          private JLabel label_old;
+          private JLabel label_new1;
+          private JLabel label_1;
+          private JLabel label_new2;
    
           /**
            * Launch the application.
@@ -69,6 +73,91 @@ public class EditPasswordFrm extends JInternalFrame {
                     newPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     oldPasswordTextField = new JPasswordField();
+//                    oldPasswordTextField.addKeyListener(new KeyAdapter() {
+//                              @Override
+//                              public void keyTyped(KeyEvent ke) {
+//                                        char keyChar = ke.getKeyChar();
+//                                       String stringArray = sb.append(keyChar).toString();
+//                                       System.out.println(stringArray);
+//                                        String oldPassword;
+//                                        if("관리자".equals(MainFrm.userType.getName())){
+//                                                  AdminDao adminDao=new AdminDao();
+//                                                  Admin adminTmp=new Admin();
+//                                                  Admin admin=(Admin)MainFrm.userObject;
+//                                                  adminTmp=adminDao.searchOldPassword(admin);
+//                                                  oldPassword=adminTmp.getPassword();
+//                                                  if(oldPassword.equals(stringArray)){
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+//                                                  }else{
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+//                                                  }
+//                                                  adminDao.closeDao();
+//                                                  return;
+//                                        }
+//                              }
+//                              @Override
+//                              public void keyReleased(KeyEvent ke) {
+//                                        String oldInput =ke.getc
+//                                        System.out.println(oldInput);
+//                                        String oldPassword;
+//                                        if("관리자".equals(MainFrm.userType.getName())){
+//                                                  AdminDao adminDao=new AdminDao();
+//                                                  Admin adminTmp=new Admin();
+//                                                  Admin admin=(Admin)MainFrm.userObject;
+//                                                  adminTmp=adminDao.searchOldPassword(admin);
+//                                                  oldPassword=adminTmp.getPassword();
+//                                                  
+////                                                  System.out.println(oldPassword);
+//                                                  if(oldPassword.equals(oldInput)){
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+//                                                  }else{
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+//                                                  }
+//                                                  adminDao.closeDao();
+//                                                  return;
+//                                        } 
+//                              }
+//                    });
+//                    oldPasswordTextField.addActionListener(new ActionListener() {
+//                              public void actionPerformed(ActionEvent arg0) {
+//                                        String oldInput = oldPasswordTextField.getText().toString();
+//                                        String oldPassword;
+//                                        if("관리자".equals(MainFrm.userType.getName())){
+//                                                  AdminDao adminDao=new AdminDao();
+//                                                  Admin adminTmp=new Admin();
+//                                                  Admin admin=(Admin)MainFrm.userObject;
+//                                                  adminTmp=adminDao.searchOldPassword(admin);
+//                                                  oldPassword=adminTmp.getPassword();
+//                                                  if(oldInput.equals(oldPassword)){
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+//                                                  }else{
+//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+//                                                  }
+//                                                  adminDao.closeDao();
+//                                                  return;
+//                                        }else if("학생".equals(MainFrm.userType.getName())) {
+//                                                StudentDao sDao=new StudentDao();
+//                                                Student sTmp=new Student();
+//                                                Student student=(Student) MainFrm.userObject;
+//                                                sTmp.setName(student.getName());
+//                                                sTmp.setPassword(student.getPassword());
+//                                                sTmp.setsNo(student.getsNo());
+////                                                JOptionPane.showMessageDialog(this, sDao.editPassword(sTmp,newPassword));
+////                                                sDao.closeDao();
+//                                                return;
+//                                        }else {
+//                                                ProStaffDao psDao=new ProStaffDao();
+//                                                ProStaff psTmp=new ProStaff();
+//                                                ProStaff ps = (ProStaff) MainFrm.userObject;
+//                                                psTmp.setpNo(ps.getpNo());
+//                                                psTmp.setpName(ps.getpName());
+//                                                psTmp.setPassword(ps.getPassword());
+////                                                JOptionPane.showMessageDialog(this, psDao.editPassword(psTmp,newPassword));
+////                                                psDao.closeDao();
+//                                                return;
+//                                        }
+//                              }
+//                    });
                     oldPasswordTextField.setBounds(201, 59, 124, 21);
                     oldPasswordTextField.setColumns(10);
                     
@@ -126,6 +215,25 @@ public class EditPasswordFrm extends JInternalFrame {
                     contentPane.add(currentUserLabel);
                     contentPane.add(submitButton);
                     contentPane.add(resetButton);
+                    
+                    label_old = new JLabel("");
+//                    label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                    label_old.setBounds(336, 60, 21, 17);
+                    contentPane.add(label_old);
+                    
+                    label_new1 = new JLabel("");
+                    label_new1.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                    label_new1.setBounds(336, 110, 21, 17);
+                    contentPane.add(label_new1);
+                    
+                    label_1 = new JLabel("");
+                    label_1.setBounds(336, 110, 21, 17);
+                    contentPane.add(label_1);
+                    
+                    label_new2 = new JLabel("");
+                    label_new2.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                    label_new2.setBounds(337, 159, 21, 17);
+                    contentPane.add(label_new2);
                     //当前用户设定
                     if("관리자".equals(MainFrm.userType.getName())){
                               Admin admin =(Admin)MainFrm.userObject;

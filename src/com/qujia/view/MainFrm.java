@@ -63,7 +63,7 @@ public class MainFrm extends JFrame {
                     menuBar.add(settingMenu);
                     
                     JMenuItem editPasswordMenuItem = new JMenuItem("비밀번호변경");
-                    editPasswordMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    editPasswordMenuItem.setFont(new Font("Dialog", Font.BOLD, 13));
                     editPasswordMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         editPassword(ae);
@@ -73,7 +73,7 @@ public class MainFrm extends JFrame {
                     settingMenu.add(editPasswordMenuItem);
                     
                     JMenuItem exitSystemMenuItem = new JMenuItem("시스템종료");
-                    exitSystemMenuItem.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
+                    exitSystemMenuItem.setFont(new Font("Dialog", Font.BOLD, 13));
                     exitSystemMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
@@ -320,6 +320,7 @@ public class MainFrm extends JFrame {
                     mnNewMenu_3.add(menuItemManagerCourse);
                     
                     JMenuItem menuItem_11 = new JMenuItem("강의실관리");
+                    menuItem_11.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classroom.png")));
                     systemManagerMenu.add(menuItem_11);
                     menuItem_11.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
@@ -424,7 +425,7 @@ public class MainFrm extends JFrame {
                     		pis.setVisible(true);
                     	}
                     });
-                    mntmNewMenuItem_2.setFont(new Font("휴먼고딕", Font.BOLD, 13));
+                    mntmNewMenuItem_2.setFont(new Font("Dialog", Font.BOLD, 13));
                     studentMenu.add(mntmNewMenuItem_2);
                     
                     JMenuItem mntmNewMenuItem = new JMenuItem("수강신청");
@@ -537,10 +538,6 @@ public class MainFrm extends JFrame {
                     JLabel lblNewLabel = new JLabel("관리자");
                     panel.add(lblNewLabel);
                     
-                    JLabel lblNewLabel_4 = new JLabel("test");
-                    lblNewLabel_4.setBounds(251, 252, 200, 50);
-                    desktopPane_sys.add(lblNewLabel_4);
-                    
                     desktopPane_pro = new JDesktopPane();
                     layeredPane.setLayer(desktopPane_pro, 30);
                     desktopPane_pro.setBackground(new Color(143, 188, 143));
@@ -554,19 +551,11 @@ public class MainFrm extends JFrame {
                     JLabel lblNewLabel_1 = new JLabel("교직원");
                     panel_1.add(lblNewLabel_1);
                     
-                    JLabel lblNewLabel_3 = new JLabel("test");
-                    lblNewLabel_3.setBounds(243, 260, 200, 50);
-                    desktopPane_pro.add(lblNewLabel_3);
-                    
                     desktopPane_stu = new JDesktopPane();
                     layeredPane.setLayer(desktopPane_stu, 30);
                     desktopPane_stu.setBackground(new Color(147, 112, 219));
                     layeredPane.add(desktopPane_stu, "desktopPane_stu");
                     desktopPane_stu.setLayout(null);
-                    
-                    JLabel label_1 = new JLabel("test");
-                    label_1.setBounds(0, 25, 1110, 612);
-                    desktopPane_stu.add(label_1);
                     
                     JPanel panel_2 = new JPanel();
                     panel_2.setBounds(0, 0, 1110, 25);
@@ -574,21 +563,22 @@ public class MainFrm extends JFrame {
                     
                     JLabel lblNewLabel_2 = new JLabel("학생");
                     panel_2.add(lblNewLabel_2);
-                    
-                    JLabel lblTest = new JLabel("test");
-                    lblTest.setBounds(225, 273, 200, 50);
-                    desktopPane_stu.add(lblTest);
                     setLocationRelativeTo(null);
-//                    setAuthority();
+                    setAuthority();
                     
           } 
           //close currentWindow open login window
           protected void closeCurrentWindow(ActionEvent ae) {
-                    if(JOptionPane.showConfirmDialog(MainFrm.this, "로그아웃 하겠습니까？")==JOptionPane.OK_OPTION){
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "로그아웃 하겠습니까？", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
                               this.setVisible(false);
                               this.disable();
                               new LoginFrm().setVisible(true);
                     }
+//                    if(JOptionPane.showConfirmDialog(MainFrm.this, "로그아웃 하겠습니까？")==JOptionPane.OK_OPTION){
+//                              
+//                    }
           }
           //          권한
           private  void setAuthority() {

@@ -72,7 +72,6 @@ public class YearDeptStandDao extends BaseDao {
                     
                     return retList;
           }
-        //ÇÐº¯º° ÇÐ»ç±âÁØ ÃµÁ¦ list
           public List<YearDeptStand> getYDSList2(YearDeptStand ydStand){
                     List<YearDeptStand> retList=new ArrayList<YearDeptStand>();
                     String sqlString=null;
@@ -122,7 +121,7 @@ public class YearDeptStandDao extends BaseDao {
                     return retList;
           }
           
-          //ÇÐ³âº° ÇÐ»ç±âÁØ º¯°æ
+          //ï¿½Ð³âº° ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           public boolean updateDStand(YearDeptStand ydStand) {
                     String sql="update year_stand set credit=?,major=?,major_must=?,cul_must=?,rec_tatio=?,rec_temp=?,rec_form=?  where year_no=?";
                     PreparedStatement prst;
@@ -145,7 +144,7 @@ public class YearDeptStandDao extends BaseDao {
                     
                     return false;
           }
-        //ÇÐ³âº° ÇÐ»ç±âÁØ »èÁ¦
+        //ï¿½Ð³âº° ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
           public boolean delete(String yearNo) {
                     String sql="delete from year_stand where year_no=?";
                     try {

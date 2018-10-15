@@ -113,7 +113,7 @@ public class ClassRoomFrm extends JFrame {
 		panel.setLayout(card);
 		
 		panel_crManager = new JPanel();
-		panel_crManager.setBackground(new Color(224, 255, 255));
+		panel_crManager.setBackground(new Color(240, 240, 240));
 		panel.add(panel_crManager, "panel_crManager");
 		
 		JLabel lblNewLabel_3 = new JLabel("\uAC15\uC758\uC2E4\uBC88\uD638:");
@@ -246,7 +246,7 @@ public class ClassRoomFrm extends JFrame {
 		panel_crManager.setLayout(gl_panel_crManager);
 		
 		panel_crAdd = new JPanel();
-		panel_crAdd.setBackground(new Color(176, 224, 230));
+		panel_crAdd.setBackground(new Color(240, 240, 240));
 		panel.add(panel_crAdd, "panel_crAdd");
 		
 		JLabel lblNewLabel_1 = new JLabel("\uAC15\uC758\uC2E4\uBA85:");

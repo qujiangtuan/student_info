@@ -1,7 +1,6 @@
 package com.qujia.dao;
 
 
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,5 +77,26 @@ public class AdminDao extends BaseDao {
                     }
                     
                     return retString;
+          }
+        //update password
+          public Admin searchOldPassword(Admin admin){
+                    String sql = "select password from s_admin where name= ? ";
+                    PreparedStatement prst =null;
+                    Admin adminRst=null;
+                    ResultSet rs;
+                    int id=0;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, admin.getName());
+                              rs = prst.executeQuery();
+                              while(rs.next()){
+                                        adminRst = new Admin();
+                                        adminRst.setPassword(rs.getString("password"));
+                             }
+                    } catch (SQLException e1) {
+                              // TODO Auto-generated catch block
+                              e1.printStackTrace();
+                    }
+                    return adminRst;
           }
 }
