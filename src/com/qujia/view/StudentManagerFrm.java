@@ -32,6 +32,7 @@ import com.qujia.dao.OrgDao;
 import com.qujia.dao.StudentDao;
 import com.qujia.model.Org;
 import com.qujia.model.Student;
+import com.qujia.util.StringUtil;
 
 public class StudentManagerFrm extends JInternalFrame {
           private JTextField nameTextField;
@@ -46,12 +47,13 @@ public class StudentManagerFrm extends JInternalFrame {
           private  ButtonGroup bg;
           private JButton button;
           private static int selectIndex;
-          private JComboBox inSchStatusComboBox,degreeComboBox;
+          private JComboBox inSchStatusComboBox;
           private String isInSchool[];
           private String degreeP[];
           private JTextField textField_deptName;
           private JButton deptSearchButton;
           private JTextField textField_seaDeptName;
+          private static String staticSno;
 
           /**
            * Launch the application.
@@ -78,7 +80,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     setIconifiable(true);
                     setTitle("학생목록");
-                    setBounds(2, 5, 1104, 475);
+                    setBounds(2, 5, 1034, 455);
                     
                     JLabel searchStudentNameLabel = new JLabel("학생이름:");
                     searchStudentNameLabel.setBounds(36, 28, 74, 26);
@@ -90,7 +92,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     nameTextField.setColumns(10);
                     nameTextField.setEnabled(true);
                     JButton searchButton = new JButton("검 색");
-                    searchButton.setBounds(830, 28, 89, 26);
+                    searchButton.setBounds(781, 28, 89, 26);
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         searchStudent(ae);
@@ -105,17 +107,17 @@ public class StudentManagerFrm extends JInternalFrame {
                     searchClassLabel.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     JScrollPane scrollPane =  new JScrollPane();
-                    scrollPane.setBounds(12, 83, 1229, 183);
+                    scrollPane.setBounds(12, 83, 994, 240);
                     
                     JLabel editClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
-                    editClassLabel.setBounds(22, 288, 60, 19);
+                    editClassLabel.setBounds(12, 354, 60, 19);
                     editClassLabel.setIcon(null);
                     editClassLabel.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     editSexButtonGroup=new ButtonGroup();
                     
                     JButton submitEidtButton = new JButton("\uC218\uC815");
-                    submitEidtButton.setBounds(563, 284, 89, 27);
+                    submitEidtButton.setBounds(705, 346, 89, 27);
                     submitEidtButton.setBackground(new Color(176, 224, 230));
                     submitEidtButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
@@ -153,6 +155,7 @@ public class StudentManagerFrm extends JInternalFrame {
                               public void itemStateChanged(ItemEvent e) {
                                         if(radioButton_2.isSelected()){
                                                   textField_no.setEnabled(true);
+                                                  nameTextField.setText("");
                                         }else{
                                                   textField_no.setEnabled(false);
                                         }
@@ -165,8 +168,10 @@ public class StudentManagerFrm extends JInternalFrame {
                               public void itemStateChanged(ItemEvent e) {
                                         if(radioButton_1.isSelected()){
                                                   nameTextField.setEnabled(true);
+                                                  textField_no.setText("");
                                         }else{
                                                   nameTextField.setEnabled(false);
+                                                  
                                         }
                               }
                     });
@@ -175,7 +180,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     bg.add(radioButton_2);
                     
                     button = new JButton("추가\r\n전공");
-                    button.setBounds(664, 284, 114, 27);
+                    button.setBounds(806, 346, 114, 27);
                     button.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		 int row=studentListTable.getSelectedRow();
@@ -191,30 +196,22 @@ public class StudentManagerFrm extends JInternalFrame {
                     button.setBackground(new Color(72, 209, 204));
                     
                     JLabel label = new JLabel("재학상태:");
-                    label.setBounds(22, 335, 60, 19);
+                    label.setBounds(353, 350, 60, 19);
                     label.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     inSchStatusComboBox = new JComboBox();
-                    inSchStatusComboBox.setBounds(94, 329, 340, 30);
+                    inSchStatusComboBox.setBounds(425, 347, 120, 26);
                     
-                    isInSchool=new String[] {"", "재학중", "휴학중", "졸업", "자퇴", "퇴학"};
-                    inSchStatusComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "재학", "휴학", "졸업", "자퇴", "퇴학"}));
-                    
-                    JLabel label_1 = new JLabel("학위과정:");
-                    label_1.setBounds(22, 383, 60, 19);
-                    label_1.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
-                    degreeComboBox = new JComboBox();
-                    degreeComboBox.setBounds(94, 377, 340, 30);
-                    degreeP=new String[] {"", "학사과정", "석사과정", "박사과정"};
-                    degreeComboBox.setModel(new DefaultComboBoxModel(degreeP));
+                    isInSchool=new String[] {"","재학", "휴학", "졸업", "자퇴", "퇴학"};
+                    inSchStatusComboBox.setModel(new DefaultComboBoxModel(isInSchool));
+//                    degreeP=new String[] {"", "학사과정", "석사과정", "박사과정"};
                     
                     textField_deptName = new JTextField();
-                    textField_deptName.setBounds(94, 285, 224, 26);
+                    textField_deptName.setBounds(84, 347, 143, 26);
                     textField_deptName.setColumns(10);
                     
                     deptSearchButton = new JButton("조회");
-                    deptSearchButton.setBounds(330, 284, 104, 27);
+                    deptSearchButton.setBounds(229, 346, 74, 27);
                     deptSearchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
@@ -248,7 +245,7 @@ public class StudentManagerFrm extends JInternalFrame {
                               @Override
                               public void mouseClicked(MouseEvent me) {
                                         selectedTableRow(me);
-                                        getStudentName();
+//                                        getStudentName();
                               }
                     });
                     studentListTable.setFont(new Font("나눔명조", Font.BOLD, 13));
@@ -257,7 +254,7 @@ public class StudentManagerFrm extends JInternalFrame {
                                         {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uBC88", "\uC774\uB984", "\uC18C\uC18D\uD559\uACFC", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC5F0\uB77D\uCC98", "\uC785\uD559\uC77C\uC790", "\uC774\uBA54\uC77C", "\uBE44\uBC00\uBC88\uD638", "\uC8FC\uC18C", "\uCD94\uAC00\uC804\uACF5\uAD6C\uBD84", "\uCD94\uAC00\uC804\uACF5\uC774\uB984", "\uC2E0\uCCAD\uC77C\uC790", "\uC7AC\uD559\uC0C1\uD0DC", "\uD559\uC704\uACFC\uC815", "\uD559\uB144"
+                                        "\uD559\uBC88", "\uC18C\uC18D\uD559\uACFC", "\uC774\uB984", "\uD559\uB144", "\uC7AC\uD559\uC0C1\uD0DC", "\uD559\uC704\uACFC\uC815", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC131\uBCC4", "\uBE44\uBC00\uBC88\uD638", "\uC774\uBA54\uC77C", "\uC5F0\uB77D\uCC98", "\uC8FC\uC18C", "\uC785\uD559\uC77C\uC790", "\uCD94\uAC00\uC804\uACF5\uAD6C\uBD84", "\uCD94\uAC00\uC804\uACF5\uC774\uB984", "\uC2E0\uCCAD\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -267,16 +264,16 @@ public class StudentManagerFrm extends JInternalFrame {
                                         return columnEditables[column];
                               }
                     });
-                    studentListTable.getColumnModel().getColumn(2).setPreferredWidth(141);
-                    studentListTable.getColumnModel().getColumn(3).setPreferredWidth(63);
-                    studentListTable.getColumnModel().getColumn(4).setPreferredWidth(132);
-                    studentListTable.getColumnModel().getColumn(5).setPreferredWidth(103);
-                    studentListTable.getColumnModel().getColumn(6).setPreferredWidth(103);
-                    studentListTable.getColumnModel().getColumn(7).setPreferredWidth(121);
-                    studentListTable.getColumnModel().getColumn(9).setPreferredWidth(141);
-                    studentListTable.getColumnModel().getColumn(10).setPreferredWidth(94);
-                    studentListTable.getColumnModel().getColumn(11).setPreferredWidth(129);
-                    studentListTable.getColumnModel().getColumn(12).setPreferredWidth(104);
+                    studentListTable.getColumnModel().getColumn(1).setPreferredWidth(141);
+                    studentListTable.getColumnModel().getColumn(6).setPreferredWidth(132);
+                    studentListTable.getColumnModel().getColumn(7).setPreferredWidth(63);
+                    studentListTable.getColumnModel().getColumn(9).setPreferredWidth(121);
+                    studentListTable.getColumnModel().getColumn(10).setPreferredWidth(103);
+                    studentListTable.getColumnModel().getColumn(11).setPreferredWidth(141);
+                    studentListTable.getColumnModel().getColumn(12).setPreferredWidth(103);
+                    studentListTable.getColumnModel().getColumn(13).setPreferredWidth(94);
+                    studentListTable.getColumnModel().getColumn(14).setPreferredWidth(129);
+                    studentListTable.getColumnModel().getColumn(15).setPreferredWidth(104);
                     scrollPane.setViewportView(studentListTable);
                     //set TABLE data in center
                     DefaultTableCellRenderer cr = new DefaultTableCellRenderer();
@@ -295,8 +292,6 @@ public class StudentManagerFrm extends JInternalFrame {
                     getContentPane().add(searchClassLabel);
                     getContentPane().add(textField_seaDeptName);
                     getContentPane().add(searchButton);
-                    getContentPane().add(label_1);
-                    getContentPane().add(degreeComboBox);
                     getContentPane().add(editClassLabel);
                     getContentPane().add(textField_deptName);
                     getContentPane().add(deptSearchButton);
@@ -310,16 +305,29 @@ public class StudentManagerFrm extends JInternalFrame {
           protected String addSearch() {
                     return SearchDeptForStuFrm.getDeptName();
           }
-          protected String getStudentName() {
-			// TODO Auto-generated method stub
-        	  String name = studentListTable.getValueAt(selectIndex, 1).toString();
-        	  return name;
-		}
-          protected String getStudentDept() {
-                    // TODO Auto-generated method stub
-                      String deptName = studentListTable.getValueAt(selectIndex, 2).toString();
-                      return deptName;
-                }
+          public Student getSelectObject(){
+                    Student student,stuTmp;
+                    StudentDao stDao=new StudentDao();
+                    student=new Student();
+                    student.setsNo(staticSno);
+                    stuTmp=stDao.getSelectRowObject(student);
+                    return stuTmp;
+          }
+//          protected String getStudentName() {
+//			// TODO Auto-generated method stub
+//              String name;
+//        	  StudentDao stDao=new StudentDao();
+//        	  Student st=new Student();
+//        	  st.setsNo(staticSno);
+//        	  System.out.println(staticSno);
+//        	  name=stDao.getStNameById(st);
+//        	  return name;
+//		}
+//          protected String getStudentDept() {
+//                    // TODO Auto-generated method stub
+//                      String deptName = studentListTable.getValueAt(selectIndex, 2).toString();
+//                      return deptName;
+//                }
 		//수정 submit event
           protected void submiEditAct(ActionEvent ae) {
                     String orgid;
@@ -329,7 +337,7 @@ public class StudentManagerFrm extends JInternalFrame {
                               return;
                     }
                     String inSchStatus = inSchStatusComboBox.getSelectedItem().toString();
-                    String degreeProcess=degreeComboBox.getSelectedItem().toString();
+//                    String degreeProcess=degreeComboBox.getSelectedItem().toString();
                     String deptName1=textField_deptName.getText().toString();
                     Student student=new Student();
 //                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
@@ -337,7 +345,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     student.setOrgId(orgid);
                     student.setDeptName(deptName1);
                     student.setInSchState(inSchStatus);
-                    student.setDegreeProcess(degreeProcess);
+//                    student.setDegreeProcess(degreeProcess);
                     student.setsNo(studentListTable.getValueAt(row, 0).toString());
                     StudentDao studentDao=new StudentDao();
                     int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
@@ -360,41 +368,45 @@ public class StudentManagerFrm extends JInternalFrame {
                     DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
                     //得到选中表格中的哪一行，那一列的值
                     selectIndex=studentListTable.getSelectedRow();
+                    //학번
+                    staticSno = studentListTable.getValueAt(selectIndex, 0).toString();
                     //소속학과
-                    String orgName=dft.getValueAt(studentListTable.getSelectedRow(), 2).toString();
+                    String orgName=dft.getValueAt(studentListTable.getSelectedRow(), 1).toString();
                     textField_deptName.setText(orgName);
                     //재학상태
                     String inSchStatus;
                     try {
-                              inSchStatus=dft.getValueAt(studentListTable.getSelectedRow(), 13).toString();
+                              inSchStatus=dft.getValueAt(studentListTable.getSelectedRow(), 4).toString();
                     } catch (Exception e) {
                               inSchStatus=null;
                     }
+//                    System.out.println("1 "+inSchStatus);
                     try {
                               for(int i=0;i<inSchStatusComboBox.getItemCount();i++){
                                         if(inSchStatus.equals(isInSchool[i])){
+//                                                  System.out.println("2 "+isInSchool[i]);
                                                   inSchStatusComboBox.setSelectedIndex(i);
                                         } 
                               }
                     } catch (Exception e) {
                               inSchStatusComboBox.setSelectedIndex(0);
                     }
-                    //학사과정
-                    String degree;
-                    try {
-                              degree=dft.getValueAt(studentListTable.getSelectedRow(), 14).toString();
-                    } catch (Exception e) {
-                              degree=null;
-                    }
-                    try {
-                              for(int i=0;i<degreeComboBox.getItemCount();i++){
-                                        if(degree.equals(degreeP[i])){
-                                                  degreeComboBox.setSelectedIndex(i);
-                                        } 
-                              }
-                    } catch (Exception e) {
-                              degreeComboBox.setSelectedIndex(0);
-                    }
+//                    //학사과정
+//                    String degree;
+//                    try {
+//                              degree=dft.getValueAt(studentListTable.getSelectedRow(), 14).toString();
+//                    } catch (Exception e) {
+//                              degree=null;
+//                    }
+//                    try {
+//                              for(int i=0;i<degreeComboBox.getItemCount();i++){
+//                                        if(degree.equals(degreeP[i])){
+//                                                  degreeComboBox.setSelectedIndex(i);
+//                                        } 
+//                              }
+//                    } catch (Exception e) {
+//                              degreeComboBox.setSelectedIndex(0);
+//                    }
                     
           }
 //          //학생삭제
@@ -423,25 +435,41 @@ public class StudentManagerFrm extends JInternalFrame {
           //학생 검색
           protected void searchStudent(ActionEvent ae) {
                     Student student=new Student();
+                    String name = null,sno = null;
                     if(radioButton_1.isSelected()){
-                              student.setName(nameTextField.getText().toString());
+                              name=nameTextField.getText().toString();
+                              if(StringUtil.isEmpty(name)){
+                                        name=null;
+                              }
+                              sno=null;
                     }else{
-                              student.setsNo(textField_no.getText().toString());
+                              sno=textField_no.getText().toString();
+                              if(StringUtil.isEmpty(sno)){
+                                        sno=null;
+                              }
+                              name=null;
                     }
-                    String deptName;
+                    student.setName(name);
+                    student.setsNo(sno);
+                    
+                    int i=0;
+                    String deptName=null,orgCode=null,string2,string1;
+                    string1=textField_seaDeptName.getText().toString();//학과명
+                    string2=this.getOrgidByOrgName(string1);//학과코드
+                    
                     if(checkBox_3.isSelected()){
-                              deptName=textField_seaDeptName.getText().toString();
+                              deptName=string1;
+                              orgCode=string2;
+                              student.setOrgId(orgCode);
                               student.setDeptName(deptName);
                     }
                     int row=studentListTable.getSelectedRow();
-                    if(row==-1){
-                              restvalues();
-                    }
                     setTable(student);
+                    restvalues();
           }
           private void restvalues() {
                           textField_deptName.setText("");
-                          editSexButtonGroup.clearSelection();
+                          inSchStatusComboBox.setSelectedIndex(0);
           }
           // table다시 설정
           public void setTable(Student student){
@@ -451,23 +479,22 @@ public class StudentManagerFrm extends JInternalFrame {
                    List<Student> studentList = studentDao.getStudentList(student);
                    for(Student s : studentList){
                              Vector v=new Vector();
-                             v.add(s.getsNo());
-                             v.add(s.getName());
-                             v.add(this.getDeptNameById(s.getOrgId()));
-//                             v.add(s.getDeptId());
-                             v.add(s.getSex());
-                             v.add(s.getIdCardNo());
-                             v.add(s.getTel());
-                             v.add(s.getJoinDate());
-                             v.add(s.getEmail());
-                             v.add(s.getPassword());
-                             v.add(s.getAdress());
-                             v.add(s.getMajorType());
-                             v.add(s.getMajor());
-                             v.add(s.getApplyDate());
-                             v.add(s.getInSchState());
-                             v.add(s.getDegreeProcess());
-                             v.add(s.getInSchYear());
+                             v.add(s.getsNo());//0
+                             v.add(this.getDeptNameById(s.getOrgId()));//1
+                             v.add(s.getName());//2
+                             v.add(s.getInSchYear());//3
+                             v.add(s.getInSchState());//4
+                             v.add(s.getDegreeProcess());//5
+                             v.add(s.getIdCardNo());//6
+                             v.add(s.getSex());//7
+                             v.add(s.getPassword());//8
+                             v.add(s.getEmail());//9
+                             v.add(s.getTel());//10
+                             v.add(s.getAdress());//11
+                             v.add(s.getJoinDate());//12
+                             v.add(s.getMajorType());//13
+                             v.add(s.getMajor());//14
+                             v.add(s.getApplyDate());//15
                              dft.addRow(v);
                    }
                    studentDao.closeDao();
@@ -489,6 +516,15 @@ public class StudentManagerFrm extends JInternalFrame {
                     orgList = orgDao.getOrgdeptNameList(new Org());
                     for(Org org:orgList){
                             if(org.getOrgCode().equals(id)) return org.getName();
+                    }
+                    return "";
+          }
+        //orgName에 통해서 orgid를 받는다
+          public String getOrgidByOrgName(String name){
+                    OrgDao orgDao=new OrgDao();
+                    orgList = orgDao.getOrgList(new Org());
+                    for(Org org:orgList){
+                            if(org.getName().equals(name)) return org.getOrgCode();
                     }
                     return "";
           }

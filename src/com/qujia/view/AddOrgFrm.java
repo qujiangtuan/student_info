@@ -46,6 +46,16 @@ public class AddOrgFrm extends JFrame {
           private JPanel panel_3;
           private JTextField textField_par;
           private List<Org> orgList;
+          private static String orgType="교육기관";
+          
+          public String getOrgType() {
+                    return orgType;
+          }
+
+          public void setOrgType(String orgType) {
+                    this.orgType = orgType;
+          }
+
           /**
            * Launch the application.
            */
@@ -101,6 +111,7 @@ public class AddOrgFrm extends JFrame {
                               public void itemStateChanged(ItemEvent e) {
                                         if(radioButton_1.isSelected()){
                                                   card.show(panel, "p1");
+                                                  orgType="교육기관";
                                         }
                               }
                     });
@@ -111,6 +122,7 @@ public class AddOrgFrm extends JFrame {
                               public void itemStateChanged(ItemEvent e) {
                                         if(radioButton_2.isSelected()){
                                                   card.show(panel, "p2");
+                                                  orgType="부속기관";
                                         }
                               }
                     });
@@ -120,6 +132,7 @@ public class AddOrgFrm extends JFrame {
                         public void itemStateChanged(ItemEvent e) {
                                   if(radioButton_3.isSelected()){
                                             card.show(panel, "p3");
+                                            orgType="본부행정기관";
                                   }
                         }
               });
@@ -159,7 +172,7 @@ public class AddOrgFrm extends JFrame {
                     JButton searchButton = new JButton("조회");
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame());
+                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame(),orgType);
                                         sof.setVisible(true);
                                         textField_par.setText(addSearchOrg());
                               }
@@ -178,13 +191,13 @@ public class AddOrgFrm extends JFrame {
                     comboBox_1 = new JComboBox();
                     comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "\uB300\uD559", "\uB300\uD559\uC6D0"}));
                     
-                    JLabel label_2 = new JLabel("\uB300\uC0C1:");
+                    JLabel label_2 = new JLabel("대상구분:");
                     GroupLayout gl_panel_1 = new GroupLayout(panel_1);
                     gl_panel_1.setHorizontalGroup(
                               gl_panel_1.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_panel_1.createSequentialGroup()
-                                                  .addGap(50)
-                                                  .addComponent(label_2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                                                  .addGap(37)
+                                                  .addComponent(label_2)
                                                   .addGap(18)
                                                   .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
                                                   .addGap(18)
@@ -267,12 +280,12 @@ public class AddOrgFrm extends JFrame {
           protected void addOrg(ActionEvent e) {
                     // TODO Auto-generated method stub
                     
-                    String orgCode,name,sName,orgType,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
+                    String orgCode,name,sName,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
 //                    orgCode="";
                     name=textField_orgName.getText().toString();
 //                    sName=textField_sName.getText().toString();
-                    orgType=radioButton_1.isSelected() ? radioButton_1
-                                        .getText() :  (radioButton_2.isSelected() ? radioButton_2.getText():radioButton_3.getText());
+//                    orgType=radioButton_1.isSelected() ? radioButton_1
+//                                        .getText() :  (radioButton_2.isSelected() ? radioButton_2.getText():radioButton_3.getText());
                     coGrCode=comboBox_1.getSelectedItem().toString();
                     gsDepMajCode=comboBox_2.getSelectedItem().toString();
                     aftType=comboBox_3.getSelectedItem().toString();

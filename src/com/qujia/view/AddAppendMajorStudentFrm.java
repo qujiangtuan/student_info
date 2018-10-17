@@ -28,6 +28,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 	private JComboBox comboBox_major_type;
 	private JLabel Label_dept;
 	private JTextField textField_major;
+	private Student selectStu;
 
 	/**
 	 * Launch the application.
@@ -124,6 +125,10 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		});
 		btnNewButton.setBounds(289, 162, 97, 23);
 		contentPane.add(btnNewButton);
+		
+		StudentManagerFrm amf=new StudentManagerFrm();
+        selectStu = amf.getSelectObject();
+		
 		getStudentName();//填充姓名
 		getStudentDept();
 		
@@ -142,6 +147,8 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		String secondMajor = textField_major.getText().toString();
 		String applyDate =DateUtil.getTodayDate();
 		
+		String sno=this.getSNO();
+		
 		SecondMajorRange smr=new SecondMajorRange();
 		smr.setOrgidBaseName(deptName);
 		smr.setOrgidAllowName(secondMajor);
@@ -152,6 +159,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		          if("Yes".equals(smr2.getIsAllow())){
 		                    if(majorType.equals(smr2.getAllowType())){
 		                              Student student=new Student();
+		                              student.setsNo(sno);
 		                              student.setName(name);
 		                              student.setMajorType(majorType);
 		                              student.setMajor(secondMajor);
@@ -160,6 +168,10 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		                              StudentDao sDao=new StudentDao();
 		                              if(sDao.UpdateAppendMajor(student)) {
 		                                  JOptionPane.showMessageDialog(this, "["+majorType+"]->{ "+secondMajor+" } 등록 성공했습니다!");
+		                                  
+		                                  StudentManagerFrm smf=new StudentManagerFrm();
+		                                  smf.setTable(new Student());
+		                                  
 		                                  this.dispose();
 		                                  this.setVisible(false);
 		                              }else {
@@ -199,16 +211,20 @@ public class AddAppendMajorStudentFrm extends JFrame {
 //		this.show(false);
 //		smf.revalidate();
 	}
+	//학번 받기
+	public String getSNO(){
+	          String sno=null;
+	          sno=selectStu.getsNo();
+	          return sno;
+	}
 	//학생이름 받기
 	public void getStudentName() {
-		StudentManagerFrm amf=new StudentManagerFrm();
-		String name=amf.getStudentName();
+		String name=selectStu.getName();
 		label_name.setText(name);
 	}
 	//학생학과 받기
     public void getStudentDept() {
-        StudentManagerFrm amf=new StudentManagerFrm();
-        String deptName=amf.getStudentDept();
+        String deptName=selectStu.getDeptName();
         Label_dept.setText(deptName);
     }
 }

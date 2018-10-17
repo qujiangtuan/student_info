@@ -155,7 +155,7 @@ public class SubjectManagerFrm extends JFrame {
                     JScrollPane scrollPane_1 = new JScrollPane();
                     scrollPane_1.setBounds(412, 382, 195, 70);
                     
-                    JLabel lblNewLabel = new JLabel("\uC18C\uC18D\uBD80\uC11C:");
+                    JLabel lblNewLabel = new JLabel("소속조직:");
                     lblNewLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
                     lblNewLabel.setBounds(300, 19, 68, 15);
                     bgoup=new ButtonGroup();
@@ -189,7 +189,7 @@ public class SubjectManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC57D\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uBD80\uC11C", "\uC124\uBA85"
+                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC57D\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uC870\uC9C1", "\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {

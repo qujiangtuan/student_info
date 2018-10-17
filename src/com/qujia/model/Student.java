@@ -16,9 +16,9 @@ public class Student {
           private String major;
           private String applyDate;
           
-          private String inSchState;//ÀçÇÐ»óÅÂ
-          private String degreeProcess;//ÇÐ»ç°úÁ¤
-          private String inSchYear;//ÇÐ³â
+          private String inSchState;//ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½
+          private String degreeProcess;//ï¿½Ð»ï¿½ï¿½ï¿½ï¿½
+          private String inSchYear;//ï¿½Ð³ï¿½
           private String deptName;
           
 
@@ -134,8 +134,15 @@ public class Student {
                                         + ", idCardNo=" + idCardNo + ", email="
                                         + email + ", joinDate=" + joinDate
                                         + ", tel=" + tel + ", adress=" + adress
+                                        + ", majorType=" + majorType
+                                        + ", major=" + major + ", applyDate="
+                                        + applyDate + ", inSchState="
+                                        + inSchState + ", degreeProcess="
+                                        + degreeProcess + ", inSchYear="
+                                        + inSchYear + ", deptName=" + deptName
                                         + "]";
           }
+           
           
           
 

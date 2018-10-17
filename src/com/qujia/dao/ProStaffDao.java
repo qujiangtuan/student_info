@@ -265,4 +265,25 @@ public class ProStaffDao extends BaseDao {
                   return false;
         }
         
+        public ProStaff searchOldPassword(ProStaff ps) {
+                  String sql = "select password from pro_staff where pno= ? ";
+                  PreparedStatement prst =null;
+                  ProStaff psRst=null;
+                  ResultSet rs;
+                  int id=0;
+                  try {
+                            prst= con.prepareStatement(sql);
+                            prst.setString(1, ps.getpNo());
+                            rs = prst.executeQuery();
+                            while(rs.next()){
+                                      psRst = new ProStaff();
+                                      psRst.setPassword(rs.getString("password"));
+                           }
+                  } catch (SQLException e1) {
+                            // TODO Auto-generated catch block
+                            e1.printStackTrace();
+                  }
+                  return psRst;
+        }
+        
 }

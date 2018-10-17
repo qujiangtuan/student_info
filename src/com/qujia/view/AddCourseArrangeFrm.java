@@ -83,7 +83,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
 
-                    lebel_name = new JLabel("과목이름:");
+                    lebel_name = new JLabel("교과목명:");
                     lebel_name.setBounds(30, 35, 69, 15);
 
                     leabel_pro = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
@@ -384,7 +384,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     JLabel label_2 = new JLabel("시작시간");
                     label_2.setBounds(117, 196, 65, 15);
 
-                    JLabel label_3 = new JLabel("끝나시간");
+                    JLabel label_3 = new JLabel("종료시간");
                     label_3.setBounds(263, 196, 62, 15);
 
                     JLabel label_4 = new JLabel("강의실");

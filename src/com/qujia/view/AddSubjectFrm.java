@@ -71,7 +71,7 @@ public class AddSubjectFrm extends JFrame {
                     contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
                     setContentPane(contentPane);
 
-                    JLabel label = new JLabel("\uACFC\uBAA9\uC774\uB984:");
+                    JLabel label = new JLabel("êµê³¼ëª©ëª…:");
                     label.setBounds(12, 31, 72, 15);
                     label.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
@@ -80,7 +80,7 @@ public class AddSubjectFrm extends JFrame {
                     textField_name.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     textField_name.setColumns(10);
 
-                    JLabel lblNewLabel = new JLabel("\uC601\uC5B4\uC774\uB984:");
+                    JLabel lblNewLabel = new JLabel("ì˜ ì–´ ëª…:");
                     lblNewLabel.setBounds(12, 70, 72, 15);
                     lblNewLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
 
@@ -147,7 +147,7 @@ public class AddSubjectFrm extends JFrame {
                     
                     label_2 = new JLabel("\uC774\uC218\uD559\uC810:");
                     label_2.setBounds(328, 109, 60, 19);
-                    label_2.setFont(new Font("³ª´®¸íÁ¶", Font.BOLD, 13));
+                    label_2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
                     
                     textField_mname = new JTextField();
                     textField_mname.setBounds(96, 106, 146, 25);
@@ -172,7 +172,7 @@ public class AddSubjectFrm extends JFrame {
                     lblNewLabel_6 = new JLabel("\uAD50\uACFC\uBAA9\uC124\uBA85:");
                     lblNewLabel_6.setBounds(325, 155, 74, 19);
                     contentPane.add(lblNewLabel_6);
-                    lblNewLabel_6.setFont(new Font("³ª´®¸íÁ¶", Font.BOLD, 13));
+                    lblNewLabel_6.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
                     
                     JScrollPane scrollPane = new JScrollPane();
                     scrollPane.setBounds(406, 152, 146, 60);
@@ -182,10 +182,10 @@ public class AddSubjectFrm extends JFrame {
                      textArea.setLineWrap(true);
                      scrollPane.setViewportView(textArea);
                      
-                     JLabel lblNewLabel_4 = new JLabel("\uC18C\uC18D\uBD80\uC11C:");
+                     JLabel lblNewLabel_4 = new JLabel("ì†Œì†ì¡°ì§:");
                      lblNewLabel_4.setBounds(12, 152, 74, 19);
                      contentPane.add(lblNewLabel_4);
-                     lblNewLabel_4.setFont(new Font("³ª´®¸íÁ¶", Font.BOLD, 13));
+                     lblNewLabel_4.setFont(new Font("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 13));
                      
                      textField_orgName = new JTextField();
                      textField_orgName.setBounds(96, 151, 146, 23);
@@ -209,7 +209,7 @@ public class AddSubjectFrm extends JFrame {
                     return SearchDeptForStuFrm.getDeptName();
           }
 
-          //±³°ú¸ñµî·Ï event
+          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ event
           protected void submitAction(ActionEvent ae) {
                     String name=textField_name.getText().toString();
                     String ename=textField_eName.getText().toString();
@@ -221,14 +221,14 @@ public class AddSubjectFrm extends JFrame {
                     String orgId=this.getOrgidByOrgName(deptName);
                     
                     String subExp=textArea.getText().toString();
-                    String subCode;//Áßº¹È®ÀÎ
+                    String subCode;//ï¿½ßºï¿½È®ï¿½ï¿½
                     subCode=getStudentNumber(orgId);
                     if(this.isRepeat(subCode)){
                               subCode=getStudentNumber(orgId);
                     }
                     String subMname=textField_mname.getText().toString();
                     if(StringUtil.isEmpty(name)){
-                              JOptionPane.showMessageDialog(this, "±³°ú¸ñÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+                              JOptionPane.showMessageDialog(this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½!");
                               return;
                     }
                     Subjects sbj=new Subjects();
@@ -248,16 +248,16 @@ public class AddSubjectFrm extends JFrame {
                     SubjectsDao sbjDao=new SubjectsDao();
                     if (sbjDao.addSubjects(sbj)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "±³°ú¸ñÀÌ µî·Ï ¼º°øÇß½À´Ï´Ù! ");
+                                                  "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "±³°ú¸ñÀÌ µî·Ï ½ÇÆĞÇß½À´Ï´Ù£¡");
+                                                  "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´Ù£ï¿½");
                     }
                     resetValue(ae);
                     sbjDao.closeDao();
                     
           }
-          //µî·Ï ÀÔ·Â ÃÊ±âÈ­
+          //ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ê±ï¿½È­
           private void resetValue(ActionEvent ae) {
                     textField_name.setText("");
                     textField_eName.setText("");
@@ -270,7 +270,7 @@ public class AddSubjectFrm extends JFrame {
                     textField_mname.setText("");
                     textArea.setText("");
           }
-//        //±³°ú¸ñÀÇ ¼Ò¼ÓºÎ¼­ °®´Ù¿Ó´Ù
+//        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¼ÓºÎ¼ï¿½ ï¿½ï¿½ï¿½Ù¿Ó´ï¿½
 //          protected void setDeptName() {
 //                    // TODO Auto-generated method stub
 //                    OrgDao orgDao=new OrgDao();
@@ -287,7 +287,7 @@ public class AddSubjectFrm extends JFrame {
                     String subCode = str+StringUtil.getRandom3();
                     return subCode;
           }
-        //±³°ú¸ñ¹øÈ£ Á¾º¹ÇĞÀÎ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
           private boolean isRepeat(String str){
                   Subjects sb=new Subjects();
                   SubjectsDao sbDao=new SubjectsDao();
@@ -303,7 +303,7 @@ public class AddSubjectFrm extends JFrame {
                             return true;
                   }
         }
-        //orgName¿¡ ÅëÇØ¼­ orgid¸¦ ¹Ş´Â´Ù
+        //orgNameï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ orgidï¿½ï¿½ ï¿½Ş´Â´ï¿½
           public String getOrgidByOrgName(String name){
                     OrgDao orgDao=new OrgDao();
                     orgList = orgDao.getOrgList(new Org());

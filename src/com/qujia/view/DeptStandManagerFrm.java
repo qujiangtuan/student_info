@@ -191,7 +191,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                                         {null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC21C\uBC88", "\uC870\uC9C1\uC774\uB984", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uBD80\uAC00\uC124\uBA85"
+                                        "\uD559\uC0AC\uAE30\uC900\uBC88\uD638", "\uC870\uC9C1\uC774\uB984", "\uD559\uAE30\uB2F9\uCD5C\uC18C\uC774\uC218\uD559\uC810", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uD559\uACFC\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -201,7 +201,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
                                         return columnEditables[column];
                               }
                     });
-                    deptListTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+                    deptListTable.getColumnModel().getColumn(0).setPreferredWidth(86);
                     deptListTable.getColumnModel().getColumn(1).setPreferredWidth(112);
                     deptListTable.getColumnModel().getColumn(2).setPreferredWidth(129);
                     deptListTable.getColumnModel().getColumn(3).setPreferredWidth(140);

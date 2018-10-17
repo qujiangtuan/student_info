@@ -36,6 +36,8 @@ public class OrgManagerFrm extends JFrame {
           private JComboBox comboBox_co,comboBox_type,comboBox_gdm;
           private JTextField textField_editPar;
           private List<Org> orgList;
+          private static String orgType="교육기관";
+          private static int row=-1;
 
           /**
            * Launch the application.
@@ -178,7 +180,12 @@ public class OrgManagerFrm extends JFrame {
                     JButton btnNewButton = new JButton("조회");
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
-                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame());
+                                        if(row==-1){
+                                                  JOptionPane.showMessageDialog(null, "행을 선택해주세요!");
+                                                  return;
+                                        }
+//                                        System.out.println("orgManager_serach"+orgType);
+                                        SearchOrgForOrgFrm sof=new SearchOrgForOrgFrm(new JFrame(),orgType);
                                         sof.setVisible(true);
                                         textField_editPar.setText(addSearchOrg());
                               }
@@ -198,7 +205,7 @@ public class OrgManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uD559/\uB300\uD559\uC6D0\uAD6C\uBD84", "\uBD80\uC11C(\uD559\uBD80/\uD559\uACFC/\uC804\uACF5)", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uC870\uC9C1\uCF54\uB4DC", "\uC870\uC9C1\uBA85", "\uC870\uC9C1\uAD6C\uBD84", "\uB300\uC0C1\uAD6C\uBD84", "\uD559\uBD80\uACFC\uC804\uACF5\uAD6C\uBD84", "\uBD80\uC18D\uAE30\uAD00\uC885\uB958", "\uC0C1\uC704\uC870\uC9C1", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -256,10 +263,13 @@ public class OrgManagerFrm extends JFrame {
 //                    }
                     OrgDao orgDao =new OrgDao();
                     String orgCode=table.getValueAt(row, 0).toString();
+//                    int subCount=orgDao.getSubCount("11063");
+                    int subCount=orgDao.getSubCount(orgCode);
+//                    System.out.println("out"+subCount);
                     int showConfirmDialog = JOptionPane.showConfirmDialog(null, "삭제 하시겠습니까?", " WarningDialog!", 
                                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if(showConfirmDialog==JOptionPane.YES_OPTION){
-                              if(table.getValueAt(row, 7)==null){
+                              if(subCount==0){
                                         if(orgDao.deleteOrg(orgCode)){
                                                   JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
                                         }else{
@@ -285,7 +295,6 @@ public class OrgManagerFrm extends JFrame {
 
           //조직 수정 submit
           protected void submiEditAct(ActionEvent e) {
-                    int row=table.getSelectedRow();
                     if(row==-1){
                               JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
                               return;
@@ -361,34 +370,21 @@ public class OrgManagerFrm extends JFrame {
           protected void selectedTableRow(MouseEvent me) {
                     String parCode=null;
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                    row=table.getSelectedRow();
+                    orgType=dft.getValueAt(row, 2).toString();
+//                    System.out.println("orgManager:"+orgType);
                     //得到选中表格中的哪一行，那一列的值
                     try {
                               textField_editName.setText(dft.getValueAt(table.getSelectedRow(), 1).toString());
                     } catch (NullPointerException e) {
                               textField_editName.setText("");
                     }
-//                    try {
-//                              textField_editsName.setText(dft.getValueAt(table.getSelectedRow(), 2).toString());
-//                    } catch (NullPointerException e) {
-//                              textField_editsName.setText("");
-//                    }
                     try {
                               textField_editPar.setText(dft.getValueAt(table.getSelectedRow(),6).toString());
                     } catch (NullPointerException e) {
                               textField_editPar.setText("");
                     }
                     
-//                    for(int i=0;i<comboBox_editPar.getItemCount();i++){
-//                              Org org=(Org) comboBox_editPar.getItemAt(i);
-//                              try {
-//                                        if(parCode.equals(org.getOrgCode())){
-//                                                  comboBox_editPar.setSelectedIndex(i);
-//                                        }
-//                              } catch (NullPointerException e) {
-//                                        comboBox_editPar.setSelectedIndex(0);
-//                              }
-//                              
-//                    }
           }
           private void resetValues(){
                     textField_editName.setText("");

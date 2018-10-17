@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import com.qujia.dao.AdminDao;
 import com.qujia.dao.ProStaffDao;
@@ -29,7 +31,6 @@ public class EditPasswordFrm extends JInternalFrame {
           private JPasswordField confirmPasswordTextField;
           private JLabel currentUserLabel;//修改密码时的当前用户
           private JLabel label_old;
-          private JLabel label_new1;
           private JLabel label_1;
           private JLabel label_new2;
    
@@ -62,7 +63,7 @@ public class EditPasswordFrm extends JInternalFrame {
                     setContentPane(contentPane);
                     setClosable(true);
                     setIconifiable(true);
-                    JLabel oldPasswordLabel = new JLabel("옛   비밀번호:");
+                    JLabel oldPasswordLabel = new JLabel("현재 비밀번호:");
                     oldPasswordLabel.setBounds(58, 60, 119, 19);
                     oldPasswordLabel.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/password.png")));
                     oldPasswordLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
@@ -73,51 +74,74 @@ public class EditPasswordFrm extends JInternalFrame {
                     newPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     oldPasswordTextField = new JPasswordField();
-//                    oldPasswordTextField.addKeyListener(new KeyAdapter() {
-//                              @Override
-//                              public void keyTyped(KeyEvent ke) {
-//                                        char keyChar = ke.getKeyChar();
-//                                       String stringArray = sb.append(keyChar).toString();
-//                                       System.out.println(stringArray);
-//                                        String oldPassword;
-//                                        if("관리자".equals(MainFrm.userType.getName())){
-//                                                  AdminDao adminDao=new AdminDao();
-//                                                  Admin adminTmp=new Admin();
-//                                                  Admin admin=(Admin)MainFrm.userObject;
-//                                                  adminTmp=adminDao.searchOldPassword(admin);
-//                                                  oldPassword=adminTmp.getPassword();
-//                                                  if(oldPassword.equals(stringArray)){
-//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
-//                                                  }else{
-//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
-//                                                  }
-//                                                  adminDao.closeDao();
-//                                                  return;
-//                                        }
-//                              }
-//                              @Override
-//                              public void keyReleased(KeyEvent ke) {
-//                                        String oldInput =ke.getc
-//                                        System.out.println(oldInput);
-//                                        String oldPassword;
-//                                        if("관리자".equals(MainFrm.userType.getName())){
-//                                                  AdminDao adminDao=new AdminDao();
-//                                                  Admin adminTmp=new Admin();
-//                                                  Admin admin=(Admin)MainFrm.userObject;
-//                                                  adminTmp=adminDao.searchOldPassword(admin);
-//                                                  oldPassword=adminTmp.getPassword();
-//                                                  
-////                                                  System.out.println(oldPassword);
-//                                                  if(oldPassword.equals(oldInput)){
-//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
-//                                                  }else{
-//                                                            label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
-//                                                  }
-//                                                  adminDao.closeDao();
-//                                                  return;
-//                                        } 
-//                              }
-//                    });
+                    oldPasswordTextField.getDocument().addDocumentListener(new DocumentListener() {
+                              
+                              @Override
+                              public void removeUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        
+                              }
+                              
+                              @Override
+                              public void insertUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        String oldPwInput = null;
+                                        String oldPassword;
+                                        try {
+                                                  oldPwInput = e.getDocument().getText(e.getDocument().getStartPosition().getOffset(), e.getDocument().getLength());
+                                                  if("관리자".equals(MainFrm.userType.getName())){
+                                                          AdminDao adminDao=new AdminDao();
+                                                          Admin adminTmp=new Admin();
+                                                          Admin admin=(Admin)MainFrm.userObject;
+                                                          adminTmp=adminDao.searchOldPassword(admin);
+                                                          oldPassword=adminTmp.getPassword();
+                                                          if(oldPassword.equals(oldPwInput)){
+                                                                    label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                                                          }else{
+                                                                    label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+                                                          }
+                                                          adminDao.closeDao();
+                                                          return;
+                                                }else if("학생".equals(MainFrm.userType.getName())) {
+                                                        StudentDao sDao=new StudentDao();
+                                                        Student sTmp=new Student();
+                                                        Student student=(Student) MainFrm.userObject;
+                                                        sTmp = sDao.searchOldPassword(student);
+                                                        oldPassword=sTmp.getPassword();
+                                                        if(oldPassword.equals(oldPwInput)){
+                                                                  label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                                                        }else{
+                                                                  label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+                                                        }
+                                                        sDao.closeDao();
+                                                        return;
+                                                }else {
+                                                        ProStaffDao psDao=new ProStaffDao();
+                                                        ProStaff psTmp=new ProStaff();
+                                                        ProStaff ps = (ProStaff) MainFrm.userObject;
+                                                        psTmp = psDao.searchOldPassword(ps);
+                                                        oldPassword=psTmp.getPassword();
+                                                        if(oldPassword.equals(oldPwInput)){
+                                                                  label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                                                        }else{
+                                                                  label_old.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+                                                        }
+                                                        psDao.closeDao();
+                                                        return;
+                                                }
+                                        } catch (Exception e2) {
+                                                  // TODO: handle exception
+                                        }
+                                            
+                                            
+                              }
+                              
+                              @Override
+                              public void changedUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        
+                              }
+                    });
 //                    oldPasswordTextField.addActionListener(new ActionListener() {
 //                              public void actionPerformed(ActionEvent arg0) {
 //                                        String oldInput = oldPasswordTextField.getText().toString();
@@ -171,6 +195,32 @@ public class EditPasswordFrm extends JInternalFrame {
                     confirmPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     confirmPasswordTextField = new JPasswordField();
+                    confirmPasswordTextField.getDocument().addDocumentListener(new DocumentListener() {
+                              
+                              @Override
+                              public void removeUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        
+                              }
+                              
+                              @Override
+                              public void insertUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        String pwInput1=newPasswordTextField.getText().toString();
+                                        String pwInput2 = confirmPasswordTextField.getText().toString();
+                                        if(pwInput1.equals(pwInput2)){
+                                                  label_new2.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+                                        }else{
+                                                  label_new2.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/false.png")));
+                                        }
+                              }
+                              
+                              @Override
+                              public void changedUpdate(DocumentEvent e) {
+                                        // TODO Auto-generated method stub
+                                        
+                              }
+                    });
                     confirmPasswordTextField.setBounds(201, 156, 124, 21);
                     confirmPasswordTextField.setColumns(10);
                      
@@ -221,17 +271,12 @@ public class EditPasswordFrm extends JInternalFrame {
                     label_old.setBounds(336, 60, 21, 17);
                     contentPane.add(label_old);
                     
-                    label_new1 = new JLabel("");
-                    label_new1.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
-                    label_new1.setBounds(336, 110, 21, 17);
-                    contentPane.add(label_new1);
-                    
                     label_1 = new JLabel("");
                     label_1.setBounds(336, 110, 21, 17);
                     contentPane.add(label_1);
                     
                     label_new2 = new JLabel("");
-                    label_new2.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
+//                    label_new2.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/true.png")));
                     label_new2.setBounds(337, 159, 21, 17);
                     contentPane.add(label_new2);
                     //当前用户设定
@@ -253,31 +298,30 @@ public class EditPasswordFrm extends JInternalFrame {
                     String newPassword=newPasswordTextField.getText().toString();
                     String confirmPassword=confirmPasswordTextField.getText().toString();
                     if(StringUtil.isEmpty(oldPassword)){
-                             JOptionPane.showMessageDialog(this, "옛 비밀번호 입력하시오!"); 
+                             JOptionPane.showMessageDialog(this, "현재 비밀번호를 입력하시오!"); 
                              return; 
                     }
                     if(StringUtil.isEmpty(newPassword)){
-                              JOptionPane.showMessageDialog(this, "새 비밀번호 입력하시오!"); 
+                              JOptionPane.showMessageDialog(this, "새로운 비밀번호를 입력하시오!"); 
                               return; 
                      }
                     if(StringUtil.isEmpty(confirmPassword )){
-                              JOptionPane.showMessageDialog(this, "확인 비밀번호 입력하시오!"); 
+                              JOptionPane.showMessageDialog(this, "새로운 비밀번호를 확인하시오!"); 
                               return; 
                      }
                     if(!newPassword.equals(confirmPassword)){
-                              JOptionPane.showMessageDialog(this, "두번 입력한 안호가 일치하지 않습니다!");
+                              JOptionPane.showMessageDialog(this, "입력한 새로운 비밀번호가 같지 않습니다!");
                               return;
                     }
                     if("관리자".equals(MainFrm.userType.getName())){
                               AdminDao adminDao=new AdminDao();
                               Admin adminTmp=new Admin();
                               Admin admin=(Admin)MainFrm.userObject;
-                              System.out.println(admin);
                               adminTmp.setName(admin.getName());
                               adminTmp.setPassword(oldPassword);
-                              
                               JOptionPane.showMessageDialog(this, adminDao.editPassword(adminTmp, newPassword));
                               adminDao.closeDao();
+                              resetValue();
                               return;
                     }else if("학생".equals(MainFrm.userType.getName())) {
                     		StudentDao sDao=new StudentDao();
@@ -288,6 +332,7 @@ public class EditPasswordFrm extends JInternalFrame {
                     		sTmp.setsNo(student.getsNo());
                     		JOptionPane.showMessageDialog(this, sDao.editPassword(sTmp,newPassword));
                     	    sDao.closeDao();
+                    	    resetValue();
                     	    return;
                     }else {
                     		ProStaffDao psDao=new ProStaffDao();
@@ -298,12 +343,13 @@ public class EditPasswordFrm extends JInternalFrame {
                     	    psTmp.setPassword(ps.getPassword());
                     	    JOptionPane.showMessageDialog(this, psDao.editPassword(psTmp,newPassword));
                     	    psDao.closeDao();
+                    	    resetValue();
                     	    return;
                     }
                     
           }
           //修改密码重置按钮事件方法
-          protected void resetValue(ActionEvent ae) { 
+          protected void resetValue() { 
                     // TODO Auto-generated method stub
                     oldPasswordTextField.setText("");
                     newPasswordTextField.setText("");

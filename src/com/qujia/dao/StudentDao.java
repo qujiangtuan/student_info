@@ -78,13 +78,13 @@ public class StudentDao extends BaseDao{
             }
             public boolean UpdateAppendMajor(Student student){
 //            	update student set major_type='123',major='345',applydate='2015-03-49' where name='gerge'
-                String sql="update student set major_type=?,major=?,applydate=? where name=?";
+                String sql="update student set major_type=?,major=?,applydate=? where sno=?";
                 try {
                           PreparedStatement prst=con.prepareStatement(sql);
                           prst.setString(1, student.getMajorType());
                           prst.setString(2, student.getMajor());
                           prst.setString(3,student.getApplyDate());
-                          prst.setString(4,student.getName());
+                          prst.setString(4,student.getsNo());
                           if(prst.executeUpdate()>0) return true;
                 } catch (SQLException e) {
                           // TODO Auto-generated catch block
@@ -93,8 +93,22 @@ public class StudentDao extends BaseDao{
                 return false;
       }
             public List<Student> getStudentList(Student student){
+//                      System.out.println("--------");
+//                      System.out.println("name="+student.getName());
+//                      System.out.println("sno="+student.getsNo());
+//                      System.out.println("deptname="+student.getDeptName());
+//                      System.out.println("orgid="+student.getOrgId());
+                      
                       List<Student> retList=new ArrayList<Student>();
                       StringBuffer sqlString=new StringBuffer("select * from student");
+                      String sql = null;
+                      if(!StringUtil.isEmpty(student.getOrgId())&&StringUtil.isEmpty(student.getDeptName())
+                                          ||StringUtil.isEmpty(student.getsNo())
+                                          ||!StringUtil.isEmpty(student.getName())){
+                                sql="select * from student where orgid in(select org_code from org where par_org='"
+                                                              +student.getOrgId()+"') or orgid ='"
+                                                              +student.getOrgId()+"'  order by deptname desc";
+                      }
                       if(!StringUtil.isEmpty(student.getName())){
                                 sqlString.append(" and name like '%"+student.getName()+"%'");
                       }
@@ -104,8 +118,17 @@ public class StudentDao extends BaseDao{
                       if(!StringUtil.isEmpty(student.getDeptName())){
                                 sqlString.append(" and deptname like '%"+student.getDeptName()+"%'");
                       }
+                     
                       try {
-                                PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
+                                PreparedStatement prst;
+                                if(!StringUtil.isEmpty(student.getOrgId())&&StringUtil.isEmpty(student.getName())
+                                                    &&StringUtil.isEmpty(student.getsNo())
+                                                    &&!StringUtil.isEmpty(student.getDeptName())){
+                                          prst=con.prepareStatement(sql);
+                                }else{
+                                          prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
+                                }
+                                
                                 //preparedStatement.setString(1, "%"+Student.getName()+"%");
                                 ResultSet executeQuery = prst.executeQuery();
                                 while(executeQuery.next()){
@@ -154,14 +177,14 @@ public class StudentDao extends BaseDao{
             }
             //update Student
             public boolean updateStudent(Student student){
-                      String sql="update student set orgid=?,insch_status=?,degree=?,deptname=?   where sno=?";
+                      String sql="update student set orgid=?,insch_status=?,deptname=?   where sno=?";
                       try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,student.getOrgId());
                               prst.setString(2,student.getInSchState());
-                              prst.setString(3,student.getDegreeProcess());
-                              prst.setString(4, student.getDeptName());
-                              prst.setString(5,student.getsNo());
+//                              prst.setString(3,student.getDegreeProcess());
+                              prst.setString(3, student.getDeptName());
+                              prst.setString(4,student.getsNo());
                               if(prst.executeUpdate()>0){ 
                                         return true;
                               }
@@ -243,5 +266,67 @@ public class StudentDao extends BaseDao{
                               e.printStackTrace();
                     }
                     return false;
+          }
+          public Student searchOldPassword(Student student) {
+                              String sql = "select password from student where sno= ? ";
+                              PreparedStatement prst =null;
+                              Student stRst=null;
+                              ResultSet rs;
+                              int id=0;
+                              try {
+                                        prst= con.prepareStatement(sql);
+                                        prst.setString(1, student.getsNo());
+                                        rs = prst.executeQuery();
+                                        while(rs.next()){
+                                                  stRst = new Student();
+                                                  stRst.setPassword(rs.getString("password"));
+                                       }
+                              } catch (SQLException e1) {
+                                        // TODO Auto-generated catch block
+                                        e1.printStackTrace();
+                              }
+                    return stRst;
+          }
+//          public String getStNameById(Student st) {
+//                    String sql = "select name from student where sno= ? ";
+//                    PreparedStatement prst =null;
+//                    String nameData=null;
+//                    ResultSet rs;
+//                    int id=0;
+//                    try {
+//                              prst= con.prepareStatement(sql);
+//                              prst.setString(1, st.getsNo());
+//                              rs = prst.executeQuery();
+//                              while(rs.next()){
+//                                        nameData=rs.getString("name");
+//                             }
+//                    } catch (SQLException e1) {
+//                              // TODO Auto-generated catch block
+//                              e1.printStackTrace();
+//                    }
+//                    return nameData;
+//          }
+          public Student getSelectRowObject(Student student) {
+                    String sql = "select * from student where sno= ? ";
+                    PreparedStatement prst =null;
+                    Student setStu=null;
+                    ResultSet rs;
+                    int id=0;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, student.getsNo());
+                              rs = prst.executeQuery();
+                              while(rs.next()){
+                                        setStu=new Student();
+                                        setStu.setsNo(rs.getString("sno"));
+                                        setStu.setName(rs.getString("name"));
+                                        setStu.setOrgId(rs.getString("orgid"));
+                                        setStu.setDeptName(rs.getString("deptname"));
+                             }
+                    } catch (SQLException e1) {
+                              // TODO Auto-generated catch block
+                              e1.printStackTrace();
+                    }
+                    return setStu;
           }
 }

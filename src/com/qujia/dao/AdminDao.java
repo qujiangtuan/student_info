@@ -51,16 +51,16 @@ public class AdminDao extends BaseDao {
                               prst.setString(2, admin.getPassword());
                               rs = prst.executeQuery();
                               if(!rs.next()){
-                                        String retString ="옛 암호 오류！";
+                                        String retString ="현재 비밀번호 잘못 입력했습니다 ！";
                                         return retString;
                               }
                               id=rs.getInt("id");
-                              System.out.println("id:"+id);
+//                              System.out.println("id:"+id);
                     } catch (SQLException e1) {
                               // TODO Auto-generated catch block
                               e1.printStackTrace();
                     }
-                    String retString ="수정 실패";
+                    String retString ="";
                     String sqlString = "update s_admin set password = ? where id = ?";
                      
                     try {
@@ -69,7 +69,7 @@ public class AdminDao extends BaseDao {
                               prst.setInt(2, id);
                              int rst= prst.executeUpdate();
                               if(rst>0){
-                                        retString="암호 수정 성공했습니다！";
+                                        retString="비밀번호 수정했습니다 !";
                               }
                     } catch ( Exception e) {
                               // TODO Auto-generated catch block
@@ -78,7 +78,7 @@ public class AdminDao extends BaseDao {
                     
                     return retString;
           }
-        //update password
+        //search Current User's OldPassword
           public Admin searchOldPassword(Admin admin){
                     String sql = "select password from s_admin where name= ? ";
                     PreparedStatement prst =null;

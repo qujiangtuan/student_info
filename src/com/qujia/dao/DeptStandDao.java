@@ -121,7 +121,7 @@ public class DeptStandDao extends BaseDao {
                                         while(rs.next()){
                                                   counts=rs.getInt("count1");
                                         }
-                                        System.out.println(counts);
+                                       
                               } catch (SQLException e) {
                                         e.printStackTrace();
                               }

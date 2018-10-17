@@ -30,8 +30,7 @@ public class CourseArrangeManagerFrm extends JFrame {
           private JSpinner spinner_1, spinner_2, spinner_3, spinner_4,
           spinner_5, spinner_6, spinner_7,
           spinner_8, spinner_9, spinner_10,
-          spinner_11, spinner_12, spinner_13,
-          spinner_14;
+          spinner_11, spinner_12;
           private JTextField textField_1;
           private JTextField textField_2;
           private JTextField textField_3;
@@ -101,9 +100,6 @@ public class CourseArrangeManagerFrm extends JFrame {
                     JCheckBox checkBox_5 = new JCheckBox("토");
                     checkBox_5.setBounds(17, 542, 48, 23);
                     
-                    JCheckBox checkBox_6 = new JCheckBox("일");
-                    checkBox_6.setBounds(17, 570, 48, 23);
-                    
                     JLabel label_1 = new JLabel("시작시간");
                     label_1.setBounds(89, 344, 91, 15);
                     
@@ -150,11 +146,6 @@ public class CourseArrangeManagerFrm extends JFrame {
 
                     spinner_12 = new JSpinner(new SpinnerDateModel());
                     spinner_12.setBounds(255, 542, 102, 22);
-
-                    spinner_13 = new JSpinner(new SpinnerDateModel());
-                    spinner_13.setBounds(255, 570, 102, 22);
-                    spinner_14 = new JSpinner(new SpinnerDateModel());
-                    spinner_14.setBounds(87, 570, 93, 22);
                     this.setMyModel(spinner_1);
                     this.setMyModel(spinner_2);
                     this.setMyModel(spinner_3);
@@ -167,17 +158,12 @@ public class CourseArrangeManagerFrm extends JFrame {
                     this.setMyModel(spinner_10);
                     this.setMyModel(spinner_11);
                     this.setMyModel(spinner_12);
-                    this.setMyModel(spinner_13);
-                    this.setMyModel(spinner_14);
                     
-                    JLabel label_2 = new JLabel("끝나시간");
+                    JLabel label_2 = new JLabel("종료시간");
                     label_2.setBounds(270, 344, 65, 15);
                     
                     JLabel label_3 = new JLabel("강의실");
                     label_3.setBounds(408, 347, 116, 15);
-                    
-                    JComboBox comboBox = new JComboBox();
-                    comboBox.setBounds(375, 571, 149, 21);
                     
                     JComboBox comboBox_1 = new JComboBox();
                     comboBox_1.setBounds(375, 543, 149, 21);
@@ -259,7 +245,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uACFC\uBAA9\uC774\uB984", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -320,18 +306,14 @@ public class CourseArrangeManagerFrm extends JFrame {
                     contentPane.add(textField_1);
                     contentPane.add(comboBox_9);
                     contentPane.add(comboBox_8);
-                    contentPane.add(checkBox_6);
-                    contentPane.add(spinner_14);
-                    contentPane.add(spinner_13);
                     contentPane.add(btnNewButton_1);
                     contentPane.add(button);
-                    contentPane.add(comboBox);
                     
-                    JLabel lblNewLabel_6 = new JLabel("수강이름:");
+                    JLabel lblNewLabel_6 = new JLabel("교과목명:");
                     lblNewLabel_6.setBounds(244, 23, 65, 15);
                     contentPane.add(lblNewLabel_6);
                     
-                    JLabel label_5 = new JLabel("교수이름:");
+                    JLabel label_5 = new JLabel("담당교수:");
                     label_5.setBounds(473, 24, 65, 15);
                     contentPane.add(label_5);
                     
