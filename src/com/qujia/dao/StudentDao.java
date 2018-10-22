@@ -93,12 +93,6 @@ public class StudentDao extends BaseDao{
                 return false;
       }
             public List<Student> getStudentList(Student student){
-//                      System.out.println("--------");
-//                      System.out.println("name="+student.getName());
-//                      System.out.println("sno="+student.getsNo());
-//                      System.out.println("deptname="+student.getDeptName());
-//                      System.out.println("orgid="+student.getOrgId());
-                      
                       List<Student> retList=new ArrayList<Student>();
                       StringBuffer sqlString=new StringBuffer("select * from student");
                       String sql = null;

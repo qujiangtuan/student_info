@@ -188,14 +188,14 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     deptListTable.setFont(new Font("나눔명조", Font.BOLD, 13));
                     deptListTable.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uD559\uC0AC\uAE30\uC900\uBC88\uD638", "\uC870\uC9C1\uC774\uB984", "\uD559\uAE30\uB2F9\uCD5C\uC18C\uC774\uC218\uD559\uC810", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uC7AC\uD559\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uD559\uACFC\uC124\uBA85"
+                                        "\uD559\uC0AC\uAE30\uC900\uBC88\uD638", "\uC870\uC9C1\uC774\uB984", "\uD559\uAE30\uB2F9\uCD5C\uC18C\uC774\uC218\uD559\uC810", "\uD559\uAE30\uB2F9\uCD5C\uB300\uC774\uC218\uD559\uC810", "\uC218\uD559\uB144\uD559", "\uC7AC\uD559\uB144\uD55C", "\uD559\uACFC\uC124\uBA85", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -205,11 +205,10 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     deptListTable.getColumnModel().getColumn(1).setPreferredWidth(112);
                     deptListTable.getColumnModel().getColumn(2).setPreferredWidth(129);
                     deptListTable.getColumnModel().getColumn(3).setPreferredWidth(140);
-                    deptListTable.getColumnModel().getColumn(4).setPreferredWidth(83);
-                    deptListTable.getColumnModel().getColumn(5).setPreferredWidth(119);
-                    deptListTable.getColumnModel().getColumn(6).setPreferredWidth(93);
-                    deptListTable.getColumnModel().getColumn(7).setPreferredWidth(88);
-                    deptListTable.getColumnModel().getColumn(8).setPreferredWidth(187);
+                    deptListTable.getColumnModel().getColumn(4).setPreferredWidth(93);
+                    deptListTable.getColumnModel().getColumn(5).setPreferredWidth(88);
+                    deptListTable.getColumnModel().getColumn(6).setPreferredWidth(187);
+                    deptListTable.getColumnModel().getColumn(7).setPreferredWidth(119);
                     scrollPane.setViewportView(deptListTable);
                     deptListTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -381,13 +380,12 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     // 得到选中表格中的哪一行，那一列的值
                     orgName.setText(dft.getValueAt(deptListTable.getSelectedRow(),1).toString());
                     textField_min.setText(dft.getValueAt(deptListTable.getSelectedRow(),2).toString());
-                    textField_year2.setText(dft.getValueAt(deptListTable.getSelectedRow(),7).toString());
+                    textField_year2.setText(dft.getValueAt(deptListTable.getSelectedRow(),5).toString());
                     textField_max.setText(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
                     //comboBox_college.setSelectedIndex(0);
-                    
-                    textField_year1.setText(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
+                    textField_year1.setText(dft.getValueAt(deptListTable.getSelectedRow(),4).toString());
                     try {
-                              textArea.setText(dft.getValueAt(deptListTable.getSelectedRow(),8).toString());
+                              textArea.setText(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
                     } catch (NullPointerException e) {
                               // TODO: handle exception
                               textArea.setText("");
@@ -414,18 +412,16 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     for (DeptStand ds: dStandList) {
                               // Vector类 是在 java 中可以实现自动增长的对象数组
                               Vector v = new Vector();
-                              v.add(ds.getStandId());
-                              v.add(this.getOrgNameById(ds.getOrgid()));
+                              v.add(ds.getStandId());//1
+                              v.add(this.getOrgNameById(ds.getOrgid()));//2
 //                              v.add(this.getOrgCollegeById(ds.getOrgid()));
-                              v.add(ds.getMin());
-                              v.add(ds.getMax());
-                            
-                              v.add(ds.getInNum());
-                              v.add(ds.getLoginDate());
-                             
-                              v.add(ds.getYear1());
-                              v.add(ds.getYear2());
-                              v.add(ds.getDeptExplain());
+                              v.add(ds.getMin());//3
+                              v.add(ds.getMax());//4
+//                              v.add(ds.getInNum());
+                              v.add(ds.getYear1());//5
+                              v.add(ds.getYear2());//6
+                              v.add(ds.getDeptExplain());//7
+                              v.add(ds.getLoginDate());//8
                               dft.addRow(v);
                     }
                     dStandDao.closeDao();

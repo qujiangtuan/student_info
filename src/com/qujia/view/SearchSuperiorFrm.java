@@ -76,6 +76,7 @@ public class SearchSuperiorFrm extends JDialog {
            */
           public SearchSuperiorFrm(JFrame fr) {
                     super(fr, "", true);
+                    setTitle("ÏßÅÏÜçÏÉÅÏÇ¨Ï°∞Ìöå");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 554, 300);
                     
@@ -198,7 +199,7 @@ public class SearchSuperiorFrm extends JDialog {
                     DefaultTableModel dft = (DefaultTableModel) table.getModel();
                     dft.setRowCount(0);
                     ProStaffDao psDao=new ProStaffDao();
-                    List<ProStaff> proStaffList = psDao.getSearchProStaffList(proStaff);
+                    List<ProStaff> proStaffList = psDao.getProStaffList( proStaff);
                     for(ProStaff pslist : proStaffList){
                               Vector v=new Vector();
                               v.add(pslist.getpNo());
@@ -222,7 +223,6 @@ public class SearchSuperiorFrm extends JDialog {
                     return null;
           }
 
-          //orgidø° ≈Î«ÿº≠ orgName∏¶ πﬁ¥¬¥Ÿ
           public String getOrgNameById(String id){
                     OrgDao orgDao=new OrgDao();
                     orgList = orgDao.getOrgList(new Org());

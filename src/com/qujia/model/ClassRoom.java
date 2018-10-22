@@ -1,37 +1,55 @@
 package com.qujia.model;
 
 public class ClassRoom {
-          private Integer crNo;
+          private int crNo;
           private String crName;
-          private String crExplain; //教室说明
+          private int counts;
+          private String exp; //교실설명
           
           public ClassRoom() {
                     super();
           }
-           
-          public Integer getCrNo() {
+
+        
+
+
+          public int getCrNo() {
                     return crNo;
           }
-          public void setCrNo(Integer crNo) {
+          public void setCrNo(int crNo) {
                     this.crNo = crNo;
           }
           public String getCrName() {
                     return crName;
           }
+
           public void setCrName(String crName) {
                     this.crName = crName;
           }
-          public String getCrExplain() {
-                    return crExplain;
+
+          public int getCounts() {
+                    return counts;
           }
-          public void setCrExplain(String crExplain) {
-                    this.crExplain = crExplain;
+
+          public void setCounts(int counts) {
+                    this.counts = counts;
           }
+
+          public String getExp() {
+                    return exp;
+          }
+
+          public void setExp(String exp) {
+                    this.exp = exp;
+          }
+
           @Override
           public String toString() {
-                    return "ClassRoom [crNo=" + crNo + ", crName=" + crName
-                                        + ", crExplain=" + crExplain + "]";
+                    return crName;
           }
+          
+           
+           
           
           
 }

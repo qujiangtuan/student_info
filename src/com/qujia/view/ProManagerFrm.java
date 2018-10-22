@@ -126,20 +126,20 @@ public class ProManagerFrm extends JFrame {
                     JLabel lblNewLabel_5 = new JLabel("소속조직:");
                     lblNewLabel_5.setBounds(18, 372, 63, 15);
                     
-                    JLabel lblNewLabel_10 = new JLabel("\uAD50\uC218\uC774\uB984:");
+                    JLabel lblNewLabel_10 = new JLabel("교직원이름:");
                     lblNewLabel_10.setFont(new Font("Dialog", Font.BOLD, 12));
-                    lblNewLabel_10.setBounds(45, 19, 57, 19);
+                    lblNewLabel_10.setBounds(45, 19, 76, 19);
                     
                     textField_proName = new JTextField();
-                    textField_proName.setBounds(112, 17, 67, 21);
+                    textField_proName.setBounds(124, 19, 67, 21);
                     textField_proName.setColumns(10);
                     
-                    JLabel lblNewLabel_11 = new JLabel("\uAD50\uC218\uBC88\uD638:");
+                    JLabel lblNewLabel_11 = new JLabel("교직원번호:");
                     lblNewLabel_11.setFont(new Font("Dialog", Font.BOLD, 12));
-                    lblNewLabel_11.setBounds(216, 18, 61, 20);
+                    lblNewLabel_11.setBounds(236, 18, 76, 20);
                     
                     textField_proNo = new JTextField();
-                    textField_proNo.setBounds(287, 17, 67, 21);
+                    textField_proNo.setBounds(320, 19, 67, 21);
                     textField_proNo.setColumns(10);
                     
                     scrollPane = new JScrollPane();
@@ -182,7 +182,7 @@ public class ProManagerFrm extends JFrame {
                     });
                     radioButtonName.setSelected(true);
                     radioButtonNo = new JRadioButton("");
-                    radioButtonNo.setBounds(189, 17, 21, 21);
+                    radioButtonNo.setBounds(207, 17, 21, 21);
                     radioButtonNo.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                     		textField_proName.setText("");
@@ -204,19 +204,19 @@ public class ProManagerFrm extends JFrame {
                     
                     JLabel lblNewLabel_13 = new JLabel("교직원구분:");
                     lblNewLabel_13.setFont(new Font("Dialog", Font.BOLD, 12));
-                    lblNewLabel_13.setBounds(365, 15, 76, 23);
+                    lblNewLabel_13.setBounds(399, 19, 76, 23);
                     
                     comboBox_proType = new JComboBox();
-                    comboBox_proType.setBounds(445, 17, 69, 21);
+                    comboBox_proType.setBounds(479, 21, 69, 21);
                     comboBox_proType.setModel(new DefaultComboBoxModel(new String[] {"", "교원", "직원"}));
                     
                     JLabel lblNewLabel_14 = new JLabel("소속조직:");
                     lblNewLabel_14.setFont(new Font("Dialog", Font.BOLD, 12));
-                    lblNewLabel_14.setBounds(562, 19, 62, 19);
+                    lblNewLabel_14.setBounds(593, 19, 62, 19);
                     bgroup2=new ButtonGroup();
                     
                     checkBox_searchOrg = new JCheckBox("");
-                    checkBox_searchOrg.setBounds(535, 17, 21, 21);
+                    checkBox_searchOrg.setBounds(566, 17, 21, 21);
                     checkBox_searchOrg.addItemListener(new ItemListener() {
                     	public void itemStateChanged(ItemEvent arg0) {
                                 if(checkBox_searchOrg.isSelected()){
@@ -272,7 +272,7 @@ public class ProManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uC6D0\uBC88\uD638", "\uC774\uB984", "\uC601\uC5B4\uC774\uB984", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18D\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC5F0\uB77D\uCC98", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC790", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
+                                        "\uAD50\uC9C1\uC6D0\uBC88\uD638", "\uAD50\uC9C1\uC6D0\uBA85", "\uC601\uC5B4\uBA85", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18C\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC5F0\uB77D\uCC98", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC790", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -323,7 +323,7 @@ public class ProManagerFrm extends JFrame {
                     
                     textField_orgName = new JTextField();
                     textField_orgName.setEnabled(false);
-                    textField_orgName.setBounds(637, 19, 116, 19);
+                    textField_orgName.setBounds(663, 19, 116, 19);
                     contentPane.add(textField_orgName);
                     textField_orgName.setColumns(10);
                     //这两条是显示横滚动条
@@ -345,9 +345,6 @@ public class ProManagerFrm extends JFrame {
         	  int row=table.getSelectedRow();
               if(row==-1){
                         JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
-                        return;
-              }
-              if(JOptionPane.showConfirmDialog(this, "삭제 하시겠습니까？") != JOptionPane.OK_OPTION){
                         return;
               }
               ProStaffDao psDao=new ProStaffDao();

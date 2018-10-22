@@ -34,7 +34,7 @@ import javax.swing.table.TableCellRenderer;
 
 import com.eltima.components.ui.DatePicker;
 import com.qujia.model.ClassRoom;
-import com.qujia.model.TableTime;
+import com.qujia.model.TimeTable;
 import com.qujia.util.DateUtil;
 
 public class CourseArrangeFrm extends JFrame {
@@ -121,16 +121,16 @@ public class CourseArrangeFrm extends JFrame {
                                        String crname=(String) table_1.getModel().getValueAt(1,3);
                                        cr.setCrName(crname);
                                        
-                                        TableTime tt=new TableTime();
+                                        TimeTable tt=new TimeTable();
                                         tt.setBool(bool);
                                         tt.setDateStart(dateStart);
                                         tt.setDateEnd(dateEnd);
-                                        tt.setCr(cr);
+//                                        tt.setCr(cr);
                                         Map<Integer, Object> map =new HashMap<Integer, Object>();
                                         map.put(1, tt.getBool());
                                         map.put(2,tt.getDateStart());
                                         map.put(3, tt.getDateEnd());
-                                        map.put(4, tt.getCr());
+//                                        map.put(4, tt.getCr());
                                         System.out.println(map);
                                         //System.out.println(bool);
                               }

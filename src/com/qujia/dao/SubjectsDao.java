@@ -95,4 +95,36 @@ public class SubjectsDao extends BaseDao {
                     }
                     return false;
           }
+          public String getSubId(String subName) {
+                    String sql="select sub_cod from subject where sub_name= ? ";
+                    String subid=null;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, subName);
+                              ResultSet rs = prst.executeQuery();
+                              while(rs.next()){
+                                        subid=rs.getString("sub_cod");
+                              }
+                    } catch (SQLException e) {
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return subid;
+          }
+          public String getSubName(String id) {
+                    String sql="select sub_name from subject where sub_cod= ? ";
+                    String subName=null;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, id);
+                              ResultSet rs = prst.executeQuery();
+                              while(rs.next()){
+                                        subName=rs.getString("sub_name");
+                              }
+                    } catch (SQLException e) {
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    return subName;
+          }
 }

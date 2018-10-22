@@ -245,7 +245,7 @@ public class AddDeptStandFrm extends JFrame {
                               return;
                     }
                     DeptStandDao dsDao=new DeptStandDao();
-                    int inNum=dsDao.getStudentCount(orgid);
+//                    int inNum=dsDao.getStudentCount(orgid);
                    DeptStand dStand=new DeptStand();
                    dStand.setOrgid(orgid);
                    dStand.setOrgName(deptName);
@@ -255,7 +255,7 @@ public class AddDeptStandFrm extends JFrame {
                    dStand.setYear1(year1);
                    dStand.setYear2(year2);
                    dStand.setDeptExplain(dept_exp);
-                   dStand.setInNum(inNum);
+//                   dStand.setInNum(inNum);
 
                     
                     

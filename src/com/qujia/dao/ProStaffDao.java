@@ -202,7 +202,7 @@ public class ProStaffDao extends BaseDao {
               return retString;
     }
   //get ProStaffDao List
-    public List<ProStaff> getSearchProStaffList(ProStaff ps){
+    public List<ProStaff> getSearchStaffList(ProStaff ps){
         List<ProStaff> retList=new ArrayList<ProStaff>();
         StringBuffer sqlString=new StringBuffer("select * from pro_staff where pro_type='직원'");
         if(!StringUtil.isEmpty(ps.getpName())){
@@ -228,13 +228,47 @@ public class ProStaffDao extends BaseDao {
                          psDate.setSupId(e.getString("sup_id")); 
                          psDate.setOrgName(e.getString("orgname"));
                          retList.add(psDate);
-                  }
-        } catch (SQLException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
+                    }
+                } catch (SQLException e) {
+                          // TODO Auto-generated catch block
+                          e.printStackTrace();
+                }
+                return retList;
         }
-        return retList;
+    //get 교원
+    public List<ProStaff> getSearchProList(ProStaff ps){
+        List<ProStaff> retList=new ArrayList<ProStaff>();
+        StringBuffer sqlString=new StringBuffer("select * from pro_staff where pro_type='교원'");
+        if(!StringUtil.isEmpty(ps.getpName())){
+                  sqlString.append(" and pname like '%"+ps.getpName()+"%'");
         }
+        if(!StringUtil.isEmpty(ps.getPerType())){
+            sqlString.append(" and per_type like '%"+ps.getPerType()+"%'");
+        }
+        if(!StringUtil.isEmpty(ps.getOrgId())){
+            sqlString.append(" and orgid like '%"+ps.getOrgId()+"%'");
+        }
+        try {
+                  PreparedStatement prst=con.prepareStatement(sqlString.toString());
+                  ResultSet e = prst.executeQuery();
+                  while(e.next()){
+                      ProStaff psData =new ProStaff();
+                      psData.setpNo(e.getString("pno"));
+                      psData.setpName(e.getString("pname"));
+                      psData.setPerType(e.getString("per_type"));
+                      psData.setTeaType(e.getString("tea_type"));
+                      psData.setSex(e.getString("sex"));
+                      psData.setOrgId(e.getString("orgid"));
+                      psData.setOrgName(e.getString("orgname"));
+                         retList.add(psData);
+                    }
+                } catch (SQLException e) {
+                          // TODO Auto-generated catch block
+                          e.printStackTrace();
+                }
+                return retList;
+        }
+    
         public boolean isProStaff(ProStaff ps) {
               String sql="select * from pro_staff where pno=? and email=?";
               try {
@@ -280,10 +314,41 @@ public class ProStaffDao extends BaseDao {
                                       psRst.setPassword(rs.getString("password"));
                            }
                   } catch (SQLException e1) {
-                            // TODO Auto-generated catch block
                             e1.printStackTrace();
                   }
                   return psRst;
         }
+        
+        public String getProId(String proName) {
+                  String sql="select pno from pro_staff where pname= ? ";
+                  String proid=null;
+                  try {
+                            PreparedStatement prst=con.prepareStatement(sql);
+                            prst.setString(1, proName);
+                            ResultSet rs = prst.executeQuery();
+                            while(rs.next()){
+                                      proid=rs.getString("pno");
+                            }
+                  } catch (SQLException e) {
+                            e.printStackTrace();
+                  }
+                  return proid;
+        }
+        
+            public String getProName(String proid) {
+                      String sql="select pname from pro_staff where pno= ? ";
+                      String proName=null;
+                      try {
+                                PreparedStatement prst=con.prepareStatement(sql);
+                                prst.setString(1, proid);
+                                ResultSet rs = prst.executeQuery();
+                                while(rs.next()){
+                                          proName=rs.getString("pname");
+                                }
+                      } catch (SQLException e) {
+                                e.printStackTrace();
+                      }
+                      return proName;
+            }
         
 }

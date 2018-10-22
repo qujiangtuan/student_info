@@ -14,18 +14,18 @@ public class DeptStandDao extends BaseDao {
           public boolean addDeptStand(DeptStand dStand) {
                    // insert into dept_stand values(stand_seq.nextval,'11334',52,null,'2015-06-20',124,4,12,'')
 //                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,null,?,?,?,?)";
-                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,?,?,?,?,?,?)";
+                    String sql = "insert into dept_stand values(stand_seq.nextval,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst = con.prepareStatement(sql);
                               prst.setString(1, dStand.getOrgid());
                               prst.setInt(2, dStand.getMin());
                               prst.setInt(3, dStand.getMax());
-                              prst.setInt(4, dStand.getInNum());
-                              prst.setString(5, dStand.getLoginDate());
-                              prst.setInt(6, dStand.getYear1());
-                              prst.setInt(7, dStand.getYear2());
-                              prst.setString(8, dStand.getDeptExplain());
-                              prst.setString(9, dStand.getOrgName());
+//                              prst.setInt(4, dStand.getInNum());
+                              prst.setString(4, dStand.getLoginDate());
+                              prst.setInt(5, dStand.getYear1());
+                              prst.setInt(6, dStand.getYear2());
+                              prst.setString(7, dStand.getDeptExplain());
+                              prst.setString(8, dStand.getOrgName());
                               if (prst.executeUpdate() > 0)
                                         return true;
                     } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class DeptStandDao extends BaseDao {
                                         dStandData.setOrgid(rs.getString("org_id"));;
                                         dStandData.setMin(rs.getInt("min"));
                                         dStandData.setMax(rs.getInt("max"));
-                                        dStandData.setInNum(rs.getInt("in_num"));
+//                                        dStandData.setInNum(rs.getInt("in_num"));
                                         dStandData.setLoginDate(rs.getString("login_date"));
                                         dStandData.setYear1(rs.getInt("year1"));
                                         dStandData.setYear2(rs.getInt("year2"));
@@ -108,24 +108,24 @@ public class DeptStandDao extends BaseDao {
                     
                     return false;
           }
-
-          public int getStudentCount(String orgid) {
-//                    String sqlString = "select count(*) from student where orgid=(select o.org_code from org o where o.name=?)";
-                    String sql= "select count(*) count1 from student where orgid=?";
-                    PreparedStatement prst;
-                    int counts = 0;
-                              try {
-                                        prst = con.prepareStatement(sql);
-                                        prst.setString(1,orgid);
-                                        ResultSet rs = prst.executeQuery();
-                                        while(rs.next()){
-                                                  counts=rs.getInt("count1");
-                                        }
-                                       
-                              } catch (SQLException e) {
-                                        e.printStackTrace();
-                              }
-                              
-                    return counts;
-          }
+//학과마다 학생 인수 계산
+//          public int getStudentCount(String orgid) {
+////                    String sqlString = "select count(*) from student where orgid=(select o.org_code from org o where o.name=?)";
+//                    String sql= "select count(*) count1 from student where orgid=?";
+//                    PreparedStatement prst;
+//                    int counts = 0;
+//                              try {
+//                                        prst = con.prepareStatement(sql);
+//                                        prst.setString(1,orgid);
+//                                        ResultSet rs = prst.executeQuery();
+//                                        while(rs.next()){
+//                                                  counts=rs.getInt("count1");
+//                                        }
+//                                       
+//                              } catch (SQLException e) {
+//                                        e.printStackTrace();
+//                              }
+//                              
+//                    return counts;
+//          }
 }

@@ -6,9 +6,12 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
 import com.qujia.view.SearchAddressFrm;
+import com.qujia.view.SearchClassRoomFrm;
 import com.qujia.view.SearchDeptForStuFrm;
 import com.qujia.view.SearchOrgForOrgFrm;
 import com.qujia.view.SearchOrgForProFrm;
+import com.qujia.view.SearchProfroCourseFrm;
+import com.qujia.view.SearchSubjectFrm;
 import com.qujia.view.SearchSuperiorFrm;
 
 public class ViewUtil extends JFrame{
@@ -59,6 +62,27 @@ public class ViewUtil extends JFrame{
                     double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
                     double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
                     searchOrgForOrgFrm.setLocation( (int) (width - searchOrgForOrgFrm.getWidth()) / 2,(int) (height - searchOrgForOrgFrm.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(SearchProfroCourseFrm searchProfroCourseFrm) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    searchProfroCourseFrm.setLocation( (int) (width - searchProfroCourseFrm.getWidth()) / 2,(int) (height - searchProfroCourseFrm.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(SearchSubjectFrm searchSubjectFrm) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    searchSubjectFrm.setLocation( (int) (width - searchSubjectFrm.getWidth()) / 2,(int) (height - searchSubjectFrm.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(SearchClassRoomFrm searchClassRoomFrm) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    searchClassRoomFrm.setLocation( (int) (width - searchClassRoomFrm.getWidth()) / 2,(int) (height - searchClassRoomFrm.getHeight()) / 2);
 //                    show();
           }
 }
