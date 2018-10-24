@@ -6,18 +6,48 @@ public class PerCourse {
           private String couName;
           private String couNo;
           private String learnType;
-          private String creditType;
+          private int creditType;
           private String proId;
           private String proName;
           private String classNo;
           private String ttcr;
           private String grade;
+          private String sno;//학번
+          private String sName;//학생명
+          private String couDept;//수강대상 /교과목소속학과
+          private String stuDept;//학생 소속학과
           
           
-          public String getCreditType() {
+          
+         
+          public String getCouDept() {
+                    return couDept;
+          }
+          public void setCouDept(String couDept) {
+                    this.couDept = couDept;
+          }
+          public String getStuDept() {
+                    return stuDept;
+          }
+          public void setStuDept(String stuDept) {
+                    this.stuDept = stuDept;
+          }
+          public String getsName() {
+                    return sName;
+          }
+          public void setsName(String sName) {
+                    this.sName = sName;
+          }
+          public String getSno() {
+                    return sno;
+          }
+          public void setSno(String sno) {
+                    this.sno = sno;
+          }
+          public int getCreditType() {
                     return creditType;
           }
-          public void setCreditType(String creditType) {
+          public void setCreditType(int creditType) {
                     this.creditType = creditType;
           }
           public String getYear() {

@@ -41,6 +41,7 @@ public class StudentDao extends BaseDao{
                 	  studentRst.setInSchState(rs.getString("insch_status"));
                 	  studentRst.setDegreeProcess(rs.getString("degree"));
                 	  studentRst.setInSchYear(rs.getString("sch_year"));
+                	  studentRst.setDeptName(rs.getString("deptname"));
                  }
         } catch (SQLException e) {
                   // TODO Auto-generated catch block
@@ -322,5 +323,24 @@ public class StudentDao extends BaseDao{
                               e1.printStackTrace();
                     }
                     return setStu;
+          }
+          public String getStuName(String sno) {
+                    String sql = "select name from student where sno= ? ";
+                    PreparedStatement prst =null;
+                    String stuName="";
+                    ResultSet rs;
+                    int id=0;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              rs = prst.executeQuery();
+                              while(rs.next()){
+                                        stuName=rs.getString("name");
+                             }
+                    } catch (SQLException e1) {
+                              // TODO Auto-generated catch block
+                              e1.printStackTrace();
+                    }
+                    return stuName;
           }
 }

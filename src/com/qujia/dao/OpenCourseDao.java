@@ -13,7 +13,7 @@ import com.qujia.util.StringUtil;
 public class OpenCourseDao extends BaseDao {
 
           public boolean loginCourse(OpenCourse oc) {
-                    String sql="insert into open_course values(?,?,?,?,?,?,?,?,?,null,?,?,?,?)";
+                    String sql="insert into open_course values(?,?,?,?,?,?,?,?,?,0,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, oc.getCouNo());
@@ -138,6 +138,23 @@ public class OpenCourseDao extends BaseDao {
           }
           //System.out.println(listToString2(retList, ','));        
           return retList;
+          }
+
+          public boolean updateCurrNum(String couNo, int count2) {
+                    String sql="update open_course set curr_num=?  where cou_no=?";
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setInt(1, count2);
+                              prst.setString(2, couNo);
+                              if(prst.executeUpdate()>0){
+                                        return true;
+                              }
+                    } catch (SQLException e) {    
+                              // TODO Auto-generated catch block
+                              e.printStackTrace();
+                    }
+                    
+                    return false;
           }
           
 }

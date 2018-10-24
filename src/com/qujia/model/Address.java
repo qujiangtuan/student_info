@@ -60,20 +60,20 @@ public class Address {
           @Override
           public String toString() {
                     if(ri!=null&&bldg!=null){
-                              return sido + "½Ã " + gugun + " " + dong
+                              return sido + "ì‹œ " + gugun + " " + dong
                                                   + " " + ri + " " + bldg
                                                   + " (" + zipcode + ")" ;
                     }
                     if(ri==null&&bldg==null){
-                              return sido + "½Ã " + gugun + " " + dong
+                              return sido + "ì‹œ " + gugun + " " + dong
                                                   + " (" + zipcode + ")" ;
                     }
                     if(ri!=null&&bldg==null){
-                              return sido + "½Ã " + gugun + " " + dong
+                              return sido + "ì‹œ " + gugun + " " + dong
                                                   + " " + ri + "  (" + zipcode + ")" ;
                     }
                     if(ri==null&&bldg!=null){
-                              return sido + "½Ã " + gugun + " " + dong
+                              return sido + "ì‹œ " + gugun + " " + dong
                                                   + " " + bldg
                                                   + " (" + zipcode + ")" ;
                     }

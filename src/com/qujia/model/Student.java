@@ -16,9 +16,9 @@ public class Student {
           private String major;
           private String applyDate;
           
-          private String inSchState;//���л���
-          private String degreeProcess;//�л����
-          private String inSchYear;//�г�
+          private String inSchState;//재학상태
+          private String degreeProcess;//학사과정
+          private String inSchYear;//학년
           private String deptName;
           
 

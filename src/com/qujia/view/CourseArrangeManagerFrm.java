@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.qujia.dao.ClassRoomDao;
 import com.qujia.dao.OpenCourseDao;
+import com.qujia.dao.PerCourseDao;
 import com.qujia.dao.ProStaffDao;
 import com.qujia.dao.SubjectsDao;
 import com.qujia.dao.TimeTableDao;
@@ -97,7 +98,19 @@ public class CourseArrangeManagerFrm extends JFrame {
           private  DefaultTableModel dft=new DefaultTableModel();
           private OpenCourseDao ocDao=new OpenCourseDao();
           private String couNo;
+          private static int currNum;//수강 현원
           
+          
+          public static int getCurrNum(String couNo) {
+                    PerCourseDao pcDao=new PerCourseDao();
+                    currNum= pcDao.getCurrNum(couNo);
+                    return currNum;
+          }
+
+          public void setCurrNum(int currNum) {
+                    this.currNum = currNum;
+          }
+
           /**
            * Launch the application.
            */
@@ -1259,7 +1272,8 @@ public class CourseArrangeManagerFrm extends JFrame {
                              v.add(o.getTerm());
                              v.add(o.getClassNo());
                              v.add(o.getFixedNum());
-                             v.add(o.getCurrNum());
+//                             v.add(o.getCurrNum());
+                             v.add(this.getCurrNum(o.getCouNo()));
 //                             tvList=ocDao.getTimeList(o.getCouNo());
 //                             classStr=this.listToString2(tvList,',');
 //                             v.add(classStr);

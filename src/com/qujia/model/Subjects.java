@@ -1,5 +1,5 @@
 package com.qujia.model;
-//������
+//교과목
 public class Subjects {
           private String subCode;
           private String subName;//교과목명

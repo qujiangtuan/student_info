@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.qujia.model.StudentClass;
 import com.qujia.util.DBUtil;
 import com.qujia.util.StringUtil;
 

@@ -72,6 +72,7 @@ public class YearDeptStandDao extends BaseDao {
                     
                     return retList;
           }
+        //학변별 학사기준 천제 list
           public List<YearDeptStand> getYDSList2(YearDeptStand ydStand){
                     List<YearDeptStand> retList=new ArrayList<YearDeptStand>();
                     String sqlString=null;
@@ -121,7 +122,7 @@ public class YearDeptStandDao extends BaseDao {
                     return retList;
           }
           
-          //�г⺰ �л���� ����
+          //학년별 학사기준 변경
           public boolean updateDStand(YearDeptStand ydStand) {
                     String sql="update year_stand set credit=?,major=?,major_must=?,cul_must=?,rec_tatio=?,rec_temp=?,rec_form=?  where year_no=?";
                     PreparedStatement prst;
@@ -144,7 +145,7 @@ public class YearDeptStandDao extends BaseDao {
                     
                     return false;
           }
-        //�г⺰ �л���� ����
+        //학년별 학사기준 삭제
           public boolean delete(String yearNo) {
                     String sql="delete from year_stand where year_no=?";
                     try {

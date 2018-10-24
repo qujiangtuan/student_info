@@ -2,19 +2,19 @@ package com.qujia.model;
 
 
 public class DeptStand {
-          private String standId; //±âÁØ id
-          private String orgName;//#Á¶Á÷ ÀÌ¸§
-          private String college;//#¼Ò¼Ó´ëÇĞ/´ëÇĞ¿ø
-          private String orgid;//Á¶Á÷ ÄÚµå
-//          private Integer credit;//ÀÌ¼öÇĞÁ¡
-//          private Integer pNum;//¸ğÁıÀÎ¿ø
+          private String standId; //ê¸°ì¤€ id
+          private String orgName;//#ì¡°ì§ ì´ë¦„
+          private String college;//#ì†Œì†ëŒ€í•™/ëŒ€í•™ì›
+          private String orgid;//ì¡°ì§ ì½”ë“œ
+//          private Integer credit;//ì´ìˆ˜í•™ì 
+//          private Integer pNum;//ëª¨ì§‘ì¸ì›
           private Integer min;
           private Integer max;
-          private Integer inNum;//ÀçÇĞÀÎ¿ø
-          private String loginDate;//µî·Ï ÀÏÀÚ
-          private Integer year1;//¼öÇĞ³âÇÑ
-          private Integer year2;//ÀçÇĞ³âÇÑ
-          private String deptExplain;//±âÁØ º¸Ãæ¼³¸í
+          private Integer inNum;//ì¬í•™ì¸ì›
+          private String loginDate;//ë“±ë¡ ì¼ì
+          private Integer year1;//ìˆ˜í•™ë…„í•œ
+          private Integer year2;//ì¬í•™ë…„í•œ
+          private String deptExplain;//ê¸°ì¤€ ë³´ì¶©ì„¤ëª…
           
           public Integer getInNum() {
                     return inNum;
@@ -67,18 +67,18 @@ public class DeptStand {
 //          }
 
           public Integer getMin() {
-			return min;
-		}
-		public void setMin(Integer min) {
-			this.min = min;
-		}
-		public Integer getMax() {
-			return max;
-		}
-		public void setMax(Integer max) {
-			this.max = max;
-		}
-		public String getLoginDate() {
+            return min;
+        }
+        public void setMin(Integer min) {
+            this.min = min;
+        }
+        public Integer getMax() {
+            return max;
+        }
+        public void setMax(Integer max) {
+            this.max = max;
+        }
+        public String getLoginDate() {
                     return loginDate;
           }
 
