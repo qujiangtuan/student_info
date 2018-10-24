@@ -1,6 +1,6 @@
 package com.qujia.view;
 /*
- * ºˆ∞≠Ω≈√ª
+ * ÏàòÍ∞ïÏã†Ï≤≠
  */
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -71,37 +71,18 @@ public class ScoreShowToStudentFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     panel_one = new JPanel();
-                    Border border_1=BorderFactory.createTitledBorder("∞≥¿Œ¡§∫∏");
+                    panel_one.setBounds(17, 5, 870, 81);
+                    Border border_1=BorderFactory.createTitledBorder("Í∞úÏù∏Ï†ïÎ≥¥");
                     panel_one.setBorder(border_1);
                     
                     panel_two = new JPanel();
-                    Border border_2=BorderFactory.createTitledBorder("¡∂»Ò¡∂∞«");
+                    panel_two.setBounds(17, 96, 870, 90);
+                    Border border_2=BorderFactory.createTitledBorder("Ï°∞Ìù¨Ï°∞Í±¥");
                     panel_two.setBorder(border_2);
                     
                     card=new CardLayout(0, 0);
                     panel_three = new JPanel(card);
-                    
-                    
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(panel_three, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-                                                            .addComponent(panel_two, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-                                                            .addComponent(panel_one, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addComponent(panel_one, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(10)
-                                                  .addComponent(panel_two, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addComponent(panel_three, GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                                                  .addContainerGap())
-                    );
+                    panel_three.setBounds(17, 192, 870, 233);
                     
                     panel_three.setLayout(card);
                     
@@ -264,81 +245,40 @@ public class ScoreShowToStudentFrm extends JFrame {
                     panel_c_3.setLayout(gl_panel_c_3);
                     
                     JLabel label_dept = new JLabel("\uC18C\uC18D\uB300\uD559(\uC6D0):");
+                    label_dept.setBounds(18, 38, 91, 15);
                     
                     JLabel label_schoolyear = new JLabel("\uD559    \uB144:");
+                    label_schoolyear.setBounds(581, 17, 62, 15);
                     
                     JLabel label_major = new JLabel("\uD559\uBD80(\uACFC):");
+                    label_major.setBounds(327, 38, 67, 15);
                     
                     JLabel label_grade = new JLabel("\uD559\uC704\uACFC\uC815:");
+                    label_grade.setBounds(573, 38, 70, 15);
                     
-                    JLabel label_name = new JLabel("\uC131        \uBA85:");
+                    JLabel label_name = new JLabel("ÏÑ±          Î™Ö:");
+                    label_name.setBounds(18, 17, 91, 15);
                     
                     JLabel label_no = new JLabel("\uD559    \uBC88:");
+                    label_no.setBounds(333, 17, 61, 15);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uCDE8\uC9C0\uC559\uD22C\uC548");
+                    lblNewLabel_1.setBounds(104, 17, 119, 15);
                     
                     JLabel lblNewLabel_2 = new JLabel("201518047");
+                    lblNewLabel_2.setBounds(395, 17, 119, 15);
                     
                     JLabel label = new JLabel("4");
+                    label.setBounds(637, 17, 85, 15);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uACF5\uACFC\uB300\uD559");
+                    lblNewLabel_3.setBounds(104, 38, 119, 15);
                     
                     JLabel lblNewLabel_4 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
+                    lblNewLabel_4.setBounds(395, 38, 119, 15);
                     
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0AC\uACFC\uC815");
-                    GroupLayout gl_panel_one = new GroupLayout(panel_one);
-                    gl_panel_one.setHorizontalGroup(
-                              gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel_one.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.TRAILING)
-                                                            .addComponent(label_dept)
-                                                            .addComponent(label_name))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(lblNewLabel_3))
-                                                  .addPreferredGap(ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.TRAILING)
-                                                            .addComponent(label_no)
-                                                            .addComponent(label_major))
-                                                  .addGap(18)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(lblNewLabel_4))
-                                                  .addPreferredGap(ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.TRAILING)
-                                                            .addComponent(label_schoolyear)
-                                                            .addComponent(label_grade))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(label)
-                                                            .addComponent(lblNewLabel_5))
-                                                  .addGap(179))
-                    );
-                    gl_panel_one.setVerticalGroup(
-                              gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_panel_one.createSequentialGroup()
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_name)
-                                                            .addComponent(label_schoolyear)
-                                                            .addComponent(label_no)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(label))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addGroup(gl_panel_one.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_panel_one.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(label_dept)
-                                                                      .addComponent(label_major)
-                                                                      .addComponent(lblNewLabel_3)
-                                                                      .addComponent(lblNewLabel_4))
-                                                            .addGroup(gl_panel_one.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(label_grade)
-                                                                      .addComponent(lblNewLabel_5)))
-                                                  .addContainerGap(21, Short.MAX_VALUE))
-                    );
-                    panel_one.setLayout(gl_panel_one);
+                    lblNewLabel_5.setBounds(637, 38, 85, 15);
                     
                     JRadioButton all_RadioButton = new JRadioButton("\uCC9C\uC81C\uD559\uAE30");
                     all_RadioButton.setSelected(true);
@@ -397,27 +337,27 @@ public class ScoreShowToStudentFrm extends JFrame {
                                                   .addContainerGap()
                                                   .addGroup(gl_panel_two.createParallelGroup(Alignment.LEADING)
                                                             .addGroup(gl_panel_two.createSequentialGroup()
-                                                                      .addComponent(all_Button)
-                                                                      .addGap(18)
-                                                                      .addComponent(term_Button)
-                                                                      .addGap(18)
-                                                                      .addComponent(creditButton)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
-                                                                      .addComponent(btnNewButton)
-                                                                      .addGap(18)
-                                                                      .addComponent(search_Button)
-                                                                      .addGap(31))
-                                                            .addGroup(gl_panel_two.createSequentialGroup()
-                                                                      .addComponent(all_RadioButton)
-                                                                      .addGap(18)
-                                                                      .addComponent(current_RadioButton)
-                                                                      .addGap(57)
-                                                                      .addComponent(label_year)
+                                                                      .addComponent(all_Button, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
                                                                       .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(term_Button, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(creditButton, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
+                                                                      .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
+                                                                      .addComponent(search_Button, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(20))
+                                                            .addGroup(gl_panel_two.createSequentialGroup()
+                                                                      .addComponent(all_RadioButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(current_RadioButton, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(44)
+                                                                      .addComponent(label_year, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED)
                                                                       .addComponent(spinner_year, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
                                                                       .addGap(26)
                                                                       .addComponent(comboBox_term, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE)
-                                                                      .addContainerGap(341, Short.MAX_VALUE))))
+                                                                      .addContainerGap(337, Short.MAX_VALUE))))
                     );
                     gl_panel_two.setVerticalGroup(
                               gl_panel_two.createParallelGroup(Alignment.LEADING)
@@ -438,7 +378,22 @@ public class ScoreShowToStudentFrm extends JFrame {
                                                   .addContainerGap(14, Short.MAX_VALUE))
                     );
                     panel_two.setLayout(gl_panel_two);
-                    
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(panel_three);
+                    contentPane.add(panel_two);
+                    contentPane.add(panel_one);
+                    panel_one.setLayout(null);
+                    panel_one.add(label_dept);
+                    panel_one.add(label_name);
+                    panel_one.add(lblNewLabel_1);
+                    panel_one.add(lblNewLabel_3);
+                    panel_one.add(label_no);
+                    panel_one.add(label_major);
+                    panel_one.add(lblNewLabel_2);
+                    panel_one.add(lblNewLabel_4);
+                    panel_one.add(label_schoolyear);
+                    panel_one.add(label_grade);
+                    panel_one.add(label);
+                    panel_one.add(lblNewLabel_5);
           }
 }

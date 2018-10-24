@@ -186,14 +186,14 @@ public class SubjectManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uC57D\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uC870\uC9C1", "\uC124\uBA85"
+                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uC870\uC9C1", "\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -201,10 +201,10 @@ public class SubjectManagerFrm extends JFrame {
                     });
                     table.getColumnModel().getColumn(1).setPreferredWidth(133);
                     table.getColumnModel().getColumn(2).setPreferredWidth(142);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(64);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(61);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(111);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(134);
+                    table.getColumnModel().getColumn(3).setPreferredWidth(64);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(61);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(111);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(214);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                   scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -267,7 +267,7 @@ public class SubjectManagerFrm extends JFrame {
                     }
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();
                     String learnType = comboBox_learnType.getSelectedItem().toString();
-                    String credit=comboBox_credit.getSelectedItem().toString();
+                    int credit=Integer.parseInt(comboBox_credit.getSelectedItem().toString());
                     String colType = comboBox_colType.getSelectedItem().toString();
                     String subExp;
                     try {
@@ -339,19 +339,19 @@ public class SubjectManagerFrm extends JFrame {
                     }
                     //이수구분/이수학점/대상 learnType,credit,colType;
                     //comboBox_learnType,comboBox_credit,comboBox_colType;
-                    String getlearnType=dft.getValueAt(table.getSelectedRow(), 5).toString();
+                    String getlearnType=dft.getValueAt(table.getSelectedRow(), 4).toString();
                     for(int i=0;i<comboBox_learnType.getItemCount();i++){
                               if(getlearnType.equals(learnType[i])){
                                         comboBox_learnType.setSelectedIndex(i);
                               }
                     }
-                    String getcredit=dft.getValueAt(table.getSelectedRow(), 6).toString();
+                    String getcredit=dft.getValueAt(table.getSelectedRow(), 5).toString();
                     for(int i=0;i<comboBox_credit.getItemCount();i++){
                               if(getcredit.equals(credit[i])){
                                         comboBox_credit.setSelectedIndex(i);
                               }
                     }
-                    String getcolType=dft.getValueAt(table.getSelectedRow(), 4).toString();
+                    String getcolType=dft.getValueAt(table.getSelectedRow(), 3).toString();
                     for(int i=0;i<comboBox_colType.getItemCount();i++){
                               if(getcolType.equals(colType[i])){
                                         comboBox_colType.setSelectedIndex(i);
@@ -359,7 +359,7 @@ public class SubjectManagerFrm extends JFrame {
                     }
                     String getSubExp;
                     try {
-                              getSubExp=dft.getValueAt(table.getSelectedRow(), 8).toString();
+                              getSubExp=dft.getValueAt(table.getSelectedRow(), 7).toString();
                               textArea.setText(getSubExp);
                     } catch (Exception e) {
                               textArea.setText("");
@@ -377,7 +377,6 @@ public class SubjectManagerFrm extends JFrame {
                               v.add(sb.getSubCode());
                               v.add(sb.getSubName());
                               v.add(sb.getSubEname());
-                              v.add(sb.getSubMname());
                               v.add(sb.getColType());
                               v.add(sb.getLearnType());
                               v.add(sb.getCreditType());
@@ -396,14 +395,4 @@ public class SubjectManagerFrm extends JFrame {
                     }
                     return "";
           }
-//        //학과(부서)선택-->검색용
-//          protected void setDeptName() {
-//                    // TODO Auto-generated method stub
-//                    OrgDao orgDao=new OrgDao();
-//                    orgList = orgDao.getOrgdeptNameList(new Org());
-//                    for (Org org : orgList) {
-//                               comboBox_searchDept.addItem(org);
-//                    }
-//                    orgDao.closeDao();
-//          }
 }

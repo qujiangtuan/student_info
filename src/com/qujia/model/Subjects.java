@@ -1,19 +1,26 @@
 package com.qujia.model;
-//±³°ú¸ñ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class Subjects {
           private String subCode;
-          private String subName;//±³°ú¸ñ¸í
-          private String subEname;//±³°ú¸ñ ¿µ¾î¸í
-          private String subMname;//±³°ú¸ñ ¾à¾î¸í
-          private String learnType;//ÀÌ¼ö±¸ºĞ(ÀüÇÊ...)
-          private String creditType;//ÀÌ¼öÇĞÁ¡(3,2,1)
-          private String orgId;//¼Ò¼ÓºÎ¼­
-          private String colType;//´ë»ó(´ëÇĞ»ı,´ëÇĞ¿ø»ı)
-          private String subExp;//±³°ú¸ñ ¼³¸í
+          private String subName;//êµê³¼ëª©ëª…
+          private String subEname;//êµê³¼ëª© ì˜ì–´ëª…
+          private String subMname;//êµê³¼ëª© ì•½ì–´ëª…
+          private String learnType;//ì´ìˆ˜êµ¬ë¶„(ì „í•„...)
+          private int creditType;//ì´ìˆ˜í•™ì (3,2,1)
+          private String orgId;//ì†Œì†ë¶€ì„œ
+          private String colType;//ëŒ€ìƒ(ëŒ€í•™ìƒ,ëŒ€í•™ì›ìƒ)
+          private String subExp;//êµê³¼ëª© ì„¤ëª…
           private String orgName;
           
           
           
+          
+          public int getCreditType() {
+                    return creditType;
+          }
+          public void setCreditType(int creditType) {
+                    this.creditType = creditType;
+          }
           public String getOrgName() {
                     return orgName;
           }
@@ -49,12 +56,6 @@ public class Subjects {
           }
           public void setLearnType(String learnType) {
                     this.learnType = learnType;
-          }
-          public String getCreditType() {
-                    return creditType;
-          }
-          public void setCreditType(String creditType) {
-                    this.creditType = creditType;
           }
           public String getOrgId() {
                     return orgId;

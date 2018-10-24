@@ -158,27 +158,27 @@ public class PersonalInfo_stu extends JFrame {
                     label_address.setText(stuTemp.getAdress());
                     
           }
-        private String getApptype() {
+          private String getApptype() {
                     if(StringUtil.isEmpty(stuTemp.getMajorType())){
-                              return "Ãß°¡Àü°ø:";
+                              return "ì¶”ê°€ì „ê³µ:";
                     }else{
-                              if("ºÎÀü°ø".equals(stuTemp.getMajorType())){
-                                        return "ºÎ Àü  °ø:";
+                              if("ë¶€ì „ê³µ".equals(stuTemp.getMajorType())){
+                                        return "ë¶€ ì „  ê³µ:";
                               }else{
-                                        return "º¹¼öÀü°ø:";
+                                        return "ë³µìˆ˜ì „ê³µ:";
                               }
                     }
           }
 
         private String getAppendMajor() {
                    if(StringUtil.isEmpty(stuTemp.getMajor())){
-                             return "¾øÀ½";
+                             return "ì—†ìŒ";
                    }else{
                              return stuTemp.getMajor();
                    }
           }
 
-        //orgid¿¡ ÅëÇØ¼­ orgName¸¦ ¹Ş´Â´Ù
+        //orgidì— í†µí•´ì„œ orgNameë¥¼ ë°›ëŠ”ë‹¤
           public String getOrgNameById(String id){
                     OrgDao orgDao=new OrgDao();
                     orgList = orgDao.getOrgList(new Org());

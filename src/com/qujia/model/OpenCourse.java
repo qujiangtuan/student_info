@@ -15,10 +15,15 @@ public class OpenCourse {
           private String proName;
           private String loginDate;
           private TimeView tv;
-          
-          
+          private String ttcr; //시간/강의실
           
            
+          public String getTtcr() {
+                    return ttcr;
+          }
+          public void setTtcr(String ttcr) {
+                    this.ttcr = ttcr;
+          }
           public TimeView getTv() {
                     return tv;
           }

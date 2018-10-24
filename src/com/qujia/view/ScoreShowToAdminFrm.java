@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,24 +64,33 @@ public class ScoreShowToAdminFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uD559\uC0DD\uC774\uB984:");
+                    lblNewLabel.setBounds(52, 29, 68, 15);
                     
                     textField = new JTextField();
+                    textField.setBounds(115, 26, 109, 21);
                     textField.setColumns(10);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uD559\uBC88:");
+                    lblNewLabel_1.setBounds(299, 29, 41, 15);
                     
                     textField_1 = new JTextField();
+                    textField_1.setBounds(339, 26, 116, 21);
                     textField_1.setColumns(10);
                     
                     JButton searchStuButton = new JButton("\uC870 \uD68C");
+                    searchStuButton.setBounds(512, 25, 81, 23);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(35, 58, 645, 89);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uD559\uC0DD\uC774\uB984:");
+                    lblNewLabel_2.setBounds(50, 177, 70, 15);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uCDE8 \uC9C0\uC559\uD22C\uC548");
+                    lblNewLabel_3.setBounds(123, 177, 128, 15);
                     
                     scoreButton = new JButton("\uC131\uC801\uD655\uC778");
+                    scoreButton.setBounds(317, 173, 103, 23);
                     scoreButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         card.show(panel_card, "panel_score");
@@ -90,6 +98,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                     });
                     
                     creditButton = new JButton("\uD559\uC810\uD655\uC778");
+                    creditButton.setBounds(438, 173, 103, 23);
                     creditButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         card.show(panel_card, "panel_credit");
@@ -97,61 +106,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                     });
                     
                     panel_card = new JPanel();
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(46)
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(75)
-                                                                      .addComponent(lblNewLabel_1)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(57)
-                                                                      .addComponent(searchStuButton))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(48)
-                                                                      .addComponent(lblNewLabel_2)
-                                                                      .addGap(18)
-                                                                      .addComponent(lblNewLabel_3)
-                                                                      .addGap(152)
-                                                                      .addComponent(scoreButton)
-                                                                      .addGap(18)
-                                                                      .addComponent(creditButton))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(30)
-                                                                      .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 645, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(panel_card, GroupLayout.PREFERRED_SIZE, 691, GroupLayout.PREFERRED_SIZE)))
-                                                  .addContainerGap(11, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(20)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(searchStuButton))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(26)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(lblNewLabel_3)
-                                                            .addComponent(scoreButton)
-                                                            .addComponent(creditButton))
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addComponent(panel_card, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(53, Short.MAX_VALUE))
-                    );
+                    panel_card.setBounds(17, 202, 691, 251);
                     card=new CardLayout(0, 0);
                     panel_card.setLayout(card);
                     
@@ -265,6 +220,17 @@ public class ScoreShowToAdminFrm extends JFrame {
                               }
                     });
                     scrollPane.setViewportView(table_student);
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(textField_1);
+                    contentPane.add(searchStuButton);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(scoreButton);
+                    contentPane.add(creditButton);
+                    contentPane.add(scrollPane);
+                    contentPane.add(panel_card);
           }
 }

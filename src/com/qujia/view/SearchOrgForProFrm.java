@@ -189,12 +189,12 @@ public class SearchOrgForProFrm extends JDialog {
                     return orgid;
           }
 
-          //ÇÑÇà¼±ÅÃ event
+          //í•œí–‰ì„ íƒ event
           protected void selectRow(MouseEvent e) {
                     index=table.getSelectedRow();
           }
 
-          //Á¶È¸ 
+          //ì¡°íšŒ 
           protected void searchDept(ActionEvent e) {
                     Org org=new Org();
                     String searchName,gdmCode,orgType;
@@ -236,7 +236,7 @@ public class SearchOrgForProFrm extends JDialog {
                     }
                     orgDao.closeDao();
           }
-        //classId¿¡ ÅëÇØ¼­ className¸¦ ¹Ş´Â´Ù
+        //classIdì— í†µí•´ì„œ classNameë¥¼ ë°›ëŠ”ë‹¤
           public String getDeptNameById(String id){
                     for(Org org:orgList){
                             if(org.getOrgCode().equals(id)) return org.getName();

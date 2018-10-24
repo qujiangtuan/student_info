@@ -171,26 +171,26 @@ public class AddYearStandFrm extends JFrame {
                     return SearchDeptForStuFrm.getDeptName();
           }
 
-                    //ÇĞ³âº° ÇĞ°ú±âÁØ µî·Ï
+                    //í•™ë…„ë³„ í•™ê³¼ê¸°ì¤€ ë“±ë¡
 	          protected void submitAction(ActionEvent e) {
 	                    String deptName = textField_deptName.getText().toString();
-	                    String orgCode = this.getOrgidByOrgName(deptName);//Á¶Á÷ÄÚµå
-	                    String yearStart=DateUtil.getThisYear();//Àû¿ë½ÃÀÛ³âÇÑ
-	                    String yearEnd=(Integer.parseInt(DateUtil.getThisYear())+1)+"";//Àû¿ëÁ¾·á³âÇÑ
-	                    String yearNo=getYearNo(yearStart);//ÇĞ³âº°±âÁØ¹øÈ£
+	                    String orgCode = this.getOrgidByOrgName(deptName);//ì¡°ì§ì½”ë“œ
+	                    String yearStart=DateUtil.getThisYear();//ì ìš©ì‹œì‘ë…„í•œ
+	                    String yearEnd=(Integer.parseInt(DateUtil.getThisYear())+1)+"";//ì ìš©ì¢…ë£Œë…„í•œ
+	                    String yearNo=getYearNo(yearStart);//í•™ë…„ë³„ê¸°ì¤€ë²ˆí˜¸
 	                    int creditAll,majorScore,majorMustScore,culScore,culMustScore,recTatio,recTemp,recForm;
 	                    try {
-	                                creditAll = Integer.parseInt( textField_creditAll.getText().toString());//Á¹¾÷ÀÌ¼öÇĞÁ¡
-	                                majorScore = Integer.parseInt( textField_majorScore.getText().toString());//Àü°øÀÌ¼öÇĞÁ¡
-	                                majorMustScore = Integer.parseInt( textField_majorMustScore.getText().toString());//Àü°øÇÊ¼öÇĞÁ¡
-//	                            int culScore = Integer.parseInt( textField_culScore.getText().toString());//±³¾çÀÌ¼öÇĞÁ¡
+	                                creditAll = Integer.parseInt( textField_creditAll.getText().toString());//ì¡¸ì—…ì´ìˆ˜í•™ì 
+	                                majorScore = Integer.parseInt( textField_majorScore.getText().toString());//ì „ê³µì´ìˆ˜í•™ì 
+	                                majorMustScore = Integer.parseInt( textField_majorMustScore.getText().toString());//ì „ê³µí•„ìˆ˜í•™ì 
+//	                            int culScore = Integer.parseInt( textField_culScore.getText().toString());//êµì–‘ì´ìˆ˜í•™ì 
 	                                culScore=creditAll-majorScore;
-	                                culMustScore = Integer.parseInt( textField_culMustScore.getText().toString());//±³¾çÇÊ¼öÇĞÁ¡
-	                                recTatio = Integer.parseInt( textField_recTatio.getText().toString());//¸ğÁıºñÀ²
-	                                recTemp = Integer.parseInt( textField_recTemp.getText().toString());//¼ö½Ã¸ğÁıÀÎ¿ø
-	                                recForm = Integer.parseInt( textField_recForm.getText().toString());//Á¤½Ã¸ğÁıÀÎ¿ø
+	                                culMustScore = Integer.parseInt( textField_culMustScore.getText().toString());//êµì–‘í•„ìˆ˜í•™ì 
+	                                recTatio = Integer.parseInt( textField_recTatio.getText().toString());//ëª¨ì§‘ë¹„ìœ¨
+	                                recTemp = Integer.parseInt( textField_recTemp.getText().toString());//ìˆ˜ì‹œëª¨ì§‘ì¸ì›
+	                                recForm = Integer.parseInt( textField_recForm.getText().toString());//ì •ì‹œëª¨ì§‘ì¸ì›
                     } catch (Exception e2) {
-                              JOptionPane.showMessageDialog(this,"¼ıÀÚ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+                              JOptionPane.showMessageDialog(this,"ìˆ«ì ë°ì´í„°ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
                               return;
                     }
 	                    String loginDate=DateUtil.getTodayDate();
@@ -211,18 +211,18 @@ public class AddYearStandFrm extends JFrame {
 	                    yds.setDeptName(deptName);
 	                    YearDeptStandDao ydsDao=new YearDeptStandDao();
 	                    if(ydsDao.addYearStand(yds)){
-	                              JOptionPane.showMessageDialog(this, "ÇĞ³â¹úÇĞ»ç±âÁØ µî·Ï ¼º°øÇß½À´Ï´Ù!");
+	                              JOptionPane.showMessageDialog(this, "í•™ë…„ë²Œí•™ì‚¬ê¸°ì¤€ ë“±ë¡ ì„±ê³µí–ˆìŠµë‹ˆë‹¤!");
 	                    }else{
-	                              JOptionPane.showMessageDialog(this, "ÇĞ³â¹úÇĞ»ç±âÁØ µî·Ï ½ÇÆĞÇß½À´Ï´Ù!");
+	                              JOptionPane.showMessageDialog(this, "í•™ë…„ë²Œí•™ì‚¬ê¸°ì¤€ ë“±ë¡ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤!");
 	                    }
 	          }
-	          //ÇĞ³â¹ú ±âÁØ¹øÈ£ pk
+	          //í•™ë…„ë²Œ ê¸°ì¤€ë²ˆí˜¸ pk
 	          private String getYearNo(String yearStart) {
                     String yearNO1=yearStart+StringUtil.getRandom2();
                       return yearNO1;
               }
 
-	    //orgName¿¡ ÅëÇØ¼­ orgid¸¦ ¹Ş´Â´Ù
+	    //orgNameì— í†µí•´ì„œ orgidë¥¼ ë°›ëŠ”ë‹¤
           public String getOrgidByOrgName(String name){
                     OrgDao orgDao=new OrgDao();
                     orgList = orgDao.getOrgList(new Org());

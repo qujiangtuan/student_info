@@ -2,8 +2,6 @@ package com.qujia.view;
 
 import java.awt.EventQueue;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -60,132 +57,66 @@ public class CourseListStuFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uD559\uC218\uBC88\uD638:");
+                    lblNewLabel.setBounds(51, 69, 68, 15);
                     
                     textField = new JTextField();
+                    textField.setBounds(131, 66, 116, 21);
                     textField.setColumns(10);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uAD50\uACFC\uBAA9\uBA85:");
+                    lblNewLabel_1.setBounds(295, 69, 61, 15);
                     
                     textField_1 = new JTextField();
+                    textField_1.setBounds(374, 66, 129, 21);
                     textField_1.setColumns(10);
                     
                     JButton btnNewButton = new JButton("\uAC80 \uC0C9");
+                    btnNewButton.setBounds(721, 65, 81, 23);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uAD50\uC218\uBA85:");
+                    lblNewLabel_2.setBounds(529, 69, 52, 15);
                     
                     textField_2 = new JTextField();
+                    textField_2.setBounds(599, 66, 115, 21);
                     textField_2.setColumns(10);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(17, 106, 839, 232);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC2DC\uC791\uC77C\uC790:");
+                    lblNewLabel_3.setBounds(51, 15, 116, 25);
                     
                     DatePicker datePicker = new DatePicker();
+                    datePicker.setBounds(179, 15, 160, 25);
                     
                     JLabel label = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC885\uB8CC\uC77C\uC790:");
+                    label.setBounds(427, 15, 129, 25);
                     
                     DatePicker datePicker_1 = new DatePicker();
+                    datePicker_1.setBounds(561, 15, 160, 21);
                     
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0DD\uD559\uBC88:");
+                    lblNewLabel_5.setBounds(17, 360, 67, 15);
                     
                     textField_3 = new JTextField();
+                    textField_3.setBounds(96, 357, 126, 21);
                     textField_3.setColumns(10);
                     
                     JButton btnNewButton_3 = new JButton("\uAE30\uAC04\uBCC0\uACBD");
+                    btnNewButton_3.setBounds(733, 15, 105, 23);
                     
                     JLabel lblNewLabel_4 = new JLabel("\uD559\uC218\uBC88\uD638:");
+                    lblNewLabel_4.setBounds(243, 360, 68, 15);
                     
                     textField_4 = new JTextField();
+                    textField_4.setBounds(323, 357, 185, 21);
                     textField_4.setColumns(10);
                     
                     JButton btnNewButton_1 = new JButton("\uD655 \uC778");
+                    btnNewButton_1.setBounds(544, 356, 86, 23);
                     
                     JButton btnNewButton_2 = new JButton("\uC218\uAC15\uC0AD\uC81C");
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 839, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(62)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(57)
-                                                                      .addComponent(lblNewLabel_1)
-                                                                      .addGap(18)
-                                                                      .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(38)
-                                                                      .addComponent(lblNewLabel_2)
-                                                                      .addGap(18)
-                                                                      .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(lblNewLabel_3)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(datePicker, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                                                      .addComponent(label, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(datePicker_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addComponent(btnNewButton)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(36)
-                                                                      .addComponent(btnNewButton_3)))
-                                                  .addGap(84))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(27)
-                                                  .addComponent(lblNewLabel_5)
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(37)
-                                                  .addComponent(lblNewLabel_4)
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 185, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(36)
-                                                  .addComponent(btnNewButton_1)
-                                                  .addGap(37)
-                                                  .addComponent(btnNewButton_2)
-                                                  .addContainerGap(119, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                                      .addComponent(lblNewLabel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                      .addComponent(datePicker, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                            .addComponent(label, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(datePicker_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton_3))
-                                                  .addGap(25)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addGap(18)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton_1)
-                                                            .addComponent(btnNewButton_2))
-                                                  .addContainerGap(119, Short.MAX_VALUE))
-                    );
+                    btnNewButton_2.setBounds(642, 356, 97, 23);
                     
                     table = new JTable();
                     table.setRowHeight(25);
@@ -206,13 +137,32 @@ public class CourseListStuFrm extends JFrame {
                     });
                     table.getColumnModel().getColumn(2).setPreferredWidth(84);
                     table.getColumnModel().getColumn(3).setPreferredWidth(95);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(101);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(114);
                     table.getColumnModel().getColumn(5).setPreferredWidth(56);
                     table.getColumnModel().getColumn(7).setPreferredWidth(63);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(179);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(276);
+                    contentPane.setLayout(null);
                     scrollPane.setViewportView(table);
-                    contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    contentPane.add(scrollPane);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(textField_1);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(textField_2);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(datePicker);
+                    contentPane.add(label);
+                    contentPane.add(datePicker_1);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(btnNewButton_3);
+                    contentPane.add(lblNewLabel_5);
+                    contentPane.add(textField_3);
+                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(textField_4);
+                    contentPane.add(btnNewButton_1);
+                    contentPane.add(btnNewButton_2);
           }
 }

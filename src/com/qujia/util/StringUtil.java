@@ -1,6 +1,7 @@
 package com.qujia.util;
 
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class StringUtil {
           public static boolean isEmpty(String str) {
@@ -56,5 +57,18 @@ public class StringUtil {
                     }
                     return threeNumber;
           }
-
+          /**
+           * 正则表达式：判断是否数字
+           * @param str
+           * @return
+           */
+          public static boolean isNumeric(String str){ 
+                    Pattern pattern = Pattern.compile("[0-9]*"); 
+                    return pattern.matcher(str).matches();    
+                 }
+          
+//          public static void main(String[] args) {
+//                    StringUtil su=new StringUtil();
+//                    System.out.println(su.getTerm());
+//          }
 }

@@ -1,30 +1,25 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.qujia.util.ViewUtil;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class EvaluationQuestionFrm extends JFrame {
 
@@ -67,8 +62,10 @@ public class EvaluationQuestionFrm extends JFrame {
 		setContentPane(contentPane);
 		
 		panel_card = new JPanel();
+		panel_card.setBounds(31, 48, 722, 358);
 		
 		JButton questionManButton = new JButton("\uD3C9\uAC00\uC9C8\uBB38\uAD00\uB9AC");
+		questionManButton.setBounds(43, 15, 130, 23);
 		questionManButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(panel_card, "panel_Manager");
@@ -76,37 +73,12 @@ public class EvaluationQuestionFrm extends JFrame {
 		});
 		
 		JButton questionAddButton = new JButton("\uD3C9\uAC00\uC9C8\uBB38\uCD94\uAC00");
+		questionAddButton.setBounds(204, 15, 122, 23);
 		questionAddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(panel_card, "panel_add");
 			}
 		});
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(52)
-							.addComponent(questionManButton, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-							.addGap(31)
-							.addComponent(questionAddButton))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(26)
-							.addComponent(panel_card, GroupLayout.PREFERRED_SIZE, 722, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(23, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(questionManButton)
-						.addComponent(questionAddButton))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_card, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-					.addContainerGap())
-		);
 		
 		card=new CardLayout(0, 0);
 		panel_card.setLayout(card);
@@ -116,91 +88,44 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_card.add(panel_Manager, "panel_Manager");
 		
 		JLabel lblNewLabel = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
+		lblNewLabel.setBounds(35, 31, 92, 15);
 		
 		textField_searchQue = new JTextField();
+		textField_searchQue.setBounds(139, 28, 205, 21);
 		textField_searchQue.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("\uD3C9\uAC00\uB300\uC0C1");
+		JLabel lblNewLabel_1 = new JLabel("평가대상：");
+		lblNewLabel_1.setBounds(356, 31, 75, 15);
 		
 		JComboBox comboBox_searchObj = new JComboBox();
+		comboBox_searchObj.setBounds(436, 28, 163, 21);
 		comboBox_searchObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC1C\uC124\uAD50\uC218"}));
 		
 		JButton searchButton = new JButton("\uAC80 \uC0C9");
+		searchButton.setBounds(632, 27, 61, 23);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(18, 56, 686, 170);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
+		lblNewLabel_2.setBounds(18, 247, 91, 15);
 		
 		textField_editQue = new JTextField();
+		textField_editQue.setBounds(121, 244, 583, 21);
 		textField_editQue.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB300\uC0C1:");
+		lblNewLabel_3.setBounds(18, 287, 91, 15);
 		
 		JComboBox comboBox_editObj = new JComboBox();
+		comboBox_editObj.setBounds(121, 284, 160, 21);
 		comboBox_editObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC1C\uC124\uAD50\uC218"}));
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
+		updateButton.setBounds(333, 283, 80, 23);
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
-		GroupLayout gl_panel_Manager = new GroupLayout(panel_Manager);
-		gl_panel_Manager.setHorizontalGroup(
-			gl_panel_Manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_Manager.createSequentialGroup()
-					.addGroup(gl_panel_Manager.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_Manager.createSequentialGroup()
-							.addGap(51)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(textField_searchQue, GroupLayout.PREFERRED_SIZE, 205, GroupLayout.PREFERRED_SIZE)
-							.addGap(26)
-							.addComponent(lblNewLabel_1)
-							.addGap(18)
-							.addComponent(comboBox_searchObj, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(searchButton))
-						.addGroup(gl_panel_Manager.createSequentialGroup()
-							.addGap(18)
-							.addGroup(gl_panel_Manager.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 686, GroupLayout.PREFERRED_SIZE)
-								.addGroup(gl_panel_Manager.createSequentialGroup()
-									.addGroup(gl_panel_Manager.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblNewLabel_3)
-										.addComponent(lblNewLabel_2))
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel_Manager.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_panel_Manager.createSequentialGroup()
-											.addComponent(comboBox_editObj, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
-											.addGap(52)
-											.addComponent(updateButton)
-											.addGap(59)
-											.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-										.addComponent(textField_editQue))))))
-					.addContainerGap(18, Short.MAX_VALUE))
-		);
-		gl_panel_Manager.setVerticalGroup(
-			gl_panel_Manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_Manager.createSequentialGroup()
-					.addGap(27)
-					.addGroup(gl_panel_Manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(textField_searchQue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(comboBox_searchObj, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(searchButton))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_panel_Manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(textField_editQue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel_Manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(comboBox_editObj, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(updateButton)
-						.addComponent(deleteButton))
-					.addContainerGap(61, Short.MAX_VALUE))
-		);
+		deleteButton.setBounds(453, 283, 80, 23);
 		
 		table = new JTable();
 		table.setRowHeight(25);
@@ -222,61 +147,52 @@ public class EvaluationQuestionFrm extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(428);
 		table.getColumnModel().getColumn(2).setPreferredWidth(144);
 		scrollPane.setViewportView(table);
-		panel_Manager.setLayout(gl_panel_Manager);
+		panel_Manager.setLayout(null);
+		panel_Manager.add(lblNewLabel);
+		panel_Manager.add(textField_searchQue);
+		panel_Manager.add(lblNewLabel_1);
+		panel_Manager.add(comboBox_searchObj);
+		panel_Manager.add(searchButton);
+		panel_Manager.add(scrollPane);
+		panel_Manager.add(lblNewLabel_3);
+		panel_Manager.add(lblNewLabel_2);
+		panel_Manager.add(comboBox_editObj);
+		panel_Manager.add(updateButton);
+		panel_Manager.add(deleteButton);
+		panel_Manager.add(textField_editQue);
 		
 		panel_add = new JPanel();
 		panel_add.setBackground(new Color(253, 245, 230));
 		panel_card.add(panel_add, "panel_add");
 		
 		JLabel lblNewLabel_4 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
+		lblNewLabel_4.setBounds(62, 52, 95, 15);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(169, 52, 323, 80);
 		
 		JLabel lblNewLabel_5 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB300\uC0C1:");
+		lblNewLabel_5.setBounds(62, 187, 95, 15);
 		
 		JComboBox comboBox_addObj = new JComboBox();
+		comboBox_addObj.setBounds(169, 184, 323, 21);
 		comboBox_addObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC15\uC758\uAD50\uC218"}));
 		
 		JButton addButton = new JButton("\uCD94  \uAC00");
-		GroupLayout gl_panel_add = new GroupLayout(panel_add);
-		gl_panel_add.setHorizontalGroup(
-			gl_panel_add.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_add.createSequentialGroup()
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_add.createSequentialGroup()
-							.addGap(81)
-							.addGroup(gl_panel_add.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblNewLabel_5)
-								.addComponent(lblNewLabel_4))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_panel_add.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(comboBox_addObj, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(scrollPane_1, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)))
-						.addGroup(gl_panel_add.createSequentialGroup()
-							.addGap(265)
-							.addComponent(addButton)))
-					.addContainerGap(230, Short.MAX_VALUE))
-		);
-		gl_panel_add.setVerticalGroup(
-			gl_panel_add.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_add.createSequentialGroup()
-					.addGap(52)
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_4))
-					.addGap(52)
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_5)
-						.addComponent(comboBox_addObj, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(56)
-					.addComponent(addButton)
-					.addContainerGap(75, Short.MAX_VALUE))
-		);
+		addButton.setBounds(265, 261, 65, 23);
 		
 		JTextArea textArea_addQue = new JTextArea();
 		textArea_addQue.setLineWrap(true);
 		scrollPane_1.setViewportView(textArea_addQue);
-		panel_add.setLayout(gl_panel_add);
-		contentPane.setLayout(gl_contentPane);
+		panel_add.setLayout(null);
+		panel_add.add(lblNewLabel_5);
+		panel_add.add(lblNewLabel_4);
+		panel_add.add(comboBox_addObj);
+		panel_add.add(scrollPane_1);
+		panel_add.add(addButton);
+		contentPane.setLayout(null);
+		contentPane.add(questionManButton);
+		contentPane.add(questionAddButton);
+		contentPane.add(panel_card);
 	}
 }

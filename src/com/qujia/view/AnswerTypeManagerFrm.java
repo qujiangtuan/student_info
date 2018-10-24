@@ -1,30 +1,28 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.CardLayout;
 import javax.swing.JButton;
-import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.qujia.util.ViewUtil;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
 
 public class AnswerTypeManagerFrm extends JFrame {
 
@@ -71,26 +69,10 @@ public class AnswerTypeManagerFrm extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel_menu = new JPanel();
+		panel_menu.setBounds(27, 5, 707, 53);
 		
 		panel_card = new JPanel();
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(22)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_card, GroupLayout.PREFERRED_SIZE, 708, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panel_menu, GroupLayout.PREFERRED_SIZE, 707, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(24, Short.MAX_VALUE))
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel_menu, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(panel_card, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
-					.addContainerGap())
-		);
+		panel_card.setBounds(27, 68, 708, 333);
 		card=new CardLayout(0, 0);
 		panel_card.setLayout(card);
 		
@@ -99,103 +81,51 @@ public class AnswerTypeManagerFrm extends JFrame {
 		panel_card.add(panel_manager, "panel_manager");
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 57, 684, 167);
 		
 		JLabel lblNewLabel = new JLabel("\uB2F5\uC548\uC720\uD615\uC774\uB984:");
+		lblNewLabel.setBounds(12, 20, 95, 15);
 		
 		textField_serchName = new JTextField();
+		textField_serchName.setBounds(112, 17, 176, 21);
 		textField_serchName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uC720\uD615\uAD6C\uBD84:");
+		lblNewLabel_1.setBounds(316, 20, 77, 15);
 		
 		JComboBox comboBox_searchType = new JComboBox();
+		comboBox_searchType.setBounds(391, 17, 109, 21);
 		comboBox_searchType.setModel(new DefaultComboBoxModel(new String[] {"", "\uC8FC\uAD00\uC2DD", "\uAC1C\uAD00\uC2DD"}));
 		
 		JButton searchButton = new JButton("\uAC80 \uC0C9");
+		searchButton.setBounds(526, 16, 61, 23);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uB2F5\uC548\uC720\uD615\uBA85:");
+		lblNewLabel_2.setBounds(35, 245, 64, 15);
 		
 		textField_editName = new JTextField();
+		textField_editName.setBounds(111, 242, 200, 21);
 		textField_editName.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("\uC720\uD615\uAD6C\uBD84:");
+		lblNewLabel_3.setBounds(348, 245, 52, 15);
 		
 		JComboBox comboBox_editType = new JComboBox();
+		comboBox_editType.setBounds(405, 242, 139, 21);
 		comboBox_editType.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uAD00\uC2DD", "\uC8FC\uAD00\uC2DD"}));
 		
 		JLabel lblNewLabel_4 = new JLabel("\uCD94\uAC00\uC815\uBCF4:");
+		lblNewLabel_4.setBounds(35, 277, 52, 15);
 		
 		textField_editInfo = new JTextField();
+		textField_editInfo.setBounds(111, 274, 200, 21);
 		textField_editInfo.setColumns(10);
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
+		updateButton.setBounds(348, 273, 61, 23);
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
-		GroupLayout gl_panel_manager = new GroupLayout(panel_manager);
-		gl_panel_manager.setHorizontalGroup(
-			gl_panel_manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_manager.createSequentialGroup()
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_manager.createSequentialGroup()
-							.addGap(31)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textField_serchName, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-							.addGap(28)
-							.addComponent(lblNewLabel_1)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboBox_searchType, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-							.addGap(44)
-							.addComponent(searchButton))
-						.addGroup(gl_panel_manager.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE))
-						.addGroup(gl_panel_manager.createSequentialGroup()
-							.addGap(35)
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_2)
-								.addComponent(lblNewLabel_4))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField_editInfo, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE))
-							.addGap(37)
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(gl_panel_manager.createSequentialGroup()
-									.addComponent(lblNewLabel_3)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(comboBox_editType, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel_manager.createSequentialGroup()
-									.addComponent(updateButton)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)))))
-					.addContainerGap())
-		);
-		gl_panel_manager.setVerticalGroup(
-			gl_panel_manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_manager.createSequentialGroup()
-					.addGap(16)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(textField_serchName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(comboBox_searchType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(searchButton))
-					.addGap(18)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(textField_editName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_3)
-						.addComponent(comboBox_editType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_4)
-						.addComponent(textField_editInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(updateButton)
-						.addComponent(deleteButton))
-					.addContainerGap(37, Short.MAX_VALUE))
-		);
+		deleteButton.setBounds(481, 273, 63, 23);
 		
 		table = new JTable();
 		table.setRowHeight(25);
@@ -211,7 +141,21 @@ public class AnswerTypeManagerFrm extends JFrame {
 		table.getColumnModel().getColumn(2).setPreferredWidth(115);
 		table.getColumnModel().getColumn(3).setPreferredWidth(119);
 		scrollPane.setViewportView(table);
-		panel_manager.setLayout(gl_panel_manager);
+		panel_manager.setLayout(null);
+		panel_manager.add(lblNewLabel);
+		panel_manager.add(textField_serchName);
+		panel_manager.add(lblNewLabel_1);
+		panel_manager.add(comboBox_searchType);
+		panel_manager.add(searchButton);
+		panel_manager.add(scrollPane);
+		panel_manager.add(lblNewLabel_2);
+		panel_manager.add(lblNewLabel_4);
+		panel_manager.add(textField_editName);
+		panel_manager.add(textField_editInfo);
+		panel_manager.add(lblNewLabel_3);
+		panel_manager.add(comboBox_editType);
+		panel_manager.add(updateButton);
+		panel_manager.add(deleteButton);
 		
 		panel_addType = new JPanel();
 		panel_addType.setBackground(new Color(173, 216, 230));
@@ -279,6 +223,7 @@ public class AnswerTypeManagerFrm extends JFrame {
 		panel_addType.setLayout(gl_panel_addType);
 		
 		JButton button_manager = new JButton("\uB2F5\uC548\uC720\uD615\uAD00\uB9AC");
+		button_manager.setBounds(30, 10, 134, 23);
 		button_manager.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				card.show(panel_card, "panel_manager");
@@ -286,31 +231,17 @@ public class AnswerTypeManagerFrm extends JFrame {
 		});
 		
 		JButton button_addType = new JButton("\uB2F5\uC548\uC720\uD615\uCD94\uAC00");
+		button_addType.setBounds(168, 10, 126, 23);
 		button_addType.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(panel_card, "panel_addType");
 			}
 		});
-		GroupLayout gl_panel_menu = new GroupLayout(panel_menu);
-		gl_panel_menu.setHorizontalGroup(
-			gl_panel_menu.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_menu.createSequentialGroup()
-					.addGap(30)
-					.addComponent(button_manager)
-					.addGap(33)
-					.addComponent(button_addType, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(413, Short.MAX_VALUE))
-		);
-		gl_panel_menu.setVerticalGroup(
-			gl_panel_menu.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_menu.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_menu.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button_manager)
-						.addComponent(button_addType))
-					.addContainerGap(20, Short.MAX_VALUE))
-		);
-		panel_menu.setLayout(gl_panel_menu);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(panel_card);
+		contentPane.add(panel_menu);
+		panel_menu.setLayout(null);
+		panel_menu.add(button_manager);
+		panel_menu.add(button_addType);
 	}
 }

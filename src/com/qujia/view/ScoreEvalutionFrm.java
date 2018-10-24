@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -16,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,52 +72,71 @@ public class ScoreEvalutionFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uACFC\uBAA9\uBA85:");
+                    lblNewLabel.setBounds(17, 19, 50, 15);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uD559\uC0DD\uC218:");
+                    lblNewLabel_1.setBounds(199, 19, 52, 15);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(17, 48, 649, 312);
                     
                     lblNewLabel_2 = new JLabel("\uC911\uAC04\uACE0\uC0AC:");
+                    lblNewLabel_2.setBounds(17, 381, 65, 15);
                     
                     comboBox = new JComboBox();
+                    comboBox.setBounds(79, 378, 53, 21);
                     comboBox.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox.setEditable(true);
                     
                     label = new JLabel("\uAE30\uB9D0\uACE0\uC0AC:");
+                    label.setBounds(150, 381, 55, 15);
                     
                     comboBox_1 = new JComboBox();
+                    comboBox_1.setBounds(217, 378, 53, 21);
                     comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox_1.setEditable(true);
                     
                     label_1 = new JLabel("\uACFC\uC81C:");
+                    label_1.setBounds(303, 381, 40, 15);
                     
                     comboBox_2 = new JComboBox();
+                    comboBox_2.setBounds(334, 378, 53, 21);
                     comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox_2.setEditable(true);
                     
                     label_2 = new JLabel("\uCD9C\uC11D:");
+                    label_2.setBounds(423, 381, 40, 15);
                     
                     comboBox_3 = new JComboBox();
+                    comboBox_3.setBounds(461, 378, 53, 21);
                     comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox_3.setEditable(true);
                     
                     label_3 = new JLabel("\uBC1C\uD45C:");
+                    label_3.setBounds(545, 381, 40, 15);
                     
                     comboBox_4 = new JComboBox();
+                    comboBox_4.setBounds(579, 378, 53, 21);
                     comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox_4.setEditable(true);
                     
                     label_4 = new JLabel("\uD559\uC810:");
+                    label_4.setBounds(303, 19, 40, 15);
                     
                     lblNewLabel_3 = new JLabel("3");
+                    lblNewLabel_3.setBounds(355, 19, 42, 15);
                     
                     desktopPane = new JDesktopPane();
+                    desktopPane.setBounds(416, 15, 1, 1);
                     
                     lblNewLabel_4 = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uC2E4\uC2B5");
+                    lblNewLabel_4.setBounds(79, 19, 112, 15);
                     
                     label_5 = new JLabel("1");
+                    label_5.setBounds(257, 19, 34, 15);
                     
                     btnNewButton = new JButton("\uC131\uC801\uC785\uB825/\uBCC0\uACBD");
+                    btnNewButton.setBounds(518, 15, 126, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         ScoreInputFrm sif=new ScoreInputFrm();
@@ -128,93 +144,6 @@ public class ScoreEvalutionFrm extends JFrame {
                               }
                     });
                     btnNewButton.setBackground(new Color(224, 255, 255));
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(lblNewLabel_4)
-                                                                      .addGap(20)
-                                                                      .addComponent(lblNewLabel_1)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(label_5)
-                                                                      .addGap(6)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGap(30)
-                                                                                          .addComponent(label_4, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addPreferredGap(ComponentPlacement.RELATED)
-                                                                                          .addComponent(lblNewLabel_3))
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addGap(168)
-                                                                                          .addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)))
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(btnNewButton))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(lblNewLabel_2)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(label)
-                                                                      .addGap(4)
-                                                                      .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(18)
-                                                                      .addComponent(label_1)
-                                                                      .addGap(4)
-                                                                      .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(18)
-                                                                      .addComponent(label_2)
-                                                                      .addGap(4)
-                                                                      .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(18)
-                                                                      .addComponent(label_3)
-                                                                      .addGap(4)
-                                                                      .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE))
-                                                            .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE))
-                                                  .addContainerGap())
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(lblNewLabel)
-                                                                      .addComponent(lblNewLabel_1)
-                                                                      .addComponent(label_4)
-                                                                      .addComponent(lblNewLabel_3)
-                                                                      .addComponent(lblNewLabel_4)
-                                                                      .addComponent(label_5)
-                                                                      .addComponent(btnNewButton))
-                                                            .addComponent(desktopPane, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(3)
-                                                                      .addComponent(label_3))
-                                                            .addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(3)
-                                                                      .addComponent(label_2))
-                                                            .addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(3)
-                                                                      .addComponent(label_1))
-                                                            .addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                                      .addComponent(lblNewLabel_2)
-                                                                      .addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(3)
-                                                                      .addComponent(label))
-                                                            .addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    );
                     
                     table = new JTable();
                     table.setRowHeight(30);
@@ -250,7 +179,26 @@ public class ScoreEvalutionFrm extends JFrame {
                     table.getColumnModel().getColumn(3).setPreferredWidth(59);
                     table.getColumnModel().getColumn(4).setPreferredWidth(97);
                     scrollPane.setViewportView(table);
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(label_5);
+                    contentPane.add(label_4);
+                    contentPane.add(lblNewLabel_3);
+                    contentPane.add(desktopPane);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(comboBox);
+                    contentPane.add(label);
+                    contentPane.add(comboBox_1);
+                    contentPane.add(label_1);
+                    contentPane.add(comboBox_2);
+                    contentPane.add(label_2);
+                    contentPane.add(comboBox_3);
+                    contentPane.add(label_3);
+                    contentPane.add(comboBox_4);
+                    contentPane.add(scrollPane);
           }
 //          public class ButtonColRender extends AbstractCellEditor implements ActionListener,TableCellRenderer,TableCellEditor{
 //                    private JTable table;
@@ -261,7 +209,7 @@ public class ScoreEvalutionFrm extends JFrame {
 //                    
 //                    public ButtonColRender() {
 //                              super();
-//                              this.button = new JButton("¼ºÀûÀÔ·Â");
+//                              this.button = new JButton("ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½");
 //                              button.addActionListener(new ActionListener() {
 //                                        
 //                                        @Override

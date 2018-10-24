@@ -12,8 +12,6 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -23,7 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -83,14 +80,18 @@ public class YearStandManagerFrm extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblNewLabel = new JLabel("\uD559\uB144:");
+		lblNewLabel.setBounds(80, 27, 60, 19);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 		
 		textField_schYear = new JTextField();
+		textField_schYear.setBounds(124, 26, 80, 21);
 		textField_schYear.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
+		lblNewLabel_1.setBounds(270, 27, 129, 19);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 13));
 		  CheckBox_dept = new JCheckBox("");
+		  CheckBox_dept.setBounds(248, 23, 21, 27);
 		  CheckBox_dept.addItemListener(new ItemListener() {
 		            public void itemStateChanged(ItemEvent e) {
 		                      if(CheckBox_dept.isSelected()){
@@ -104,6 +105,7 @@ public class YearStandManagerFrm extends JFrame {
 		
 		  
 		JButton btnNewButton = new JButton("\uAC80  \uC0C9");
+		btnNewButton.setBounds(697, 23, 108, 27);
 		btnNewButton.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    serarchYearDeptStandAction(e);
@@ -112,42 +114,58 @@ public class YearStandManagerFrm extends JFrame {
 		btnNewButton.setFont(new Font("Dialog", Font.BOLD, 13));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(17, 68, 831, 269);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD559\uBD80\uACFC\uC804\uACF5\uC774\uB984:");
+		lblNewLabel_2.setBounds(64, 373, 99, 15);
 		
 		 label_editDept = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
+		 label_editDept.setBounds(170, 373, 116, 15);
 		
 		JLabel lblNewLabel_5 = new JLabel("\uC804\uACF5\uC774\uC218\uD559\uC810:");
+		lblNewLabel_5.setBounds(64, 414, 99, 15);
 		
 		textField_major = new JTextField();
+		textField_major.setBounds(170, 411, 116, 21);
 		textField_major.setColumns(10);
 		
 		JLabel label = new JLabel("\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728:");
+		label.setBounds(340, 414, 102, 15);
 		
 		textField_recTatio = new JTextField();
+		textField_recTatio.setBounds(454, 411, 147, 21);
 		textField_recTatio.setColumns(10);
 		
 		JLabel label_2 = new JLabel("수시모집인원:");
+		label_2.setBounds(340, 454, 102, 15);
 		
 		textField_recTemp = new JTextField();
+		textField_recTemp.setBounds(454, 451, 147, 21);
 		textField_recTemp.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("\uC804\uACF5\uD544\uC218\uD559\uC810:");
+		lblNewLabel_6.setBounds(64, 454, 99, 15);
 		
 		textField_majorMust = new JTextField();
+		textField_majorMust.setBounds(170, 451, 116, 21);
 		textField_majorMust.setColumns(10);
 		
 		JLabel label_3 = new JLabel("정시모집인원:");
+		label_3.setBounds(340, 493, 102, 15);
 		
 		textField_recForm = new JTextField();
+		textField_recForm.setBounds(454, 490, 147, 21);
 		textField_recForm.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("\uAD50\uC591\uD544\uC218\uD559\uC810:");
+		lblNewLabel_7.setBounds(64, 496, 99, 15);
 		
 		textField_culMust = new JTextField();
+		textField_culMust.setBounds(170, 493, 116, 21);
 		textField_culMust.setColumns(10);
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
+		updateButton.setBounds(676, 369, 80, 23);
 		updateButton.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    updateYearDeptStand(e);
@@ -156,6 +174,7 @@ public class YearStandManagerFrm extends JFrame {
 		updateButton.setBackground(new Color(224, 255, 255));
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
+		deleteButton.setBounds(676, 410, 80, 23);
 		deleteButton.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    deleteYearDeptStand(e);
@@ -164,120 +183,16 @@ public class YearStandManagerFrm extends JFrame {
 		deleteButton.setBackground(new Color(255, 99, 71));
 		
 		JLabel label_1 = new JLabel("졸업이수학점:");
+		label_1.setBounds(340, 373, 102, 15);
 		
 		textField_credit = new JTextField();
+		textField_credit.setBounds(454, 370, 147, 21);
 		textField_credit.setColumns(10);
 		
 		textField_deptName = new JTextField();
+		textField_deptName.setBounds(390, 26, 116, 21);
 		textField_deptName.setEnabled(false);
 		textField_deptName.setColumns(10);
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-		          gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                    .addGroup(gl_contentPane.createSequentialGroup()
-		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                        .addGroup(gl_contentPane.createSequentialGroup()
-		                                                  .addGap(75)
-		                                                  .addComponent(lblNewLabel)
-		                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-		                                                  .addComponent(textField_schYear, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-		                                                  .addGap(44)
-		                                                  .addComponent(CheckBox_dept)
-		                                                  .addPreferredGap(ComponentPlacement.RELATED)
-		                                                  .addComponent(lblNewLabel_1)
-		                                                  .addGap(18)
-		                                                  .addComponent(textField_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                  .addGap(191)
-		                                                  .addComponent(btnNewButton))
-		                                        .addGroup(gl_contentPane.createSequentialGroup()
-		                                                  .addGap(59)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                            .addGroup(gl_contentPane.createSequentialGroup()
-		                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                                                .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-		                                                                                          .addComponent(lblNewLabel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                                                                                          .addComponent(lblNewLabel_5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		                                                                                .addComponent(lblNewLabel_7))
-		                                                                      .addGap(18))
-		                                                            .addGroup(gl_contentPane.createSequentialGroup()
-		                                                                      .addComponent(lblNewLabel_6, GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-		                                                                      .addPreferredGap(ComponentPlacement.RELATED)))
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                            .addComponent(textField_majorMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                            .addComponent(label_editDept)
-		                                                            .addComponent(textField_major, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                            .addComponent(textField_culMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		                                                  .addGap(54)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-		                                                                      .addComponent(label_3, GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-		                                                                      .addComponent(label_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                                                                      .addComponent(label, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		                                                            .addComponent(label_1, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE))
-		                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                            .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                                      .addComponent(textField_recTatio, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-		                                                                      .addComponent(textField_recTemp, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-		                                                                      .addComponent(textField_recForm, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-		                                                            .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
-		                                                  .addGap(75)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                                            .addComponent(updateButton)
-		                                                            .addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-		                                                  .addGap(155))
-		                                        .addGroup(gl_contentPane.createSequentialGroup()
-		                                                  .addContainerGap()
-		                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 831, GroupLayout.PREFERRED_SIZE)))
-		                              .addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-		          gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                    .addGroup(gl_contentPane.createSequentialGroup()
-		                              .addGap(18)
-		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-		                                        .addComponent(CheckBox_dept, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                                        .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                                  .addComponent(lblNewLabel)
-		                                                  .addComponent(textField_schYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                  .addComponent(lblNewLabel_1, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-		                                                  .addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-		                                                  .addComponent(textField_deptName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-		                              .addGap(18)
-		                              .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 269, GroupLayout.PREFERRED_SIZE)
-		                              .addGap(32)
-		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                        .addComponent(label_editDept)
-		                                        .addComponent(lblNewLabel_2)
-		                                        .addComponent(updateButton)
-		                                        .addComponent(label_1)
-		                                        .addComponent(textField_credit, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		                              .addGap(18)
-		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                        .addComponent(lblNewLabel_5)
-		                                        .addComponent(textField_major, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                        .addComponent(textField_recTatio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                        .addComponent(label)
-		                                        .addComponent(deleteButton))
-		                              .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-		                                        .addGroup(gl_contentPane.createSequentialGroup()
-		                                                  .addGap(18)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                                            .addComponent(textField_recTemp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                            .addComponent(label_2)
-		                                                            .addComponent(textField_majorMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                            .addComponent(lblNewLabel_6))
-		                                                  .addGap(18)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                                            .addComponent(textField_recForm, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-		                                                            .addComponent(label_3)))
-		                                        .addGroup(gl_contentPane.createSequentialGroup()
-		                                                  .addGap(60)
-		                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-		                                                            .addComponent(lblNewLabel_7)
-		                                                            .addComponent(textField_culMust, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-		                              .addContainerGap(100, Short.MAX_VALUE))
-		);
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -315,7 +230,32 @@ public class YearStandManagerFrm extends JFrame {
 		scrollPane.setViewportView(table);
 		table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		contentPane.setLayout(gl_contentPane);
+		contentPane.setLayout(null);
+		contentPane.add(lblNewLabel);
+		contentPane.add(textField_schYear);
+		contentPane.add(CheckBox_dept);
+		contentPane.add(lblNewLabel_1);
+		contentPane.add(textField_deptName);
+		contentPane.add(btnNewButton);
+		contentPane.add(lblNewLabel_2);
+		contentPane.add(lblNewLabel_5);
+		contentPane.add(lblNewLabel_7);
+		contentPane.add(lblNewLabel_6);
+		contentPane.add(textField_majorMust);
+		contentPane.add(label_editDept);
+		contentPane.add(textField_major);
+		contentPane.add(textField_culMust);
+		contentPane.add(label_3);
+		contentPane.add(label_2);
+		contentPane.add(label);
+		contentPane.add(label_1);
+		contentPane.add(textField_recTatio);
+		contentPane.add(textField_recTemp);
+		contentPane.add(textField_recForm);
+		contentPane.add(textField_credit);
+		contentPane.add(updateButton);
+		contentPane.add(deleteButton);
+		contentPane.add(scrollPane);
 		
 		setTable(new YearDeptStand());
 	}

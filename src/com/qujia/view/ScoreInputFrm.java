@@ -58,6 +58,7 @@ public class ScoreInputFrm extends  JFrame {
            * Create the frame.
            */
           public ScoreInputFrm() {
+                    setTitle("성적입력");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 552, 444);
                     
@@ -174,11 +175,13 @@ public class ScoreInputFrm extends  JFrame {
                     JLabel label_10 = new JLabel("\uCDE8\uB4DD\uC131\uC801:");
                     
                     textField_5 = new JTextField();
+                    textField_5.setEditable(false);
                     textField_5.setColumns(10);
                     
                     JLabel lblNewLabel_9 = new JLabel("\uCDE8\uB4DD\uB4F1\uAE09:");
                     
                     textField_6 = new JTextField();
+                    textField_6.setEditable(false);
                     textField_6.setText("");
                     textField_6.setColumns(10);
                     

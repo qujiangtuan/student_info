@@ -1,23 +1,18 @@
 package com.qujia.view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTextField;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.qujia.util.ViewUtil;
@@ -28,6 +23,10 @@ public class QuestionAnswerShowFrm extends JFrame {
 	private JTextField textField_searchQue;
 	private JTable table;
 	private JPanel panel_manager,panel_add;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
 	/**
 	 * Launch the application.
 	 */
@@ -60,115 +59,45 @@ public class QuestionAnswerShowFrm extends JFrame {
 		setContentPane(contentPane);
 		
 		panel_add = new JPanel();
-		panel_add.setBorder(BorderFactory.createTitledBorder("∆Ú∞°πÆ¥‰«◊∏Ò √ﬂ∞°"));
+		panel_add.setBounds(5, 62, 785, 100);
+		panel_add.setBorder(BorderFactory.createTitledBorder("ÌèâÍ∞ÄÎ¨∏ÎãµÌï≠Î™© Ï∂îÍ∞Ä"));
 		panel_manager = new JPanel();
-		panel_manager.setBorder(BorderFactory.createTitledBorder("¥‰æ»∫∏±‚∞¸∏Æ"));
+		panel_manager.setBounds(5, 172, 785, 396);
+		panel_manager.setBorder(BorderFactory.createTitledBorder("ÎãµÏïàÎ≥¥Í∏∞Í¥ÄÎ¶¨"));
 		panel_manager.setBackground(new Color(240, 255, 240));
 		
 		JLabel lblNewLabel_1 = new JLabel("\uD3C9\uAC00\uBB38\uB2F5\uBA85:");
-		lblNewLabel_1.setFont(new Font("»ﬁ∏’∏Ì¡∂", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(150, 15, 105, 22);
+		lblNewLabel_1.setFont(new Font("Ìú¥Î®ºÎ™ÖÏ°∞", Font.BOLD, 15));
 		
 		JLabel label_1 = new JLabel("\uC804\uACF5\uACFC\uBAA9\uC6A9 \uD3C9\uAC00\uBB38\uB2F5");
-		label_1.setFont(new Font("»ﬁ∏’∏Ì¡∂", Font.BOLD, 15));
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel_add, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(145)
-							.addComponent(lblNewLabel_1)
-							.addGap(49)
-							.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 242, GroupLayout.PREFERRED_SIZE))
-						.addComponent(panel_manager, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-					.addComponent(panel_add, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(panel_manager, GroupLayout.PREFERRED_SIZE, 396, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		label_1.setBounds(278, 17, 242, 18);
+		label_1.setFont(new Font("Ìú¥Î®ºÎ™ÖÏ°∞", Font.BOLD, 15));
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
+		lblNewLabel_2.setBounds(30, 28, 111, 15);
 		
 		textField_searchQue = new JTextField();
+		textField_searchQue.setBounds(153, 25, 253, 21);
 		textField_searchQue.setColumns(10);
 		
 		JButton searchButton = new JButton("\uAC80 \uC0C9");
+		searchButton.setBounds(600, 24, 83, 23);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(18, 71, 746, 200);
 		
 		JLabel label_2 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
-		
-		JComboBox comboBox_editQue = new JComboBox();
+		label_2.setBounds(18, 285, 94, 15);
 		
 		JLabel label_3 = new JLabel("  \uB2F5\uC548\uC720\uD615\uBA85:");
-		
-		JComboBox comboBox_editAns = new JComboBox();
+		label_3.setBounds(18, 318, 94, 15);
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
+		updateButton.setBounds(620, 281, 83, 23);
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
-		GroupLayout gl_panel_manager = new GroupLayout(panel_manager);
-		gl_panel_manager.setHorizontalGroup(
-			gl_panel_manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_manager.createSequentialGroup()
-					.addGap(24)
-					.addComponent(lblNewLabel_2)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(textField_searchQue, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
-					.addComponent(searchButton)
-					.addGap(68))
-				.addGroup(gl_panel_manager.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 746, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel_manager.createSequentialGroup()
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(label_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(label_2, GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
-							.addGap(18)
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_editQue, GroupLayout.PREFERRED_SIZE, 458, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_editAns, GroupLayout.PREFERRED_SIZE, 458, GroupLayout.PREFERRED_SIZE))
-							.addGap(38)
-							.addGroup(gl_panel_manager.createParallelGroup(Alignment.LEADING)
-								.addComponent(deleteButton, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-								.addComponent(updateButton))))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panel_manager.setVerticalGroup(
-			gl_panel_manager.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_manager.createSequentialGroup()
-					.addGap(25)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_2)
-						.addComponent(textField_searchQue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(searchButton))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_editQue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(updateButton)
-						.addComponent(label_2))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_manager.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_editAns, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(deleteButton)
-						.addComponent(label_3))
-					.addContainerGap(52, Short.MAX_VALUE))
-		);
+		deleteButton.setBounds(620, 314, 83, 23);
 		
 		table = new JTable();
 		table.setRowHeight(25);
@@ -191,51 +120,73 @@ public class QuestionAnswerShowFrm extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(341);
 		table.getColumnModel().getColumn(2).setPreferredWidth(175);
 		scrollPane.setViewportView(table);
-		panel_manager.setLayout(gl_panel_manager);
+		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
-		
-		JComboBox comboBox_addQue = new JComboBox();
+		lblNewLabel.setBounds(29, 33, 92, 15);
 		
 		JLabel label = new JLabel("\uB2F5\uC548\uC720\uD615\uBA85:");
-		
-		JComboBox comboBox_addAns = new JComboBox();
+		label.setBounds(41, 60, 80, 15);
 		
 		JButton btnNewButton = new JButton("\uCD94 \uAC00");
+		btnNewButton.setBounds(686, 33, 69, 44);
 		btnNewButton.setBackground(new Color(176, 224, 230));
-		GroupLayout gl_panel_add = new GroupLayout(panel_add);
-		gl_panel_add.setHorizontalGroup(
-			gl_panel_add.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel_add.createSequentialGroup()
-					.addContainerGap(14, Short.MAX_VALUE)
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblNewLabel)
-						.addComponent(label))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.LEADING)
-						.addComponent(comboBox_addAns, GroupLayout.PREFERRED_SIZE, 566, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_addQue, GroupLayout.PREFERRED_SIZE, 566, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(btnNewButton)
-					.addGap(11))
-		);
-		gl_panel_add.setVerticalGroup(
-			gl_panel_add.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_add.createSequentialGroup()
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel)
-						.addComponent(comboBox_addQue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel_add.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox_addAns, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(label))
-					.addGap(28))
-				.addGroup(gl_panel_add.createSequentialGroup()
-					.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
-					.addGap(27))
-		);
-		panel_add.setLayout(gl_panel_add);
-		contentPane.setLayout(gl_contentPane);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setBounds(126, 30, 474, 21);
+		textField.setColumns(10);
+		contentPane.add(panel_add);
+		panel_add.setLayout(null);
+		panel_add.add(lblNewLabel);
+		panel_add.add(label);
+		panel_add.add(textField);
+		panel_add.add(btnNewButton);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setBounds(126, 58, 474, 21);
+		panel_add.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("Ï°∞Ìöå");
+		btnNewButton_1.setBounds(601, 29, 61, 23);
+		panel_add.add(btnNewButton_1);
+		
+		JButton button = new JButton("Ï°∞Ìöå");
+		button.setBounds(601, 56, 61, 23);
+		panel_add.add(button);
+		contentPane.add(lblNewLabel_1);
+		contentPane.add(label_1);
+		contentPane.add(panel_manager);
+		panel_manager.setLayout(null);
+		panel_manager.add(lblNewLabel_2);
+		panel_manager.add(textField_searchQue);
+		panel_manager.add(searchButton);
+		panel_manager.add(scrollPane);
+		panel_manager.add(label_3);
+		panel_manager.add(label_2);
+		panel_manager.add(deleteButton);
+		panel_manager.add(updateButton);
+		
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(116, 284, 390, 21);
+		panel_manager.add(textField_2);
+		
+		JButton button_1 = new JButton("Ï°∞Ìöå");
+		button_1.setBounds(510, 283, 61, 23);
+		panel_manager.add(button_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setEditable(false);
+		textField_3.setColumns(10);
+		textField_3.setBounds(116, 312, 390, 21);
+		panel_manager.add(textField_3);
+		
+		JButton button_2 = new JButton("Ï°∞Ìöå");
+		button_2.setBounds(510, 311, 61, 23);
+		panel_manager.add(button_2);
 	}
-
 }

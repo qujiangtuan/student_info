@@ -4,15 +4,12 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,12 +52,16 @@ public class CourseListProFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel label = new JLabel("\uC774\uB984:");
+                    label.setBounds(25, 15, 56, 15);
                     
                     JLabel label_1 = new JLabel("\uAE40 * *");
+                    label_1.setBounds(93, 15, 99, 15);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(5, 48, 715, 167);
                     
                     JButton button = new JButton("\uC131\uC801\uD655\uC778");
+                    button.setBounds(24, 233, 81, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         ScoreShowForProFrm ssfp=new ScoreShowForProFrm();
@@ -69,6 +70,7 @@ public class CourseListProFrm extends JFrame {
                     });
                     
                     JButton btnNewButton = new JButton("\uC131\uC801\uD391\uAC00");
+                    btnNewButton.setBounds(123, 233, 81, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         ScoreEvalutionFrm sef=new ScoreEvalutionFrm();
@@ -77,52 +79,13 @@ public class CourseListProFrm extends JFrame {
                     });
                     
                     JButton btnNewButton_1 = new JButton("\uB2E4\uC6B4\uB85C\uB4DC");
+                    btnNewButton_1.setBounds(479, 233, 89, 23);
                     
                     JButton button_1 = new JButton("\uAC15\uC758\uACC4\uD68D\uC11C \uC5C5\uB85C\uB4DC");
+                    button_1.setBounds(313, 233, 148, 23);
                     
                     JButton btnNewButton_2 = new JButton("\uAC15\uC758\uACC4\uD68D\uC11C \uC0AD\uC81C");
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(20)
-                                                                      .addComponent(label)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED)
-                                                                      .addComponent(label_1))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(19)
-                                                                      .addComponent(button)
-                                                                      .addGap(18)
-                                                                      .addComponent(btnNewButton)
-                                                                      .addGap(109)
-                                                                      .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(18)
-                                                                      .addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
-                                                                      .addGap(18)
-                                                                      .addComponent(btnNewButton_2))
-                                                            .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 715, GroupLayout.PREFERRED_SIZE))
-                                                  .addContainerGap(34, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label)
-                                                            .addComponent(label_1))
-                                                  .addGap(18)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(button)
-                                                            .addComponent(btnNewButton)
-                                                            .addComponent(button_1)
-                                                            .addComponent(btnNewButton_1)
-                                                            .addComponent(btnNewButton_2))
-                                                  .addContainerGap(34, Short.MAX_VALUE))
-                    );
+                    btnNewButton_2.setBounds(586, 233, 121, 23);
                     
                     table = new JTable();
                     table.setRowHeight(30);
@@ -156,7 +119,15 @@ public class CourseListProFrm extends JFrame {
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(label);
+                    contentPane.add(label_1);
+                    contentPane.add(button);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(button_1);
+                    contentPane.add(btnNewButton_1);
+                    contentPane.add(btnNewButton_2);
+                    contentPane.add(scrollPane);
           }
 
 }

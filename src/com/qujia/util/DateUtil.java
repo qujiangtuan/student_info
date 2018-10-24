@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JSpinner;
@@ -109,6 +111,14 @@ public class DateUtil extends DatePicker{
             String dateString = formatter.format(date);
             return dateString;
   }
+  //get 학기 
+    public static int getTerm(){
+              List<Integer> nextTermList = Arrays.asList(3,4,5,6,7);
+              Date nowDate = new Date();
+              int month = nowDate.getMonth();
+              int day = nowDate.getDay();
+              return (nextTermList.contains(month) || (month == 2 && day > 15) || (month == 8 && day < 15)) ? 1 : 2;
+          }
     /*调用方法
      *  DateUtil du=new DateUtil();
                     //JSpinner spinner = new JSpinner();

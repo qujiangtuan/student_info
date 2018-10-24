@@ -12,9 +12,17 @@ public class TimeTable {
 //          private OpenCourse oc;
           private int crId;
           private String couNo;
+          private String crName;
+          
           
            
-//          public OpenCourse getOc() {
+          public String getCrName() {
+                    return crName;
+          }
+          public void setCrName(String crName) {
+                    this.crName = crName;
+          }
+          //          public OpenCourse getOc() {
 //                    return oc;
 //          }
 //          public void setOc(OpenCourse oc) {
@@ -74,11 +82,9 @@ public class TimeTable {
           }
           @Override
           public String toString() {
-                    return "TimeTable [ttNo=" + ttNo + ", week=" + week
-                                        + ", bool=" + bool + ", dateStart="
-                                        + dateStart + ", dateEnd=" + dateEnd
-                                        + ", crId=" + crId + ", couNo=" + couNo
-                                        + "]";
+                    return week +crName+"("
+                                        + dateStart + " - " + dateEnd
+                                        + ")" ;
           }
       
           

@@ -143,7 +143,7 @@ public class PersonalInfo_pro extends JFrame {
                     label_pno.setText(psTmp.getpNo());
                     label_orgName.setText(this.getOrgNameById(psTmp.getOrgId()));
                     label_perType.setText(psTmp.getPerType());
-                    if("±≥ø¯".equals(psTmp.getProType())){
+                    if("ÍµêÏõê".equals(psTmp.getProType())){
                               if(!StringUtil.isEmpty(psTmp.getTeaType())) {
                                         label_teaType.setText(psTmp.getTeaType());
                               }else{
@@ -158,7 +158,7 @@ public class PersonalInfo_pro extends JFrame {
                     
           }
 
-      //orgidø° ≈Î«ÿº≠ orgName∏¶ πﬁ¥¬¥Ÿ
+      //orgidÏóê ÌÜµÌï¥ÏÑú orgNameÎ•º Î∞õÎäîÎã§
         public String getOrgNameById(String id){
                   OrgDao orgDao=new OrgDao();
                   orgList = orgDao.getOrgList(new Org());

@@ -31,7 +31,7 @@ public class AddSubjectFrm extends JFrame {
 
           private JPanel contentPane;
           private JTextField textField_name;
-          private JTextField textField_eName,textField_mname;
+          private JTextField textField_eName;
           private JComboBox comboBox_colType,
           comboBox_learnType,comboBox_creditType;
           private JButton submitButton,cancelButton;
@@ -102,10 +102,6 @@ public class AddSubjectFrm extends JFrame {
                                         "\uC804\uD544", "\uC804\uC120",
                                         "\uAD50\uD544", "\uAD50\uC120" }));
 
-                    JLabel label_1 = new JLabel("\uC57D \uC5B4 \uBA85:");
-                    label_1.setBounds(12, 111, 74, 15);
-                    label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-
                     JLabel lblNewLabel_2 = new JLabel("\uB300\uC0C1\uAD6C\uBD84 :");
                     lblNewLabel_2.setBounds(325, 31, 63, 15);
                     lblNewLabel_2.setFont(new Font("NanumMyeongjo", Font.BOLD,
@@ -147,19 +143,12 @@ public class AddSubjectFrm extends JFrame {
                     
                     label_2 = new JLabel("\uC774\uC218\uD559\uC810:");
                     label_2.setBounds(328, 109, 60, 19);
-                    label_2.setFont(new Font("��������", Font.BOLD, 13));
-                    
-                    textField_mname = new JTextField();
-                    textField_mname.setBounds(96, 106, 146, 25);
-                    textField_mname.setFont(new Font("Dialog", Font.BOLD, 13));
-                    textField_mname.setColumns(10);
+                    label_2.setFont(new Font("나눔명조", Font.BOLD, 13));
                     contentPane.setLayout(null);
                     contentPane.add(label);
                     contentPane.add(textField_name);
                     contentPane.add(lblNewLabel);
                     contentPane.add(textField_eName);
-                    contentPane.add(label_1);
-                    contentPane.add(textField_mname);
                     contentPane.add(lblNewLabel_2);
                     contentPane.add(lblNewLabel_1);
                     contentPane.add(label_2);
@@ -170,12 +159,12 @@ public class AddSubjectFrm extends JFrame {
                     contentPane.add(cancelButton);
                     
                     lblNewLabel_6 = new JLabel("\uAD50\uACFC\uBAA9\uC124\uBA85:");
-                    lblNewLabel_6.setBounds(325, 155, 74, 19);
+                    lblNewLabel_6.setBounds(10, 155, 74, 19);
                     contentPane.add(lblNewLabel_6);
-                    lblNewLabel_6.setFont(new Font("��������", Font.BOLD, 13));
+                    lblNewLabel_6.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(406, 152, 146, 60);
+                    scrollPane.setBounds(96, 152, 456, 60);
                     contentPane.add(scrollPane);
                     
                      textArea = new JTextArea();
@@ -183,12 +172,13 @@ public class AddSubjectFrm extends JFrame {
                      scrollPane.setViewportView(textArea);
                      
                      JLabel lblNewLabel_4 = new JLabel("소속조직:");
-                     lblNewLabel_4.setBounds(12, 152, 74, 19);
+                     lblNewLabel_4.setBounds(10, 109, 74, 19);
                      contentPane.add(lblNewLabel_4);
-                     lblNewLabel_4.setFont(new Font("��������", Font.BOLD, 13));
+                     lblNewLabel_4.setFont(new Font("나눔명조", Font.BOLD, 13));
                      
                      textField_orgName = new JTextField();
-                     textField_orgName.setBounds(96, 151, 146, 23);
+                     textField_orgName.setEditable(false);
+                     textField_orgName.setBounds(96, 107, 146, 23);
                      contentPane.add(textField_orgName);
                      textField_orgName.setColumns(10);
                      
@@ -200,7 +190,7 @@ public class AddSubjectFrm extends JFrame {
                                          textField_orgName.setText(addSearch());
                                }
                      });
-                     searchButton.setBounds(241, 152, 72, 22);
+                     searchButton.setBounds(244, 107, 72, 22);
                      contentPane.add(searchButton);
                     
 //                    setDeptName();
@@ -209,26 +199,25 @@ public class AddSubjectFrm extends JFrame {
                     return SearchDeptForStuFrm.getDeptName();
           }
 
-          //�������� event
+          //교과목등록 event
           protected void submitAction(ActionEvent ae) {
                     String name=textField_name.getText().toString();
                     String ename=textField_eName.getText().toString();
                     String colType=comboBox_colType.getSelectedItem().toString();
                     String learnType= comboBox_learnType.getSelectedItem().toString();
-                    String creditType=comboBox_creditType.getSelectedItem().toString();
+                    int creditType=Integer.parseInt(comboBox_creditType.getSelectedItem().toString());
                     
                     String deptName=textField_orgName.getText().toString();
                     String orgId=this.getOrgidByOrgName(deptName);
                     
                     String subExp=textArea.getText().toString();
-                    String subCode;//�ߺ�Ȯ��
+                    String subCode;////중복확인
                     subCode=getStudentNumber(orgId);
                     if(this.isRepeat(subCode)){
                               subCode=getStudentNumber(orgId);
                     }
-                    String subMname=textField_mname.getText().toString();
                     if(StringUtil.isEmpty(name)){
-                              JOptionPane.showMessageDialog(this, "�������̸��� �Է����ּ���!");
+                              JOptionPane.showMessageDialog(this, "교과목 이름을 입력해주세요!");
                               return;
                     }
                     Subjects sbj=new Subjects();
@@ -239,19 +228,16 @@ public class AddSubjectFrm extends JFrame {
                     sbj.setCreditType(creditType);
                     sbj.setOrgId(orgId);
                     sbj.setColType(colType);
-                    sbj.setSubMname(subMname);
                     sbj.setOrgName(deptName);
-//                    sbj.setSchYear(schYear);
-//                    sbj.setTerm(term);
                     sbj.setSubExp(subExp);
                     
                     SubjectsDao sbjDao=new SubjectsDao();
                     if (sbjDao.addSubjects(sbj)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "�������� ��� �����߽��ϴ�! ");
+                                                  "교과목이 등록 성공했습니다! ");
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "�������� ��� �����߽��ϴ٣�");
+                                                  "교과목이 등록 실패했습니다！");
                     }
                     resetValue(ae);
                     sbjDao.closeDao();
@@ -267,19 +253,8 @@ public class AddSubjectFrm extends JFrame {
 //                    comboBox_term.setSelectedIndex(0);
                     comboBox_creditType.setSelectedIndex(0);
                     textField_orgName.setText("");
-                    textField_mname.setText("");
                     textArea.setText("");
           }
-//        //�������� �ҼӺμ� ���ٿӴ�
-//          protected void setDeptName() {
-//                    // TODO Auto-generated method stub
-//                    OrgDao orgDao=new OrgDao();
-//                    List<Org> orgList=orgDao.getOrgdeptNameList(new Org());
-//                    for (Org org: orgList) {
-//                              comboBox_deptOrg.addItem(org);
-//                    }
-//                    orgDao.closeDao();
-//          }
 
           // set subject code
           public String getStudentNumber(String str1) {
@@ -287,7 +262,7 @@ public class AddSubjectFrm extends JFrame {
                     String subCode = str+StringUtil.getRandom3();
                     return subCode;
           }
-        //�������ȣ ��������
+        //교과목번호 종복학인
           private boolean isRepeat(String str){
                   Subjects sb=new Subjects();
                   SubjectsDao sbDao=new SubjectsDao();
@@ -303,7 +278,7 @@ public class AddSubjectFrm extends JFrame {
                             return true;
                   }
         }
-        //orgName�� ���ؼ� orgid�� �޴´�
+          //orgName에 통해서 orgid를 받는다
           public String getOrgidByOrgName(String name){
                     OrgDao orgDao=new OrgDao();
                     orgList = orgDao.getOrgList(new Org());

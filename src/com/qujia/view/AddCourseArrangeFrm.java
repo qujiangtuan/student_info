@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
@@ -386,6 +388,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.add(cRadioButton);
 
                     textField_subject = new JTextField();
+                    textField_subject.setEditable(false);
                     textField_subject.setBounds(114, 32, 116, 21);
                     contentPane.add(textField_subject);
                     textField_subject.setColumns(10);
@@ -622,6 +625,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt1.setDateEnd(dateEnd1);
                     tt1.setCrId(crNo1);
                     tt1.setCouNo(couNo);
+                    tt1.setCrName(crName1);
 
                     // 2
                     String crName2 = textField_2.getText().toString();
@@ -638,6 +642,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt2.setDateEnd(dateEnd2);
                     tt2.setCrId(crNo2);
                     tt2.setCouNo(couNo);
+                    tt2.setCrName(crName2);
 
                     // 3
 
@@ -655,6 +660,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt3.setDateEnd(dateEnd3);
                     tt3.setCrId(crNo3);
                     tt3.setCouNo(couNo);
+                    tt3.setCrName(crName3);
 
                     // 4
                     String crName4 = textField_4.getText().toString();
@@ -671,6 +677,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt4.setDateEnd(dateEnd4);
                     tt4.setCrId(crNo4);
                     tt4.setCouNo(couNo);
+                    tt4.setCrName(crName4);
 
                     // 5
                     String crName5 = textField_5.getText().toString();
@@ -687,6 +694,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt5.setDateEnd(dateEnd5);
                     tt5.setCrId(crNo5);
                     tt5.setCouNo(couNo);
+                    tt5.setCrName(crName5);
                     // 6
                     String crName6 = textField_6.getText().toString();
                     int crNo6 = this.getcrNo(crName6);
@@ -702,6 +710,57 @@ public class AddCourseArrangeFrm extends JFrame {
                     tt6.setDateEnd(dateEnd6);
                     tt6.setCrId(crNo6);
                     tt6.setCouNo(couNo);
+                    tt6.setCrName(crName6);
+                    List<TimeTable> ttList=new ArrayList<TimeTable>();
+                    String classStr;
+                    if (bool1) {
+                             ttList.add(tt1);
+                             if("".equals(textField_1.getText())){
+                                       JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
+                                       return;
+                             }
+                    }
+                    if (bool2) {
+                              ttList.add(tt2);
+                              if("".equals(textField_1.getText())){
+                                        JOptionPane.showMessageDialog(this, "화요일 수업의 강의실을 선택해주세요!");
+                                        return;
+                              }
+                    }
+                    if (bool3) {
+                              ttList.add(tt3);
+                              if("".equals(textField_1.getText())){
+                                        JOptionPane.showMessageDialog(this, "수요일 수업의 강의실을 선택해주세요!");
+                                        return;
+                              }
+                    }
+
+                    if (bool4) {
+                              ttList.add(tt4);
+                              if("".equals(textField_1.getText())){
+                                        JOptionPane.showMessageDialog(this, "목요일 수업의 강의실을 선택해주세요!");
+                                        return;
+                              }
+                    }
+                    if (bool5) {
+                              ttList.add(tt5);
+                              if("".equals(textField_1.getText())){
+                                        JOptionPane.showMessageDialog(this, "금요일 수업의 강의실을 선택해주세요!");
+                                        return;
+                              }
+                    }
+                    if (bool6) {
+                              ttList.add(tt6);
+                              if("".equals(textField_1.getText())){
+                                        JOptionPane.showMessageDialog(this, "토요일 수업의 강의실을 선택해주세요!");
+                                        return;
+                              }
+                    }
+                    classStr=this.listToString2(ttList,',');
+//                    System.out.println(classStr);
+                    //set 시간 
+                    oc.setTtcr(classStr);
+                    
                     TimeTableDao ttDao = new TimeTableDao();
                     boolean b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, b6 = false;
                     if (ocDao.loginCourse(oc)) {
@@ -735,6 +794,19 @@ public class AddCourseArrangeFrm extends JFrame {
                                                   "교과목을 개설 실패되었습니다!");
                     }
                     resetValues();
+          }
+
+          private String listToString2(List<TimeTable> ttList, char c) {
+                    StringBuilder sb = new StringBuilder();  
+                    for (int i = 0; i < ttList.size(); i++) {  
+                        if (i == ttList.size() - 1) {  
+                            sb.append(ttList.get(i));  
+                        } else {  
+                            sb.append(ttList.get(i));  
+                            sb.append(c);  
+                        }  
+                    }  
+                    return sb.toString();  
           }
 
           private int getcrNo(String crName) {

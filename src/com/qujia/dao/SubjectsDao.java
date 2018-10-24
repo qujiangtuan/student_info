@@ -12,19 +12,18 @@ import com.qujia.util.StringUtil;
 public class SubjectsDao extends BaseDao {
           //subject login
           public boolean addSubjects(Subjects sbj){
-                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?,?)";
+                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sbj.getSubCode() );
                               prst.setString(2, sbj.getSubName());
                               prst.setString(3, sbj.getSubEname());
                               prst.setString(4, sbj.getLearnType());
-                              prst.setString(5, sbj.getCreditType());
-                              prst.setString(6, sbj.getOrgId() );
-                              prst.setString(7, sbj.getColType());
-                              prst.setString(8, sbj.getSubExp());
-                              prst.setString(9,sbj.getSubMname());
-                              prst.setString(10,sbj.getOrgName());
+                              prst.setString(5, sbj.getOrgId() );
+                              prst.setString(6, sbj.getColType());
+                              prst.setString(7, sbj.getSubExp());
+                              prst.setString(8,sbj.getOrgName());
+                              prst.setInt(9, sbj.getCreditType());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
@@ -49,9 +48,8 @@ public class SubjectsDao extends BaseDao {
                                         sbj.setSubCode(e.getString("sub_cod"));
                                         sbj.setSubName(e.getString("sub_name"));
                                         sbj.setSubEname(e.getString("sub_ename"));
-                                        sbj.setSubMname(e.getString("sub_mname"));
                                         sbj.setLearnType(e.getString("learn_type"));
-                                        sbj.setCreditType(e.getString("credit_type"));
+                                        sbj.setCreditType(e.getInt("credit_type"));
                                         sbj.setOrgId(e.getString("orgid"));
                                         sbj.setColType(e.getString("col_type"));
                                         sbj.setSubExp(e.getString("sub_exp"));
@@ -70,7 +68,7 @@ public class SubjectsDao extends BaseDao {
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sub.getLearnType());
-                              prst.setString(2, sub.getCreditType());
+                              prst.setInt(2, sub.getCreditType());
                               prst.setString(3,sub.getColType());
                               prst.setString(4,sub.getSubExp());
                               prst.setString(5,sub.getSubCode());

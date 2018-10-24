@@ -6,15 +6,12 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.ProStaffDao;
@@ -63,18 +60,23 @@ public class FindPassword extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel label = new JLabel("\uC544\uC774\uB514:");
+                    label.setBounds(41, 47, 61, 15);
                     label.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     textField_id = new JTextField();
+                    textField_id.setBounds(114, 44, 163, 21);
                     textField_id.setColumns(10);
                     
                     JLabel label_1 = new JLabel("\uC774\uBA54\uC77C:");
+                    label_1.setBounds(41, 78, 61, 15);
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     textField_email = new JTextField();
+                    textField_email.setBounds(114, 75, 163, 21);
                     textField_email.setColumns(10);
                     
                     JButton button = new JButton("\uD655 \uC778");
+                    button.setBounds(57, 142, 74, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         try {
@@ -88,50 +90,20 @@ public class FindPassword extends JFrame {
                     button.setBackground(new Color(240, 248, 255));
                     
                     JButton button_1 = new JButton("\uCDE8 \uC18C");
+                    button_1.setBounds(203, 142, 74, 23);
                     button_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
                               }
                     });
                     button_1.setBackground(new Color(240, 248, 255));
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(52)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(button)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                      .addComponent(button_1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(label)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_id, GroupLayout.PREFERRED_SIZE, 163, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addComponent(label_1)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addComponent(textField_email)))
-                                                  .addContainerGap(57, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(39)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label)
-                                                            .addComponent(textField_id, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(label_1)
-                                                            .addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(button)
-                                                            .addComponent(button_1))
-                                                  .addGap(34))
-                    );
-                    contentPane.setLayout(gl_contentPane);
+                    contentPane.setLayout(null);
+                    contentPane.add(button);
+                    contentPane.add(button_1);
+                    contentPane.add(label);
+                    contentPane.add(textField_id);
+                    contentPane.add(label_1);
+                    contentPane.add(textField_email);
           }
 
           protected void findPasswordAction(ActionEvent e) throws Exception {
@@ -139,38 +111,38 @@ public class FindPassword extends JFrame {
                     String email = textField_email.getText().toString();
                     String random=StringUtil.getRandom3()+StringUtil.getRandom4();
                     if(StringUtil.isEmpty(id)){
-                              JOptionPane.showMessageDialog(this, "¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+                              JOptionPane.showMessageDialog(this, "ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”!");
                               return;
                     }
                     if(StringUtil.isEmpty(email)){
-                              JOptionPane.showMessageDialog(this, "ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä!");
+                              JOptionPane.showMessageDialog(this, "ì´ë©”ì¼ì„ ì…ë ¥í•´ì£¼ì„¸ìš”!");
                               return;
                     }
                     int len=id.length();
-                    if(len==9){//ÇĞ»ı
+                    if(len==9){//í•™ìƒ
                               Student stu=new Student();
                               stu.setsNo(id);
                               stu.setEmail(email);
                               StudentDao stuDao=new StudentDao();
                               if(stuDao.isStudent(stu)&&stuDao.updatePassword(stu,random)){
                                         new SendEMail(random, email);
-                                        JOptionPane.showMessageDialog(this, "»õ ºñ¹Ğ¹øÈ£¸¦ ÀÌ¸ŞÀÏ·Î º¸³Â½À´Ï´Ù.");
+                                        JOptionPane.showMessageDialog(this, "ìƒˆ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì´ë©”ì¼ë¡œ ë³´ëƒˆìŠµë‹ˆë‹¤.");
                               }else{
-                                        JOptionPane.showMessageDialog(this, "¾ÆÀÌµğ³ª ÀÌ¸ŞÀÏÀ» Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù.");
+                                        JOptionPane.showMessageDialog(this, "ì•„ì´ë””ë‚˜ ì´ë©”ì¼ì„ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤.");
                               }
-                    }else if(len==7){//±³Á÷¿ø
+                    }else if(len==7){//êµì§ì›
                               ProStaff ps=new ProStaff();
                               ps.setpNo(id);
                               ps.setEmail(email);
                               ProStaffDao psDao=new ProStaffDao();
                               if(psDao.isProStaff(ps)&&psDao.updatePassword(ps,random)){
                                         new SendEMail(random, email);
-                                        JOptionPane.showMessageDialog(this, "»õ ºñ¹Ğ¹øÈ£¸¦ ÀÌ¸ŞÀÏ·Î º¸³Â½À´Ï´Ù.");
+                                        JOptionPane.showMessageDialog(this, "ìƒˆ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì´ë©”ì¼ë¡œ ë³´ëƒˆìŠµë‹ˆë‹¤.");
                               }else{
-                                        JOptionPane.showMessageDialog(this, "¾ÆÀÌµğ³ª ÀÌ¸ŞÀÏÀ» Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù.");
+                                        JOptionPane.showMessageDialog(this, "ì•„ì´ë””ë‚˜ ì´ë©”ì¼ì„ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤.");
                               }
                     }else{
-                              JOptionPane.showMessageDialog(this, "¾ÆÀÌµğ¸¦ Àß¸ø ÀÔ·ÂÇß½À´Ï´Ù.");
+                              JOptionPane.showMessageDialog(this, "ì•„ì´ë””ë¥¼ ì˜ëª» ì…ë ¥í–ˆìŠµë‹ˆë‹¤.");
                     }
                     resetValue();
           }

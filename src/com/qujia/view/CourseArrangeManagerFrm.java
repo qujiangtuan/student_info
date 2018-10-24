@@ -82,8 +82,22 @@ public class CourseArrangeManagerFrm extends JFrame {
           private SubjectsDao subDao=new SubjectsDao();
           private ProStaffDao psDao=new ProStaffDao();
           private TimeView[] tvArray ;
-          private static List<TimeView> tvList;
+          private static List<TimeView> tvList=new ArrayList<TimeView>();
           DateUtil dux = new DateUtil();
+          
+          private Boolean bool1,bool2,bool3,bool4,bool5,bool6;
+          private String crName1,crName2,crName3,crName4,crName5,crName6;
+          private int crNo1,crNo2,crNo3,crNo4,crNo5,crNo6;
+          private String week1,week2,week3,week4,week5,week6;
+          private String dateStart1,dateStart2,dateStart3,dateStart4,dateStart5,dateStart6;
+          private String dateEnd1,dateEnd2,dateEnd3,dateEnd4,dateEnd5,dateEnd6;
+          private TimeTable tt1,tt2,tt3,tt4,tt5,tt6;
+          private List<String> week = null;
+          private String couNo2;
+          private  DefaultTableModel dft=new DefaultTableModel();
+          private OpenCourseDao ocDao=new OpenCourseDao();
+          private String couNo;
+          
           /**
            * Launch the application.
            */
@@ -275,9 +289,6 @@ public class CourseArrangeManagerFrm extends JFrame {
 
                     spinner_22 = new JSpinner(new SpinnerDateModel());
                     spinner_22.setBounds(205, 418, 102, 22);
-                    // spinner_1_2.setModel(new SpinnerDateModel(new
-                    // Date(1536505200000L), new Date(1536505200000L), new
-                    // Date(1536505200000L), Calendar.HOUR));
 
                     spinner_12= new JSpinner(new SpinnerDateModel());
                     spinner_12.setBounds(205, 386, 102, 22);
@@ -655,15 +666,63 @@ public class CourseArrangeManagerFrm extends JFrame {
                               JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
                               return;
                     }
+                    //시간 수정
+                    getTimeObject(couNo);
+                    TimeTableDao ttDao = new TimeTableDao();
+                    boolean c1 = false, c2 = false, c3 = false, c4 = false, c5 = false, c6 = false;
+                    
                     OpenCourseDao ocDao=new OpenCourseDao();
                     String couNO=table.getValueAt(row, 1).toString();
-                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "삭제 하시겠습니까?", " WarningDialog!", 
                                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if(showConfirmDialog==JOptionPane.YES_OPTION){
-                              if(ocDao.deleteOC(couNO)){
-                                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
-                              }else{
-                                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                              if(true){
+                                        if (bool1) {
+                                                if(week.contains(tt1.getWeek())){
+                                                          c1=ttDao.deleteTT1(tt1);                           
+                                                }
+                                        }
+                                        if (bool2) {
+                                                if(week.contains(tt2.getWeek())){
+                                                          c2=ttDao.deleteTT2(tt2);                           
+                                                }
+                                        }
+                                        if (bool3) {
+                                                if(week.contains(tt3.getWeek())){
+                                                          c3=ttDao.deleteTT3(tt3);                           
+                                                }
+                                        }
+                                        if (bool4) {
+                                                if(week.contains(tt4.getWeek())){
+                                                          c4=ttDao.deleteTT4(tt4);                           
+                                                }
+                                        }
+                                        if (bool5) {
+                                                if(week.contains(tt5.getWeek())){
+                                                          c5=ttDao.deleteTT5(tt5);                           
+                                                }
+                                        }
+                                        if (bool6) {
+                                                if(week.contains(tt6.getWeek())){
+                                                          c6=ttDao.deleteTT6(tt6);                           
+                                                }
+                                        }
+                                        if (bool1 == c1 && bool2 == c2 && bool3 == c3
+                                                                                && bool4 == c4 && bool5 == c5
+                                                                                && bool6 == c6) {
+                                                  if(ocDao.deleteOC(couNO)){
+                                                            JOptionPane.showMessageDialog(this,
+                                                                                "삭제 성공했습니다!");
+                                                  }else{
+                                                            JOptionPane.showMessageDialog(this,
+                                                                                "삭제 실패했습니다!");
+                                                  }
+                                                  
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this,
+                                                                      "삭제 실패했습니다!");
+                                        }
+//                                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
                               }
                     }
                     
@@ -675,8 +734,6 @@ public class CourseArrangeManagerFrm extends JFrame {
           //수정
           protected void updateOpenCourse(ActionEvent e) {
                     
-                    DefaultTableModel   dft = (DefaultTableModel) table.getModel();
-                    String couNo = dft.getValueAt(row, 1).toString();
                     String editProName = textField_editPro.getText().toString();
                     String pno=getProIdByProName(editProName);
                     String schYear = comboBox_editSchYear.getSelectedItem().toString();
@@ -684,6 +741,11 @@ public class CourseArrangeManagerFrm extends JFrame {
                     String classNo = spinner_classNo.getValue().toString();
                     int fixedNum = Integer.parseInt(textField_fexidNum.getText().toString());
                     String status = comboBox_editStatus.getSelectedItem().toString();
+                    
+//                    String couNo=dft.getValueAt(row,1).toString();
+//                    String classStr=null;
+//                    tvList=ocDao.getTimeList(couNo);
+//                    String classStr2=this.listToString2(tvList,',');
                     
                     OpenCourse oc=new OpenCourse();
                     oc.setCouNo(couNo);
@@ -694,112 +756,11 @@ public class CourseArrangeManagerFrm extends JFrame {
                     oc.setClassNo(classNo);
                     oc.setFixedNum(fixedNum);
                     oc.setStatus(status);
+                    
                     OpenCourseDao ocDao=new OpenCourseDao();
                     
-                    //시간 수정
-                    List<String> week = null;
-                   week=new ArrayList<String>();
-                    String couNo2 = dft.getValueAt(row, 1).toString();
-                    tvList=ocDao.getTimeList(couNo2);
-                    for (TimeView tv1 : tvList) {
-                             week.add(tv1.getWeek());
-                    }
                     //시간 받기
-                    // 1
-                    String crName1 = textField_1.getText().toString();
-                    int crNo1 = this.getcrNo(crName1);
-                    Boolean bool1 = checkBox_1.isSelected();
-                    String week1 = checkBox_1.getText().toString();
-                    String dateStart1 = dux.Date2String((Date) spinner_11.getValue());
-                    String dateEnd1 = dux.Date2String((Date) spinner_12.getValue());
-
-                    TimeTable tt1 = new TimeTable();
-                    tt1.setBool(bool1);
-                    tt1.setWeek(week1);
-                    tt1.setDateStart(dateStart1);
-                    tt1.setDateEnd(dateEnd1);
-                    tt1.setCrId(crNo1);
-                    tt1.setCouNo(couNo);
-                    
-                    // 2
-                    String crName2 = textField_2.getText().toString();
-                    int crNo2 = this.getcrNo(crName2);
-                    Boolean bool2 = checkBox_2.isSelected();
-                    String week2 = checkBox_2.getText().toString();
-                    String dateStart2 = dux.Date2String((Date) spinner_21.getValue());
-                    String dateEnd2 = dux.Date2String((Date) spinner_22.getValue());
-
-                    TimeTable tt2 = new TimeTable();
-                    tt2.setBool(bool2);
-                    tt2.setWeek(week2);
-                    tt2.setDateStart(dateStart2);
-                    tt2.setDateEnd(dateEnd2);
-                    tt2.setCrId(crNo2);
-                    tt2.setCouNo(couNo);
-
-                    // 3
-
-                    String crName3 = textField_3.getText().toString();
-                    int crNo3 = this.getcrNo(crName3);
-                    Boolean bool3 = checkBox_3.isSelected();
-                    String week3 = checkBox_3.getText().toString();
-                    String dateStart3 = dux.Date2String((Date) spinner_31.getValue());
-                    String dateEnd3 = dux.Date2String((Date) spinner_32.getValue());
-
-                    TimeTable tt3 = new TimeTable();
-                    tt3.setBool(bool3);
-                    tt3.setWeek(week3);
-                    tt3.setDateStart(dateStart3);
-                    tt3.setDateEnd(dateEnd3);
-                    tt3.setCrId(crNo3);
-                    tt3.setCouNo(couNo);
-
-                    // 4
-                    String crName4 = textField_4.getText().toString();
-                    int crNo4 = this.getcrNo(crName4);
-                    Boolean bool4 = checkBox_4.isSelected();
-                    String week4 = checkBox_4.getText().toString();
-                    String dateStart4 = dux.Date2String((Date) spinner_41.getValue());
-                    String dateEnd4 = dux.Date2String((Date) spinner_42.getValue());
-
-                    TimeTable tt4 = new TimeTable();
-                    tt4.setBool(bool4);
-                    tt4.setWeek(week4);
-                    tt4.setDateStart(dateStart4);
-                    tt4.setDateEnd(dateEnd4);
-                    tt4.setCrId(crNo4);
-                    tt4.setCouNo(couNo);
-
-                    // 5
-                    String crName5 = textField_5.getText().toString();
-                    int crNo5 = this.getcrNo(crName5);
-                    Boolean bool5 = checkBox_5.isSelected();
-                    String week5 = checkBox_5.getText().toString();
-                    String dateStart5 = dux.Date2String((Date) spinner_51.getValue());
-                    String dateEnd5 = dux.Date2String((Date) spinner_52.getValue());
-
-                    TimeTable tt5 = new TimeTable();
-                    tt5.setBool(bool5);
-                    tt5.setWeek(week5);
-                    tt5.setDateStart(dateStart5);
-                    tt5.setDateEnd(dateEnd5);
-                    tt5.setCrId(crNo5);
-                    tt5.setCouNo(couNo);
-                    // 6
-                    String crName6 = textField_6.getText().toString();
-                    int crNo6 = this.getcrNo(crName6);
-                    Boolean bool6 = checkBox_6.isSelected();
-                    String week6 = checkBox_6.getText().toString();
-                    String dateStart6 = dux.Date2String((Date) spinner_61.getValue());
-                    String dateEnd6 = dux.Date2String((Date) spinner_62.getValue());
-
-                    TimeTable tt6 = new TimeTable();
-                    tt6.setBool(bool6);
-                    tt6.setWeek(week6);
-                    tt6.setDateStart(dateStart6);
-                    tt6.setDateEnd(dateEnd6);
-                    tt6.setCrId(crNo6);
-                    tt6.setCouNo(couNo);
+                    getTimeObject(couNo);
                     //set ttno for every Object
                     for (TimeView tv : tvList) {
                               if("월".equals(tv.getWeek())){
@@ -822,43 +783,53 @@ public class CourseArrangeManagerFrm extends JFrame {
                               }
                      }
                     //요일 선택하고 나서 강의실 꼭 채위 알림
+                    List<TimeTable> ttList=new ArrayList<TimeTable>();
+                    String classStr = null;
                     if (bool1) {
+                              ttList.add(tt1);
                               if("".equals(textField_1.getText())){
                                         JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool2) {
+                              ttList.add(tt2);
                               if("".equals(textField_2.getText())){
                                         JOptionPane.showMessageDialog(this, "화요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool3) {
+                              ttList.add(tt3);
                               if("".equals(textField_3.getText())){
                                         JOptionPane.showMessageDialog(this, "수요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     } 
                     if (bool4) {
+                              ttList.add(tt4);
                               if("".equals(textField_4.getText())){
                                         JOptionPane.showMessageDialog(this, "목요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
-                              
                     if (bool5) {
+                              ttList.add(tt5);
                               if("".equals(textField_5.getText())){
                                         JOptionPane.showMessageDialog(this, "금요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool6) {
+                              ttList.add(tt6);
                               if("".equals(textField_6.getText())){
                                         JOptionPane.showMessageDialog(this, "토요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
+                    classStr=this.listToString2(ttList,',');
+                    oc.setTtcr(classStr);
+//                    System.out.println(classStr);
                     TimeTableDao ttDao = new TimeTableDao();
                     boolean b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, b6 = false;
                     boolean c1 = false, c2 = false, c3 = false, c4 = false, c5 = false, c6 = false;
@@ -867,15 +838,10 @@ public class CourseArrangeManagerFrm extends JFrame {
                     if(showConfirmDialog==JOptionPane.YES_OPTION){
                               if(ocDao.updateOC(oc)){
                                         if (bool1) {
-                                                  if("".equals(textField_1.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC1(tt1)){
                                                             b1= ttDao.updateTT1(tt1);
                                                   }else{
                                                             b1 = ttDao.loginTT1(tt1);
-                                                            
                                                   }
                                                   
                                         }else{
@@ -884,91 +850,58 @@ public class CourseArrangeManagerFrm extends JFrame {
                                                 }
                                         }
                                         if (bool2) {
-                                                  if("".equals(textField_2.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC2(tt2)){
                                                             b2= ttDao.updateTT2(tt2);
                                                   }else{
                                                             b2 = ttDao.loginTT2(tt2);
-                                                           
                                                   }
-                                                  
                                         }else{
                                                 if(week.contains(tt2.getWeek())){
                                                           c2=ttDao.deleteTT2(tt2);                           
                                                 }
                                         }
                                         if (bool3) {
-                                                  if("".equals(textField_3.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC3(tt3)){
                                                             b3= ttDao.updateTT3(tt3);
                                                   }else{
                                                             b3 = ttDao.loginTT3(tt3);
-                                                           
                                                   }
-                                                  
                                         }else{
                                                 if(week.contains(tt3.getWeek())){
                                                           c3=ttDao.deleteTT3(tt3);                           
                                                 }
                                         }
                                         if (bool4) {
-                                                  if("".equals(textField_4.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC4(tt4)){
                                                             b4= ttDao.updateTT4(tt4);
                                                   }else{
                                                             b4 = ttDao.loginTT4(tt4);
-                                                            
                                                   }
-                                                  
                                         }else{
-                                                if(week.contains(tt1.getWeek())){
+                                                if(week.contains(tt4.getWeek())){
                                                           c4=ttDao.deleteTT4(tt4);                           
                                                 }
                                         }
                                         if (bool5) {
-                                                  if("".equals(textField_5.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC5(tt5)){
                                                             b5= ttDao.updateTT5(tt5);
                                                   }else{
                                                             b5 = ttDao.loginTT5(tt5);
-                                                           
                                                   }
-                                                  
                                         }else{
                                                 if(week.contains(tt5.getWeek())){
                                                           c5=ttDao.deleteTT5(tt5);                           
                                                 }
                                         }
                                         if (bool6) {
-                                                  if("".equals(textField_6.getText())){
-                                                            JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                            return;
-                                                  }
                                                   if(ttDao.isExistWC6(tt6)){
                                                             b6= ttDao.updateTT6(tt6);
                                                   }else{
                                                             b6 = ttDao.loginTT6(tt6);
-                                                            if(textField_6.getText()==null){
-                                                                      JOptionPane.showMessageDialog(this, "월요일 수업의 강의실을 선택해주세요!");
-                                                                      return;
-                                                            }
                                                   }
-                                                  
                                         }else{
                                                 if(week.contains(tt6.getWeek())){
-                                                          c6=ttDao.deleteTT6(tt1);                           
+                                                          c6=ttDao.deleteTT6(tt6);                           
                                                 }
                                         }
                                         if ((bool1 == b1 && bool2 == b2 && bool3 == b3
@@ -990,6 +923,115 @@ public class CourseArrangeManagerFrm extends JFrame {
                     resetValue();
                     setTable(new OpenCourse());
                     
+          }
+
+          private void getTimeObject(String couNo) {
+                    week=new ArrayList<String>();
+                    tvList=ocDao.getTimeList(couNo);
+                    for (TimeView tv1 : tvList) {
+                             week.add(tv1.getWeek());
+                    }
+                    // 1
+                    crName1 = textField_1.getText().toString();
+                     crNo1 = this.getcrNo(crName1);
+                     bool1 = checkBox_1.isSelected();
+                     week1 = checkBox_1.getText().toString();
+                     dateStart1 = dux.Date2String((Date) spinner_11.getValue());
+                     dateEnd1 = dux.Date2String((Date) spinner_12.getValue());
+
+                     tt1 = new TimeTable();
+                    tt1.setBool(bool1);
+                    tt1.setWeek(week1);
+                    tt1.setDateStart(dateStart1);
+                    tt1.setDateEnd(dateEnd1);
+                    tt1.setCrId(crNo1);
+                    tt1.setCouNo(couNo);
+                    tt1.setCrName(crName1);
+                    
+                    // 2
+                    crName2 = textField_2.getText().toString();
+                     crNo2 = this.getcrNo(crName2);
+                     bool2 = checkBox_2.isSelected();
+                     week2 = checkBox_2.getText().toString();
+                     dateStart2 = dux.Date2String((Date) spinner_21.getValue());
+                     dateEnd2 = dux.Date2String((Date) spinner_22.getValue());
+
+                     tt2 = new TimeTable();
+                    tt2.setBool(bool2);
+                    tt2.setWeek(week2);
+                    tt2.setDateStart(dateStart2);
+                    tt2.setDateEnd(dateEnd2);
+                    tt2.setCrId(crNo2);
+                    tt2.setCouNo(couNo);
+                    tt2.setCrName(crName2);
+
+                    // 3
+
+                    crName3 = textField_3.getText().toString();
+                     crNo3 = this.getcrNo(crName3);
+                     bool3 = checkBox_3.isSelected();
+                     week3 = checkBox_3.getText().toString();
+                     dateStart3 = dux.Date2String((Date) spinner_31.getValue());
+                     dateEnd3 = dux.Date2String((Date) spinner_32.getValue());
+
+                     tt3 = new TimeTable();
+                    tt3.setBool(bool3);
+                    tt3.setWeek(week3);
+                    tt3.setDateStart(dateStart3);
+                    tt3.setDateEnd(dateEnd3);
+                    tt3.setCrId(crNo3);
+                    tt3.setCouNo(couNo);
+                    tt3.setCrName(crName3);
+
+                    // 4
+                  crName4 = textField_4.getText().toString();
+                     crNo4 = this.getcrNo(crName4);
+                     bool4 = checkBox_4.isSelected();
+                     week4 = checkBox_4.getText().toString();
+                     dateStart4 = dux.Date2String((Date) spinner_41.getValue());
+                     dateEnd4 = dux.Date2String((Date) spinner_42.getValue());
+
+                     tt4 = new TimeTable();
+                    tt4.setBool(bool4);
+                    tt4.setWeek(week4);
+                    tt4.setDateStart(dateStart4);
+                    tt4.setDateEnd(dateEnd4);
+                    tt4.setCrId(crNo4);
+                    tt4.setCouNo(couNo);
+                    tt4.setCrName(crName4);
+
+                    // 5
+                    crName5 = textField_5.getText().toString();
+                     crNo5 = this.getcrNo(crName5);
+                    bool5 = checkBox_5.isSelected();
+                     week5 = checkBox_5.getText().toString();
+                     dateStart5 = dux.Date2String((Date) spinner_51.getValue());
+                     dateEnd5 = dux.Date2String((Date) spinner_52.getValue());
+
+                     tt5 = new TimeTable();
+                    tt5.setBool(bool5);
+                    tt5.setWeek(week5);
+                    tt5.setDateStart(dateStart5);
+                    tt5.setDateEnd(dateEnd5);
+                    tt5.setCrId(crNo5);
+                    tt5.setCouNo(couNo);
+                    tt5.setCrName(crName5);
+                    // 6
+                    crName6 = textField_6.getText().toString();
+                     crNo6 = this.getcrNo(crName6);
+                    bool6 = checkBox_6.isSelected();
+                     week6 = checkBox_6.getText().toString();
+                     dateStart6 = dux.Date2String((Date) spinner_61.getValue());
+                     dateEnd6 = dux.Date2String((Date) spinner_62.getValue());
+
+                     tt6 = new TimeTable();
+                    tt6.setBool(bool6);
+                    tt6.setWeek(week6);
+                    tt6.setDateStart(dateStart6);
+                    tt6.setDateEnd(dateEnd6);
+                    tt6.setCrId(crNo6);
+                    tt6.setCouNo(couNo);
+                    tt6.setCrName(crName6);
           }
 
           private void resetValue() {
@@ -1089,6 +1131,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                     resetValue();
                     row=table.getSelectedRow();
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                    couNo = dft.getValueAt(row, 1).toString();
                     editProName=dft.getValueAt(row, 3).toString();
                     String editSchYear=dft.getValueAt(row, 4).toString();
                     String editTerm=dft.getValueAt(row, 5).toString();
@@ -1217,9 +1260,10 @@ public class CourseArrangeManagerFrm extends JFrame {
                              v.add(o.getClassNo());
                              v.add(o.getFixedNum());
                              v.add(o.getCurrNum());
-                             tvList=ocDao.getTimeList(o.getCouNo());
-                             classStr=this.listToString2(tvList,',');
-                             v.add(classStr);
+//                             tvList=ocDao.getTimeList(o.getCouNo());
+//                             classStr=this.listToString2(tvList,',');
+//                             v.add(classStr);
+                             v.add(o.getTtcr());
                              v.add(o.getLoginDate());
                              dft.addRow(v);
                    }

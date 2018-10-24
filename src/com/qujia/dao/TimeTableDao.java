@@ -9,7 +9,7 @@ import com.qujia.model.TimeTable;
 public class TimeTableDao extends BaseDao {
 
           public boolean loginTT1(TimeTable tt1) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt1.getWeek());
@@ -17,6 +17,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt1.getDateEnd());
                               prst.setInt(4,tt1.getCrId());
                               prst.setString(5,tt1.getCouNo());
+                              prst.setString(6,tt1.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {
@@ -27,7 +28,7 @@ public class TimeTableDao extends BaseDao {
           }
 
           public boolean loginTT2(TimeTable tt2) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt2.getWeek());
@@ -35,6 +36,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt2.getDateEnd());
                               prst.setInt(4,tt2.getCrId());
                               prst.setString(5,tt2.getCouNo());
+                              prst.setString(6,tt2.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {
@@ -45,7 +47,7 @@ public class TimeTableDao extends BaseDao {
           }
 
           public boolean loginTT3(TimeTable tt3) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt3.getWeek());
@@ -53,6 +55,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt3.getDateEnd());
                               prst.setInt(4,tt3.getCrId());
                               prst.setString(5,tt3.getCouNo());
+                              prst.setString(6,tt3.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {
@@ -63,7 +66,7 @@ public class TimeTableDao extends BaseDao {
           }
 
           public boolean loginTT4(TimeTable tt4) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt4.getWeek());
@@ -71,6 +74,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt4.getDateEnd());
                               prst.setInt(4,tt4.getCrId());
                               prst.setString(5,tt4.getCouNo());
+                              prst.setString(6,tt4.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {
@@ -81,7 +85,7 @@ public class TimeTableDao extends BaseDao {
           }
 
           public boolean loginTT5(TimeTable tt5) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt5.getWeek());
@@ -89,6 +93,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt5.getDateEnd());
                               prst.setInt(4,tt5.getCrId());
                               prst.setString(5,tt5.getCouNo());
+                              prst.setString(6,tt5.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {
@@ -99,7 +104,7 @@ public class TimeTableDao extends BaseDao {
           }
 
           public boolean loginTT6(TimeTable tt6) {
-                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?)";
+                    String sql="insert into cou_time_table values(tt_seq.nextval,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, tt6.getWeek());
@@ -107,6 +112,7 @@ public class TimeTableDao extends BaseDao {
                               prst.setString(3,tt6.getDateEnd());
                               prst.setInt(4,tt6.getCrId());
                               prst.setString(5,tt6.getCouNo());
+                              prst.setString(6,tt6.getCrName());
                               if (prst.executeUpdate() > 0)
                                         return true;            
                     } catch (SQLException e) {

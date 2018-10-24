@@ -13,7 +13,7 @@ import com.qujia.util.StringUtil;
 public class OpenCourseDao extends BaseDao {
 
           public boolean loginCourse(OpenCourse oc) {
-                    String sql="insert into open_course values(?,?,?,?,?,?,?,?,?,null,?,?,?)";
+                    String sql="insert into open_course values(?,?,?,?,?,?,?,?,?,null,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, oc.getCouNo());
@@ -28,6 +28,7 @@ public class OpenCourseDao extends BaseDao {
                               prst.setString(10,oc.getStatus());
                               prst.setString(11, oc.getProName());
                               prst.setString(12,oc.getLoginDate());
+                              prst.setString(13,oc.getTtcr());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
@@ -67,6 +68,7 @@ public class OpenCourseDao extends BaseDao {
                                         o.setCurrNum(rs.getInt("curr_num"));
                                         o.setStatus(rs.getString("status"));
                                         o.setLoginDate(rs.getString("logindate"));
+                                        o.setTtcr(rs.getString("tt_cr"));
                                         retList.add(o);
                               }
                     } catch (SQLException e) {
@@ -77,7 +79,7 @@ public class OpenCourseDao extends BaseDao {
           }
 
           public boolean updateOC(OpenCourse oc) {
-                    String sql="update open_course set proid=?,proname=?,schyear=?,term=?,class_no=?,fixed_num=?,status=? where cou_no=?";
+                    String sql="update open_course set proid=?,proname=?,schyear=?,term=?,class_no=?,fixed_num=?,status=?,tt_cr=?  where cou_no=?";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,oc.getProId());
@@ -87,7 +89,8 @@ public class OpenCourseDao extends BaseDao {
                               prst.setString(5,oc.getClassNo());
                               prst.setInt(6,oc.getFixedNum());
                               prst.setString(7, oc.getStatus());
-                              prst.setString(8, oc.getCouNo());
+                              prst.setString(8,oc.getTtcr());
+                              prst.setString(9, oc.getCouNo());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block

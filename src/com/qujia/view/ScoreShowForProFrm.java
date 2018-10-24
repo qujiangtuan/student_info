@@ -2,8 +2,6 @@ package com.qujia.view;
 
 import java.awt.EventQueue;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -56,76 +53,37 @@ public class ScoreShowForProFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JLabel lblNewLabel = new JLabel("\uAC15\uC758\uBA85:");
+                    lblNewLabel.setBounds(32, 25, 59, 15);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4");
+                    lblNewLabel_1.setBounds(88, 25, 116, 15);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uD559\uC0DD\uBA85\uC218:");
+                    lblNewLabel_2.setBounds(256, 25, 61, 15);
                     
                     JLabel lblNewLabel_3 = new JLabel("35");
+                    lblNewLabel_3.setBounds(329, 25, 129, 15);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(17, 87, 713, 289);
                     
                     JLabel lblNewLabel_4 = new JLabel("\uD559\uBC88:");
+                    lblNewLabel_4.setBounds(44, 62, 47, 15);
                     
                     textField = new JTextField();
+                    textField.setBounds(88, 59, 116, 21);
                     textField.setColumns(10);
                     
                     JLabel lblNewLabel_5 = new JLabel("\uC774\uB984:");
+                    lblNewLabel_5.setBounds(279, 62, 38, 15);
                     
                     textField_1 = new JTextField();
+                    textField_1.setBounds(329, 59, 129, 21);
                     textField_1.setColumns(10);
                     
                     JButton btnNewButton = new JButton("\uAC80 \uC0C9");
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addContainerGap()
-                                                                      .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 713, GroupLayout.PREFERRED_SIZE))
-                                                            .addGroup(gl_contentPane.createSequentialGroup()
-                                                                      .addGap(31)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(lblNewLabel_4)
-                                                                                .addComponent(lblNewLabel))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addComponent(lblNewLabel_1)
-                                                                                .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                                      .addGap(61)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-                                                                                .addComponent(lblNewLabel_2)
-                                                                                .addComponent(lblNewLabel_5))
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                      .addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                                                                .addGroup(gl_contentPane.createSequentialGroup()
-                                                                                          .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-                                                                                          .addGap(66)
-                                                                                          .addComponent(btnNewButton))
-                                                                                .addComponent(lblNewLabel_3))))
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(20)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(lblNewLabel_1)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(lblNewLabel_3))
-                                                  .addGap(18)
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_4)
-                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblNewLabel_5)
-                                                            .addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton))
-                                                  .addGap(28)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 267, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(19, Short.MAX_VALUE))
-                    );
+                    btnNewButton.setBounds(524, 58, 61, 23);
+                    contentPane.setLayout(null);
                     
                     table = new JTable();
                     table.setRowHeight(25);
@@ -145,8 +103,17 @@ public class ScoreShowForProFrm extends JFrame {
                               }
                     });
                     scrollPane.setViewportView(table);
-                    contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    contentPane.add(scrollPane);
+                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(lblNewLabel_1);
+                    contentPane.add(textField);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(lblNewLabel_5);
+                    contentPane.add(textField_1);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(lblNewLabel_3);
           }
 }

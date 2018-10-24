@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -58,65 +55,32 @@ public class LectureOfProFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     JButton btnNewButton = new JButton("\uAC80 \uC0C9");
+                    btnNewButton.setBounds(604, 15, 84, 23);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uAD50\uC218\uBA85:");
+                    lblNewLabel_2.setBounds(33, 19, 54, 15);
                     
                     textField_2 = new JTextField();
+                    textField_2.setBounds(92, 16, 192, 21);
                     textField_2.setColumns(10);
                     
                     JScrollPane scrollPane = new JScrollPane();
+                    scrollPane.setBounds(17, 48, 696, 232);
                     
                     JLabel lblNewLabel = new JLabel("\uAC15\uC758\uBA85:");
+                    lblNewLabel.setBounds(296, 19, 55, 15);
                     
                     textField = new JTextField();
+                    textField.setBounds(363, 16, 181, 21);
                     textField.setColumns(10);
                     
                     JButton btnNewButton_1 = new JButton("\uB2EC \uAE30");
+                    btnNewButton_1.setBounds(629, 298, 84, 23);
                     btnNewButton_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
                               }
                     });
-                    GroupLayout gl_contentPane = new GroupLayout(contentPane);
-                    gl_contentPane.setHorizontalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 696, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addGap(42)
-                                                  .addComponent(lblNewLabel_2)
-                                                  .addPreferredGap(ComponentPlacement.RELATED)
-                                                  .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(27)
-                                                  .addComponent(lblNewLabel)
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(textField, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
-                                                  .addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                                                  .addComponent(btnNewButton)
-                                                  .addGap(60))
-                                        .addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap(613, Short.MAX_VALUE)
-                                                  .addComponent(btnNewButton_1)
-                                                  .addContainerGap())
-                    );
-                    gl_contentPane.setVerticalGroup(
-                              gl_contentPane.createParallelGroup(Alignment.LEADING)
-                                        .addGroup(gl_contentPane.createSequentialGroup()
-                                                  .addContainerGap()
-                                                  .addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-                                                            .addComponent(lblNewLabel_2)
-                                                            .addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(btnNewButton)
-                                                            .addComponent(lblNewLabel)
-                                                            .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                  .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                  .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 232, GroupLayout.PREFERRED_SIZE)
-                                                  .addGap(18)
-                                                  .addComponent(btnNewButton_1)
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    );
                     
                     table = new JTable();
                     table.setRowHeight(25);
@@ -140,9 +104,16 @@ public class LectureOfProFrm extends JFrame {
                     table.getColumnModel().getColumn(4).setPreferredWidth(56);
                     table.getColumnModel().getColumn(5).setPreferredWidth(63);
                     table.getColumnModel().getColumn(6).setPreferredWidth(191);
+                    contentPane.setLayout(null);
                     scrollPane.setViewportView(table);
-                    contentPane.setLayout(gl_contentPane);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+                    contentPane.add(scrollPane);
+                    contentPane.add(lblNewLabel_2);
+                    contentPane.add(textField_2);
+                    contentPane.add(lblNewLabel);
+                    contentPane.add(textField);
+                    contentPane.add(btnNewButton);
+                    contentPane.add(btnNewButton_1);
           }
 }
