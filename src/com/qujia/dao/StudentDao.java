@@ -343,4 +343,24 @@ public class StudentDao extends BaseDao{
                     }
                     return stuName;
           }
+          public boolean isStuNo(String snoInput) {
+                    String sql = "select count(*) count from student where sno= ? ";
+                    PreparedStatement prst =null;
+                    int count=0;
+                    ResultSet rs;
+                    int id=0;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, snoInput);
+                              rs = prst.executeQuery();
+                              while(rs.next()){
+                                        count=rs.getInt("count");
+                             }
+                              if(count==1) return true;
+                    } catch (SQLException e1) {
+                              // TODO Auto-generated catch block
+                              e1.printStackTrace();
+                    }
+                    return false;
+          }
 }

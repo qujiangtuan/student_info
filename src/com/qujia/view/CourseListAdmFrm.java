@@ -17,12 +17,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.BadLocationException;
 
 import com.eltima.components.ui.DatePicker;
+import com.qujia.dao.OpenCourseDao;
 import com.qujia.dao.PerCourseDao;
+import com.qujia.dao.StuCouDao;
 import com.qujia.dao.StudentDao;
 import com.qujia.model.PerCourse;
+import com.qujia.model.StuCou;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
@@ -38,6 +45,8 @@ public class CourseListAdmFrm extends JFrame {
           private DefaultTableModel dft;
           private PerCourseDao pcDao;
           private static int row;
+          private JTextField textField_sName;
+          private JTextField textField_souNo;
           /**
            * Launch the application.
            */
@@ -117,6 +126,39 @@ public class CourseListAdmFrm extends JFrame {
                     lblNewLabel_5.setBounds(17, 360, 67, 15);
                     
                     textField_upStu = new JTextField();
+                    textField_upStu.getDocument().addDocumentListener(new DocumentListener() {
+                              String snoInput=null;
+                              String snoOracle=null;
+                              String snoName=null;
+                              @Override
+                              public void removeUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              @Override
+                              public void insertUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              @Override
+                              public void changedUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              private void Action(DocumentEvent e) {
+                                        try {
+                                                  snoInput = e.getDocument().getText(e.getDocument().getStartPosition().getOffset(), e.getDocument().getLength());
+                                                  StudentDao sDao=new StudentDao();
+                                                  snoName = sDao.getStuName(snoInput);
+                                                  if(sDao.isStuNo(snoInput)){
+                                                            textField_sName.setText(snoName);
+                                                  }else{
+                                                            textField_sName.setText("");
+                                                  }
+                                        } catch (BadLocationException e1) {
+                                                  // TODO Auto-generated catch block
+                                                  e1.printStackTrace();
+                                        }
+                                        
+                              }
+                    });
                     textField_upStu.setBounds(96, 357, 126, 21);
                     textField_upStu.setColumns(10);
                     
@@ -127,10 +169,48 @@ public class CourseListAdmFrm extends JFrame {
                     lblNewLabel_4.setBounds(243, 360, 68, 15);
                     
                     textField_upCou = new JTextField();
-                    textField_upCou.setBounds(323, 357, 185, 21);
+                    textField_upCou.getDocument().addDocumentListener(new DocumentListener() {
+                              String cnoInput=null;
+                              String cnoOracle=null;
+                              String cnoName=null;
+                              @Override
+                              public void removeUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              @Override
+                              public void insertUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              @Override
+                              public void changedUpdate(DocumentEvent e) {
+                                        Action(e);
+                              }
+                              private void Action(DocumentEvent e) {
+                                        try {
+                                                  cnoInput = e.getDocument().getText(e.getDocument().getStartPosition().getOffset(), e.getDocument().getLength());
+                                                  OpenCourseDao ocDao=new OpenCourseDao();
+                                                  cnoName = ocDao.getCouName(cnoInput);
+                                                  if(ocDao.isCouNo(cnoInput)){
+                                                            textField_souNo.setText(cnoName);
+                                                  }else{
+                                                            textField_souNo.setText("");
+                                                  }
+                                        } catch (BadLocationException e1) {
+                                                  // TODO Auto-generated catch block
+                                                  e1.printStackTrace();
+                                        }
+                                        
+                              }
+                    });
+                    textField_upCou.setBounds(323, 357, 178, 21);
                     textField_upCou.setColumns(10);
                     
                     JButton submitButton = new JButton("\uD655 \uC778");
+                    submitButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        OtherApplyCourse(e);
+                              }
+                    });
                     submitButton.setBounds(544, 356, 86, 23);
                     
                     JButton deleteCouButton = new JButton("\uC218\uAC15\uC0AD\uC81C");
@@ -196,9 +276,54 @@ public class CourseListAdmFrm extends JFrame {
                     contentPane.add(submitButton);
                     contentPane.add(deleteCouButton);
                     
+                    textField_sName = new JTextField();
+                    textField_sName.setEditable(false);
+                    textField_sName.setBounds(96, 388, 126, 21);
+                    contentPane.add(textField_sName);
+                    textField_sName.setColumns(10);
+                    
+                    textField_souNo = new JTextField();
+                    textField_souNo.setEditable(false);
+                    textField_souNo.setColumns(10);
+                    textField_souNo.setBounds(323, 388, 178, 21);
+                    contentPane.add(textField_souNo);
+                    
                     setTable(new PerCourse());
           }
-          
+          //정원이 되면 학과사무실 수강신청
+          protected void OtherApplyCourse(ActionEvent e) {
+                    String sno=textField_upStu.getText().toString();
+                    String sname=textField_sName.getText().toString();
+                    String couNo=textField_upCou.getText().toString();
+                    String couName = textField_souNo.getText().toString();
+                    String applyDate=DateUtil.getTodayDate();
+                    
+                    StuCou sc=new StuCou();
+                    sc.setSno(sno);
+                    sc.setSname(sname);
+                    sc.setCouNo(couNo);
+                    sc.setCouName(couName);
+                    sc.setApplyDate(applyDate);
+                    
+                    StuCouDao  scDao=new StuCouDao();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "학생 수강을 허용하겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(scDao.AddSC(sc)){
+                                        JOptionPane.showMessageDialog(this, "학생 수강을 허용되었습니다!");
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "학생 수강을 허용되지않 습니다!");
+                              }
+                    }
+                    resetValue();
+                    
+          }
+          //학번 /학수번호 초기화
+          private void resetValue() {
+                    textField_upStu.setText("");
+                    textField_upCou.setText("");
+          }
+
           protected void deleteCourseAction(ActionEvent e) {
                     row=table.getSelectedRow();
                     if(row==-1){

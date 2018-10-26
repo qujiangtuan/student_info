@@ -34,6 +34,7 @@ import com.qujia.dao.CourseApplyViewDao;
 import com.qujia.dao.OpenCourseDao;
 import com.qujia.dao.PerCourseDao;
 import com.qujia.dao.ProStaffDao;
+import com.qujia.dao.StuCouDao;
 import com.qujia.dao.StudentDao;
 import com.qujia.model.CourseApplyView;
 import com.qujia.model.PerCourse;
@@ -622,15 +623,18 @@ public class CourseApplicationStudentFrm extends JFrame {
                         JOptionPane.showMessageDialog(this, "수강을 선택해주세요!");
                         return;
               }
-              int credit1=Integer.parseInt(label_credit1.getText().toString());
-              int credit2=Integer.parseInt(label_credit2.getText().toString());
               dft_1 = (DefaultTableModel) table_1.getModel();
+              int fixedNum = Integer.parseInt(dft_1.getValueAt(index, 8).toString());//정원
+              int currNum = Integer.parseInt(dft_1.getValueAt(index, 9).toString());//현원
+              int credit1=Integer.parseInt(label_credit1.getText().toString());//신청가능학점
+              int credit2=Integer.parseInt(label_credit2.getText().toString());//신청된 학점
+             
               String couNo = dft_1.getValueAt(index, 2).toString();
               PerCourse pc=new PerCourse();
               pc.setYear(DateUtil.getThisYear());
               pc.setTerm(DateUtil.getTerm());
               pc.setCouName(dft_1.getValueAt(index, 1).toString());
-              pc.setCouNo(dft_1.getValueAt(index, 2).toString());
+              pc.setCouNo(couNo);
               pc.setCouDept(dft_1.getValueAt(index, 3).toString());
               pc.setStuDept(dept);
               pc.setLearnType(dft_1.getValueAt(index, 5).toString());
@@ -652,26 +656,31 @@ public class CourseApplicationStudentFrm extends JFrame {
                         JOptionPane.showMessageDialog(this, "신청가능학점을 초과하면 안됩니다!");
                         return;
               }
-              int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수강을 신청하시겠습니까?", " WarningDialog!", 
-                                  JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-              if(showConfirmDialog==JOptionPane.YES_OPTION){
-                       
-                                  if(pcDao.addApplyCourse(pc)){
-                                            count=getCurrentNum(couNo);
-                                            boolean updateCurrNum = updateCurrNum(couNo,count);
-                                            //두개 table 초기화
-                                            setTable_1(new CourseApplyView());
-                                            setTable_perCourse(new PerCourse());
-                                            JOptionPane.showMessageDialog(this, "수강 신청 성공했습니다!");
-                                            resetValue();
-                                            return;
-                                  }else{
-                                            JOptionPane.showMessageDialog(this, "수강 신청 실패했습니다!");
-                                            return;
-                                  }
-                        
-                        
+              StuCouDao scDao=new StuCouDao();
+              if(fixedNum<(currNum+1)&& !(scDao.isSC(stuTemp.getsNo(),couNo))){
+                        JOptionPane.showMessageDialog(this, "이 수강이 이미 정원이 되었습니다,신청 불 강능합니다!");
+                        return;
+              }else if(fixedNum>=(currNum+1)||(fixedNum<(currNum+1)&& scDao.isSC(stuTemp.getsNo(),couNo))){
+                        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수강을 신청하시겠습니까?", " WarningDialog!", 
+                                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                        if(showConfirmDialog==JOptionPane.YES_OPTION){
+                                 
+                                            if(pcDao.addApplyCourse(pc)){
+                                                      count=getCurrentNum(couNo);
+                                                      boolean updateCurrNum = updateCurrNum(couNo,count);
+                                                      //두개 table 초기화
+                                                      setTable_1(new CourseApplyView());
+                                                      setTable_perCourse(new PerCourse());
+                                                      JOptionPane.showMessageDialog(this, "수강 신청 성공했습니다!");
+                                                      resetValue();
+                                                      return;
+                                            }else{
+                                                      JOptionPane.showMessageDialog(this, "수강 신청 실패했습니다!");
+                                                      return;
+                                            }
+                        }
               }
+              
               
               
     }

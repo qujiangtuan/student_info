@@ -576,9 +576,6 @@ public class MainFrm extends JFrame {
                               this.disable();
                               new LoginFrm().setVisible(true);
                     }
-//                    if(JOptionPane.showConfirmDialog(MainFrm.this, "로그아웃 하겠습니까？")==JOptionPane.OK_OPTION){
-//                              
-//                    }
           }
           //          권한
           private  void setAuthority() {
