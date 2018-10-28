@@ -65,7 +65,7 @@ public class SearchOrgForProFrm extends JDialog {
            */
           public SearchOrgForProFrm(JFrame fr) {
                     super(fr, "", true);
-                    
+                    this.setResizable(false);
                     setTitle("\uC870\uC9C1\uC870\uD68C");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 750, 383);

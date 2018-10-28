@@ -36,6 +36,7 @@ public class GradeCheckFrm extends JFrame {
            * Create the frame.
            */
           public GradeCheckFrm() {
+                    this.setResizable(false);
                     setTitle("\uD559\uC810\uD655\uC778");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 438, 488);

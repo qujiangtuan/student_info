@@ -33,8 +33,6 @@ public class ScoreEvalutionFrm extends JFrame {
           private JComboBox comboBox_3;
           private JLabel label_3;
           private JComboBox comboBox_4;
-          private JLabel label_4;
-          private JLabel lblNewLabel_3;
           private JDesktopPane desktopPane;
           private JLabel lblNewLabel_4;
           private JLabel label_5;
@@ -60,6 +58,7 @@ public class ScoreEvalutionFrm extends JFrame {
            * Create the frame.
            */
           public ScoreEvalutionFrm() {
+                    this.setResizable(false);
                     setTitle("\uC131\uC801\uD3C9\uAC00");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 699, 474);
@@ -120,12 +119,6 @@ public class ScoreEvalutionFrm extends JFrame {
                     comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
                     comboBox_4.setEditable(true);
                     
-                    label_4 = new JLabel("\uD559\uC810:");
-                    label_4.setBounds(303, 19, 40, 15);
-                    
-                    lblNewLabel_3 = new JLabel("3");
-                    lblNewLabel_3.setBounds(355, 19, 42, 15);
-                    
                     desktopPane = new JDesktopPane();
                     desktopPane.setBounds(416, 15, 1, 1);
                     
@@ -184,8 +177,6 @@ public class ScoreEvalutionFrm extends JFrame {
                     contentPane.add(lblNewLabel_4);
                     contentPane.add(lblNewLabel_1);
                     contentPane.add(label_5);
-                    contentPane.add(label_4);
-                    contentPane.add(lblNewLabel_3);
                     contentPane.add(desktopPane);
                     contentPane.add(btnNewButton);
                     contentPane.add(lblNewLabel_2);

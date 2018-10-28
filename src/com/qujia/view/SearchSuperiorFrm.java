@@ -76,6 +76,8 @@ public class SearchSuperiorFrm extends JDialog {
            */
           public SearchSuperiorFrm(JFrame fr) {
                     super(fr, "", true);
+                    
+                    this.setResizable(false);
                     setTitle("직속상사조회");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 554, 300);
@@ -199,7 +201,7 @@ public class SearchSuperiorFrm extends JDialog {
                     DefaultTableModel dft = (DefaultTableModel) table.getModel();
                     dft.setRowCount(0);
                     ProStaffDao psDao=new ProStaffDao();
-                    List<ProStaff> proStaffList = psDao.getProStaffList( proStaff);
+                    List<ProStaff> proStaffList = psDao.getSearchStaffList( proStaff);
                     for(ProStaff pslist : proStaffList){
                               Vector v=new Vector();
                               v.add(pslist.getpNo());

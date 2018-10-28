@@ -77,6 +77,7 @@ public class SearchClassRoomFrm extends JDialog {
 	 */
 	public SearchClassRoomFrm(JFrame fr) {
 	    super(fr, "", true);
+	    this.setResizable(false);
 		setTitle("\uAC15\uC758\uC2E4\uAD00\uB9AC");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 729, 329);

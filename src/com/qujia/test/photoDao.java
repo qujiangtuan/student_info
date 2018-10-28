@@ -66,7 +66,7 @@ public class photoDao {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			Connection con = DriverManager.getConnection(
-					"jdbc:oracle:thin:@210.110.136.106:1522:XE", "student", "6317800");
+					"jdbc:oracle:thin:@210.110.136.106:1521:XE", "student", "6317800");
 			Statement stmt = con.createStatement();
 			String sql = "select image from picture WHERE id='1'";
 

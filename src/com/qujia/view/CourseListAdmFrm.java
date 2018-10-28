@@ -67,6 +67,7 @@ public class CourseListAdmFrm extends JFrame {
            * Create the frame.
            */
           public CourseListAdmFrm() {
+                    this.setResizable(false);
                     setTitle("\uC218\uAC15\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 877, 476);
@@ -306,13 +307,13 @@ public class CourseListAdmFrm extends JFrame {
                     sc.setApplyDate(applyDate);
                     
                     StuCouDao  scDao=new StuCouDao();
-                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "학생 수강을 허용하겠습니까?", " WarningDialog!", 
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "추가수강을 허용하시겠습니까?", " WarningDialog!", 
                                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if(showConfirmDialog==JOptionPane.YES_OPTION){
                               if(scDao.AddSC(sc)){
-                                        JOptionPane.showMessageDialog(this, "학생 수강을 허용되었습니다!");
+                                        JOptionPane.showMessageDialog(this, "학생 수강이 허용되었습니다!");
                               }else{
-                                        JOptionPane.showMessageDialog(this, "학생 수강을 허용되지않 습니다!");
+                                        JOptionPane.showMessageDialog(this, "학생 수강이 허용되지 않습니다!");
                               }
                     }
                     resetValue();

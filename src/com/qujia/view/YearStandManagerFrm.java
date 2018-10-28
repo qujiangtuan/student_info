@@ -67,6 +67,7 @@ public class YearStandManagerFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public YearStandManagerFrm() {
+	          this.setResizable(false);
 		setTitle("\uD559\uB144\uBCC4\uAD50\uC721\uBD80\uC11C\uD559\uC0AC\uAE30\uC900\uAD00\uB9AC");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 871, 658);

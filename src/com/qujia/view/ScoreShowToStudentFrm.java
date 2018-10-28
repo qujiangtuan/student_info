@@ -61,6 +61,7 @@ public class ScoreShowToStudentFrm extends JFrame {
            * Create the frame.
            */
           public ScoreShowToStudentFrm() {
+                    this.setResizable(false);
                     setTitle("\uC131\uC801\uC870\uD76C");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 908, 479);

@@ -54,7 +54,7 @@ public class EditPasswordFrm extends JInternalFrame {
            * Create the frame.
            */
           public EditPasswordFrm( ) {
-          
+                    this.setResizable(false);
                     setTitle("비밀번호수정");
 //                    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     setBounds(100, 100, 450, 300);

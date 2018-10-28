@@ -43,6 +43,7 @@ public class LectureOfProFrm extends JFrame {
            * Create the frame.
            */
           public LectureOfProFrm() {
+                    this.setResizable(false);
                     setTitle("\uAC15\uC758\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 742, 372);

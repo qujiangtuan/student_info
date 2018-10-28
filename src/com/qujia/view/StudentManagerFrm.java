@@ -81,6 +81,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     setIconifiable(true);
                     setTitle("학생목록");
                     setBounds(2, 5, 1034, 455);
+                    this.setResizable(false);
                     
                     JLabel searchStudentNameLabel = new JLabel("학생이름:");
                     searchStudentNameLabel.setBounds(36, 28, 74, 26);

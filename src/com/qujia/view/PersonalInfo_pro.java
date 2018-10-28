@@ -2,6 +2,8 @@ package com.qujia.view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -46,6 +48,7 @@ public class PersonalInfo_pro extends JFrame {
 	 * Create the frame.
 	 */
 	public PersonalInfo_pro() {
+	          this.setResizable(false);
 		setTitle("\uAC1C\uC778\uC815\uBCF4");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 590, 362);
@@ -87,6 +90,11 @@ public class PersonalInfo_pro extends JFrame {
 		label_perType.setBounds(387, 81, 75, 15);
 		
 		JButton submitButton = new JButton("\uD655 \uC778");
+		submitButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent arg0) {
+		                    dispose();
+		          }
+		});
 		submitButton.setBounds(131, 238, 69, 23);
 		
 		JLabel lblNewLabel_9 = new JLabel("\uC544 \uC774 \uB514:");

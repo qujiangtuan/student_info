@@ -95,8 +95,10 @@ public class CourseApplicationStudentFrm extends JFrame {
     
     
     public CourseApplicationStudentFrm() {
+              
         super("CardLayout Test");
         setTitle("수강신청");
+        this.setResizable(false);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
      // get login user info 
         student =(Student) MainFrm.userObject;
@@ -620,7 +622,7 @@ public class CourseApplicationStudentFrm extends JFrame {
 //신청 submit
     protected void applyCourseAction(ActionEvent ae) {
               if(index==-1){
-                        JOptionPane.showMessageDialog(this, "수강을 선택해주세요!");
+                        JOptionPane.showMessageDialog(this, "수강과목을 선택해주세요!");
                         return;
               }
               dft_1 = (DefaultTableModel) table_1.getModel();
@@ -638,7 +640,9 @@ public class CourseApplicationStudentFrm extends JFrame {
               pc.setCouDept(dft_1.getValueAt(index, 3).toString());
               pc.setStuDept(dept);
               pc.setLearnType(dft_1.getValueAt(index, 5).toString());
-              pc.setProName(dft_1.getValueAt(index, 7).toString());
+              String proName=dft_1.getValueAt(index, 7).toString();
+              pc.setProName(proName);
+              pc.setProId(this.getProNo(proName));
               pc.setClassNo(dft_1.getValueAt(index, 10).toString());
               //지금 신청할 이수학점 3점
               int creditCurr = Integer.parseInt(dft_1.getValueAt(index, 6).toString());
@@ -649,16 +653,16 @@ public class CourseApplicationStudentFrm extends JFrame {
               PerCourseDao pcDao=new PerCourseDao();
             //중복 확인
               if(pcDao.couIsExist(couNo,sno)){
-                        JOptionPane.showMessageDialog(this, "이 과목을 이미 신청되었습니다!");
+                        JOptionPane.showMessageDialog(this, "이 과목은 이미 신청되었습니다!");
                         return;
               }
               if(credit1<(credit2+creditCurr)){
-                        JOptionPane.showMessageDialog(this, "신청가능학점을 초과하면 안됩니다!");
+                        JOptionPane.showMessageDialog(this, "신청가능학점이 초과되었습니다！");
                         return;
               }
               StuCouDao scDao=new StuCouDao();
               if(fixedNum<(currNum+1)&& !(scDao.isSC(stuTemp.getsNo(),couNo))){
-                        JOptionPane.showMessageDialog(this, "이 수강이 이미 정원이 되었습니다,신청 불 강능합니다!");
+                        JOptionPane.showMessageDialog(this, "정원 초과된 과목입니다.");
                         return;
               }else if(fixedNum>=(currNum+1)||(fixedNum<(currNum+1)&& scDao.isSC(stuTemp.getsNo(),couNo))){
                         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수강을 신청하시겠습니까?", " WarningDialog!", 
@@ -684,7 +688,14 @@ public class CourseApplicationStudentFrm extends JFrame {
               
               
     }
-    //현원
+    private String getProNo(String proName) {
+          ProStaffDao psDao=new ProStaffDao();
+          String proId = psDao.getProId(proName);
+          return proId;
+}
+
+
+//현원
     private int getCurrentNum(String couNo) {
               return CourseArrangeManagerFrm.getCurrNum(couNo);
     }

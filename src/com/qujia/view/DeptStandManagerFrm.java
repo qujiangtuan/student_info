@@ -57,6 +57,7 @@ public class DeptStandManagerFrm extends JInternalFrame {
            * Create the frame.
            */
           public DeptStandManagerFrm() {
+                    this.setResizable(false);
                     setTitle("교육부서학사기준관리");
                     setBounds(20, 20, 863, 561);
                     setClosable(true);

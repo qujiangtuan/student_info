@@ -53,7 +53,7 @@ public class StudentDao extends BaseDao{
 	}
 			//add student
             public boolean addStudent(Student student){
-                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학중',?,?,?)";
+                      String sql="insert into student values(?,?,?,?,?,?,?,?,?,?,null,null,null,'재학',?,?,?)";
                       try {
                                 PreparedStatement prst=con.prepareStatement(sql);
                                 prst.setString(1, student.getsNo());

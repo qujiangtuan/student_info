@@ -94,6 +94,7 @@ public class AddCourseArrangeFrm extends JFrame {
            * Create the frame.
            */
           public AddCourseArrangeFrm() {
+                    this.setResizable(false);
                     setTitle("개설교과목등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 613, 547);
@@ -418,6 +419,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.add(button_searchPro);
 
                     textField_pro = new JTextField();
+                    textField_pro.setEditable(false);
                     textField_pro.setBounds(386, 77, 102, 21);
                     contentPane.add(textField_pro);
                     textField_pro.setColumns(10);
@@ -583,14 +585,13 @@ public class AddCourseArrangeFrm extends JFrame {
                     }
                     String classNo = spinner_classNo.getValue().toString();
                     String term = comboBox_term.getSelectedItem().toString();
-                    String envMethod = xRadioButton.isSelected() ? xRadioButton
-                                        .getText() : cRadioButton.getText();
-                    int fixedNum = Integer.parseInt(textField_num.getText()
-                                        .toString());
-                    if (StringUtil.isEmpty(fixedNum)) {
+                    String envMethod = xRadioButton.isSelected() ? xRadioButton.getText() : cRadioButton.getText();
+                    String fixedNumStr=textField_num.getText().toString();
+                    if (StringUtil.isEmpty(fixedNumStr)) {
                               JOptionPane.showMessageDialog(this, "정원을 입력해주세요!");
                               return;
                     }
+                    int fixedNum = Integer.parseInt(fixedNumStr);
                     couNo = getCouNo(subid);
                     String loginDate = DateUtil.getTodayDate();
                     OpenCourse oc = new OpenCourse();
@@ -722,14 +723,14 @@ public class AddCourseArrangeFrm extends JFrame {
                     }
                     if (bool2) {
                               ttList.add(tt2);
-                              if("".equals(textField_1.getText())){
+                              if("".equals(textField_2.getText())){
                                         JOptionPane.showMessageDialog(this, "화요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool3) {
                               ttList.add(tt3);
-                              if("".equals(textField_1.getText())){
+                              if("".equals(textField_3.getText())){
                                         JOptionPane.showMessageDialog(this, "수요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
@@ -737,21 +738,21 @@ public class AddCourseArrangeFrm extends JFrame {
 
                     if (bool4) {
                               ttList.add(tt4);
-                              if("".equals(textField_1.getText())){
+                              if("".equals(textField_4.getText())){
                                         JOptionPane.showMessageDialog(this, "목요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool5) {
                               ttList.add(tt5);
-                              if("".equals(textField_1.getText())){
+                              if("".equals(textField_5.getText())){
                                         JOptionPane.showMessageDialog(this, "금요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
                     }
                     if (bool6) {
                               ttList.add(tt6);
-                              if("".equals(textField_1.getText())){
+                              if("".equals(textField_6.getText())){
                                         JOptionPane.showMessageDialog(this, "토요일 수업의 강의실을 선택해주세요!");
                                         return;
                               }
@@ -787,11 +788,11 @@ public class AddCourseArrangeFrm extends JFrame {
                                                   && bool4 == b4 && bool5 == b5
                                                   && bool6 == b6) {
                                         JOptionPane.showMessageDialog(this,
-                                                            "교과목을 개설되었습니다!");
+                                                            "교과목이 개설되었습니다!");
                               }
                     } else {
                               JOptionPane.showMessageDialog(this,
-                                                  "교과목을 개설 실패되었습니다!");
+                                                  "교과목 개설이 실패되었습니다!");
                     }
                     resetValues();
           }

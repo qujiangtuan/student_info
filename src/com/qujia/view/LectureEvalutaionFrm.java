@@ -49,6 +49,7 @@ public class LectureEvalutaionFrm extends JFrame {
            * Create the frame.
            */
           public LectureEvalutaionFrm() {
+                    this.setResizable(false);
                     setTitle("\uAC15\uC758\uD3C9\uAC00");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 770, 450);

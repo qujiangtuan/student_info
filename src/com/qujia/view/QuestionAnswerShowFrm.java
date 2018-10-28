@@ -47,6 +47,7 @@ public class QuestionAnswerShowFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public QuestionAnswerShowFrm() {
+	          this.setResizable(false);
 		setTitle("\uB2F5\uC548\uBCF4\uAE30\uAD6C\uC131");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 823, 622);

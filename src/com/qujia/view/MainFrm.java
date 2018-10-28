@@ -46,6 +46,7 @@ public class MainFrm extends JFrame {
                     this.desktopPane_sys = desktopPane_sys;
           }
           public MainFrm(UserType userType,Object userObject) {
+                    this.setResizable(false);
                     this.userType=userType;
                     this.userObject=userObject;
                     

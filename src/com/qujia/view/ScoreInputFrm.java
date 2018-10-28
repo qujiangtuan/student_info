@@ -58,6 +58,7 @@ public class ScoreInputFrm extends  JFrame {
            * Create the frame.
            */
           public ScoreInputFrm() {
+                    this.setResizable(false);
                     setTitle("성적입력");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 552, 444);

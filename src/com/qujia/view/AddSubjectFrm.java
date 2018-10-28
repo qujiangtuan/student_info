@@ -60,6 +60,7 @@ public class AddSubjectFrm extends JFrame {
            * Create the frame.
            */
           public AddSubjectFrm() {
+                    this.setResizable(false);
                     setTitle("\uAD50\uACFC\uBAA9\uB4F1\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 631, 375);

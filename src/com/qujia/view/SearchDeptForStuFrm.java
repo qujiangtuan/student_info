@@ -65,7 +65,7 @@ public class SearchDeptForStuFrm extends JDialog {
            */
           public SearchDeptForStuFrm(JFrame fr) {
                     super(fr, "", true);
-                    
+                    this.setResizable(false);
                     setTitle("\uD559\uACFC\uC870\uD68C");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 645, 383);

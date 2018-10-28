@@ -41,6 +41,7 @@ public class ScoreShowForProFrm extends JFrame {
            * Create the frame.
            */
           public ScoreShowForProFrm() {
+                    this.setResizable(false);
                     setTitle("\uAD50\uC218 \uC131\uC801\uD655\uC778");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 754, 431);

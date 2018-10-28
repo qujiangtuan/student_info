@@ -9,6 +9,7 @@ public class PerCourse {
           private int creditType;
           private String proId;
           private String proName;
+          private String pno;
           private String classNo;
           private String ttcr;
           private String grade;
@@ -20,6 +21,12 @@ public class PerCourse {
           
           
          
+          public String getPno() {
+                    return pno;
+          }
+          public void setPno(String pno) {
+                    this.pno = pno;
+          }
           public String getCouDept() {
                     return couDept;
           }
@@ -110,17 +117,5 @@ public class PerCourse {
           public void setGrade(String grade) {
                     this.grade = grade;
           }
-          @Override
-          public String toString() {
-                    return "PerCourse [year=" + year + ", term=" + term
-                                        + ", couName=" + couName + ", couNo="
-                                        + couNo + ", learnType=" + learnType
-                                        + ", creditType=" + creditType
-                                        + ", proId=" + proId + ", proName="
-                                        + proName + ", classNo=" + classNo
-                                        + ", ttcr=" + ttcr + ", grade=" + grade
-                                        + "]";
-          }
-          
           
 }

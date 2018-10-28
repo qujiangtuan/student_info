@@ -74,7 +74,7 @@ public class SearchProfroCourseFrm extends JDialog {
                     super(fr, "", true);
                     setTitle("교원조회");
                     setBounds(100, 100, 686, 390);
-                    
+                    this.setResizable(false);
 
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);

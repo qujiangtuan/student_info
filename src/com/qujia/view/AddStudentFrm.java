@@ -99,6 +99,7 @@ public class AddStudentFrm extends JFrame {
            * Create the frame.
            */
           public AddStudentFrm() {
+                    this.setResizable(false);
                     getContentPane().setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setTitle("학생등록");
@@ -300,6 +301,7 @@ public class AddStudentFrm extends JFrame {
                     label.setBounds(254, 159, 13, 15);
                     
                     textField_deptName = new JTextField();
+                    textField_deptName.setEditable(false);
                     textField_deptName.setBounds(141, 76, 235, 21);
                     textField_deptName.setColumns(10);
                     btnNewButton = new JButton("조회");

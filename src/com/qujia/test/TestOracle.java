@@ -23,7 +23,7 @@ public class TestOracle {
         Connection conn = null;
         try {
             Class.forName("oracle.jdbc.OracleDriver");
-            String url = "jdbc:oracle:thin:@localhost:1522:xe";
+            String url = "jdbc:oracle:thin:@localhost:1521:xe";
             String user = "student";
             String password = "6317800";
             conn = DriverManager.getConnection(url, user, password);
@@ -87,7 +87,7 @@ public class TestOracle {
     }
     
     //将文件从Oracle读出到文件夹
-    private void testQuery() {
+    public void testQuery(String filename) {
         Connection conn = null;
         Statement st  = null;
         ResultSet rs = null;
@@ -99,7 +99,7 @@ public class TestOracle {
             if(rs.next()){
                 Blob blob = rs.getBlob("FILE1");
                 InputStream reader = blob.getBinaryStream();
-                OutputStream writer = new BufferedOutputStream(new FileOutputStream(new File("H:\\test1_fromDB.txt")));
+                OutputStream writer = new BufferedOutputStream(new FileOutputStream(new File("h:/"+filename)));
                 byte b[] = new byte[1024];
                 for(int i = 0; (i = reader.read(b)) > 0 ;)
                     writer.write(b, 0, i);
@@ -125,15 +125,15 @@ public class TestOracle {
     }
     
      
-//    public static void main(String[] args) throws Exception {
-//        
+    public static void main(String[] args) throws Exception {
+        
 //        new TestOracle().testInsert();
-//         
+         
 //        new TestOracle().testQuery();
-//        System.out.println("Done!");
-//        
-// 
-//    }
+        System.out.println("Done!");
+        
+ 
+    }
  
     
  

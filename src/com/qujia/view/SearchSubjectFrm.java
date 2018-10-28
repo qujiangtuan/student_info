@@ -84,6 +84,8 @@ public class SearchSubjectFrm extends JDialog {
            */
           public SearchSubjectFrm(JFrame fr) {
                     super(fr, "", true);
+                    
+                    this.setResizable(false);
                     setTitle("\uAD50\uACFC\uBAA9\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 692, 410);

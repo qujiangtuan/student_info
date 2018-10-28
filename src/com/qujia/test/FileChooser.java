@@ -16,9 +16,19 @@ public class FileChooser extends JFrame implements ActionListener{
     }  
     public FileChooser(){  
         getContentPane().setLayout(null);
-        open=new JButton("open");  
+        open=new JButton("업로드");  
         open.setBounds(94, 27, 84, 35);
         getContentPane().add(open);  
+        
+        JButton btnNewButton = new JButton("다운로드");
+        btnNewButton.addActionListener(new ActionListener() {
+                  public void actionPerformed(ActionEvent arg0) {
+                            TestOracle to= new TestOracle();
+                            to.testQuery("katE74.hwp");
+                  }
+        });
+        btnNewButton.setBounds(190, 33, 97, 23);
+        getContentPane().add(btnNewButton);
         this.setBounds(400, 200, 370, 300);  
         this.setVisible(true);  
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  

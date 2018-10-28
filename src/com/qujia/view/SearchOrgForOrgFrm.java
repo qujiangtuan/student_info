@@ -67,6 +67,7 @@ public class SearchOrgForOrgFrm extends JDialog {
            */
           public SearchOrgForOrgFrm(JFrame fr,String orgType1) {
                     super(fr, "", true);
+                    this.setResizable(false);
                     this.orgType=orgType1;
                     setTitle("조직조회");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

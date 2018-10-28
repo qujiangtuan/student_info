@@ -132,6 +132,7 @@ public class CourseArrangeManagerFrm extends JFrame {
            */
           public CourseArrangeManagerFrm() {
           	setTitle("개설교과목관리");
+          	this.setResizable(false);
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 880, 707);
                     

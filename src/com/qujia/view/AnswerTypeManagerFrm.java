@@ -56,6 +56,7 @@ public class AnswerTypeManagerFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public AnswerTypeManagerFrm() {
+	          this.setResizable(false);
 		setFont(new Font("Dialog", Font.BOLD, 14));
 		setTitle("\uB2F5\uC548\uC720\uD615\uAD00\uB9AC");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

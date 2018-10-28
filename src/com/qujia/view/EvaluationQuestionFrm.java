@@ -50,6 +50,7 @@ public class EvaluationQuestionFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public EvaluationQuestionFrm() {
+	          this.setResizable(false);
 		setTitle("\uD3C9\uAC00\uC9C8\uBB38\uAD6C\uC131\uAD00\uB9AC");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 797, 460);

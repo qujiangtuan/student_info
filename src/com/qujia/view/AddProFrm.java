@@ -88,6 +88,7 @@ public class AddProFrm extends JFrame {
            * Create the frame.
            */
           public AddProFrm() {
+                    this.setResizable(false);
                     setTitle("\uAD50\uC9C1\uC6D0\uB4F1\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 796, 440);
@@ -377,6 +378,7 @@ public class AddProFrm extends JFrame {
                     panel_2.add(comboBox_emptype);
                     
                     textField_sup = new JTextField();
+                    textField_sup.setEditable(false);
                     textField_sup.setBounds(79, 66, 104, 21);
                     panel_2.add(textField_sup);
                     textField_sup.setColumns(10);
@@ -427,6 +429,7 @@ public class AddProFrm extends JFrame {
                     contentPane.add(textField_address2);
                     
                     textField_org = new JTextField();
+                    textField_org.setEditable(false);
                     textField_org.setBounds(461, 151, 223, 21);
                     contentPane.add(textField_org);
                     textField_org.setColumns(10);

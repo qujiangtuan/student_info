@@ -70,6 +70,7 @@ public class AppendMajorOrgManagerFrm extends JFrame {
            * Create the frame.
            */
           public AppendMajorOrgManagerFrm() {
+                    this.setResizable(false);
                     setTitle("\uBCF5\uC218\uBD80\uC804\uACF5\uD5C8\uC6A9\uBC94\uC704\uBAA9\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 668, 508);
@@ -170,6 +171,7 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     bgroup.add(noRadioButton);
                     
                     textField_editAllow = new JTextField();
+                    textField_editAllow.setEditable(false);
                     textField_editAllow.setBounds(89, 281, 123, 21);
                     textField_editAllow.setColumns(10);
                     

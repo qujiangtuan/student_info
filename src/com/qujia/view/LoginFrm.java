@@ -57,6 +57,7 @@ public class LoginFrm extends JFrame {
            * Create the frame.
            */
           public LoginFrm() {
+                    this.setResizable(false);
                     setFont(new Font("나눔명조", Font.BOLD, 14));
                     setIconImage(Toolkit.getDefaultToolkit()
                                         .getImage(LoginFrm.class

@@ -76,6 +76,7 @@ public class AddOrgFrm extends JFrame {
            * Create the frame.
            */
           public AddOrgFrm() {
+                    this.setResizable(false);
                     setTitle("\uC870\uC9C1\uB4F1\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 566, 315);
@@ -91,7 +92,7 @@ public class AddOrgFrm extends JFrame {
                     lblNewLabel.setBounds(76, 43, 54, 15);
                     
                     textField_orgName = new JTextField();
-                    textField_orgName.setBounds(148, 40, 106, 21);
+                    textField_orgName.setBounds(148, 40, 226, 21);
                     textField_orgName.setColumns(10);
                     
 //                    JLabel lblNewLabel_1 = new JLabel("\uC57D\uC5B4\uBA85:");

@@ -12,7 +12,8 @@ import com.qujia.util.StringUtil;
 public class PerCourseDao extends BaseDao {
 
           public boolean addApplyCourse(PerCourse pc) {
-                    String sql = "insert into per_course values(?,?,?,?,?,?,?,?,?,null,?,?,?,?)";
+                    String sql = "insert into per_course(year,term,cou_name,cou_no,learn_type,class_no,"
+                                        + "credit_type,tt_cr,stu_no,stu_name,cou_dept,stu_dept,proname,pno) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                     try {
                      PreparedStatement prst=con.prepareStatement(sql);
                      prst.setString(1, pc.getYear());
@@ -20,15 +21,15 @@ public class PerCourseDao extends BaseDao {
                      prst.setString(3, pc.getCouName());
                      prst.setString(4, pc.getCouNo());
                      prst.setString(5, pc.getLearnType());
-                     prst.setString(6, pc.getProName());
-                     prst.setString(7, pc.getClassNo());
-                     prst.setInt(8, pc.getCreditType());
-                     prst.setString(9, pc.getTtcr());
-//                     prst.setString(10, pc.get);
-                     prst.setString(10,pc.getSno());
-                     prst.setString(11,pc.getsName());
-                     prst.setString(12, pc.getCouDept());
-                     prst.setString(13,pc.getStuDept());
+                     prst.setString(6, pc.getClassNo());
+                     prst.setInt(7, pc.getCreditType());
+                     prst.setString(8, pc.getTtcr());
+                     prst.setString(9,pc.getSno());
+                     prst.setString(10,pc.getsName());
+                     prst.setString(11, pc.getCouDept());
+                     prst.setString(12,pc.getStuDept());
+                     prst.setString(13, pc.getProName());
+                     prst.setString(14, pc.getProId());
                      if (prst.executeUpdate() > 0)
                                return true;            
            } catch (SQLException e) {

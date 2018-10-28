@@ -45,6 +45,7 @@ public class PersonalInfo_stu extends JFrame {
 	 * Create the frame.
 	 */
 	public PersonalInfo_stu() {
+	          this.setResizable(false);
 		setTitle("\uAC1C\uC778\uC815\uBCF4");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 570, 371);

@@ -1,21 +1,30 @@
 package com.qujia.view;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.qujia.dao.PerCourseDao;
+import com.qujia.dao.ProCourseDao;
+import com.qujia.dao.ProStaffDao;
+import com.qujia.dao.StuCourseViewDao;
 import com.qujia.dao.StudentDao;
-import com.qujia.model.PerCourse;
+import com.qujia.model.StuCourseView;
 import com.qujia.model.Student;
 import com.qujia.util.ViewUtil;
 
@@ -25,6 +34,10 @@ public class CourseListStuFrm extends JFrame {
           private JTable table_perCourse;
           private DefaultTableModel dft_per;
           private Student student,stuTemp;
+          private static int index;
+          private DefaultTableModel dft;     
+          private JLabel userName;
+          private JLabel deptName;
           /**
            * Launch the application.
            */
@@ -45,6 +58,7 @@ public class CourseListStuFrm extends JFrame {
            * Create the frame.
            */
           public CourseListStuFrm() {
+                    this.setResizable(false);
                  // get login user info 
                     student =(Student) MainFrm.userObject;
                     StudentDao stuDao=new StudentDao();
@@ -53,7 +67,7 @@ public class CourseListStuFrm extends JFrame {
                     
                     setTitle("\uC218\uAC15\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 649, 348);
+                    setBounds(100, 100, 789, 365);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -64,10 +78,16 @@ public class CourseListStuFrm extends JFrame {
                     contentPane.setLayout(null);
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(10, 47, 613, 168);
+                    scrollPane.setBounds(10, 47, 751, 213);
                     contentPane.add(scrollPane);
                     
                     table_perCourse = new JTable();
+                    table_perCourse.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent arg0) {
+                                        index=table_perCourse.getSelectedRow();
+                              }
+                    });
                     table_perCourse.setRowHeight(25);
                     table_perCourse.setModel(new DefaultTableModel(
                               new Object[][] {
@@ -98,35 +118,102 @@ public class CourseListStuFrm extends JFrame {
                     lblNewLabel.setBounds(40, 10, 54, 15);
                     contentPane.add(lblNewLabel);
                     
-                    JLabel lblNewLabel_1 = new JLabel("\uAE40\uC0C1\uBBFC");
-                    lblNewLabel_1.setBounds(93, 10, 220, 15);
-                    contentPane.add(lblNewLabel_1);
+                    userName = new JLabel("\uAE40\uC0C1\uBBFC");
+                    userName.setText(stuTemp.getName());
+                    userName.setBounds(93, 10, 109, 15);
+                    contentPane.add(userName);
                     
                     JButton btnNewButton = new JButton("\uAC15\uC758\uACC4\uD68D\uC11C \uB2E4\uC6B4\uB85C\uB4DC");
-                    btnNewButton.setBounds(391, 240, 161, 23);
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        DownloadFileFileChooserAction(e);
+                              }
+                    });
+                    btnNewButton.setBounds(569, 270, 161, 23);
                     contentPane.add(btnNewButton);
-                    PerCourse pc=new PerCourse();
-                    pc.setSno(stuTemp.getsNo());
-                    setTable(pc);
+                    
+                    JLabel lblNewLabel_1 = new JLabel("학과:");
+                    lblNewLabel_1.setBounds(214, 10, 57, 15);
+                    contentPane.add(lblNewLabel_1);
+                    
+                    deptName = new JLabel("컴공");
+                    deptName.setText(stuTemp.getDeptName());
+                    deptName.setBounds(263, 10, 168, 15);
+                    contentPane.add(deptName);
+                    
+                    dft = (DefaultTableModel) table_perCourse.getModel();
+                    
+                    
+                    StuCourseView cv=new StuCourseView();
+                    cv.setSno(stuTemp.getsNo());
+                    setTable(cv);
           }
 
-          private void setTable(PerCourse pcou) {
+          protected void DownloadFileFileChooserAction(ActionEvent e) {
+                    if(index==-1){
+                              JOptionPane.showMessageDialog(this, "파일을 선택해주세요!");
+                              return;
+                    }
+                    String couNo = dft.getValueAt(index, 0).toString();
+                    String proName = dft.getValueAt(index, 2).toString();
+                    String pno = this.getProName(proName);
+                    String fileName;
+                    try {
+                              fileName = dft.getValueAt(index, 7).toString();
+                    } catch (Exception e2) {
+                              JOptionPane.showMessageDialog(this, "첨부 파일이 없습니다!");
+                              return;
+                    }
+                    //파일 선택
+                    JFileChooser jfc=new JFileChooser();  
+                    jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );  
+                    jfc.showDialog(new JLabel(), "폴더 선택");  
+                    File file=jfc.getSelectedFile();  
+                    try {
+                              if(file.isDirectory()){
+                                        String Path = file.getAbsolutePath()+"/";
+                                        String absolutePath=Path.replaceAll("\\\\", "/");
+                                        ProCourseDao pcDao=new ProCourseDao();
+                                        if(pcDao.downFile(absolutePath,fileName,couNo,pno)){
+                                                  JOptionPane.showMessageDialog(this, "첨부 파일이 다운로드되었습니다! \n 파일 위치 : " +absolutePath+fileName);
+                                                  return;
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this, "첨부 파일 다운로드가 실패되었습니다!");
+                                                  return;
+                                        }
+                              }else if(file.isFile()){ 
+                                        JOptionPane.showMessageDialog(this, "파일를 선택하면 안된니다,폴더를 선택해주세요!");
+                                        return;
+                              }    
+                    } catch (Exception e2) {
+                             return;
+                    }
+                    
+          }
+
+          private String getProName(String proName) {
+                   ProStaffDao psDao=new ProStaffDao();
+                   String proId = psDao.getProId(proName);
+                    return proId;
+          }
+
+          private void setTable(StuCourseView pcou) {
                     dft_per = (DefaultTableModel) table_perCourse.getModel();
                     dft_per.setRowCount(0);
-                    PerCourseDao pcDao=new PerCourseDao();
-                    List<PerCourse> pcList = pcDao.getCourseList(pcou);
-                    for(PerCourse pc : pcList){
+                    StuCourseViewDao cvDao=new StuCourseViewDao();
+                    List<StuCourseView> cvList = cvDao.getCourseViewList(pcou);
+                    for(StuCourseView cv : cvList){
                               Vector v=new Vector();
-                              v.add(pc.getCouNo());
-                              v.add(pc.getCouName());
-                              v.add(pc.getProName());
-                              v.add(pc.getCreditType());
-                              v.add(pc.getLearnType());
-                              v.add(pc.getClassNo());
-                              v.add(pc.getTtcr());
+                              v.add(cv.getCouNo());
+                              v.add(cv.getCouName());
+                              v.add(cv.getProName());
+                              v.add(cv.getCreditType());
+                              v.add(cv.getLearnType());
+                              v.add(cv.getClassNo());
+                              v.add(cv.getTtcr());
+                              v.add(cv.getName());
                               dft_per.addRow(v);
                     }
-                    pcDao.closeDao();
+                    cvDao.closeDao();
           }
-          
 }

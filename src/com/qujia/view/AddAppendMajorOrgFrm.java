@@ -56,6 +56,7 @@ public class AddAppendMajorOrgFrm extends JFrame {
            * Create the frame.
            */
           public AddAppendMajorOrgFrm() {
+                    this.setResizable(false);
                     setTitle("\uBCF5\uC218\uBD80\uC804\uACF5\uD5C8\uC6A9\uBC94\uC704\uCD94\uAC00");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 576, 322);
@@ -128,6 +129,7 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     contentPane.add(btnNewButton);
                     
                     textField_base = new JTextField();
+                    textField_base.setEditable(false);
                     textField_base.setBounds(163, 42, 116, 21);
                     contentPane.add(textField_base);
                     textField_base.setColumns(10);
@@ -144,6 +146,7 @@ public class AddAppendMajorOrgFrm extends JFrame {
                     contentPane.add(btnNewButton_1);
                     
                     textField_allow = new JTextField();
+                    textField_allow.setEditable(false);
                     textField_allow.setColumns(10);
                     textField_allow.setBounds(163, 82, 116, 21);
                     contentPane.add(textField_allow);

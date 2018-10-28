@@ -58,6 +58,7 @@ public class AddDeptStandFrm extends JFrame {
            * Create the frame.
            */
           public AddDeptStandFrm() {
+                    this.setResizable(false);
                     setTitle("교육부서학사기준등록");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 664, 355);
@@ -155,6 +156,7 @@ public class AddDeptStandFrm extends JFrame {
                     contentPane.add(textField_year1);
                     
                     textField_deptName = new JTextField();
+                    textField_deptName.setEditable(false);
                     textField_deptName.setBounds(233, 24, 116, 21);
                     contentPane.add(textField_deptName);
                     textField_deptName.setColumns(10);

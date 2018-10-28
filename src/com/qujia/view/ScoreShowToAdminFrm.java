@@ -52,6 +52,7 @@ public class ScoreShowToAdminFrm extends JFrame {
            * Create the frame.
            */
           public ScoreShowToAdminFrm() {
+                    this.setResizable(false);
                     setTitle("\uC131\uC801\uD559\uC810\uD655\uC778");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 738, 515);

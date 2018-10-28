@@ -48,6 +48,7 @@ public class FindPassword extends JFrame {
            * Create the frame.
            */
           public FindPassword() {
+                    this.setResizable(false);
                     setTitle("\uBE44\uBC00\uBC88\uD638\uCC3E\uAE30");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100,100,354, 243);

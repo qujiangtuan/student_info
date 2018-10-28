@@ -50,6 +50,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public AddAppendMajorStudentFrm() {
+	          this.setResizable(false);
 		setTitle("\uCD94\uAC00\uC804\uACF5");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 525, 350);
@@ -111,6 +112,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		contentPane.add(Label_dept);
 		
 		textField_major = new JTextField();
+		textField_major.setEditable(false);
 		textField_major.setBounds(161, 163, 116, 21);
 		contentPane.add(textField_major);
 		textField_major.setColumns(10);

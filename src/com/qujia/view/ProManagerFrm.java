@@ -88,6 +88,7 @@ public class ProManagerFrm extends JFrame {
            * Create the frame.
            */
           public ProManagerFrm() {
+                    this.setResizable(false);
                     setTitle("\uAD50\uC9C1\uC6D0\uAD00\uB9AC");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 947, 561);

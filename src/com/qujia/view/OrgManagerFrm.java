@@ -59,6 +59,7 @@ public class OrgManagerFrm extends JFrame {
            * Create the frame.
            */
           public OrgManagerFrm() {
+                    this.setResizable(false);
                     setTitle("조직관리");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 899, 512);

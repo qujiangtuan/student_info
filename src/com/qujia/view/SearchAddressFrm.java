@@ -62,7 +62,7 @@ public class SearchAddressFrm extends JDialog {
            */
           public SearchAddressFrm(JFrame fr) {
                     super(fr, "", true);
-                    
+                    this.setResizable(false);
                     setTitle("\uC8FC\uC18C\uAC80\uC0C9");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
                     setBounds(100, 100, 763, 435);
@@ -178,7 +178,7 @@ public class SearchAddressFrm extends JDialog {
                     searchAddr=addrTmp.toString();
           }
 
-          //select ¼±ÅÃ
+          //select ï¿½ï¿½ï¿½ï¿½
           protected void selectRowME(MouseEvent e) {
                     index=table.getSelectedRow();
 //                    System.out.println("index-"+index);
@@ -197,7 +197,7 @@ public class SearchAddressFrm extends JDialog {
 ////                    System.out.println(addrTmp);
 //          }
 
-          //ÁÖ¼Ò Á¶È¸
+          //ï¿½Ö¼ï¿½ ï¿½ï¿½È¸
           protected void searchAddress(ActionEvent e) {
                     Address addr=new Address();
                     String dong = textField_dong.getText().toString();
@@ -206,7 +206,7 @@ public class SearchAddressFrm extends JDialog {
                     addr.setBldg(bldg);
                     setTable(addr);
           }
-          //table ¼³Á¤
+          //table ï¿½ï¿½ï¿½ï¿½
           private void setTable(Address address) {
                     DefaultTableModel dft = (DefaultTableModel) table.getModel();
                     dft.setRowCount(0);
