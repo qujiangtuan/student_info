@@ -89,7 +89,7 @@ public class OrgManagerFrm extends JFrame {
                     textField_editName.setColumns(10);
                     
                     JButton updateButton = new JButton("\uC218 \uC815");
-                    updateButton.setBounds(492, 358, 79, 23);
+                    updateButton.setBounds(553, 403, 79, 23);
                     updateButton.setBackground(new Color(102, 205, 170));
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -98,7 +98,7 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
-                    deleteButton.setBounds(492, 403, 79, 23);
+                    deleteButton.setBounds(644, 403, 79, 23);
                     deleteButton.setBackground(new Color(255, 99, 71));
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -245,6 +245,16 @@ public class OrgManagerFrm extends JFrame {
                     contentPane.add(comboBox_gdm);
                     contentPane.add(searchButton);
                     contentPane.add(scrollPane);
+                    
+                    JButton button = new JButton("닫 기");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBackground(new Color(240, 255, 255));
+                    button.setBounds(735, 403, 79, 23);
+                    contentPane.add(button);
                     
                     setTable(new Org());
           }

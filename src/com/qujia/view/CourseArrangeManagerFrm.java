@@ -99,6 +99,7 @@ public class CourseArrangeManagerFrm extends JFrame {
           private OpenCourseDao ocDao=new OpenCourseDao();
           private String couNo;
           private static int currNum;//수강 현원
+          private JButton button;
           
           
           public static int getCurrNum(String couNo) {
@@ -372,8 +373,8 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         updateOpenCourse(e);
                               }
                     });
-                    submitButton.setBounds(433, 600, 91, 23);
-                    submitButton.setBackground(new Color(224, 255, 255));
+                    submitButton.setBounds(205, 616, 91, 23);
+                    submitButton.setBackground(new Color(176, 224, 230));
                     
                     JButton deleteButton = new JButton("삭 제");
                     deleteButton.addActionListener(new ActionListener() {
@@ -381,7 +382,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         deleteAction(e);
                               }
                     });
-                    deleteButton.setBounds(598, 600, 80, 23);
+                    deleteButton.setBounds(339, 616, 80, 23);
                     deleteButton.setBackground(new Color(255, 160, 122));
                     
                     JLabel lblNewLabel_5 = new JLabel("개폐상태:");
@@ -663,6 +664,16 @@ public class CourseArrangeManagerFrm extends JFrame {
                     });
                     button_6.setBounds(427, 542, 65, 23);
                     contentPane.add(button_6);
+                    
+                    button = new JButton("닫기");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBackground(new Color(224, 255, 255));
+                    button.setBounds(484, 616, 91, 23);
+                    contentPane.add(button);
                     
                     
                     setTable(new OpenCourse());

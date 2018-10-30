@@ -237,4 +237,21 @@ public class OrgDao extends BaseDao {
                        }
                       return subCount;
             }
+          public String getOrgName(String orgid) {
+                    String sql="select name  from org where org_code=?";
+                    String orgName = null;
+                    ResultSet rs=null;
+                     try {
+                               //把sql语句传给数据库操作对象
+                               PreparedStatement prst = con.prepareStatement(sql);
+                               prst.setString(1, orgid);
+                               rs = prst.executeQuery();;
+                               while(rs.next()){
+                                         orgName=rs.getString("name");
+                              }
+                     } catch (SQLException e) {
+                               e.printStackTrace();
+                     }
+                    return orgName;
+          }
 }

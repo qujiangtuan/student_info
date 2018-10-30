@@ -37,6 +37,27 @@ public class CourseListProFrm extends JFrame {
           private DefaultTableModel dft;
           private ProCourseView cv;
           private JLabel userName;
+          private static String couno;
+          private static String couName;
+          
+          
+          
+          public static String getCouName() {
+                    return couName;
+          }
+
+          public static void setCouName(String couName) {
+                    CourseListProFrm.couName = couName;
+          }
+
+          public static String getCouno() {
+                    return couno;
+          }
+
+          public static void setCouno(String couno) {
+                    CourseListProFrm.couno = couno;
+          }
+
           /**
            * Launch the application.
            */
@@ -84,10 +105,12 @@ public class CourseListProFrm extends JFrame {
                     JScrollPane scrollPane = new JScrollPane();
                     scrollPane.setBounds(5, 48, 715, 167);
                     
-                    JButton button = new JButton("\uC131\uC801\uD655\uC778");
+                    JButton button = new JButton("학생목록");
                     button.setBounds(15, 233, 99, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        couno = dft.getValueAt(index, 0).toString();
+                                        couName=dft.getValueAt(index, 1).toString();
                                         ScoreShowForProFrm ssfp=new ScoreShowForProFrm();
                                         ssfp.setVisible(true);
                               }
@@ -97,18 +120,20 @@ public class CourseListProFrm extends JFrame {
                     btnNewButton.setBounds(123, 233, 99, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        couno = dft.getValueAt(index, 0).toString();
+                                        couName=dft.getValueAt(index, 1).toString();
                                         ScoreEvalutionFrm sef=new ScoreEvalutionFrm();
                                         sef.setVisible(true);
                               }
                     });
                     
-                    JButton btnNewButton_1 = new JButton("\uB2E4\uC6B4\uB85C\uB4DC");
+                    JButton btnNewButton_1 = new JButton("강의계획서 다운로드");
                     btnNewButton_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         DownloadFileFileChooserAction(e);
                               }
                     });
-                    btnNewButton_1.setBounds(479, 233, 89, 23);
+                    btnNewButton_1.setBounds(410, 233, 158, 23);
                     
                     JButton button_1 = new JButton("\uAC15\uC758\uACC4\uD68D\uC11C \uC5C5\uB85C\uB4DC");
                     button_1.addActionListener(new ActionListener() {
@@ -116,7 +141,7 @@ public class CourseListProFrm extends JFrame {
                                         UploadFileChooserAction(e);
                               }
                     });
-                    button_1.setBounds(313, 233, 148, 23);
+                    button_1.setBounds(250, 233, 148, 23);
                     
                     JButton btnNewButton_2 = new JButton("\uAC15\uC758\uACC4\uD68D\uC11C \uC0AD\uC81C");
                     btnNewButton_2.addActionListener(new ActionListener() {
@@ -167,6 +192,15 @@ public class CourseListProFrm extends JFrame {
                     contentPane.add(btnNewButton_1);
                     contentPane.add(btnNewButton_2);
                     contentPane.add(scrollPane);
+                    
+                    JButton btnNewButton_3 = new JButton("닫기");
+                    btnNewButton_3.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    btnNewButton_3.setBounds(623, 272, 97, 23);
+                    contentPane.add(btnNewButton_3);
                     
                     dft = (DefaultTableModel) table.getModel();
                     

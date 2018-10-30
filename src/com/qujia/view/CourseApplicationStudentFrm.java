@@ -79,6 +79,7 @@ public class CourseApplicationStudentFrm extends JFrame {
     private PerCourseDao  pcDao;
     private static String sno;//학생 학번
     private static int count;//현원
+    private JButton btnNewButton_4;
     
     public static void main(String[] args) {
               EventQueue.invokeLater(new Runnable() {
@@ -531,7 +532,16 @@ public class CourseApplicationStudentFrm extends JFrame {
                   panel_two_button.add(button_liberal);
                   panel_two_button.add(button_other);
                   panel_two_button.add(btnNewButton_2);
-        this.setSize(917, 706);
+                  
+                  btnNewButton_4 = new JButton("닫기");
+                  btnNewButton_4.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                      dispose();
+                            }
+                  });
+                  btnNewButton_4.setBounds(772, 672, 97, 23);
+                  getContentPane().add(btnNewButton_4);
+        this.setSize(917, 734);
         
         ViewUtil view =new ViewUtil();
         view.showCenter(this);

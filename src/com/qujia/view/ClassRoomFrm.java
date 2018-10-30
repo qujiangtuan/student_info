@@ -143,7 +143,7 @@ public class ClassRoomFrm extends JFrame {
 		                    updateCsAction(e);
 		          }
 		});
-		btnNewButton_2.setBounds(572, 245, 92, 23);
+		btnNewButton_2.setBounds(181, 338, 92, 23);
 		btnNewButton_2.setBackground(new Color(60, 179, 113));
 		
 		JButton button = new JButton("\uC0AD \uC81C");
@@ -152,7 +152,7 @@ public class ClassRoomFrm extends JFrame {
 		                    deleteCRAction(e);
 		          }
 		});
-		button.setBounds(572, 281, 92, 23);
+		button.setBounds(327, 338, 92, 23);
 		button.setBackground(new Color(255, 99, 71));
 		
 		comboBox_editExp = new JComboBox();
@@ -211,6 +211,11 @@ public class ClassRoomFrm extends JFrame {
 		comboBox_sExp.setBounds(360, 23, 132, 21);
 		panel_crManager.add(comboBox_sExp);
 		
+		JButton button_1 = new JButton("닫기");
+		button_1.setBackground(new Color(224, 255, 255));
+		button_1.setBounds(471, 338, 92, 23);
+		panel_crManager.add(button_1);
+		
 		panel_crAdd = new JPanel();
 		panel_crAdd.setBackground(new Color(240, 240, 240));
 		panel.add(panel_crAdd, "panel_crAdd");
@@ -252,6 +257,16 @@ public class ClassRoomFrm extends JFrame {
 		panel_crAdd.add(textField_counts);
 		panel_crAdd.add(textField_cName);
 		panel_crAdd.add(comboBox_exp);
+		
+		JButton button_2 = new JButton("취 소");
+		button_2.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    card.show(panel, "panel_crManager");
+		                    setTable(new ClassRoom());
+		          }
+		});
+		button_2.setBounds(290, 281, 102, 23);
+		panel_crAdd.add(button_2);
 		contentPane.setLayout(null);
 		contentPane.add(managerButton);
 		contentPane.add(addButton);

@@ -59,6 +59,7 @@ public class ProManagerFrm extends JFrame {
           private static String orgName;
           private static String superName;
           private JTextField textField_orgName;
+          private JButton button;
           
           public static String getOrgName() {
                     return orgName;
@@ -155,16 +156,16 @@ public class ProManagerFrm extends JFrame {
                     });
                     
                     JButton btnNewButton_1 = new JButton("\uC218  \uC815");
-                    btnNewButton_1.setBounds(504, 368, 69, 23);
+                    btnNewButton_1.setBounds(586, 450, 69, 23);
                     btnNewButton_1.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		updateProAction(ae);
                     	}
                     });
-                    btnNewButton_1.setBackground(new Color(224, 255, 255));
+                    btnNewButton_1.setBackground(new Color(176, 224, 230));
                     
                     JButton btnNewButton_2 = new JButton("사  직");
-                    btnNewButton_2.setBounds(504, 409, 69, 23);
+                    btnNewButton_2.setBounds(667, 450, 69, 23);
                     btnNewButton_2.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		deleteProStaffAction(ae);
@@ -327,6 +328,11 @@ public class ProManagerFrm extends JFrame {
                     textField_orgName.setBounds(663, 19, 116, 19);
                     contentPane.add(textField_orgName);
                     textField_orgName.setColumns(10);
+                    
+                    button = new JButton("닫기");
+                    button.setBackground(new Color(224, 255, 255));
+                    button.setBounds(748, 450, 69, 23);
+                    contentPane.add(button);
                     //这两条是显示横滚动条
 //                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 //                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);

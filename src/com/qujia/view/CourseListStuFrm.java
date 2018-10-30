@@ -129,7 +129,7 @@ public class CourseListStuFrm extends JFrame {
                                         DownloadFileFileChooserAction(e);
                               }
                     });
-                    btnNewButton.setBounds(569, 270, 161, 23);
+                    btnNewButton.setBounds(423, 279, 161, 23);
                     contentPane.add(btnNewButton);
                     
                     JLabel lblNewLabel_1 = new JLabel("학과:");
@@ -140,6 +140,15 @@ public class CourseListStuFrm extends JFrame {
                     deptName.setText(stuTemp.getDeptName());
                     deptName.setBounds(263, 10, 168, 15);
                     contentPane.add(deptName);
+                    
+                    JButton btnNewButton_1 = new JButton("닫기");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    btnNewButton_1.setBounds(651, 279, 97, 23);
+                    contentPane.add(btnNewButton_1);
                     
                     dft = (DefaultTableModel) table_perCourse.getModel();
                     

@@ -7,6 +7,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -41,6 +43,7 @@ public class ScoreShowToStudentFrm extends JFrame {
           private JTable table_scoreAvg;
           private JTable table_credit;
           private JButton creditButton;
+          private JButton evaButton;
           /**
            * Launch the application.
            */
@@ -64,7 +67,7 @@ public class ScoreShowToStudentFrm extends JFrame {
                     this.setResizable(false);
                     setTitle("\uC131\uC801\uC870\uD76C");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 908, 479);
+                    setBounds(100, 100, 908, 500);
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
                     contentPane = new JPanel();
@@ -72,18 +75,18 @@ public class ScoreShowToStudentFrm extends JFrame {
                     setContentPane(contentPane);
                     
                     panel_one = new JPanel();
-                    panel_one.setBounds(17, 5, 870, 81);
+                    panel_one.setBounds(17, 5, 870, 44);
                     Border border_1=BorderFactory.createTitledBorder("개인정보");
                     panel_one.setBorder(border_1);
                     
                     panel_two = new JPanel();
-                    panel_two.setBounds(17, 96, 870, 90);
+                    panel_two.setBounds(17, 59, 870, 90);
                     Border border_2=BorderFactory.createTitledBorder("조희조건");
                     panel_two.setBorder(border_2);
                     
                     card=new CardLayout(0, 0);
                     panel_three = new JPanel(card);
-                    panel_three.setBounds(17, 192, 870, 233);
+                    panel_three.setBounds(17, 159, 870, 266);
                     
                     panel_three.setLayout(card);
                     
@@ -245,18 +248,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     scrollPane_3.setViewportView(table_credit);
                     panel_c_3.setLayout(gl_panel_c_3);
                     
-                    JLabel label_dept = new JLabel("\uC18C\uC18D\uB300\uD559(\uC6D0):");
-                    label_dept.setBounds(18, 38, 91, 15);
-                    
-                    JLabel label_schoolyear = new JLabel("\uD559    \uB144:");
-                    label_schoolyear.setBounds(581, 17, 62, 15);
-                    
-                    JLabel label_major = new JLabel("\uD559\uBD80(\uACFC):");
-                    label_major.setBounds(327, 38, 67, 15);
-                    
-                    JLabel label_grade = new JLabel("\uD559\uC704\uACFC\uC815:");
-                    label_grade.setBounds(573, 38, 70, 15);
-                    
                     JLabel label_name = new JLabel("성          명:");
                     label_name.setBounds(18, 17, 91, 15);
                     
@@ -269,23 +260,20 @@ public class ScoreShowToStudentFrm extends JFrame {
                     JLabel lblNewLabel_2 = new JLabel("201518047");
                     lblNewLabel_2.setBounds(395, 17, 119, 15);
                     
-                    JLabel label = new JLabel("4");
-                    label.setBounds(637, 17, 85, 15);
-                    
-                    JLabel lblNewLabel_3 = new JLabel("\uACF5\uACFC\uB300\uD559");
-                    lblNewLabel_3.setBounds(104, 38, 119, 15);
-                    
-                    JLabel lblNewLabel_4 = new JLabel("\uCEF4\uD4E8\uD130\uACF5\uD559\uACFC");
-                    lblNewLabel_4.setBounds(395, 38, 119, 15);
-                    
-                    JLabel lblNewLabel_5 = new JLabel("\uD559\uC0AC\uACFC\uC815");
-                    lblNewLabel_5.setBounds(637, 38, 85, 15);
-                    
                     JRadioButton all_RadioButton = new JRadioButton("\uCC9C\uC81C\uD559\uAE30");
                     all_RadioButton.setSelected(true);
                     buttonGroup.add(all_RadioButton);
                     
                     JRadioButton current_RadioButton = new JRadioButton("\uD574\uB2F9\uD559\uAE30");
+                    current_RadioButton.addItemListener(new ItemListener() {
+                              public void itemStateChanged(ItemEvent arg0) {
+                                        if(current_RadioButton.isSelected()){
+                                                  evaButton.setVisible(true);
+                                        }else{
+                                                  evaButton.setVisible(false);
+                                        }
+                              }
+                    });
                     buttonGroup.add(current_RadioButton);
                     
                     JLabel label_year = new JLabel("\uB144\uB3C4/\uD559\uAE30:");
@@ -315,8 +303,9 @@ public class ScoreShowToStudentFrm extends JFrame {
                     
                     JButton search_Button = new JButton("\uC870\uD76C");
                     
-                    JButton btnNewButton = new JButton("\uAC15\uC758\uD3C9\uAC00");
-                    btnNewButton.addActionListener(new ActionListener() {
+                    evaButton = new JButton("\uAC15\uC758\uD3C9\uAC00");
+                    evaButton.setVisible(false);
+                    evaButton.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		LectureEvalutaionFrm lef=new LectureEvalutaionFrm();
 //                    		layeredPane.setLayer(lef, 200);
@@ -338,13 +327,13 @@ public class ScoreShowToStudentFrm extends JFrame {
                                                   .addContainerGap()
                                                   .addGroup(gl_panel_two.createParallelGroup(Alignment.LEADING)
                                                             .addGroup(gl_panel_two.createSequentialGroup()
-                                                                      .addComponent(all_Button, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.UNRELATED)
+                                                                      .addComponent(all_Button, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                                                      .addGap(18)
                                                                       .addComponent(term_Button, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
                                                                       .addPreferredGap(ComponentPlacement.UNRELATED)
                                                                       .addComponent(creditButton, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
-                                                                      .addPreferredGap(ComponentPlacement.RELATED, 347, Short.MAX_VALUE)
-                                                                      .addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                                                      .addPreferredGap(ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
+                                                                      .addComponent(evaButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
                                                                       .addPreferredGap(ComponentPlacement.RELATED)
                                                                       .addComponent(search_Button, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
                                                                       .addGap(20))
@@ -372,10 +361,10 @@ public class ScoreShowToStudentFrm extends JFrame {
                                                   .addPreferredGap(ComponentPlacement.RELATED)
                                                   .addGroup(gl_panel_two.createParallelGroup(Alignment.BASELINE)
                                                             .addComponent(all_Button)
-                                                            .addComponent(term_Button)
                                                             .addComponent(search_Button)
-                                                            .addComponent(btnNewButton)
-                                                            .addComponent(creditButton))
+                                                            .addComponent(evaButton)
+                                                            .addComponent(creditButton)
+                                                            .addComponent(term_Button))
                                                   .addContainerGap(14, Short.MAX_VALUE))
                     );
                     panel_two.setLayout(gl_panel_two);
@@ -384,17 +373,18 @@ public class ScoreShowToStudentFrm extends JFrame {
                     contentPane.add(panel_two);
                     contentPane.add(panel_one);
                     panel_one.setLayout(null);
-                    panel_one.add(label_dept);
                     panel_one.add(label_name);
                     panel_one.add(lblNewLabel_1);
-                    panel_one.add(lblNewLabel_3);
                     panel_one.add(label_no);
-                    panel_one.add(label_major);
                     panel_one.add(lblNewLabel_2);
-                    panel_one.add(lblNewLabel_4);
-                    panel_one.add(label_schoolyear);
-                    panel_one.add(label_grade);
-                    panel_one.add(label);
-                    panel_one.add(lblNewLabel_5);
+                    
+                    JButton btnNewButton_1 = new JButton("닫기");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    btnNewButton_1.setBounds(773, 435, 97, 23);
+                    contentPane.add(btnNewButton_1);
           }
 }

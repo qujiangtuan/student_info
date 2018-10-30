@@ -57,7 +57,6 @@ public class SubjectsDao extends BaseDao {
                                         retList.add(sbj);
                               }
                     } catch (SQLException e) {
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     
@@ -74,7 +73,6 @@ public class SubjectsDao extends BaseDao {
                               prst.setString(5,sub.getSubCode());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
-                              // TODO Auto-generated catch block
                               e.printStackTrace();
                     }
                     return false;

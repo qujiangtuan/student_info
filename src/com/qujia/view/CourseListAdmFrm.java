@@ -289,6 +289,15 @@ public class CourseListAdmFrm extends JFrame {
                     textField_souNo.setBounds(323, 388, 178, 21);
                     contentPane.add(textField_souNo);
                     
+                    JButton button = new JButton("닫기");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBounds(752, 356, 86, 23);
+                    contentPane.add(button);
+                    
                     setTable(new PerCourse());
           }
           //정원이 되면 학과사무실 수강신청

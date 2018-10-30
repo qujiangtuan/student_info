@@ -2,14 +2,21 @@ package com.qujia.view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import com.qujia.dao.OrgDao;
@@ -22,12 +29,20 @@ import com.qujia.util.ViewUtil;
 public class PersonalInfo_pro extends JFrame {
 
 	private JPanel contentPane;
-	private JLabel label_email;
-	private JLabel label_name,label_orgName,label_perType,label_proType,label_teaType;
-	private JLabel label_tel,label_address,label_pno;
+	private JLabel label_name,label_orgName,label_perType,label_proType,label_teaType,label_pno,label_ait;
+	private JTextField textField_tel1,textField_address,textField_email1;
 	private ProStaff ps,psTmp;
 	private List<Org> orgList;
-
+	private JButton button;
+	private JButton btnNewButton;
+	private JTextField textField_tel2;
+	private JComboBox comboBox_tel,comboBox_email2;
+	private String[] telArray;
+	private String[] emailArray;
+	
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -51,7 +66,7 @@ public class PersonalInfo_pro extends JFrame {
 	          this.setResizable(false);
 		setTitle("\uAC1C\uC778\uC815\uBCF4");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 590, 362);
+		setBounds(100, 100, 660, 362);
 		
 		ViewUtil vu=new ViewUtil();
         vu.showCenter(this);
@@ -81,7 +96,7 @@ public class PersonalInfo_pro extends JFrame {
 		lblNewLabel_5.setBounds(307, 126, 62, 15);
 		
 		JLabel lblNewLabel_6 = new JLabel("\uC8FC    \uC18C:");
-		lblNewLabel_6.setBounds(59, 169, 54, 15);
+		lblNewLabel_6.setBounds(59, 173, 54, 15);
 		
 		JLabel lblNewLabel_7 = new JLabel("\uB2F4\uB2F9\uC9C1\uC704:");
 		lblNewLabel_7.setBounds(307, 81, 62, 15);
@@ -89,13 +104,13 @@ public class PersonalInfo_pro extends JFrame {
 		label_perType = new JLabel("\uC804\uC784\uAD50\uC218");
 		label_perType.setBounds(387, 81, 75, 15);
 		
-		JButton submitButton = new JButton("\uD655 \uC778");
+		JButton submitButton = new JButton("수 정");
 		submitButton.addActionListener(new ActionListener() {
-		          public void actionPerformed(ActionEvent arg0) {
-		                    dispose();
+		          public void actionPerformed(ActionEvent e) {
+		                    updateProInfoAction(e);
 		          }
 		});
-		submitButton.setBounds(131, 238, 69, 23);
+		submitButton.setBounds(214, 238, 69, 23);
 		
 		JLabel lblNewLabel_9 = new JLabel("\uC544 \uC774 \uB514:");
 		lblNewLabel_9.setBounds(307, 45, 62, 15);
@@ -118,7 +133,7 @@ public class PersonalInfo_pro extends JFrame {
 		
 		label_proType = new JLabel("\uC9C1    \uC6D0");
 		label_proType.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_proType.setBounds(258, 10, 89, 15);
+		label_proType.setBounds(276, 10, 89, 15);
 		contentPane.add(label_proType);
 		
 		label_teaType = new JLabel("\uAC15\uC0AC");
@@ -127,17 +142,118 @@ public class PersonalInfo_pro extends JFrame {
 		
 		
 		
-		label_tel = new JLabel("01042421555");
-		label_tel.setBounds(131, 126, 125, 15);
-		contentPane.add(label_tel);
+		textField_tel1 = new JTextField("01042421555");
+		textField_tel1.addKeyListener(new KeyAdapter() {
+		          @Override
+		          public void keyTyped(KeyEvent ke) {
+		                    int keyChar = ke.getKeyChar();
+                            if (keyChar >= KeyEvent.VK_0
+                                                && keyChar <= KeyEvent.VK_9
+                                                || keyChar == KeyEvent.VK_BACK_SPACE
+                                                || keyChar == KeyEvent.VK_DELETE) {
+
+                            } else {
+                                      ke.consume();
+                                      JOptionPane.showMessageDialog(
+                                                          null,
+                                                          "숫자만 입력 가능합니다!");
+                                      return;
+                            }
+                            int len = textField_tel1.getText()
+                                                .length();
+                            if (len > 3) {
+                                      ke.consume();
+                                      // JOptionPane.showMessageDialog(null,
+                                      // "6짜리 초과하면 안 됩니다!");
+                                      KeyboardFocusManager.getCurrentKeyboardFocusManager()
+                                                          .focusNextComponent();
+                                      return;
+                            }
+		          }
+		});
+		textField_tel1.setBounds(185, 122, 48, 23);
+		contentPane.add(textField_tel1);
 		
-		label_email = new JLabel("qujiangtuan@qq.com");
-		label_email.setBounds(387, 123, 162, 15);
-		contentPane.add(label_email);
+		textField_email1 = new JTextField("qujiangtuan@qq.com");
+		textField_email1.setBounds(387, 122, 83, 23);
+		contentPane.add(textField_email1);
 		
-		label_address = new JLabel("New label");
-		label_address.setBounds(131, 169, 436, 15);
-		contentPane.add(label_address);
+		textField_address = new JTextField("New label");
+		textField_address.setBounds(131, 169, 401, 23);
+		contentPane.add(textField_address);
+		
+		button = new JButton("취 소");
+		button.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    dispose();
+		          }
+		});
+		button.setBounds(373, 238, 69, 23);
+		contentPane.add(button);
+		
+		btnNewButton = new JButton("조회");
+		btnNewButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    SearchAddressFrm saf=new SearchAddressFrm(new JFrame());
+                            saf.setVisible(true);
+                            textField_address.setText(addSearchAddress());
+		          }
+		});
+		btnNewButton.setBounds(544, 169, 69, 23);
+		contentPane.add(btnNewButton);
+		
+		comboBox_tel = new JComboBox();
+		telArray=new String[] {"010","032", "062", "051", "053", "042", "052", "031", "033", "043", "041", "063", "061", "054", "055", "064"};
+		comboBox_tel.setModel(new DefaultComboBoxModel(telArray));
+		comboBox_tel.setBounds(133, 123, 48, 22);
+		contentPane.add(comboBox_tel);
+		
+		textField_tel2 = new JTextField((String) null);
+		textField_tel2.addKeyListener(new KeyAdapter() {
+		          @Override
+		          public void keyTyped(KeyEvent ke) {
+		                    int keyChar = ke.getKeyChar();
+                            if (keyChar >= KeyEvent.VK_0
+                                                && keyChar <= KeyEvent.VK_9
+                                                || keyChar == KeyEvent.VK_BACK_SPACE
+                                                || keyChar == KeyEvent.VK_DELETE) {
+
+                            } else {
+                                      ke.consume();
+                                      JOptionPane.showMessageDialog(
+                                                          null,
+                                                          "숫자만 입력 가능합니다!");
+                                      ke.consume();
+                                      return;
+                            }
+                            int len = textField_tel2.getText()
+                                                .length();
+                            if (len > 3) {
+                                      ke.consume();
+                                      JOptionPane.showMessageDialog(
+                                                          null,
+                                                          "4자리 초과하면 안됩니다!");
+                                      ke.consume();
+                                      return;
+                            }
+		          }
+		});
+		textField_tel2.setBounds(235, 122, 48, 23);
+		contentPane.add(textField_tel2);
+		
+		label_ait = new JLabel("@");
+		label_ait.setFont(new Font("Dialog", Font.BOLD, 12));
+		label_ait.setBounds(472, 127, 12, 15);
+		contentPane.add(label_ait);
+		
+		comboBox_email2 = new JComboBox();
+		comboBox_email2.setEditable(true);
+		emailArray=new String[] {"","naver.com", "gmail.com", "pukyong.ac.kr", 
+		                    "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", 
+		                    "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"};
+		comboBox_email2.setModel(new DefaultComboBoxModel(emailArray));
+		comboBox_email2.setBounds(491, 123, 122, 21);
+		contentPane.add(comboBox_email2);
 		
 		ps=(ProStaff) MainFrm.userObject;
 		ProStaffDao psDao=new ProStaffDao();
@@ -145,6 +261,41 @@ public class PersonalInfo_pro extends JFrame {
 		setInfor();
 	}
 	          
+          protected void updateProInfoAction(ActionEvent e) {
+                    //전화번호
+                    String tel1 = comboBox_tel.getSelectedItem().toString();
+                    String tel2= textField_tel1.getText().toString();
+                    String tel3 = textField_tel1.getText().toString();
+                    String tel=tel1+tel2+tel3;
+                    //이메일
+                    String email1 = textField_email1.getText().toString();
+                    String email2= label_ait.getText().toString();
+                    String email3 = comboBox_email2.getSelectedItem().toString();
+                    String email=email1+email2+email3;
+                    //주소
+                    String address = textField_address.getText().toString();
+                    String pno=psTmp.getpNo();
+                    ProStaff ps=new ProStaff();
+                    ps.setTel(tel);
+                    ps.setEmail(email);
+                    ps.setAddress(address);
+                    ps.setpNo(pno);
+                    ProStaffDao psDao=new ProStaffDao();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(psDao.updatePerInfro(ps)){
+                                        JOptionPane.showMessageDialog(this, "수정 성공했습니다");
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "수정 실패했습니다");
+                              }
+                    }
+          }
+
+          protected String addSearchAddress() {
+                    return SearchAddressFrm.getSearchAddr();
+          }
+
           private void setInfor() {
                     label_proType.setText(psTmp.getProType());
                     label_name.setText(psTmp.getpName());
@@ -160,9 +311,32 @@ public class PersonalInfo_pro extends JFrame {
                     }else{
                               label_teaType.setText("");
                     }
-                    label_tel.setText(psTmp.getTel());
-                    label_email.setText(psTmp.getEmail());
-                    label_address.setText(psTmp.getAddress());
+                    //전화
+                    String telAll=psTmp.getTel();
+                    for(int i=0;i<comboBox_tel.getItemCount();i++){
+                              if(telAll.substring(0, 3).equals(telArray[i])){
+                                        comboBox_tel.setSelectedIndex(i);
+                              } 
+                    }
+                    textField_tel1.setText(telAll.substring(3, 7));
+                    textField_tel2.setText(telAll.substring(7, 11));
+                    //이메일
+                    String emailAll=psTmp.getEmail();
+                    int index=emailAll.indexOf("@");
+                    textField_email1.setText(emailAll.substring(0, index));
+                    String emailEnd=emailAll.substring(index+1);
+                    try {
+                              for(int i=0;i<comboBox_email2.getItemCount();i++){
+                                        if(emailEnd.equals(emailArray[i])){
+                                                  comboBox_email2.setSelectedIndex(i);
+                                        } 
+                              }
+                    } catch (Exception e) {
+                              comboBox_email2.setSelectedItem(emailEnd);
+                    }
+                    
+                    //주소
+                    textField_address.setText(psTmp.getAddress());
                     
           }
 

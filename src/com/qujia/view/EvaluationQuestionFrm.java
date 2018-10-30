@@ -162,6 +162,15 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_Manager.add(deleteButton);
 		panel_Manager.add(textField_editQue);
 		
+		JButton button = new JButton("닫기");
+		button.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    dispose();
+		          }
+		});
+		button.setBounds(573, 283, 80, 23);
+		panel_Manager.add(button);
+		
 		panel_add = new JPanel();
 		panel_add.setBackground(new Color(253, 245, 230));
 		panel_card.add(panel_add, "panel_add");
@@ -180,7 +189,7 @@ public class EvaluationQuestionFrm extends JFrame {
 		comboBox_addObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC15\uC758\uAD50\uC218"}));
 		
 		JButton addButton = new JButton("\uCD94  \uAC00");
-		addButton.setBounds(265, 261, 65, 23);
+		addButton.setBounds(228, 260, 65, 23);
 		
 		JTextArea textArea_addQue = new JTextArea();
 		textArea_addQue.setLineWrap(true);
@@ -191,6 +200,15 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_add.add(comboBox_addObj);
 		panel_add.add(scrollPane_1);
 		panel_add.add(addButton);
+		
+		JButton button_1 = new JButton("취 소");
+		button_1.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    card.show(panel_card, "panel_Manager");
+		          }
+		});
+		button_1.setBounds(317, 260, 65, 23);
+		panel_add.add(button_1);
 		contentPane.setLayout(null);
 		contentPane.add(questionManButton);
 		contentPane.add(questionAddButton);

@@ -350,5 +350,22 @@ public class ProStaffDao extends BaseDao {
                       }
                       return proName;
             }
+          public boolean updatePerInfro(ProStaff ps) {
+                    String sql = "update pro_staff set tel=?,email=?,address=?  where pno=?";
+                    PreparedStatement prst =null;
+                    ResultSet rs;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, ps.getTel());
+                              prst.setString(2,ps.getEmail());
+                              prst.setString(3,ps.getAddress());
+                              prst.setString(4, ps.getpNo());
+                              if(prst.executeUpdate()>0) return true;
+                    } catch (SQLException e) {    
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
+          //String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=?,orgname=? where pno=?";
         
 }

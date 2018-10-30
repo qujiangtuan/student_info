@@ -233,6 +233,17 @@ public class SubjectManagerFrm extends JFrame {
                   contentPane.add(textField_searchDept);
                   textField_searchDept.setColumns(10);
                   
+                  JButton button = new JButton("닫  기");
+                  button.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                      dispose();
+                            }
+                  });
+                  button.setFont(new Font("나눔명조", Font.BOLD, 13));
+                  button.setBackground(new Color(224, 255, 255));
+                  button.setBounds(503, 486, 104, 23);
+                  contentPane.add(button);
+                  
                   setTable(new Subjects());
           }
           //교과목 삭제

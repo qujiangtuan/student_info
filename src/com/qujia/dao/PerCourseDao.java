@@ -236,4 +236,22 @@ public class PerCourseDao extends BaseDao {
                     return false;
           }
 
+          public boolean UpdateScore(PerCourse ss) {
+                    String sql="update per_course set grade=?  where cou_no=? and stu_no=?";
+                    PreparedStatement prst;
+                    try {
+                              prst=con.prepareStatement(sql);
+                              prst.setString(1, ss.getGrade());
+                              prst.setString(2,ss.getCouNo());
+                              prst.setString(3,ss.getSno());
+                              if(prst.executeUpdate()>0){
+                                        return true;
+                              }
+                    } catch (SQLException e) {    
+                              e.printStackTrace();
+                    }
+                    
+                    return false;
+          }
+
 }

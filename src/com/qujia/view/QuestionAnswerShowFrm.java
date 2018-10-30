@@ -95,10 +95,12 @@ public class QuestionAnswerShowFrm extends JFrame {
 		label_3.setBounds(18, 318, 94, 15);
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
-		updateButton.setBounds(620, 281, 83, 23);
+		updateButton.setBackground(new Color(176, 224, 230));
+		updateButton.setBounds(190, 363, 83, 23);
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
-		deleteButton.setBounds(620, 314, 83, 23);
+		deleteButton.setBackground(new Color(255, 69, 0));
+		deleteButton.setBounds(285, 363, 83, 23);
 		
 		table = new JTable();
 		table.setRowHeight(25);
@@ -189,5 +191,10 @@ public class QuestionAnswerShowFrm extends JFrame {
 		JButton button_2 = new JButton("조회");
 		button_2.setBounds(510, 311, 61, 23);
 		panel_manager.add(button_2);
+		
+		JButton button_3 = new JButton("닫기");
+		button_3.setBackground(new Color(224, 255, 255));
+		button_3.setBounds(389, 363, 83, 23);
+		panel_manager.add(button_3);
 	}
 }

@@ -363,4 +363,19 @@ public class StudentDao extends BaseDao{
                     }
                     return false;
           }
+          public boolean updateStuInfro(Student stu) {
+                    String sql = "update student set tel=?,email=?,address=?  where sno=?";
+                    PreparedStatement prst =null;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, stu.getTel());
+                              prst.setString(2,stu.getEmail());
+                              prst.setString(3,stu.getAdress());
+                              prst.setString(4, stu.getsNo());
+                              if(prst.executeUpdate()>0) return true;
+                    } catch (SQLException e) {    
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
 }

@@ -1,6 +1,7 @@
 package com.qujia.view;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,18 +14,18 @@ import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,8 +34,9 @@ import com.qujia.dao.StudentDao;
 import com.qujia.model.Org;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
+import com.qujia.util.ViewUtil;
 
-public class StudentManagerFrm extends JInternalFrame {
+public class StudentManagerFrm extends JFrame {
           private JTextField nameTextField;
           private JTable studentListTable;
 //          private List<StudentClass> studentClassList;
@@ -54,34 +56,42 @@ public class StudentManagerFrm extends JInternalFrame {
           private JButton deptSearchButton;
           private JTextField textField_seaDeptName;
           private static String staticSno;
-
+          private JPanel contentPane;
+          private JButton button_1;
           /**
            * Launch the application.
            */
-//          public static void main(String[] args) {
-//                    EventQueue.invokeLater(new Runnable() {
-//                              public void run() {
-//                                        try {
-//                                                  StudentManagerFrm frame = new StudentManagerFrm();
-//                                                  frame.setVisible(true);
-//                                        } catch (Exception e) {
-//                                                  e.printStackTrace();
-//                                        }
-//                              }
-//                    });
-//          }
+          public static void main(String[] args) {
+                    EventQueue.invokeLater(new Runnable() {
+                              public void run() {
+                                        try {
+                                                  StudentManagerFrm frame = new StudentManagerFrm();
+                                                  frame.setVisible(true);
+                                        } catch (Exception e) {
+                                                  e.printStackTrace();
+                                        }
+                              }
+                    });
+          }
 
           /**
            * Create the frame.
            */
           public StudentManagerFrm() {
-                    setFrameIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/studentManager.png")));
-                    setClosable(true);
+//                    setFrameIcon(new ImageIcon(StudentManagerFrm.class.getResource("/images/studentManager.png")));
+//                    setClosable(true);
                     //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    setIconifiable(true);
+//                    setIconifiable(true);
                     setTitle("학생목록");
                     setBounds(2, 5, 1034, 455);
                     this.setResizable(false);
+                    
+                    ViewUtil vu=new ViewUtil();
+                    vu.showCenter(this);
+                    
+                    contentPane = new JPanel();
+                    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+                    setContentPane(contentPane);
                     
                     JLabel searchStudentNameLabel = new JLabel("학생이름:");
                     searchStudentNameLabel.setBounds(36, 28, 74, 26);
@@ -118,7 +128,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     editSexButtonGroup=new ButtonGroup();
                     
                     JButton submitEidtButton = new JButton("\uC218\uC815");
-                    submitEidtButton.setBounds(705, 346, 89, 27);
+                    submitEidtButton.setBounds(649, 346, 89, 27);
                     submitEidtButton.setBackground(new Color(176, 224, 230));
                     submitEidtButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
@@ -181,7 +191,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     bg.add(radioButton_2);
                     
                     button = new JButton("추가\r\n전공");
-                    button.setBounds(806, 346, 114, 27);
+                    button.setBounds(745, 346, 114, 27);
                     button.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		 int row=studentListTable.getSelectedRow();
@@ -282,7 +292,7 @@ public class StudentManagerFrm extends JInternalFrame {
                     studentListTable.setDefaultRenderer(Object.class, cr);
                     studentListTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                    getContentPane().setLayout(null);
+                    contentPane.setLayout(null);
                     getContentPane().add(radioButton_1);
                     getContentPane().add(searchStudentNameLabel);
                     getContentPane().add(nameTextField);
@@ -301,6 +311,17 @@ public class StudentManagerFrm extends JInternalFrame {
                     getContentPane().add(submitEidtButton);
                     getContentPane().add(button);
                     getContentPane().add(scrollPane);
+                    
+                    button_1 = new JButton("닫기");
+                    button_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button_1.setFont(new Font("Dialog", Font.BOLD, 13));
+                    button_1.setBackground(new Color(224, 255, 255));
+                    button_1.setBounds(871, 346, 89, 27);
+                    contentPane.add(button_1);
                     setTable(new Student());
           }
           protected String addSearch() {

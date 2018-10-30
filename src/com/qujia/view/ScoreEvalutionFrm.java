@@ -1,9 +1,12 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -11,32 +14,35 @@ import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.dao.OrgDao;
+import com.qujia.dao.PerCourseDao;
+import com.qujia.dao.StuCouScoreViewDao;
+import com.qujia.model.PerCourse;
+import com.qujia.model.StuCouScoreView;
 import com.qujia.util.ViewUtil;
 
 public class ScoreEvalutionFrm extends JFrame {
 
           private JPanel contentPane;
           private JTable table;
-          private JLabel lblNewLabel_2;
-          private JComboBox comboBox;
-          private JLabel label;
-          private JComboBox comboBox_1;
-          private JLabel label_1;
-          private JComboBox comboBox_2;
-          private JLabel label_2;
-          private JComboBox comboBox_3;
-          private JLabel label_3;
-          private JComboBox comboBox_4;
           private JDesktopPane desktopPane;
-          private JLabel lblNewLabel_4;
-          private JLabel label_5;
+          private JLabel couName_lable;
+          private JLabel stuCounts;
+          private JLabel lblNewLabel_2;
+          private JLabel stuNameLabel;
+          private JLabel lblNewLabel_5;
+          private JComboBox comboBox_score;
           private JButton btnNewButton;
+          private static int index;
+          private String[] score;
+          private DefaultTableModel dft;
 
           /**
            * Launch the application.
@@ -74,90 +80,36 @@ public class ScoreEvalutionFrm extends JFrame {
                     lblNewLabel.setBounds(17, 19, 50, 15);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uD559\uC0DD\uC218:");
-                    lblNewLabel_1.setBounds(199, 19, 52, 15);
+                    lblNewLabel_1.setBounds(291, 19, 52, 15);
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(17, 48, 649, 312);
-                    
-                    lblNewLabel_2 = new JLabel("\uC911\uAC04\uACE0\uC0AC:");
-                    lblNewLabel_2.setBounds(17, 381, 65, 15);
-                    
-                    comboBox = new JComboBox();
-                    comboBox.setBounds(79, 378, 53, 21);
-                    comboBox.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
-                    comboBox.setEditable(true);
-                    
-                    label = new JLabel("\uAE30\uB9D0\uACE0\uC0AC:");
-                    label.setBounds(150, 381, 55, 15);
-                    
-                    comboBox_1 = new JComboBox();
-                    comboBox_1.setBounds(217, 378, 53, 21);
-                    comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
-                    comboBox_1.setEditable(true);
-                    
-                    label_1 = new JLabel("\uACFC\uC81C:");
-                    label_1.setBounds(303, 381, 40, 15);
-                    
-                    comboBox_2 = new JComboBox();
-                    comboBox_2.setBounds(334, 378, 53, 21);
-                    comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
-                    comboBox_2.setEditable(true);
-                    
-                    label_2 = new JLabel("\uCD9C\uC11D:");
-                    label_2.setBounds(423, 381, 40, 15);
-                    
-                    comboBox_3 = new JComboBox();
-                    comboBox_3.setBounds(461, 378, 53, 21);
-                    comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
-                    comboBox_3.setEditable(true);
-                    
-                    label_3 = new JLabel("\uBC1C\uD45C:");
-                    label_3.setBounds(545, 381, 40, 15);
-                    
-                    comboBox_4 = new JComboBox();
-                    comboBox_4.setBounds(579, 378, 53, 21);
-                    comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"0%", "5%", "10%", "15%", "20%", "25%", "30%", "40%", "45%", "50%", "55%", "60%", "65%", "70%", "75%", "80%", "85%", "90%", "95%", "100%"}));
-                    comboBox_4.setEditable(true);
+                    scrollPane.setBounds(17, 44, 649, 316);
                     
                     desktopPane = new JDesktopPane();
                     desktopPane.setBounds(416, 15, 1, 1);
                     
-                    lblNewLabel_4 = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uC2E4\uC2B5");
-                    lblNewLabel_4.setBounds(79, 19, 112, 15);
+                    couName_lable = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uC2E4\uC2B5");
+                    couName_lable.setText(CourseListProFrm.getCouName());
+                    couName_lable.setBounds(79, 19, 186, 15);
                     
-                    label_5 = new JLabel("1");
-                    label_5.setBounds(257, 19, 34, 15);
-                    
-                    btnNewButton = new JButton("\uC131\uC801\uC785\uB825/\uBCC0\uACBD");
-                    btnNewButton.setBounds(518, 15, 126, 23);
-                    btnNewButton.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent e) {
-                                        ScoreInputFrm sif=new ScoreInputFrm();
-                                        sif.setVisible(true);
-                              }
-                    });
-                    btnNewButton.setBackground(new Color(224, 255, 255));
+                    stuCounts = new JLabel("1");
+                    stuCounts.setText(this.getCounts(CourseListProFrm.getCouno()));
+                    stuCounts.setBounds(349, 19, 68, 15);
                     
                     table = new JTable();
+                    table.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent e) {
+                                        selectRowAction(e);
+                              }
+                    });
                     table.setRowHeight(30);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
                                         {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
-                                        {null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uC18C\uC18D\uD559\uACFC", "\uD559\uC0DD\uC774\uB984", "\uD559\uBC88", "\uD559\uB144", "\uC131\uC801\uB4F1\uAE09"
+                                        "\uD559\uC0DD\uBA85", "\uD559\uBC88", "\uC18C\uC18D\uD559\uACFC", "\uD559\uB144", "\uC131\uC801"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -167,86 +119,133 @@ public class ScoreEvalutionFrm extends JFrame {
                                         return columnEditables[column];
                               }
                     });
-                    table.getColumnModel().getColumn(0).setPreferredWidth(121);
-                    table.getColumnModel().getColumn(1).setPreferredWidth(112);
+                    table.getColumnModel().getColumn(0).setPreferredWidth(112);
+                    table.getColumnModel().getColumn(2).setPreferredWidth(121);
                     table.getColumnModel().getColumn(3).setPreferredWidth(59);
                     table.getColumnModel().getColumn(4).setPreferredWidth(97);
                     scrollPane.setViewportView(table);
                     contentPane.setLayout(null);
                     contentPane.add(lblNewLabel);
-                    contentPane.add(lblNewLabel_4);
+                    contentPane.add(couName_lable);
                     contentPane.add(lblNewLabel_1);
-                    contentPane.add(label_5);
+                    contentPane.add(stuCounts);
                     contentPane.add(desktopPane);
-                    contentPane.add(btnNewButton);
-                    contentPane.add(lblNewLabel_2);
-                    contentPane.add(comboBox);
-                    contentPane.add(label);
-                    contentPane.add(comboBox_1);
-                    contentPane.add(label_1);
-                    contentPane.add(comboBox_2);
-                    contentPane.add(label_2);
-                    contentPane.add(comboBox_3);
-                    contentPane.add(label_3);
-                    contentPane.add(comboBox_4);
                     contentPane.add(scrollPane);
+                    
+                    lblNewLabel_2 = new JLabel("학생명:");
+                    lblNewLabel_2.setBounds(17, 394, 57, 15);
+                    contentPane.add(lblNewLabel_2);
+                    
+                    stuNameLabel = new JLabel("");
+                    stuNameLabel.setBounds(79, 394, 97, 15);
+                    contentPane.add(stuNameLabel);
+                    
+                    lblNewLabel_5 = new JLabel("성적입력:");
+                    lblNewLabel_5.setBounds(267, 394, 66, 15);
+                    contentPane.add(lblNewLabel_5);
+                    
+                    comboBox_score = new JComboBox();
+                    score=new String[] {"", "A+", "A0", "B+", "B0", "C+", "C0", "D+", "D0", "F"};
+                    comboBox_score.setModel(new DefaultComboBoxModel(score));
+                    comboBox_score.setBounds(331, 391, 84, 21);
+                    contentPane.add(comboBox_score);
+                    
+                    btnNewButton = new JButton("성적입력");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        updateScoreAction(e);
+                              }
+                    });
+                    btnNewButton.setBounds(451, 390, 112, 23);
+                    contentPane.add(btnNewButton);
+                    
+                    JButton btnNewButton_1 = new JButton("닫기");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                         dispose();
+                              }
+                    });
+                    btnNewButton_1.setBounds(584, 390, 84, 23);
+                    contentPane.add(btnNewButton_1);
+                    
+                    dft = (DefaultTableModel) table.getModel();
+                    
+                    StuCouScoreView sc=new StuCouScoreView();
+                    sc.setCouNo(CourseListProFrm.getCouno());
+                    setTable(sc);
           }
-//          public class ButtonColRender extends AbstractCellEditor implements ActionListener,TableCellRenderer,TableCellEditor{
-//                    private JTable table;
-//                    private DefaultTableModel model;
-//                    private int row;
-//                    
-//                    private JButton button;
-//                    
-//                    public ButtonColRender() {
-//                              super();
-//                              this.button = new JButton("�����Է�");
-//                              button.addActionListener(new ActionListener() {
-//                                        
-//                                        @Override
-//                                        public void actionPerformed(ActionEvent e) {
-//                                                  if(e.getSource()==button){
-////                                                            ScoreEvalutionFrm sef=new ScoreEvalutionFrm();
-//                                                            
-//                                                            ScoreInputFrm sif=new ScoreInputFrm();
-////                                                            sef.dispatchEvent(new WindowEvent(sif, WindowEvent.WINDOW_CLOSED));
-//                                                            sif.setVisible(true);
-//                                                  }
-//                                                 
-//                                        }
-//                              });
-//                    }
-//                    
-//                    @Override
-//                    public Object getCellEditorValue() {
-//                              // TODO Auto-generated method stub
-//                              return null;
-//                    }
-//
-//                    @Override
-//                    public Component getTableCellEditorComponent(JTable table,
-//                                        Object value, boolean isSelected, int row,
-//                                        int cloumn) {
-//                              this.table=table;
-//                              this.row=row;
-//                              this.model=(DefaultTableModel) table.getModel();
-//                              return button;         
-//                               
-//                    }
-//
-//                    @Override
-//                    public Component getTableCellRendererComponent(JTable arg0,
-//                                        Object arg1, boolean arg2,
-//                                        boolean arg3, int arg4, int arg5) {
-//                              // TODO Auto-generated method stub
-//                              return button;
-//                    }
-//
-//                    @Override
-//                    public void actionPerformed(ActionEvent e) {
-//                              // TODO Auto-generated method stub
-//                              
-//                    }
-//                    
-//          }
+          protected void updateScoreAction(ActionEvent e) {
+                    String sno = dft.getValueAt(index, 1).toString();
+                    String couNo=CourseListProFrm.getCouno();
+                    String score = comboBox_score.getSelectedItem().toString();
+                    PerCourse ss=new PerCourse();
+                    ss.setSno(sno);
+                    ss.setCouNo(couNo);
+                    ss.setGrade(score);
+                    PerCourseDao pcDao=new PerCourseDao();
+                    if(pcDao.UpdateScore(ss)){
+                              JOptionPane.showMessageDialog(this, "성적이 저정되었습니다.");
+                              StuCouScoreView sc=new StuCouScoreView();
+                              sc.setCouNo(CourseListProFrm.getCouno());
+                              setTable(sc);
+                              resetValue();
+                              return;
+                    }else{
+                              JOptionPane.showMessageDialog(this, "성적이 저정되지 않습니다.");
+                              return;
+                    }
+          }
+
+          private void resetValue() {
+                    stuNameLabel.setText("");
+                    comboBox_score.setSelectedIndex(0);
+          }
+
+          protected void selectRowAction(MouseEvent e) {
+                    index=table.getSelectedRow();
+                    String couName = dft.getValueAt(index, 0).toString();
+                    stuNameLabel.setText(couName);
+                    String scoreData=null;
+                    try {
+                              scoreData=dft.getValueAt(index, 4).toString();
+                    } catch (Exception e2) {
+                              scoreData=null;
+                    }
+                    if(scoreData==null){
+                              comboBox_score.setSelectedIndex(0);
+                    }else{
+                              for(int i=0;i<comboBox_score.getItemCount();i++){
+                                        if(scoreData.equals(score[i])){
+                                                  comboBox_score.setSelectedIndex(i);
+                                        }
+                              }
+                    }
+          }
+
+          private void setTable(StuCouScoreView scsv) {
+                    dft.setRowCount(0);
+                    StuCouScoreViewDao scDao=new StuCouScoreViewDao();
+                    List<StuCouScoreView> abList = scDao.getScsvList(scsv);
+                    for(StuCouScoreView sb : abList){
+                              Vector v=new Vector();
+                              v.add(sb.getName());
+                              v.add(sb.getSno());
+                              v.add(this.getDeptNameById(sb.getOrgid()));
+                              v.add(sb.getSchYear());
+                              v.add(sb.getGrade());
+                              dft.addRow(v);
+                    }
+                    scDao.closeDao();
+          }
+
+          private String getDeptNameById(String orgid) {
+                    OrgDao orgDao=new OrgDao();
+                    String orgName=orgDao.getOrgName(orgid);
+                    return orgName;
+          }
+          private String getCounts(String couno) {
+                    StuCouScoreViewDao scDao=new StuCouScoreViewDao();
+                    String count=scDao.getCounts(couno);
+                    return count;
+          }
 }
