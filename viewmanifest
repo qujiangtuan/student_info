@@ -1,40 +1,59 @@
 <com.qujia.view>
 
-1.AddCourseArrangeFrm.java : °³¼³±³°ú¸ñ µî·Ï
-2.AddDeptStandFrm.java : ±³À°ºÎ¼­ÇĞ»ç±âÁØ µî·Ï
-3.AddOrgFrm.java : Á¶Á÷µî·Ï => ±â°ü(±³À°±â°ü / ºÎ¼Ó±â°ü / º»ºÎÇàÁ¤±â°ü) µî·ÏÀ¸·Î.. & ºÎ¼­ µî·Ï ÇÊ¿ä
-4.AddProFrm.java : ±³Á÷¿ø µî·Ï
-5.AddStudentFrm.java : ÇĞ»ıµî·Ï
-6.AddSubjectFrm.java : ±³°ú¸ñ µî·Ï
-7.ClassManagerFrm.java : ºĞ¹İÁ¤º¸°ü¸® => ºĞ¹İ ¾ğ±Ş ¾ÈÇÒ½Ã ¾ø¾Ù °èÈ¹
-8.CourseApplicationFrm : ¼ö°­½ÅÃ», ¼ö°­½Ã°£Ç¥
-9.CourseArrangeManagerFrm.java : ¼ö°­¹èÄ¡°ü¸®?? ¹¹ÁöÀÌ°Ô
-10.CourseListProFrm.java : ±³¼ö ÇöÀç°­ÀÇ¸ñ·Ï
-11.DeptStandManagerFrm.java : ±³À°ºÎ¼­±âÁØ °ü¸®
-12.EditPasswordFrm.java
-13.FindPassword.java
-14.LectureEvalutationFrm.java : °­ÀÇÆò°¡
-15.LoginFrm.java : ·Î±×ÀÎ
-16.MainFrm.java
-17.MainFrm2.java
-18.OrgManagerFrm.java : Á¶Á÷°ü¸® => ±â°ü/ºÎ¼­·Î 
-19.ProManagerFrm.java : ±³Á÷¿ø °ü¸®
-20.ScoreEvalutionFrm.java : ¼ºÀûÆò°¡
-21.ScoreInputFrm.java : ¼ºÀûÀÔ·Â/¼ºÀûº¯°æ(Æò°¡¹æ¹ıº° ¼ºÀûÀÔ·Â)
-22.ScoreShowFrm.java : ¼ºÀûÁ¶È¸(°ú¸ñº° ¼ºÀû º¸±â/ÇĞ±âº° Æò±Õ¼ºÀû º¸±â)
-23.StudentClassAddFrm.java : ºĞ¹İÁ¤º¸Ãß°¡ => x
-24.StudentManagerFrm.java : ÇĞ»ı°ü¸®
-25.SubjectManagerFrm.java : °ú¸ñ°ü¸®
+1.AddAppendMajorOrgFrm.java : ë³µìˆ˜ë¶€ì „ê³µí—ˆìš©ë²”ìœ„ ì¶”ê°€ - ì¥ì‹
+2.AddAppendMajorStudentFrm.java : í•™ìƒ ì¶”ê°€ì „ê³µ ë“±ë¡ - ì¥ì‹
+3.AddCourseArrangeFrm.java : ê°œì„¤êµê³¼ëª© ë“±ë¡ - ì¥ì‹
+4.AddDeptStandFrm.java : êµìœ¡ë¶€ì„œí•™ì‚¬ê¸°ì¤€ ë“±ë¡ - ì¥ì‹
+5.AddOrgFrm.java : ì¡°ì§ë“±ë¡ - ì¥ì‹
+6.AddProFrm.java : êµì§ì› ë“±ë¡ - ê°•ë‹¨
+7.AddStudentFrm.java : í•™ìƒë“±ë¡ - ê°•ë‹¨
+8.AddSubjectFrm.java : êµê³¼ëª© ë“±ë¡ - ì¥ì‹
+9.AddYearStandFrm.java : í•™ë…„ë³„í•™ì‚¬ê¸°ì¤€ë“±ë¡ - ì¥ì‹
+10.AnswerTypeManagerFrm.java : ë‹µì•ˆìœ í˜•ê´€ë¦¬ - ì¤€íƒ
+11.AppendMajorOrgManagerFrm.java : ë³µìˆ˜ë¶€ì „ê³µí—ˆìš©ë²”ìœ„ëª©ë¡ - ì¥ì‹
+12.ClassManagerFrm.java : ë¶„ë°˜ì •ë³´ê´€ë¦¬ - ê°•ë‹¨
+13.ClassRoomFrm.java : ê°•ì˜ì‹¤ê´€ë¦¬ - ê°•ë‹¨
+14.CourseApplicationStudentFrm : ìˆ˜ê°•ì‹ ì²­, ìˆ˜ê°•ì‹œê°„í‘œ - ì¤€íƒ
+15.CourseArrangeManagerFrm.java : ê°œì„¤êµê³¼ëª©ê´€ë¦¬ - ì¥ì‹
+16.CourseListProFrm.java : êµìˆ˜ í˜„ì¬ê°•ì˜ëª©ë¡ - ê°•ë‹¨
+17.CourseListStuFrm.java : í•™ìƒ ìˆ˜ê°•ê´€ë¦¬ëª©ë¡ - ê°•ë‹¨
+18.DeptStandManagerFrm.java : êµìœ¡ë¶€ì„œê¸°ì¤€ ê´€ë¦¬ - ì¥ì‹
+19.EditPasswordFrm.java : ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° - ê°•ë‹¨
+20.EvaluationQuestionFrm.java : ì§ˆë¬¸í‰ê°€ê´€ë¦¬ - ì¤€íƒ
+21.FindPassword.java - ê°•ë‹¨
+22.GradeCheckFrm.java : í•™ì í™•ì¸ - ê°•ë‹¨
+23.LectureEvalutationFrm.java : ê°•ì˜í‰ê°€ - ì¤€íƒ
+24.LectureOfProFrm.java : êµìˆ˜ê°•ì˜ê´€ë¦¬ - ê°•ë‹¨
+25.LoginFrm.java : ë¡œê·¸ì¸ - ê°•ë‹¨
+26.MainFrm.java - ê°•ë‹¨
+27.MainFrm2.java - ê°•ë‹¨
+28.OrgManagerFrm.java : ì¡°ì§ê´€ë¦¬ => ê¸°ê´€/ë¶€ì„œë¡œ - ì¥ì‹
+-----------------
+29.PersonalInfo_pro.java ì•„ì˜¤ê·€ì°®ì•„ ë‹´ì—í•œë‹¤ - ê°•ë‹¨
+30.PersonalInfo.stu.java 
+31.ProManagerFrm.java : êµì§ì› ê´€ë¦¬
+32.QuestionAnswerShowFrm.java
+33.ScoreEvalutionFrm.java : ì„±ì í‰ê°€ - ì¤€íƒ
+34.ScoreInputFrm.java : ì„±ì ì…ë ¥/ì„±ì ë³€ê²½(í‰ê°€ë°©ë²•ë³„ ì„±ì ì…ë ¥) - ì¤€íƒ
+35.ScoreShowForProFrm.java : ì„±ì ì¡°íšŒ(ê³¼ëª©ë³„ ì„±ì  ë³´ê¸°/í•™ê¸°ë³„ í‰ê· ì„±ì  ë³´ê¸°) - ì¤€íƒ
+36.ScoreShowForAdminFrm.java : ì„±ì ì¡°íšŒ(ê³¼ëª©ë³„ ì„±ì  ë³´ê¸°/í•™ê¸°ë³„ í‰ê· ì„±ì  ë³´ê¸°) - ì¤€íƒ
+37.ScoreShowForStudentFrm.java : ì„±ì ì¡°íšŒ(ê³¼ëª©ë³„ ì„±ì  ë³´ê¸°/í•™ê¸°ë³„ í‰ê· ì„±ì  ë³´ê¸°) - ì¤€íƒ
+38.SearchDeptFrm.java - ì¥ì‹
+39.SearchDeptFrm.java - ì¥ì‹
+40.SearchSuperiorFrm.java - ì¥ì‹
+41.StudentClassAddFrm.java : ì¥ì‹
+42.StudentManagerFrm.java : í•™ìƒê´€ë¦¬ - ê°•ë‹¨
+43.SubjectManagerFrm.java : ê³¼ëª©ê´€ë¦¬ - ì¥ì‹
+44.YearStandManagerFrm.java - ì¥ì‹
 
-
-<com.juntaek.view> - »ı¼º ¿¹Á¤
-8 : CourseApplicationFrm : ¼ö°­½ÅÃ»
+<com.juntaek.view> - ìƒì„± ì˜ˆì •
+8 : CourseApplicationFrm : ìˆ˜ê°•ì‹ ì²­
 9? 
-10 : ±³¼ö ÇöÀç°­ÀÇ¸ñ·Ï
-14 : °­ÀÇÆò°¡
-20 : ¼ºÀûÆò°¡
-21 : ¼ºÀûÀÔ·Â/¼ºÀûº¯°æ(Æò°¡¹æ¹ıº° ¼ºÀûÀÔ·Â)
-22 : ¼ºÀûÁ¶È¸(°ú¸ñº° ¼ºÀûº¸±â/ÇĞ±âº° Æò±Õ¼ºÀûº¸±â)
+10 : êµìˆ˜ í˜„ì¬ê°•ì˜ëª©ë¡
+14 : ê°•ì˜í‰ê°€
+20 : ì„±ì í‰ê°€
+21 : ì„±ì ì…ë ¥/ì„±ì ë³€ê²½(í‰ê°€ë°©ë²•ë³„ ì„±ì ì…ë ¥)
+22 : ì„±ì ì¡°íšŒ(ê³¼ëª©ë³„ ì„±ì ë³´ê¸°/í•™ê¸°ë³„ í‰ê· ì„±ì ë³´ê¸°)
 
 
 
