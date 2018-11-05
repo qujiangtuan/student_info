@@ -13,22 +13,22 @@ import com.qujia.util.StringUtil;
 public class OpenCourseDao extends BaseDao {
 
           public boolean loginCourse(OpenCourse oc) {
-                    String sql="insert into open_course values(?,?,?,?,?,?,?,?,?,0,?,?,?,?)";
+                    String sql="insert into open_course values(?,?,?,?,?,?,?,0,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, oc.getCouNo());
                               prst.setString(2, oc.getSubCode());
                               prst.setString(3,oc.getCouName());
-                              prst.setString(4,oc.getSchYear());
-                              prst.setString(5,oc.getProId());
-                              prst.setString(6,oc.getClassNo());
-                              prst.setString(7,oc.getTerm());
-                              prst.setString(8,oc.getEnvMethod());
-                              prst.setInt(9,oc.getFixedNum());
-                              prst.setString(10,oc.getStatus());
-                              prst.setString(11, oc.getProName());
-                              prst.setString(12,oc.getLoginDate());
-                              prst.setString(13,oc.getTtcr());
+//                              prst.setString(4,oc.getSchYear());
+                              prst.setString(4,oc.getProId());
+                              prst.setString(5,oc.getClassNo());
+                              prst.setString(6,oc.getTerm());
+//                              prst.setString(8,oc.getEnvMethod());
+                              prst.setInt(7,oc.getFixedNum());
+                              prst.setString(8,oc.getStatus());
+                              prst.setString(9, oc.getProName());
+                              prst.setString(10,oc.getLoginDate());
+                              prst.setString(11,oc.getTtcr());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
@@ -59,11 +59,11 @@ public class OpenCourseDao extends BaseDao {
                                         o.setCouNo(rs.getString("cou_no"));
                                         o.setSubCode(rs.getString("sub_code"));
                                         o.setCouName(rs.getString("cou_name"));
-                                        o.setSchYear(rs.getString("schyear"));
+//                                        o.setSchYear(rs.getString("schyear"));
                                         o.setProId(rs.getString("proid"));
                                         o.setClassNo(rs.getString("class_no"));
                                         o.setTerm(rs.getString("term"));
-                                        o.setEnvMethod(rs.getString("env_method"));
+//                                        o.setEnvMethod(rs.getString("env_method"));
                                         o.setFixedNum(rs.getInt("fixed_num"));
                                         o.setCurrNum(rs.getInt("curr_num"));
                                         o.setStatus(rs.getString("status"));
@@ -79,18 +79,18 @@ public class OpenCourseDao extends BaseDao {
           }
 
           public boolean updateOC(OpenCourse oc) {
-                    String sql="update open_course set proid=?,proname=?,schyear=?,term=?,class_no=?,fixed_num=?,status=?,tt_cr=?  where cou_no=?";
+                    String sql="update open_course set proid=?,proname=?,term=?,class_no=?,fixed_num=?,status=?,tt_cr=?  where cou_no=?";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1,oc.getProId());
                               prst.setString(2, oc.getProName());
-                              prst.setString(3,oc.getSchYear());
-                              prst.setString(4,oc.getTerm());
-                              prst.setString(5,oc.getClassNo());
-                              prst.setInt(6,oc.getFixedNum());
-                              prst.setString(7, oc.getStatus());
-                              prst.setString(8,oc.getTtcr());
-                              prst.setString(9, oc.getCouNo());
+//                              prst.setString(3,oc.getSchYear());
+                              prst.setString(3,oc.getTerm());
+                              prst.setString(4,oc.getClassNo());
+                              prst.setInt(5,oc.getFixedNum());
+                              prst.setString(6, oc.getStatus());
+                              prst.setString(7,oc.getTtcr());
+                              prst.setString(8, oc.getCouNo());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block

@@ -160,4 +160,78 @@ public class YearDeptStandDao extends BaseDao {
                     
                     return false;
           }
+
+          public List<YearDeptStand> getYDSList3(YearDeptStand ydStand) {
+                    List<YearDeptStand> retList=new ArrayList<YearDeptStand>();
+                    String sqlString=null;
+                    sqlString=new String("select * from year_stand where orgid like '%"+ydStand.getOrgId()+"%'");
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sqlString );
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        YearDeptStand yds=new YearDeptStand();
+                                        yds.setYearNo(e.getString("year_no"));
+                                        Integer credit = e.getInt("credit");
+                                        yds.setCredit(credit);
+                                        int major = e.getInt("major");
+                                        yds.setMajor(major);
+                                        int majorMust = e.getInt("major_must");
+                                        yds.setMajorMust(majorMust);
+                                        yds.setMajorChose(major-majorMust);
+                                        int cul=credit-major;
+                                        yds.setCul(cul);
+                                        int culMust = e.getInt("cul_must");
+                                        yds.setCulMust(culMust);
+                                        yds.setCulChose(cul-culMust);
+                                        yds.setRecTatio(e.getInt("rec_tatio"));
+                                        yds.setRecTemp(e.getInt("rec_temp"));
+                                        yds.setRecForm(e.getInt("rec_form"));
+                                        yds.setOrgId(e.getString("orgid"));
+                                        yds.setLoginDate(e.getString("logindate"));
+                                        yds.setDeptName(e.getString("deptname"));
+                                        retList.add(yds);
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    
+                    return retList;
+          }
+
+          public YearDeptStand getYDSObj3(YearDeptStand ydStand) {
+                    YearDeptStand yds=null;
+                    String sqlString=null;
+                    sqlString=new String("select * from year_stand where orgid like '%"+ydStand.getOrgId()+"%'");
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sqlString );
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        yds=new YearDeptStand();
+                                        yds.setYearNo(e.getString("year_no"));
+                                        Integer credit = e.getInt("credit");
+                                        yds.setCredit(credit);
+                                        int major = e.getInt("major");
+                                        yds.setMajor(major);
+                                        int majorMust = e.getInt("major_must");
+                                        yds.setMajorMust(majorMust);
+                                        yds.setMajorChose(major-majorMust);
+                                        int cul=credit-major;
+                                        yds.setCul(cul);
+                                        int culMust = e.getInt("cul_must");
+                                        yds.setCulMust(culMust);
+                                        yds.setCulChose(cul-culMust);
+                                        yds.setRecTatio(e.getInt("rec_tatio"));
+                                        yds.setRecTemp(e.getInt("rec_temp"));
+                                        yds.setRecForm(e.getInt("rec_form"));
+                                        yds.setOrgId(e.getString("orgid"));
+                                        yds.setLoginDate(e.getString("logindate"));
+                                        yds.setDeptName(e.getString("deptname"));
+//                                        retList.add(yds);
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    
+                    return yds;
+          }
 }

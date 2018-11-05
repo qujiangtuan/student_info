@@ -177,11 +177,45 @@ public class ScoreEvalutionFrm extends JFrame {
           protected void updateScoreAction(ActionEvent e) {
                     String sno = dft.getValueAt(index, 1).toString();
                     String couNo=CourseListProFrm.getCouno();
-                    String score = comboBox_score.getSelectedItem().toString();
+                    String grade = comboBox_score.getSelectedItem().toString();
+                    double score=0;
+                    switch (grade) {
+                    case "A+":
+                              score=4.5;
+                              break;
+                    case "A0":
+                              score=4.0;
+                              break;
+                    case "B+":
+                              score=3.5;
+                              break;
+                    case "B0":
+                              score=3.0;
+                              break;
+                    case "C+":
+                              score=2.5;
+                              break;
+                    case "C0":
+                              score=2.0;
+                              break;     
+                    case "D+":
+                              score=1.5;
+                              break;
+                    case "D0":
+                              score=1.0;
+                              break;       
+                    case "F":
+                              score=0;
+                              break;             
+                    default:
+                              score=0;
+                              break;
+                    }
                     PerCourse ss=new PerCourse();
                     ss.setSno(sno);
                     ss.setCouNo(couNo);
-                    ss.setGrade(score);
+                    ss.setGrade(grade);
+                    ss.setScore(score);
                     PerCourseDao pcDao=new PerCourseDao();
                     if(pcDao.UpdateScore(ss)){
                               JOptionPane.showMessageDialog(this, "성적이 저정되었습니다.");

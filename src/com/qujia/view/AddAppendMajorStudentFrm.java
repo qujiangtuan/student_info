@@ -51,7 +51,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 	 */
 	public AddAppendMajorStudentFrm() {
 	          this.setResizable(false);
-		setTitle("\uCD94\uAC00\uC804\uACF5");
+		setTitle("추가전공등록");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 525, 350);
 		
@@ -103,7 +103,7 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		contentPane.add(submitButton);
 		contentPane.add(cancelButton);
 		
-		JLabel lblNewLabel_3 = new JLabel("소속하과:");
+		JLabel lblNewLabel_3 = new JLabel("소속학과:");
 		lblNewLabel_3.setBounds(80, 88, 63, 15);
 		contentPane.add(lblNewLabel_3);
 		

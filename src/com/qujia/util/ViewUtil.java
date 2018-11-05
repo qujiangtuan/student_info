@@ -5,7 +5,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
+import com.qujia.view.LectureEvalutaionFrm;
 import com.qujia.view.SearchAddressFrm;
+import com.qujia.view.SearchAnswer;
 import com.qujia.view.SearchClassRoomFrm;
 import com.qujia.view.SearchDeptForStuFrm;
 import com.qujia.view.SearchOrgForOrgFrm;
@@ -13,6 +15,7 @@ import com.qujia.view.SearchOrgForProFrm;
 import com.qujia.view.SearchProfroCourseFrm;
 import com.qujia.view.SearchSubjectFrm;
 import com.qujia.view.SearchSuperiorFrm;
+import com.qujia.view.searchQuestion;
 
 public class ViewUtil extends JFrame{
           public void showCenter(JFrame frame) {
@@ -83,6 +86,27 @@ public class ViewUtil extends JFrame{
                     double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
                     double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
                     searchClassRoomFrm.setLocation( (int) (width - searchClassRoomFrm.getWidth()) / 2,(int) (height - searchClassRoomFrm.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(LectureEvalutaionFrm lectureEvalutaionFrm) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    lectureEvalutaionFrm.setLocation( (int) (width - lectureEvalutaionFrm.getWidth()) / 2,(int) (height - lectureEvalutaionFrm.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(searchQuestion searchQuestion) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    searchQuestion.setLocation( (int) (width - searchQuestion.getWidth()) / 2,(int) (height - searchQuestion.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(SearchAnswer searchAnswer) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    searchAnswer.setLocation( (int) (width - searchAnswer.getWidth()) / 2,(int) (height - searchAnswer.getHeight()) / 2);
 //                    show();
           }
 }

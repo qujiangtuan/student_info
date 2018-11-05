@@ -209,7 +209,6 @@ public class StudentDao extends BaseDao{
                                 //id=rs.getInt("id");
                                 //System.out.println("id:"+id);
                       } catch (SQLException e1) {
-                                // TODO Auto-generated catch block
                                 e1.printStackTrace();
                       }
                       String retString ="수정 실패";

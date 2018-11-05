@@ -60,7 +60,7 @@ public class CourseArrangeManagerFrm extends JFrame {
           private JTextField textField_srarchNO;
           private JTextField textField_searchName;
           private JTextField textField_searchPro;
-          private  JComboBox comboBox_editSchYear,comboBox_editTerm,comboBox_editStatus ;
+          private  JComboBox comboBox_editTerm,comboBox_editStatus ;
           private static String editProName;
           private  String[] SchYear,term,classNo,status;
           private JSpinner spinner_classNo;
@@ -340,31 +340,24 @@ public class CourseArrangeManagerFrm extends JFrame {
                     
                     JLabel label_4 = new JLabel("담당교수:");
                     label_4.setBounds(568, 347, 65, 15);
-                    
-                    JLabel lblNewLabel_1 = new JLabel("대상학년:");
-                    lblNewLabel_1.setBounds(568, 389, 66, 15);
-                   
-                    comboBox_editSchYear = new JComboBox();
                     SchYear=new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"};
-                    comboBox_editSchYear.setModel(new DefaultComboBoxModel(SchYear));
-                    comboBox_editSchYear.setBounds(646, 386, 116, 21);
                     
                     JLabel lblNewLabel_2 = new JLabel("학기:");
-                    lblNewLabel_2.setBounds(591, 429, 43, 15);
+                    lblNewLabel_2.setBounds(590, 388, 43, 15);
                     
                     comboBox_editTerm = new JComboBox();
                     term=new String[] {"1학기", "2학기", "여름계절학기", "겨울계절학기"};
                     comboBox_editTerm.setModel(new DefaultComboBoxModel(term));
-                    comboBox_editTerm.setBounds(646, 426, 116, 21);
+                    comboBox_editTerm.setBounds(645, 385, 116, 21);
                     
                     JLabel lblNewLabel_3 = new JLabel("분반:");
-                    lblNewLabel_3.setBounds(591, 468, 43, 15);
+                    lblNewLabel_3.setBounds(590, 427, 43, 15);
                     
                     JLabel lblNewLabel_4 = new JLabel("정원:");
-                    lblNewLabel_4.setBounds(591, 513, 43, 15);
+                    lblNewLabel_4.setBounds(590, 472, 43, 15);
                     
                     textField_fexidNum = new JTextField();
-                    textField_fexidNum.setBounds(646, 510, 116, 21);
+                    textField_fexidNum.setBounds(645, 469, 116, 21);
                     textField_fexidNum.setColumns(10);
                     
                     JButton submitButton = new JButton("수 정");
@@ -386,10 +379,10 @@ public class CourseArrangeManagerFrm extends JFrame {
                     deleteButton.setBackground(new Color(255, 160, 122));
                     
                     JLabel lblNewLabel_5 = new JLabel("개폐상태:");
-                    lblNewLabel_5.setBounds(568, 554, 66, 15);
+                    lblNewLabel_5.setBounds(567, 513, 66, 15);
                     
                     comboBox_editStatus = new JComboBox();
-                    comboBox_editStatus.setBounds(646, 551, 116, 21);
+                    comboBox_editStatus.setBounds(645, 510, 116, 21);
                     status=new String[] {"", "개설", "폐강"};
                     comboBox_editStatus.setModel(new DefaultComboBoxModel(status));
                     
@@ -418,23 +411,22 @@ public class CourseArrangeManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uB300\uC0C1\uD559\uB144", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uB4F1\uB85D\uC77C\uC790"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
                               }
                     });
                     table.getColumnModel().getColumn(2).setPreferredWidth(127);
-                    table.getColumnModel().getColumn(4).setPreferredWidth(73);
-                    table.getColumnModel().getColumn(9).setPreferredWidth(389);
-                    table.getColumnModel().getColumn(10).setPreferredWidth(91);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(389);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(91);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -469,13 +461,11 @@ public class CourseArrangeManagerFrm extends JFrame {
                     contentPane.add(label_4);
                     contentPane.add(lblNewLabel_4);
                     contentPane.add(lblNewLabel_2);
-                    contentPane.add(lblNewLabel_1);
                     contentPane.add(lblNewLabel_3);
                     contentPane.add(lblNewLabel_5);
                     contentPane.add(comboBox_editStatus);
                     contentPane.add(textField_fexidNum);
                     contentPane.add(comboBox_editTerm);
-                    contentPane.add(comboBox_editSchYear);
                     contentPane.add(submitButton);
                     contentPane.add(deleteButton);
                     
@@ -507,7 +497,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                     spinner_classNo = new JSpinner();
                     classNo=new String[] {"101", "102", "103", "104", "105", "106", "107", "108", "109", "110"};
                     spinner_classNo.setModel(new SpinnerListModel(classNo));
-                    spinner_classNo.setBounds(645, 465, 116, 22);
+                    spinner_classNo.setBounds(644, 424, 116, 22);
                     contentPane.add(spinner_classNo);
                     
                    
@@ -761,7 +751,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                     
                     String editProName = textField_editPro.getText().toString();
                     String pno=getProIdByProName(editProName);
-                    String schYear = comboBox_editSchYear.getSelectedItem().toString();
+//                    String schYear = comboBox_editSchYear.getSelectedItem().toString();
                     String term = comboBox_editTerm.getSelectedItem().toString();
                     String classNo = spinner_classNo.getValue().toString();
                     int fixedNum = Integer.parseInt(textField_fexidNum.getText().toString());
@@ -776,7 +766,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                     oc.setCouNo(couNo);
                     oc.setProId(pno);
                     oc.setProName(editProName);
-                    oc.setSchYear(schYear);
+//                    oc.setSchYear(schYear);
                     oc.setTerm(term);
                     oc.setClassNo(classNo);
                     oc.setFixedNum(fixedNum);
@@ -1061,7 +1051,6 @@ public class CourseArrangeManagerFrm extends JFrame {
 
           private void resetValue() {
                     textField_editPro.setText("");
-                    comboBox_editSchYear.setSelectedIndex(0);
                     comboBox_editTerm.setSelectedIndex(0);
                     spinner_classNo.setValue("101");
                     textField_fexidNum.setText("");
@@ -1158,18 +1147,18 @@ public class CourseArrangeManagerFrm extends JFrame {
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();
                     couNo = dft.getValueAt(row, 1).toString();
                     editProName=dft.getValueAt(row, 3).toString();
-                    String editSchYear=dft.getValueAt(row, 4).toString();
-                    String editTerm=dft.getValueAt(row, 5).toString();
-                    String editClassNo=dft.getValueAt(row, 6).toString();
-                    String editFeixdNum=dft.getValueAt(row, 7).toString();
+//                    String editSchYear=dft.getValueAt(row, 4).toString();
+                    String editTerm=dft.getValueAt(row, 4).toString();
+                    String editClassNo=dft.getValueAt(row, 5).toString();
+                    String editFeixdNum=dft.getValueAt(row, 6).toString();
                     String editStatus=dft.getValueAt(row, 0).toString();
                     
                     textField_editPro.setText(editProName);
-                    for(int i=0;i<comboBox_editSchYear.getItemCount();i++){
-                              if(editSchYear.equals(SchYear[i])){
-                                        comboBox_editSchYear.setSelectedIndex(i);
-                              }
-                    }
+//                    for(int i=0;i<comboBox_editSchYear.getItemCount();i++){
+//                              if(editSchYear.equals(SchYear[i])){
+//                                        comboBox_editSchYear.setSelectedIndex(i);
+//                              }
+//                    }
                     for(int i=0;i<comboBox_editTerm.getItemCount();i++){
                               if(editTerm.equals(term[i])){
                                         comboBox_editTerm.setSelectedIndex(i);
@@ -1280,7 +1269,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                              v.add(o.getCouNo());
                              v.add(o.getCouName());
                              v.add(getProNameByProId(o.getProId()));
-                             v.add(o.getSchYear());
+//                             v.add(o.getSchYear());
                              v.add(o.getTerm());
                              v.add(o.getClassNo());
                              v.add(o.getFixedNum());

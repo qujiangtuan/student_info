@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qujia.model.PerCourse;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 
 public class PerCourseDao extends BaseDao {
 
           public boolean addApplyCourse(PerCourse pc) {
                     String sql = "insert into per_course(year,term,cou_name,cou_no,learn_type,class_no,"
-                                        + "credit_type,tt_cr,stu_no,stu_name,cou_dept,stu_dept,proname,pno) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                                        + "credit_type,tt_cr,stu_no,stu_name,cou_dept,stu_dept,proname,pno,is_eva) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,'no')";
                     try {
                      PreparedStatement prst=con.prepareStatement(sql);
                      prst.setString(1, pc.getYear());
@@ -38,12 +39,21 @@ public class PerCourseDao extends BaseDao {
                     return false;
           }
 
-          public List<PerCourse> getPCList(PerCourse perCourse,String sno) {
+          public List<PerCourse> getPCList(PerCourse per,String sno) {
                     List<PerCourse> retList=new ArrayList<PerCourse>();
-                  String sqlString="select * from per_course where stu_no=?";
+//                  String sqlString="select * from per_course where stu_no=? order by year,term";
+                    String sqlString;
+//                  sqlString=new StringBuffer("select * from per_course where stu_no=? order by year,term ");
+                  if(StringUtil.isEmpty(per.getYear())&&per.getTerm()==0){
+                            sqlString="select * from per_course where stu_no='"+sno+"' order by year,term ";
+                  }else{
+                            sqlString="select * from per_course where stu_no='"+sno+"' and year like '%"+per.getYear()+"%'  and term like '%"+per.getTerm()+"%' order by year,term ";
+                  }
                   try {
                             PreparedStatement prst=con.prepareStatement(sqlString);
-                            prst.setString(1,sno);
+//                  try {
+//                            PreparedStatement prst=con.prepareStatement(sqlString);
+//                            prst.setString(1,sno);
                             ResultSet e = prst.executeQuery();
                             while(e.next()){
                                       PerCourse pcData =new PerCourse();
@@ -56,6 +66,9 @@ public class PerCourseDao extends BaseDao {
                                       pcData.setClassNo(e.getString("class_no"));
                                       pcData.setCreditType(e.getInt("credit_type"));
                                       pcData.setTtcr(e.getString("tt_cr"));
+                                      pcData.setGrade(e.getString("grade"));
+                                      pcData.setScore(e.getDouble("score"));
+                                      pcData.setIsEva(e.getString("is_eva"));
                                       retList.add(pcData);
                             }
                   } catch (SQLException e) {
@@ -64,7 +77,28 @@ public class PerCourseDao extends BaseDao {
                   
                   return retList;
           }
-
+          public List<PerCourse> getPCList2(PerCourse per,String sno) {
+                    int year1=Integer.parseInt(sno.substring(0, 3));
+                    int year2=Integer.parseInt(DateUtil.getThisYear());
+                    List<PerCourse> retList=new ArrayList<PerCourse>();
+                              PerCourse pc1Data=null;
+                              PerCourse pc2Data=null;
+                                      int i=year1;
+                                      while(i<=year2){
+                                                pc1Data =new PerCourse();
+                                                pc2Data =new PerCourse();
+                                                pc1Data.setYear(i+"");
+                                                pc1Data.setTerm(1);
+                                                
+                                                pc2Data.setYear(i+"");
+                                                pc2Data.setTerm(2);
+                                                i++;
+                                      }
+                                      retList.add(pc1Data);
+                                      retList.add(pc2Data);
+//                                      System.out.println("retList="+retList);
+                  return retList;
+          }
           public boolean deletePC(String couNo,String sno) {
                     String sql="delete from per_course where cou_no=? and stu_no= ?";
                     try {
@@ -79,7 +113,7 @@ public class PerCourseDao extends BaseDao {
                     }
                     return false;
           }
-
+          
           public int getCouCounts(String sno) {
                     String sqlString="select count(*) count from per_course where stu_no=?";
                     int count=0;
@@ -237,13 +271,14 @@ public class PerCourseDao extends BaseDao {
           }
 
           public boolean UpdateScore(PerCourse ss) {
-                    String sql="update per_course set grade=?  where cou_no=? and stu_no=?";
+                    String sql="update per_course set grade=?,score=? where cou_no=? and stu_no=?";
                     PreparedStatement prst;
                     try {
                               prst=con.prepareStatement(sql);
                               prst.setString(1, ss.getGrade());
-                              prst.setString(2,ss.getCouNo());
-                              prst.setString(3,ss.getSno());
+                              prst.setDouble(2,ss.getScore());
+                              prst.setString(3,ss.getCouNo());
+                              prst.setString(4,ss.getSno());
                               if(prst.executeUpdate()>0){
                                         return true;
                               }
@@ -254,4 +289,155 @@ public class PerCourseDao extends BaseDao {
                     return false;
           }
 
+          public boolean updateIsEva(String sno, String couNo) {
+                    String sql="update per_course set is_eva='yes'  where cou_no=? and stu_no=?";
+                    PreparedStatement prst;
+                    try {
+                              prst=con.prepareStatement(sql);
+                              prst.setString(1, couNo);
+                              prst.setString(2,sno);
+                              if(prst.executeUpdate()>0){
+                                        return true;
+                              }
+                    } catch (SQLException e) {    
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
+          //신청학점 받기
+          public int getCreditApply(String year, int term, String sno) {
+                    String sql="select sum(credit_type) credit_All from "
+                                        +"(select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score  "
+                                        +"from per_course peco where peco.stu_no=? and peco.year=? and peco.term=?)";
+                    int countApply=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              prst.setString(2,year);
+                              prst.setInt(3,term);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        countApply=e.getInt("credit_All");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return countApply;
+          }
+          //취득학점 받기
+          public int getCreditCurr(String year, int term, String sno) {
+                    String sql="select sum(credit_type) credit_curr from "
+                                        +" (select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score  "
+                                        +" from per_course peco where peco.stu_no=? and peco.year=? and peco.term=?) t "
+                                        +" where nvl(grade,'A')<>'F'";
+                    int countCurr=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              prst.setString(2,year);
+                              prst.setInt(3,term);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        countCurr=e.getInt("credit_curr");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return countCurr;
+          }
+          //평점
+          public Object getAvg(String year, int term, String sno) {
+                    String sql="select avg(score) avg_score from "
+                                        +"(select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score  "
+                                        +"from per_course peco where peco.stu_no=? and peco.year=? and peco.term=?)";
+                    int avgScore=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              prst.setString(2,year);
+                              prst.setInt(3,term);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        avgScore=e.getInt("avg_score");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return avgScore;
+          }
+          //전필
+          public int getMajMust(String sno) {
+                    String sql="select sum(credit_type) maj_must_sum from "
+                                        +" (select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score "
+                                        + " from per_course peco where peco.stu_no=? and learn_type='전필')";
+                    int majMustSum=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        majMustSum=e.getInt("maj_must_sum");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return majMustSum;
+                    
+          }
+          //전선
+          public int getMajCho(String sno) {
+                    String sql="select sum(credit_type) maj_cho_sum from "
+                                        +" (select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score "
+                                        + " from per_course peco where peco.stu_no=? and learn_type='전선')";
+                    int majChoSum=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        majChoSum=e.getInt("maj_cho_sum");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return majChoSum;
+                    
+          }
+          //교필
+          public int getCulMust(String sno) {
+                    String sql="select sum(credit_type) cul_must_sum from "
+                                        +" (select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score "
+                                        + " from per_course peco where peco.stu_no=? and learn_type='교필')";
+                    int CulMustSum=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        CulMustSum=e.getInt("cul_must_sum");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return CulMustSum;
+                    
+          }
+          //교선
+          public int getCulCho(String sno) {
+                    String sql="select sum(credit_type) cul_cho_sum from "
+                                        +" (select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score "
+                                        + " from per_course peco where peco.stu_no=? and learn_type='교선')";
+                    int culChoSum=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, sno);
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        culChoSum=e.getInt("cul_cho_sum");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return culChoSum;
+          }
 }

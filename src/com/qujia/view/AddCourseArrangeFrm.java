@@ -18,7 +18,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
@@ -52,13 +51,9 @@ public class AddCourseArrangeFrm extends JFrame {
           private JLabel lblNewLabel_1;
           private JTextField textField_num;
           private JButton button;
-          private JRadioButton xRadioButton, cRadioButton;
           private ButtonGroup bgroup;
           private JTextField textField_subject;
           private JTextField textField_pro;
-          private JLabel lblNewLabel_4;
-          private JTextField textField_couName;
-          private JComboBox comboBox_schYear;
           private JSpinner spinner_classNo;
           private static String couNo;
           private JTextField textField_1;
@@ -110,13 +105,13 @@ public class AddCourseArrangeFrm extends JFrame {
                     lebel_name.setBounds(30, 35, 69, 15);
 
                     leabel_pro = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
-                    leabel_pro.setBounds(319, 80, 61, 15);
+                    leabel_pro.setBounds(319, 35, 61, 15);
 
                     leabel_term = new JLabel(" 개설학기:");
-                    leabel_term.setBounds(319, 119, 69, 15);
+                    leabel_term.setBounds(319, 80, 69, 15);
 
                     comboBox_term = new JComboBox();
-                    comboBox_term.setBounds(386, 116, 102, 21);
+                    comboBox_term.setBounds(386, 77, 102, 21);
                     comboBox_term.setModel(new DefaultComboBoxModel(
                                         new String[] { "1학기", "2학기", "여름계절학기",
                                                             "겨울계절학기" }));
@@ -124,7 +119,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     DateUtil du = new DateUtil();
 
                     JButton submitButton = new JButton("등  록");
-                    submitButton.setBounds(282, 444, 74, 23);
+                    submitButton.setBounds(283, 407, 74, 23);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         loginCourseAction(e);
@@ -135,16 +130,16 @@ public class AddCourseArrangeFrm extends JFrame {
                     });
 
                     JLabel label_1 = new JLabel("수강요일");
-                    label_1.setBounds(30, 196, 65, 15);
+                    label_1.setBounds(30, 166, 65, 15);
 
                     JLabel label_2 = new JLabel("시작시간");
-                    label_2.setBounds(117, 196, 65, 15);
+                    label_2.setBounds(117, 166, 65, 15);
 
                     JLabel label_3 = new JLabel("종료시간");
-                    label_3.setBounds(263, 196, 62, 15);
+                    label_3.setBounds(263, 166, 62, 15);
 
                     JLabel label_4 = new JLabel("강의실");
-                    label_4.setBounds(365, 196, 147, 15);
+                    label_4.setBounds(365, 166, 147, 15);
 
                     checkBox_1 = new JCheckBox("월");
                     checkBox_1.addItemListener(new ItemListener() {
@@ -160,7 +155,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_1.setBounds(47, 229, 48, 23);
+                    checkBox_1.setBounds(47, 199, 48, 23);
 
                     checkBox_2 = new JCheckBox("화");
                     checkBox_2.addItemListener(new ItemListener() {
@@ -176,7 +171,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_2.setBounds(47, 262, 48, 23);
+                    checkBox_2.setBounds(47, 232, 48, 23);
 
                     checkBox_3 = new JCheckBox("수");
                     checkBox_3.addItemListener(new ItemListener() {
@@ -192,7 +187,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_3.setBounds(47, 294, 48, 23);
+                    checkBox_3.setBounds(47, 264, 48, 23);
 
                     checkBox_4 = new JCheckBox("목");
                     checkBox_4.addItemListener(new ItemListener() {
@@ -208,7 +203,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_4.setBounds(47, 326, 48, 23);
+                    checkBox_4.setBounds(47, 296, 48, 23);
 
                     checkBox_5 = new JCheckBox("금");
                     checkBox_5.addItemListener(new ItemListener() {
@@ -224,7 +219,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_5.setBounds(47, 354, 48, 23);
+                    checkBox_5.setBounds(47, 324, 48, 23);
 
                     checkBox_6 = new JCheckBox("토");
                     checkBox_6.addItemListener(new ItemListener() {
@@ -240,62 +235,62 @@ public class AddCourseArrangeFrm extends JFrame {
                                         }
                               }
                     });
-                    checkBox_6.setBounds(47, 386, 48, 23);
+                    checkBox_6.setBounds(47, 356, 48, 23);
 
                     // SpinnerDateModel model = new SpinnerDateModel();
                     spinner_1_1 = new JSpinner(new SpinnerDateModel());
                     spinner_1_1.setEnabled(false);
-                    spinner_1_1.setBounds(117, 230, 93, 22);
+                    spinner_1_1.setBounds(117, 200, 93, 22);
                     // spinner_1_1.setModel(new SpinnerDateModel(new
                     // Date(1536505200000L), new Date(1536505200000L), new
                     // Date(1536505200000L), Calendar.HOUR));
 
                     spinner_2_1 = new JSpinner(new SpinnerDateModel());
                     spinner_2_1.setEnabled(false);
-                    spinner_2_1.setBounds(117, 262, 93, 22);
+                    spinner_2_1.setBounds(117, 232, 93, 22);
 
                     spinner_3_1 = new JSpinner(new SpinnerDateModel());
                     spinner_3_1.setEnabled(false);
-                    spinner_3_1.setBounds(117, 294, 93, 22);
+                    spinner_3_1.setBounds(117, 264, 93, 22);
 
                     spinner_4_1 = new JSpinner(new SpinnerDateModel());
                     spinner_4_1.setEnabled(false);
-                    spinner_4_1.setBounds(117, 326, 93, 22);
+                    spinner_4_1.setBounds(117, 296, 93, 22);
 
                     spinner_5_1 = new JSpinner(new SpinnerDateModel());
                     spinner_5_1.setEnabled(false);
-                    spinner_5_1.setBounds(117, 354, 93, 22);
+                    spinner_5_1.setBounds(117, 324, 93, 22);
 
                     spinner_6_1 = new JSpinner(new SpinnerDateModel());
                     spinner_6_1.setEnabled(false);
-                    spinner_6_1.setBounds(117, 386, 93, 22);
+                    spinner_6_1.setBounds(117, 356, 93, 22);
 
                     spinner_1_2 = new JSpinner(new SpinnerDateModel());
                     spinner_1_2.setEnabled(false);
-                    spinner_1_2.setBounds(245, 230, 102, 22);
+                    spinner_1_2.setBounds(245, 200, 102, 22);
                     // spinner_1_2.setModel(new SpinnerDateModel(new
                     // Date(1536505200000L), new Date(1536505200000L), new
                     // Date(1536505200000L), Calendar.HOUR));
 
                     spinner_2_2 = new JSpinner(new SpinnerDateModel());
                     spinner_2_2.setEnabled(false);
-                    spinner_2_2.setBounds(245, 262, 102, 22);
+                    spinner_2_2.setBounds(245, 232, 102, 22);
 
                     spinner_3_2 = new JSpinner(new SpinnerDateModel());
                     spinner_3_2.setEnabled(false);
-                    spinner_3_2.setBounds(245, 294, 102, 22);
+                    spinner_3_2.setBounds(245, 264, 102, 22);
 
                     spinner_4_2 = new JSpinner(new SpinnerDateModel());
                     spinner_4_2.setEnabled(false);
-                    spinner_4_2.setBounds(245, 326, 102, 22);
+                    spinner_4_2.setBounds(245, 296, 102, 22);
 
                     spinner_5_2 = new JSpinner(new SpinnerDateModel());
                     spinner_5_2.setEnabled(false);
-                    spinner_5_2.setBounds(245, 354, 102, 22);
+                    spinner_5_2.setBounds(245, 324, 102, 22);
 
                     spinner_6_2 = new JSpinner(new SpinnerDateModel());
                     spinner_6_2.setEnabled(false);
-                    spinner_6_2.setBounds(245, 386, 102, 22);
+                    spinner_6_2.setBounds(245, 356, 102, 22);
                     this.setMyModel(spinner_1_1);
                     this.setMyModel(spinner_1_2);
                     this.setMyModel(spinner_2_1);
@@ -310,46 +305,24 @@ public class AddCourseArrangeFrm extends JFrame {
                     this.setMyModel(spinner_6_2);
 
                     lblNewLabel = new JLabel("분 반:");
-                    lblNewLabel.setBounds(48, 119, 48, 15);
+                    lblNewLabel.setBounds(48, 80, 48, 15);
 
                     lblNewLabel_1 = new JLabel("정 원:");
-                    lblNewLabel_1.setBounds(340, 157, 40, 15);
+                    lblNewLabel_1.setBounds(48, 125, 40, 15);
 
                     textField_num = new JTextField();
-                    textField_num.setBounds(386, 154, 102, 21);
+                    textField_num.setBounds(117, 122, 113, 21);
                     textField_num.setColumns(10);
 
-                    JLabel lblNewLabel_2 = new JLabel("대상학년:");
-                    lblNewLabel_2.setBounds(30, 80, 69, 15);
-
-                    comboBox_schYear = new JComboBox();
-                    comboBox_schYear.setBounds(114, 77, 116, 21);
-                    comboBox_schYear.setModel(new DefaultComboBoxModel(
-                                        new String[] { "1학년", "2학년", "3학년",
-                                                            "4학년", "대학원" }));
-
                     button = new JButton("취 소");
-                    button.setBounds(406, 444, 86, 23);
+                    button.setBounds(414, 407, 74, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
                               }
                     });
 
-                    JLabel lblNewLabel_3 = new JLabel("평가방식:");
-                    lblNewLabel_3.setBounds(30, 157, 72, 15);
-
-                    xRadioButton = new JRadioButton("상대평가");
-                    xRadioButton.setSelected(true);
-                    xRadioButton.setBounds(114, 153, 86, 23);
-
-                    cRadioButton = new JRadioButton("절대평가");
-
                     bgroup = new ButtonGroup();
-                    bgroup.add(xRadioButton);
-                    bgroup.add(cRadioButton);
-
-                    cRadioButton.setBounds(204, 153, 102, 23);
                     contentPane.setLayout(null);
                     contentPane.add(lblNewLabel);
                     contentPane.add(label_1);
@@ -359,8 +332,6 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.add(checkBox_4);
                     contentPane.add(checkBox_5);
                     contentPane.add(checkBox_6);
-                    contentPane.add(lblNewLabel_2);
-                    contentPane.add(comboBox_schYear);
                     contentPane.add(label_2);
                     contentPane.add(spinner_6_1);
                     contentPane.add(spinner_5_1);
@@ -384,13 +355,10 @@ public class AddCourseArrangeFrm extends JFrame {
                     contentPane.add(comboBox_term);
                     contentPane.add(submitButton);
                     contentPane.add(button);
-                    contentPane.add(lblNewLabel_3);
-                    contentPane.add(xRadioButton);
-                    contentPane.add(cRadioButton);
 
                     textField_subject = new JTextField();
                     textField_subject.setEditable(false);
-                    textField_subject.setBounds(114, 32, 116, 21);
+                    textField_subject.setBounds(117, 32, 113, 21);
                     contentPane.add(textField_subject);
                     textField_subject.setColumns(10);
 
@@ -415,33 +383,24 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_pro.setText(addSearchPro());
                               }
                     });
-                    button_searchPro.setBounds(488, 76, 65, 23);
+                    button_searchPro.setBounds(493, 31, 65, 23);
                     contentPane.add(button_searchPro);
 
                     textField_pro = new JTextField();
                     textField_pro.setEditable(false);
-                    textField_pro.setBounds(386, 77, 102, 21);
+                    textField_pro.setBounds(386, 32, 102, 21);
                     contentPane.add(textField_pro);
                     textField_pro.setColumns(10);
-
-                    lblNewLabel_4 = new JLabel("개설교과목명:");
-                    lblNewLabel_4.setBounds(302, 35, 86, 15);
-                    contentPane.add(lblNewLabel_4);
-
-                    textField_couName = new JTextField();
-                    textField_couName.setBounds(386, 32, 102, 21);
-                    contentPane.add(textField_couName);
-                    textField_couName.setColumns(10);
 
                     spinner_classNo = new JSpinner();
                     spinner_classNo.setModel(new SpinnerListModel(new String[] {
                                         "101", "102", "103", "104", "105",
                                         "106", "107", "108", "109", "110" }));
-                    spinner_classNo.setBounds(114, 116, 116, 22);
+                    spinner_classNo.setBounds(117, 77, 113, 22);
                     contentPane.add(spinner_classNo);
 
                     textField_1 = new JTextField();
-                    textField_1.setBounds(359, 230, 54, 21);
+                    textField_1.setBounds(359, 200, 54, 21);
                     contentPane.add(textField_1);
                     textField_1.setColumns(10);
 
@@ -454,12 +413,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_1.setText(addSearchCR());
                               }
                     });
-                    button_1.setBounds(415, 229, 69, 23);
+                    button_1.setBounds(415, 199, 69, 23);
                     contentPane.add(button_1);
 
                     textField_2 = new JTextField();
                     textField_2.setColumns(10);
-                    textField_2.setBounds(359, 263, 54, 21);
+                    textField_2.setBounds(359, 233, 54, 21);
                     contentPane.add(textField_2);
 
                     button_2 = new JButton("조회");
@@ -471,12 +430,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_2.setText(addSearchCR());
                               }
                     });
-                    button_2.setBounds(415, 262, 69, 23);
+                    button_2.setBounds(415, 232, 69, 23);
                     contentPane.add(button_2);
 
                     textField_3 = new JTextField();
                     textField_3.setColumns(10);
-                    textField_3.setBounds(359, 295, 54, 21);
+                    textField_3.setBounds(359, 265, 54, 21);
                     contentPane.add(textField_3);
 
                     button_3 = new JButton("조회");
@@ -488,12 +447,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_3.setText(addSearchCR());
                               }
                     });
-                    button_3.setBounds(415, 294, 69, 23);
+                    button_3.setBounds(415, 264, 69, 23);
                     contentPane.add(button_3);
 
                     textField_4 = new JTextField();
                     textField_4.setColumns(10);
-                    textField_4.setBounds(359, 327, 54, 21);
+                    textField_4.setBounds(359, 297, 54, 21);
                     contentPane.add(textField_4);
 
                     button_4 = new JButton("조회");
@@ -505,12 +464,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_4.setText(addSearchCR());
                               }
                     });
-                    button_4.setBounds(415, 326, 69, 23);
+                    button_4.setBounds(415, 296, 69, 23);
                     contentPane.add(button_4);
 
                     textField_5 = new JTextField();
                     textField_5.setColumns(10);
-                    textField_5.setBounds(359, 355, 54, 21);
+                    textField_5.setBounds(359, 325, 54, 21);
                     contentPane.add(textField_5);
 
                     button_5 = new JButton("조회");
@@ -522,12 +481,12 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_5.setText(addSearchCR());
                               }
                     });
-                    button_5.setBounds(415, 354, 69, 23);
+                    button_5.setBounds(415, 324, 69, 23);
                     contentPane.add(button_5);
 
                     textField_6 = new JTextField();
                     textField_6.setColumns(10);
-                    textField_6.setBounds(359, 387, 54, 21);
+                    textField_6.setBounds(359, 357, 54, 21);
                     contentPane.add(textField_6);
 
                     button_6 = new JButton("조회");
@@ -539,7 +498,7 @@ public class AddCourseArrangeFrm extends JFrame {
                                         textField_6.setText(addSearchCR());
                               }
                     });
-                    button_6.setBounds(415, 386, 69, 23);
+                    button_6.setBounds(415, 356, 69, 23);
                     contentPane.add(button_6);
 
                     resetValues();
@@ -561,21 +520,20 @@ public class AddCourseArrangeFrm extends JFrame {
           // course login
           protected void loginCourseAction(ActionEvent e) {
                     // 교과목개설 정보 등록
-                    String sub = textField_subject.getText().toString();
-                    String subid = getSubIdBySubName(sub);
-                    if (StringUtil.isEmpty(sub)) {
+                    String couName = textField_subject.getText().toString();
+                    String subid = getSubIdBySubName(couName);
+                    if (StringUtil.isEmpty(couName)) {
                               JOptionPane.showMessageDialog(this,
                                                   "교과목을 선택해주세요!");
                               return;
                     }
-                    String couName = textField_couName.getText().toString();
-                    if (StringUtil.isEmpty(couName)) {
-                              JOptionPane.showMessageDialog(this,
-                                                  "개설교과목명을 입력해주세요!");
-                              return;
-                    }
-                    String schYear = comboBox_schYear.getSelectedItem()
-                                        .toString();
+//                    String couName = textField_subject.getText().toString();
+//                    if (StringUtil.isEmpty(couName)) {
+//                              JOptionPane.showMessageDialog(this,
+//                                                  "개설교과목명을 입력해주세요!");
+//                              return;
+//                    }
+//                    String schYear = comboBox_schYear.getSelectedItem().toString();
                     String proName = textField_pro.getText().toString();
                     String pno = getProIdByProName(proName);
                     if (StringUtil.isEmpty(proName)) {
@@ -585,7 +543,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     }
                     String classNo = spinner_classNo.getValue().toString();
                     String term = comboBox_term.getSelectedItem().toString();
-                    String envMethod = xRadioButton.isSelected() ? xRadioButton.getText() : cRadioButton.getText();
+//                    String envMethod = xRadioButton.isSelected() ? xRadioButton.getText() : cRadioButton.getText();
                     String fixedNumStr=textField_num.getText().toString();
                     if (StringUtil.isEmpty(fixedNumStr)) {
                               JOptionPane.showMessageDialog(this, "정원을 입력해주세요!");
@@ -598,11 +556,11 @@ public class AddCourseArrangeFrm extends JFrame {
                     oc.setCouNo(couNo);
                     oc.setSubCode(subid);
                     oc.setCouName(couName);
-                    oc.setSchYear(schYear);
+//                    oc.setSchYear(schYear);
                     oc.setProId(pno);
                     oc.setClassNo(classNo);
                     oc.setTerm(term);
-                    oc.setEnvMethod(envMethod);
+//                    oc.setEnvMethod(envMethod);
                     oc.setFixedNum(fixedNum);
                     oc.setStatus("개설");
                     oc.setProName(proName);
@@ -823,13 +781,10 @@ public class AddCourseArrangeFrm extends JFrame {
           }
           private void resetValues() {
                     textField_subject.setText("");
-                    textField_couName.setText("");
-                    comboBox_schYear.setSelectedIndex(0);
                     comboBox_term.setSelectedIndex(0);
                     textField_pro.setText("");
                     spinner_classNo.setValue("101");
                     bgroup.clearSelection();
-                    xRadioButton.setSelected(true);
                     textField_num.setText("");
                     checkBox_1.setSelected(false);
                     checkBox_2.setSelected(false);

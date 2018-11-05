@@ -251,7 +251,7 @@ public class PersonalInfo_pro extends JFrame {
 		emailArray=new String[] {"","naver.com", "gmail.com", "pukyong.ac.kr", 
 		                    "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", 
 		                    "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"};
-		comboBox_email2.setModel(new DefaultComboBoxModel(emailArray));
+		comboBox_email2.setModel(new DefaultComboBoxModel(new String[] {"", "naver.com", "gmail.com", "pukyong.ac.kr", "hanmail.com", "hanmail.net", "daum.net", "kornet.net", "korea.com", "hanafos.com", "yahoo.com.kr", "qq.com", "163.com"}));
 		comboBox_email2.setBounds(491, 123, 122, 21);
 		contentPane.add(comboBox_email2);
 		

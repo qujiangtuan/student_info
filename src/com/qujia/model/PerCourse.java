@@ -17,10 +17,26 @@ public class PerCourse {
           private String sName;//학생명
           private String couDept;//수강대상 /교과목소속학과
           private String stuDept;//학생 소속학과
+          private String isEva;//강의 평가 완료여부
+          private double score;//성적
+          
+          
           
           
           
          
+          public double getScore() {
+                    return score;
+          }
+          public void setScore(double score) {
+                    this.score = score;
+          }
+          public String getIsEva() {
+                    return isEva;
+          }
+          public void setIsEva(String isEva) {
+                    this.isEva = isEva;
+          }
           public String getPno() {
                     return pno;
           }
@@ -117,6 +133,11 @@ public class PerCourse {
           public void setGrade(String grade) {
                     this.grade = grade;
           }
+          @Override
+          public String toString() {
+                    return "PerCourse [year=" + year + ", term=" + term + "]";
+          }
          
+          
           
 }

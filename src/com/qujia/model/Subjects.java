@@ -12,9 +12,18 @@ public class Subjects {
           private String subExp;//교과목 설명
           private String orgName;
           
+          private String schYear;
+          private String envMethod;
           
           
           
+          
+          public String getSchYear() {
+                    return schYear;
+          }
+          public void setSchYear(String schYear) {
+                    this.schYear = schYear;
+          }
           public int getCreditType() {
                     return creditType;
           }
@@ -79,6 +88,12 @@ public class Subjects {
           @Override
           public String toString() {
                     return subName;
+          }
+          public String getEnvMethod() {
+                    return envMethod;
+          }
+          public void setEnvMethod(String envMethod) {
+                    this.envMethod = envMethod;
           }
           
           

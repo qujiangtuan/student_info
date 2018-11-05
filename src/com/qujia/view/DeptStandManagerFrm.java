@@ -11,7 +11,7 @@ import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -27,7 +27,7 @@ import com.qujia.model.DeptStand;
 import com.qujia.model.Org;
 import com.qujia.util.StringUtil;
 
-public class DeptStandManagerFrm extends JInternalFrame {
+public class DeptStandManagerFrm extends JFrame {
           private JTextField searchClassNameTextField;
           private JTable deptListTable;
           private JTextField textField_min;
@@ -60,8 +60,9 @@ public class DeptStandManagerFrm extends JInternalFrame {
                     this.setResizable(false);
                     setTitle("교육부서학사기준관리");
                     setBounds(20, 20, 863, 561);
-                    setClosable(true);
-                    setIconifiable(true);
+                    setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+//                    setClosable(true);
+//                    setIconifiable(true);
 
                     // ViewUtil vu=new ViewUtil();
                     // vu.showCenter(this);

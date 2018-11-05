@@ -1,5 +1,6 @@
 package com.qujia.util;
 
+import java.io.File;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -66,6 +67,19 @@ public class StringUtil {
                     Pattern pattern = Pattern.compile("[0-9]*"); 
                     return pattern.matcher(str).matches();    
                  }
+
+          public static boolean isEmpty(File file) {
+                    if(file==null){
+                              return true;
+                    }
+                    if(!file.exists()){
+                              return true;
+                    }else
+                    if(file.exists() && file.length() == 0) {  
+                              return true;
+                    } 
+                    return false;
+          }
           
 //          public static void main(String[] args) {
 //                    StringUtil su=new StringUtil();

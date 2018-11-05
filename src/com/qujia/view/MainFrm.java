@@ -51,7 +51,7 @@ public class MainFrm extends JFrame {
           private JDesktopPane desktopPane_sys,desktopPane_pro,desktopPane_stu;
           private JLayeredPane layeredPane;
           private JMenu studentMenu,proMenu,systemManagerMenu;
-          private JLabel loginUserLabel;
+          private JLabel loginUserLabel,label_writerUpdate;
           private JPanel panel_menu;
           private JButton loginButton;
           private JTable table_stuList;
@@ -64,14 +64,24 @@ public class MainFrm extends JFrame {
           private JTextField textField_titleUpdate;
           private CardLayout card_notice;
           private JPanel panel_card,panel_login,panel_list,panel_update;
-          private static File uploadFile=null;//upload file
+          private static File uploadFile=null,downFilestu=null,downFilepro=null;//upload file
           private static String uploadFileName;//upload fileNamee
           private JLabel fileNameAdd,label_fileNameUpdate;
-          private JComboBox comboBox_writerAdd,comboBox_objAdd;
+          private JComboBox comboBox_objAdd;
+          private JLabel label_writerAdd;
           private JTextArea textArea_admin,textArea_update;
-         private static int index_admin;
-         private JComboBox comboBox_writerUpdate,comboBox_objUpdate;
-          
+         private static int index_admin=-1,index_stu=-1,index_pro=-1;
+         private JComboBox comboBox_objUpdate;
+          private DefaultTableModel dft_listAdmin;
+          private  String[] objArray;
+          private static String num=null;
+          private JTextField textField_title;
+          private JComboBox comboBox_objSear;
+          private JTextArea textArea_stu,textArea_pro;
+          private JLabel stuFileName,proFileName;
+          private JTextField textField_Prosear;
+          private JTextField textField_stusear;
+          private static String fileName=null;
           
           
           public JDesktopPane getDesktopPane_sys() {
@@ -254,7 +264,7 @@ public class MainFrm extends JFrame {
                                         StudentManagerFrm studentManagerFrm=new StudentManagerFrm();
                                         layeredPane.setLayer(studentManagerFrm, 200);
                                         studentManagerFrm.setVisible(true);
-                                        desktopPane_sys.add(studentManagerFrm);
+//                                        desktopPane_sys.add(studentManagerFrm);
                               }
                     });
                     studentListMenuItem.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -531,7 +541,7 @@ public class MainFrm extends JFrame {
                     contentPane.setLayout(null);
                     
                     layeredPane = new JLayeredPane();
-                    layeredPane.setBounds(5, 5, 1110, 637);
+                    layeredPane.setBounds(0, 0, 1130, 666);
                     contentPane.add(layeredPane);
                     card=new CardLayout(0, 0);
                     layeredPane.setLayout(card);
@@ -543,7 +553,7 @@ public class MainFrm extends JFrame {
                     desktopPane_sys.setLayout(null);
                     
                     JPanel panel = new JPanel();
-                    panel.setBounds(0, 0, 1110, 25);
+                    panel.setBounds(0, 0, 1130, 25);
                     desktopPane_sys.add(panel);
                     
                     JLabel lblNewLabel = new JLabel("관리자");
@@ -565,7 +575,7 @@ public class MainFrm extends JFrame {
                     panel_list.add(label_8);
                     
                     JScrollPane scrollPane_6 = new JScrollPane();
-                    scrollPane_6.setBounds(12, 54, 523, 436);
+                    scrollPane_6.setBounds(12, 93, 523, 397);
                     panel_list.add(scrollPane_6);
                     
                     table_listAdmin = new JTable();
@@ -608,6 +618,11 @@ public class MainFrm extends JFrame {
                     panel_list.add(button_2);
                     
                     JButton button_3 = new JButton("공지 삭제");
+                    button_3.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        deleteNoticeAdmin(e);
+                              }
+                    });
                     button_3.setFont(new Font("나눔명조", Font.BOLD, 16));
                     button_3.setBounds(366, 522, 128, 36);
                     panel_list.add(button_3);
@@ -618,11 +633,49 @@ public class MainFrm extends JFrame {
                     noticeLoginButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         card_notice.show(panel_card, "panel_login");
-//                                        noticeListbutton.setBackground(new Color(240, 240, 240));
-//                                        noticeLoginButton.setBackground(new Color(152, 251, 152));
+                                        uploadFile=null;
+                                        uploadFileName=null;
                               }
                     });
                     noticeLoginButton.setFont(new Font("나눔명조", Font.BOLD, 16));
+                    
+                    JLabel lblNewLabel_6 = new JLabel("제 목:");
+                    lblNewLabel_6.setBounds(22, 54, 45, 21);
+                    panel_list.add(lblNewLabel_6);
+                    
+                    textField_title = new JTextField();
+                    textField_title.setBounds(67, 54, 159, 21);
+                    panel_list.add(textField_title);
+                    textField_title.setColumns(10);
+                    
+                    JLabel lblNewLabel_7 = new JLabel("공지대상:");
+                    lblNewLabel_7.setBounds(238, 57, 68, 15);
+                    panel_list.add(lblNewLabel_7);
+                    
+                    comboBox_objSear = new JComboBox();
+                    comboBox_objSear.setModel(new DefaultComboBoxModel(new String[] {"", "전체공지", "학생공지", "교원공지"}));
+                    comboBox_objSear.setBounds(305, 54, 96, 21);
+                    panel_list.add(comboBox_objSear);
+                    
+                    JButton btnNewButton = new JButton("검 색");
+                    btnNewButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        String title = textField_title.getText().toString();
+                                        if(StringUtil.isEmpty(title)){
+                                                  title=null;
+                                        }
+                                        String obj = comboBox_objSear.getSelectedItem().toString();
+                                        if(StringUtil.isEmpty(obj)){
+                                                  obj=null;
+                                        }
+                                        Notice no=new Notice();
+                                        no.setTitle(title);
+                                        no.setObj(obj);
+                                        setTable_listAdmin(no);
+                              }
+                    });
+                    btnNewButton.setBounds(413, 53, 97, 23);
+                    panel_list.add(btnNewButton);
                     
                     panel_login = new JPanel();
                     panel_card.add(panel_login, "panel_login");
@@ -648,11 +701,12 @@ public class MainFrm extends JFrame {
                     panel_login.add(label_6);
                     label_6.setFont(new Font("나눔명조", Font.BOLD, 14));
                     
-                    comboBox_writerAdd = new JComboBox();
-                    comboBox_writerAdd.setBounds(75, 79, 148, 21);
-                    panel_login.add(comboBox_writerAdd);
-                    comboBox_writerAdd.setModel(new DefaultComboBoxModel(new String[] {"", "관리자"}));
-                    comboBox_writerAdd.setEditable(true);
+                    label_writerAdd = new JLabel("관리자");
+                    label_writerAdd.setFont(new Font("Dialog", Font.BOLD, 13));
+                    label_writerAdd.setBounds(96, 79, 127, 21);
+                    panel_login.add(label_writerAdd);
+//                    comboBox_writerAdd.setModel(new DefaultComboBoxModel(new String[] {"관리자"}));
+//                    comboBox_writerAdd.setEditable(true);
                     
                     JLabel label_7 = new JLabel("공지내용:");
                     label_7.setBounds(22, 117, 72, 15);
@@ -672,7 +726,7 @@ public class MainFrm extends JFrame {
                     panel_login.add(lblNewLabel_5);
                     
                     fileNameAdd = new JLabel("없음");
-                    fileNameAdd.setBounds(81, 477, 163, 15);
+                    fileNameAdd.setBounds(81, 477, 246, 15);
                     panel_login.add(fileNameAdd);
                     
                     JButton uploadButtonAdd = new JButton("업로드");
@@ -712,6 +766,7 @@ public class MainFrm extends JFrame {
                     cancelButtonAdd.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
                                         card_notice.show(panel_card, "panel_list");
+                                        setTable_listAdmin(new Notice());
                                         resetValues();
                               }
                     });
@@ -754,10 +809,9 @@ public class MainFrm extends JFrame {
                     label_11.setBounds(22, 92, 57, 15);
                     panel_update.add(label_11);
                     
-                    comboBox_writerUpdate = new JComboBox();
-                    comboBox_writerUpdate.setEditable(true);
-                    comboBox_writerUpdate.setBounds(75, 89, 163, 21);
-                    panel_update.add(comboBox_writerUpdate);
+                    label_writerUpdate = new JLabel();
+                    label_writerUpdate.setBounds(75, 89, 163, 21);
+                    panel_update.add(label_writerUpdate);
                     
                     JLabel label_12 = new JLabel("공지내용:");
                     label_12.setFont(new Font("나눔명조", Font.BOLD, 14));
@@ -776,15 +830,41 @@ public class MainFrm extends JFrame {
                     label_13.setBounds(12, 487, 57, 15);
                     panel_update.add(label_13);
                     
-                    label_fileNameUpdate = new JLabel("New label");
-                    label_fileNameUpdate.setBounds(81, 487, 163, 15);
+                    label_fileNameUpdate = new JLabel("없음");
+                    label_fileNameUpdate.setBounds(81, 487, 236, 15);
                     panel_update.add(label_fileNameUpdate);
                     
                     JButton uploadUpdatebutton = new JButton("업로드");
+                    uploadUpdatebutton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        JFileChooser jfc=new JFileChooser();  
+                                        jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );  
+                                        jfc.showDialog(new JLabel(), "파일 선택");  
+                                        try {
+                                                  uploadFile=jfc.getSelectedFile();  
+                                                  uploadFileName=uploadFile.getName();
+                                        } catch (Exception e2) {
+                                                  uploadFile=null;
+                                                  uploadFileName=null;
+                                        }
+                                        label_fileNameUpdate.setText(uploadFileName);
+                              }
+                    });
                     uploadUpdatebutton.setBounds(329, 487, 97, 23);
                     panel_update.add(uploadUpdatebutton);
                     
                     JButton deleteLoadeUpdatebutton = new JButton("삭제");
+                    deleteLoadeUpdatebutton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "첨부파일을 삭제하시겠습니까?", " WarningDialog!", 
+                                                            JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                                        if(showConfirmDialog==JOptionPane.YES_OPTION){
+                                                  label_fileNameUpdate.setText("없음");
+                                                  uploadFileName=null;
+                                                  uploadFile=null;
+                                        }
+                              }
+                    });
                     deleteLoadeUpdatebutton.setBounds(438, 487, 97, 23);
                     panel_update.add(deleteLoadeUpdatebutton);
                     
@@ -802,6 +882,8 @@ public class MainFrm extends JFrame {
                     cancelUpdateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         card_notice.show(panel_card, "panel_list");
+                                        setTable_listAdmin(new Notice());
+                                        resetValues2();
                               }
                     });
                     cancelUpdateButton.setFont(new Font("나눔명조", Font.BOLD, 18));
@@ -814,28 +896,41 @@ public class MainFrm extends JFrame {
                     panel_update.add(label_16);
                     
                     comboBox_objUpdate = new JComboBox();
+                    objArray=new String[] {"전체공지", "학생공지", "교원공지"};
+                    comboBox_objUpdate.setModel(new DefaultComboBoxModel(objArray));
                     comboBox_objUpdate.setFont(new Font("Dialog", Font.BOLD, 12));
                     comboBox_objUpdate.setBounds(343, 89, 123, 21);
                     panel_update.add(comboBox_objUpdate);
                     
+                    JLabel lblNewLabel_11 = new JLabel("");
+                    lblNewLabel_11.setIcon(new ImageIcon(MainFrm.class.getResource("/images/main7.jpg")));
+                    lblNewLabel_11.setBounds(0, 0, 1148, 656);
+                    desktopPane_sys.add(lblNewLabel_11);
+                    
                     desktopPane_pro = new JDesktopPane();
                     layeredPane.setLayer(desktopPane_pro, 30);
-                    desktopPane_pro.setBackground(new Color(143, 188, 143));
+                    desktopPane_pro.setBackground(new Color(240, 248, 255));
                     layeredPane.add(desktopPane_pro, "desktopPane_pro");
                     desktopPane_pro.setLayout(null);
                     
                     JPanel panel_1 = new JPanel();
-                    panel_1.setBounds(0, 0, 1110, 25);
+                    panel_1.setBounds(0, 0, 1130, 25);
                     desktopPane_pro.add(panel_1);
                     
                     JLabel proLabel_1 = new JLabel("교직원");
                     panel_1.add(proLabel_1);
                     
                     JScrollPane scrollPane_2 = new JScrollPane();
-                    scrollPane_2.setBounds(67, 98, 450, 466);
+                    scrollPane_2.setBounds(67, 127, 450, 437);
                     desktopPane_pro.add(scrollPane_2);
                     
                     table_proList = new JTable();
+                    table_proList.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent e) {
+                                        selectProShowNoticeInfo(e);
+                              }
+                    });
                     table_proList.setRowHeight(25);
                     table_proList.setModel(new DefaultTableModel(
                               new Object[][] {
@@ -871,18 +966,23 @@ public class MainFrm extends JFrame {
                     scrollPane_3.setBounds(0, 59, 469, 364);
                     panel_4.add(scrollPane_3);
                     
-                    JTextArea textArea_pro = new JTextArea();
+                    textArea_pro = new JTextArea();
                     scrollPane_3.setViewportView(textArea_pro);
                     
                     JLabel label_3 = new JLabel("첨부파일:");
                     label_3.setBounds(0, 441, 57, 15);
                     panel_4.add(label_3);
                     
-                    JLabel proFileName = new JLabel("New label");
-                    proFileName.setBounds(56, 441, 127, 15);
+                    proFileName = new JLabel("없음");
+                    proFileName.setBounds(64, 441, 255, 15);
                     panel_4.add(proFileName);
                     
                     JButton buttondownload = new JButton("다운로드");
+                    buttondownload.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        DownloadFileFileChooserAction(e);
+                              }
+                    });
                     buttondownload.setBounds(360, 433, 97, 23);
                     panel_4.add(buttondownload);
                     
@@ -917,6 +1017,32 @@ public class MainFrm extends JFrame {
                     label_5.setBounds(529, 46, 167, 60);
                     desktopPane_pro.add(label_5);
                     
+                    JLabel lblNewLabel_8 = new JLabel("제 목:");
+                    lblNewLabel_8.setBounds(104, 96, 39, 21);
+                    desktopPane_pro.add(lblNewLabel_8);
+                    
+                    textField_Prosear = new JTextField();
+                    textField_Prosear.setBounds(155, 96, 221, 21);
+                    desktopPane_pro.add(textField_Prosear);
+                    textField_Prosear.setColumns(10);
+                    
+                    JButton btnNewButton_1 = new JButton("검 색");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        String prosear = textField_Prosear.getText().toString();
+                                        Notice no=new Notice();
+                                        no.setTitle(prosear);
+                                        setTable_listPro(no);
+                              }
+                    });
+                    btnNewButton_1.setBounds(388, 94, 77, 23);
+                    desktopPane_pro.add(btnNewButton_1);
+                    
+                    JLabel lblNewLabel_10 = new JLabel("");
+                    lblNewLabel_10.setIcon(new ImageIcon(MainFrm.class.getResource("/images/main6.jpg")));
+                    lblNewLabel_10.setBounds(0, 0, 1130, 656);
+                    desktopPane_pro.add(lblNewLabel_10);
+                    
                     desktopPane_stu = new JDesktopPane();
                     layeredPane.setLayer(desktopPane_stu, 30);
                     desktopPane_stu.setBackground(new Color(240, 255, 240));
@@ -924,17 +1050,23 @@ public class MainFrm extends JFrame {
                     desktopPane_stu.setLayout(null);
                     
                     JPanel panel_2 = new JPanel();
-                    panel_2.setBounds(0, 0, 1110, 25);
+                    panel_2.setBounds(0, 0, 1129, 25);
                     desktopPane_stu.add(panel_2);
                     
                     JLabel lblNewLabel_2 = new JLabel("학생");
                     panel_2.add(lblNewLabel_2);
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(40, 123, 450, 466);
+                    scrollPane.setBounds(40, 154, 450, 435);
                     desktopPane_stu.add(scrollPane);
                     
                     table_stuList = new JTable();
+                    table_stuList.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent e) {
+                                        selectStudentShowNoticeInfo(e);
+                              }
+                    });
                     table_stuList.setRowHeight(25);
                     table_stuList.setModel(new DefaultTableModel(
                               new Object[][] {
@@ -970,18 +1102,23 @@ public class MainFrm extends JFrame {
                     scrollPane_1.setBounds(0, 59, 469, 364);
                     panel_3.add(scrollPane_1);
                     
-                    JTextArea textArea_stu = new JTextArea();
+                    textArea_stu = new JTextArea();
                     scrollPane_1.setViewportView(textArea_stu);
                     
                     JLabel lblNewLabel_4 = new JLabel("첨부파일:");
-                    lblNewLabel_4.setBounds(0, 441, 57, 15);
+                    lblNewLabel_4.setBounds(10, 441, 58, 15);
                     panel_3.add(lblNewLabel_4);
                     
-                    JLabel stuFileName = new JLabel("New label");
-                    stuFileName.setBounds(56, 441, 127, 15);
+                    stuFileName = new JLabel("없음");
+                    stuFileName.setBounds(71, 441, 231, 15);
                     panel_3.add(stuFileName);
                     
                     JButton downloadButton = new JButton("다운로드");
+                    downloadButton.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        DownloadFileFileChooserAction(e);
+                              }
+                    });
                     downloadButton.setBounds(360, 433, 97, 23);
                     panel_3.add(downloadButton);
                     
@@ -1015,35 +1152,229 @@ public class MainFrm extends JFrame {
                     label_1.setFont(new Font("나눔명조", Font.BOLD, 24));
                     label_1.setBounds(502, 71, 167, 60);
                     desktopPane_stu.add(label_1);
+                    
+                    JButton button = new JButton("검 색");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        String stusear = textField_stusear.getText().toString();
+                                        Notice no=new Notice();
+                                        no.setTitle(stusear);
+                                        setTable_listStu(no);
+                              }
+                    });
+                    button.setBounds(360, 121, 77, 23);
+                    desktopPane_stu.add(button);
+                    
+                    textField_stusear = new JTextField();
+                    textField_stusear.setColumns(10);
+                    textField_stusear.setBounds(127, 123, 221, 21);
+                    desktopPane_stu.add(textField_stusear);
+                    
+                    JLabel label_14 = new JLabel("제 목:");
+                    label_14.setBounds(76, 123, 39, 21);
+                    desktopPane_stu.add(label_14);
+                    
+                    JLabel lblNewLabel_9 = new JLabel("");
+                    lblNewLabel_9.setIcon(new ImageIcon(MainFrm.class.getResource("/images/main.jpg")));
+                    lblNewLabel_9.setBounds(0, 23, 1129, 633);
+                    desktopPane_stu.add(lblNewLabel_9);
                     setLocationRelativeTo(null);
+                    
+                    dft_listAdmin = (DefaultTableModel) table_listAdmin.getModel();
+                    
+                    
                     setAuthority();
                     
           } 
+          protected void selectStudentShowNoticeInfo(MouseEvent e) {
+                    DefaultTableModel dft = (DefaultTableModel) table_stuList.getModel();
+                    index_stu=table_stuList.getSelectedRow();
+                    Notice no=new Notice();
+                    no.setId(dft.getValueAt(index_stu, 0).toString());
+                    no.setTitle(dft.getValueAt(index_stu, 1).toString());
+                    no.setWriter(dft.getValueAt(index_stu, 2).toString());
+                    no.setLoginDate(dft.getValueAt(index_stu, 3).toString());
+                    setTable_stuCon(no);
+                    
+          }
+          protected void selectProShowNoticeInfo(MouseEvent e) {
+                    DefaultTableModel dft = (DefaultTableModel) table_proList.getModel();
+                    index_stu=table_proList.getSelectedRow();
+                    Notice no=new Notice();
+                    no.setId(dft.getValueAt(index_stu, 0).toString());
+                    no.setTitle(dft.getValueAt(index_stu, 1).toString());
+                    no.setWriter(dft.getValueAt(index_stu, 2).toString());
+                    no.setLoginDate(dft.getValueAt(index_stu, 3).toString());
+                    setTable_proCon(no);
+                    
+          }
+          private void setTable_stuCon(Notice no) {
+                    DefaultTableModel dft = (DefaultTableModel) table_stuCon.getModel();
+                    dft.setRowCount(0);
+                    NoticeDao noDao=new NoticeDao();
+                    Notice noTemp = noDao.getNoticeList2(no);
+                    Vector v=new Vector();
+                    v.add(no.getId());
+                    v.add(no.getTitle());
+                    v.add(no.getWriter());
+                    v.add(no.getLoginDate());
+                    dft.addRow(v);  
+                    textArea_stu.setText(noTemp.getContent());
+//                    stuFileName.setText(noTemp.getFileName());
+                    if(StringUtil.isEmpty(noTemp.getFileName())&&StringUtil.isEmpty(noTemp.getFile())){
+                              stuFileName.setText("없음"); 
+                              downFilestu=null;
+                    }else{
+                              stuFileName.setText(noTemp.getFileName()); 
+                              downFilestu=noDao.getFile(no.getId());    
+                    }
+//                    System.out.println("downFilestu->"+downFilestu);
+          }
+          private void setTable_proCon(Notice no) {
+                    DefaultTableModel dft = (DefaultTableModel) table_proCon.getModel();
+                    dft.setRowCount(0);
+                    NoticeDao noDao=new NoticeDao();
+                    Notice noTemp = noDao.getNoticeList2(no);
+                    Vector v=new Vector();
+                    v.add(no.getId());
+                    v.add(no.getTitle());
+                    v.add(no.getWriter());
+                    v.add(no.getLoginDate());
+                    dft.addRow(v);  
+                    textArea_pro.setText(noTemp.getContent());
+//                    stuFileName.setText(noTemp.getFileName());
+                    if(StringUtil.isEmpty(noTemp.getFileName())&&StringUtil.isEmpty(noTemp.getFile())){
+                              proFileName.setText("없음"); 
+                              downFilepro=null;
+                    }else{
+                              proFileName.setText(noTemp.getFileName()); 
+                              downFilepro=noDao.getFile(no.getId());    
+                    }
+//                    System.out.println("downFilepro->"+downFilepro);
+          }
+          protected void deleteNoticeAdmin(ActionEvent e) {
+                    if(index_admin==-1){
+                              JOptionPane.showMessageDialog(this, "삭제할 공지를 선택해주세요!");
+                              return;
+                    }
+                    String noticeNo = dft_listAdmin.getValueAt(index_admin, 0).toString();
+                    NoticeDao noDao=new NoticeDao();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "삭제 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(noDao.deleteNotice(noticeNo)){
+                                        JOptionPane.showMessageDialog(this, "공지를 삭제했습니다!");
+                                        setTable_listAdmin(new Notice());
+                                        index_admin=-1;
+                                        return;
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "공지 삭제를 실패했습니다!");
+                                        return;
+                              } 
+                    }
+                    
+          }
+          
+          protected void resetValues2() {
+                    textField_titleUpdate.setText("");
+                    textArea_update.setText("");
+                    index_admin=-1;
+          }
           protected void updateNoticeAction(ActionEvent e) {
-//                    DefaultTableModel dft = (DefaultTableModel) table_listAdmin.getModel();
-//                    String id = dft.getValueAt(index_admin, 0).toString();
-//                    NoticeDao noDao=new NoticeDao();
-//                    Notice no=(Notice)noDao.getOneNotice(id);
-//                    
-//                    textField_titleUpdate.setText(no.getTitle());
-//                    
-//                    comboBox_writerUpdate.
-//                    comboBox_objUpdate
-//                    
-//                    textArea_update.setText();
-//                    label_fileNameUpdate
-//                    
-//                    
-//                    
-//                    card_notice.show(panel_card, "panel_list");
+                    NoticeDao noDao,noDao1;
+                    noDao=new NoticeDao();
+                    String id = dft_listAdmin.getValueAt(index_admin, 0).toString();
+                    String titleUp = textField_titleUpdate.getText().toString();
+                    String writeUp = label_writerUpdate.getText().toString();
+                    String objUp = comboBox_objUpdate.getSelectedItem().toString();
+                    String contentUp = textArea_update.getText().toString();
+                    try {
+                              label_fileNameUpdate.getText().toString(); 
+                    } catch (Exception e2) {
+                              label_fileNameUpdate.setText("없음");
+                    }
+                    uploadFileName= label_fileNameUpdate.getText().toString(); 
+                  if("없음".equals(uploadFileName)){
+                            uploadFileName=null;
+                            uploadFile=null;
+                  }
+                    String updateDate=DateUtil.getTodayDate();
+                    
+                    Notice no=new Notice();
+                    no.setId(id);
+                    no.setTitle(titleUp);
+                    no.setWriter(writeUp);
+                    no.setObj(objUp);
+                    no.setContent(contentUp);
+                    no.setFileName(uploadFileName);
+                    no.setFile(uploadFile);
+                    no.setNum(num);
+                    no.setLoginDate(updateDate);
+                    noDao1=new NoticeDao();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(noDao1.updateNotice(no)){
+                                        if(!StringUtil.isEmpty(uploadFileName)&&(!StringUtil.isEmpty(uploadFile))){
+                                                  if(noDao1.insertFile(uploadFile,num)){
+                                                            JOptionPane.showMessageDialog(this, "공지를 수정했습니다!");
+                                                            card_notice.show(panel_card, "panel_list");
+                                                            setTable_listAdmin(new Notice());
+                                                            resetValues();
+                                                            resetValues2();
+                                                  }else{
+                                                            JOptionPane.showMessageDialog(this, "공지 수정이 실패되었습니다!");
+                                                  }
+                                        }else {
+                                                  if(noDao1.deleteFile(id)){
+                                                            JOptionPane.showMessageDialog(this, "공지를 수정했습니다!");   
+                                                            card_notice.show(panel_card, "panel_list");
+                                                            setTable_listAdmin(new Notice());
+                                                            resetValues();
+                                                            resetValues2();
+                                                            return;
+                                                  }
+                                        }
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "공지 수정이 실패되었습니다!");
+                              }
+                    }
           }
           protected void updateNoticeAdmin(ActionEvent e) {
+                    if(index_admin==-1){
+                              JOptionPane.showMessageDialog(this, "수정할 공지를 선택해주세요!");
+                              return;
+                    }
                     card_notice.show(panel_card, "panel_update");
+                    String id = dft_listAdmin.getValueAt(index_admin, 0).toString();
+                    NoticeDao noDao=new NoticeDao();
+                    Notice no=(Notice)noDao.getOneNotice(id);
+                    
+                    textField_titleUpdate.setText(no.getTitle());
+                    label_writerUpdate.setText(no.getWriter());
+                    for(int i=0;i<comboBox_objUpdate.getItemCount();i++){
+                              if(no.getObj().equals(objArray[i])){
+                                        comboBox_objUpdate.setSelectedIndex(i);
+                              }
+                    }
+                    num=no.getNum();
+                    textArea_update.setText(no.getContent());
+                    if(StringUtil.isEmpty(no.getFileName())&&StringUtil.isEmpty(no.getFile())){
+                              label_fileNameUpdate.setText("없음"); 
+                              uploadFile=null;
+                    }else{
+                              label_fileNameUpdate.setText(no.getFileName()); 
+                              uploadFile=noDao.getFile(id);    
+                    }
           }
           //공지등록 등록
           protected void loginNoticeAction(ActionEvent e) {
                     String title = textField_titleAdd.getText().toString();
-                    String writer = comboBox_writerAdd.getSelectedItem().toString();
+                    if(StringUtil.isEmpty(title)){
+                              JOptionPane.showMessageDialog(this, "공지 제목을 입력해주세요!");
+                              return;
+                    }
+                    String writer = label_writerAdd.getText().toString();
                     String obj = comboBox_objAdd.getSelectedItem().toString();
                     String content = textArea_admin.getText().toString();
                     String fileName = fileNameAdd.getText().toString();
@@ -1057,32 +1388,46 @@ public class MainFrm extends JFrame {
                     no.setWriter(writer);
                     no.setObj(obj);
                     no.setContent(content);
-                    no.setFileName(fileName);
-                    no.setFile(uploadFile);
-                    long size = (long) uploadFile.length();
-                    no.setSize1(size);
+//                    no.setFileName(fileName);
+//                    no.setFile(uploadFile);
+//                    long size = (long) uploadFile.length();
+//                    no.setSize1(size);
                     no.setLoginDate(loginDate);
                     no.setNum(num);
                     
                     NoticeDao noDao=new NoticeDao();
                     if(noDao.loginNotic(no)){
-                              if(noDao.insertFile(uploadFile,num)){
+                              if(StringUtil.isEmpty(uploadFileName)&&StringUtil.isEmpty(uploadFile)){
                                         JOptionPane.showMessageDialog(this, "공지를 등록했습니다!");
+                                        card_notice.show(panel_card, "panel_list");
+                                        setTable_listAdmin(new Notice());
                                         resetValues();
+                                        return;
                               }else{
-                                        JOptionPane.showMessageDialog(this, "공지 등록이 실패되었습니다!1");
+                                        if(noDao.insertFile(uploadFile,num)){
+                                                  JOptionPane.showMessageDialog(this, "공지를 등록했습니다!");
+                                                  card_notice.show(panel_card, "panel_list");
+                                                  setTable_listAdmin(new Notice());
+                                                  resetValues();
+                                                  return;
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this, "공지 등록이 실패되었습니다!");
+                                                  return;
+                                        }
                               }
                     }else{
-                              JOptionPane.showMessageDialog(this, "공지 등록이 실패되었습니다!2");
+                              JOptionPane.showMessageDialog(this, "공지 등록이 실패되었습니다!");
+                              return;
                     }
           }
           private void resetValues() {
                     textField_titleAdd.setText("");
-                    comboBox_writerAdd.setSelectedIndex(0);
                     comboBox_objAdd.setSelectedIndex(0);
                     textArea_admin.setText("");
                     fileNameAdd.setText("없음");
                     uploadFile=null;
+                    uploadFileName=null;
+                    index_admin=-1;
           }
           private boolean isRepeat(String num) {
                    NoticeDao noDao =new NoticeDao();
@@ -1113,6 +1458,8 @@ public class MainFrm extends JFrame {
                               this.setVisible(false);
                               this.disable();
                               new LoginFrm().setVisible(true);
+                              index_admin=-1;
+                              index_stu=-1;
                     }
           }
           //          권한
@@ -1136,6 +1483,7 @@ public class MainFrm extends JFrame {
               	ProStaff ps=(ProStaff)userObject;
                 String username="【"+ userType.getName()+ "】：" + ps.getpName();
                 loginUserLabel.setText(username);
+                setTable_listPro(new Notice());
               }else {
             	  systemManagerMenu.setEnabled(false);
             	  proMenu.setEnabled(false);
@@ -1145,7 +1493,39 @@ public class MainFrm extends JFrame {
               	Student st=(Student)userObject;
                 String username="【"+ userType.getName()+ "】：" + st.getName();
                 loginUserLabel.setText(username);
+                setTable_listStu(new Notice());
               }
+          }
+          private void setTable_listStu(Notice notice) {
+                    DefaultTableModel dft = (DefaultTableModel) table_stuList.getModel();
+                    dft.setRowCount(0);
+                    NoticeDao noDao=new NoticeDao();
+                    List<Notice> noList = noDao.getNoticeStuList(notice);
+                    for(Notice no : noList){
+                              Vector v=new Vector();
+                              v.add(no.getId());
+                              v.add(no.getTitle());
+                              v.add(no.getWriter());
+                              v.add(no.getLoginDate());
+                              dft.addRow(v);
+                    }
+                    noDao.closeDao();      
+                    
+          }
+          private void setTable_listPro(Notice notice) {
+                    DefaultTableModel dft = (DefaultTableModel) table_proList.getModel();
+                    dft.setRowCount(0);
+                    NoticeDao noDao=new NoticeDao();
+                    List<Notice> noList = noDao.getNoticeProList(notice);
+                    for(Notice no : noList){
+                              Vector v=new Vector();
+                              v.add(no.getId());
+                              v.add(no.getTitle());
+                              v.add(no.getWriter());
+                              v.add(no.getLoginDate());
+                              dft.addRow(v);
+                    }
+                    noDao.closeDao();      
           }
           private void setTable_listAdmin(Notice notice) {
                     DefaultTableModel dft = (DefaultTableModel) table_listAdmin.getModel();
@@ -1183,6 +1563,51 @@ public class MainFrm extends JFrame {
                     	desktopPane_pro.add(editPasswordFrm);
                     }else {
                     	desktopPane_stu.add(editPasswordFrm);
+                    }
+          }
+          //stu_downFile
+          protected void DownloadFileFileChooserAction(ActionEvent e) {
+                    if(index_stu==-1){
+                              JOptionPane.showMessageDialog(this, "공지를 선택해주세요!");
+                              return;
+                    }
+                    if("교직원".equals(userType.getName())){
+                              fileName = proFileName.getText().toString();
+                    }else if("학생".equals(userType.getName())){
+                              fileName = stuFileName.getText().toString();
+                    }
+                    if("없음".equals(fileName)){
+                              JOptionPane.showMessageDialog(this, "첨부 파일이 없습니다!");
+                              return;
+                    }
+                    //파일 선택
+                    JFileChooser jfc=new JFileChooser();  
+                    jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );  
+                    jfc.showDialog(new JLabel(), "폴더 선택");  
+                    File file=jfc.getSelectedFile();  
+                    try {
+                              if(file.isDirectory()){
+                                        String Path = file.getAbsolutePath()+"//";
+                                        String absolutePath=Path.replaceAll("\\\\", "/");
+                                        File file2=new File(absolutePath+downFilepro);
+                                        if(file2.exists()){
+                                                  JOptionPane.showMessageDialog(this, "첨부 파일 다운로드가 받았습니다!");
+                                                  return;
+                                        }else
+                                        if(!file2.exists()){
+                                                  file2.createNewFile();
+                                                  JOptionPane.showMessageDialog(this, "첨부 파일이 다운로드되었습니다! \n 파일 위치 : " +absolutePath+fileName);
+                                                  return;
+                                        }else{
+                                                  JOptionPane.showMessageDialog(this, "첨부 파일 다운로드가 실패되었습니다!");
+                                                  return;
+                                        }
+                              }else if(file.isFile()){ 
+                                        JOptionPane.showMessageDialog(this, "파일를 선택하면 안된니다,폴더를 선택해주세요!");
+                                        return;
+                              }  
+                    } catch (Exception e2) {
+                              return;
                     }
           }
 }

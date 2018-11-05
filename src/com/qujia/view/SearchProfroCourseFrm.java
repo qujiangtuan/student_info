@@ -185,7 +185,7 @@ public class SearchProfroCourseFrm extends JDialog {
           //submit
           protected void submitAction(ActionEvent e) {
                     if(index==-1){
-                              JOptionPane.showMessageDialog(this, "교원 선택해주세요!");
+                              JOptionPane.showMessageDialog(this, "평가질문유형을 선택해주세요!");
                               return;
                     }
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();

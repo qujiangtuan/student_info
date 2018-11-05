@@ -36,6 +36,7 @@ public class LoginFrm extends JFrame {
           private JPasswordField passwordTextField;
           private JRadioButton studentRadioButton,proRadioButton,adminButton;
           private ButtonGroup bgroup;
+          private JLabel lblNewLabel;
 
           /**
            * Launch the application.
@@ -129,17 +130,20 @@ public class LoginFrm extends JFrame {
                     contentPane.add(resetButton);
                     
                     studentRadioButton = new JRadioButton(UserType.STUDENT.getName());
+                    studentRadioButton.setOpaque(false);
                     studentRadioButton.setSelected(true);
                     studentRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
                     studentRadioButton.setBounds(144, 216, 57, 23);
                     contentPane.add(studentRadioButton);
                     
                     proRadioButton = new JRadioButton(UserType.TEACHER.getName());
+                    proRadioButton.setOpaque(false);
                     proRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
                     proRadioButton.setBounds(222, 216, 83, 23);
                     contentPane.add(proRadioButton);
                     
                     adminButton = new JRadioButton(UserType.ADMIN.getName());
+                    adminButton.setOpaque(false);
                     adminButton.setFont(new Font("Dialog", Font.BOLD, 13));
                     adminButton.setBounds(321, 216, 77, 23);
                     contentPane.add(adminButton);
@@ -147,6 +151,11 @@ public class LoginFrm extends JFrame {
                     bgroup.add(studentRadioButton);
                     bgroup.add(proRadioButton);
                     bgroup.add(adminButton);
+                    
+                    lblNewLabel = new JLabel("");
+                    lblNewLabel.setIcon(new ImageIcon(LoginFrm.class.getResource("/images/login2.jpg")));
+                    lblNewLabel.setBounds(0, 0, 548, 407);
+                    contentPane.add(lblNewLabel);
           }
 
           protected void loginAction(ActionEvent ae) {
@@ -164,7 +173,7 @@ public class LoginFrm extends JFrame {
                     }
                     if (StringUtil.isEmpty(userName)) {
                               JOptionPane.showMessageDialog(this,
-                                                  "사용자 이름을 입력해주세요！");
+                                                  "사용자 아이디를 입력해주세요！");
                               return;
                     }
                     if (StringUtil.isEmpty(password)) {

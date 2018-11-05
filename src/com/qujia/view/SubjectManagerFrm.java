@@ -21,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -46,8 +47,12 @@ public class SubjectManagerFrm extends JFrame {
           private ButtonGroup bgoup;
           private JCheckBox deptCheckBox;
           private JTextField textField_searchDept;
+          private JComboBox comboBox_schYear;
+          private static String[] schYearArray;
+          private JRadioButton xRadioButton,cRadioButton;
+          private ButtonGroup bgroup;
           
-
+          
           /**
            * Launch the application.
            */
@@ -94,7 +99,7 @@ public class SubjectManagerFrm extends JFrame {
                     label_1.setBounds(17, 385, 66, 15);
                     label_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
-                    JLabel lblNewLabel_2 = new JLabel("\uB300       \uC0C1:");
+                    JLabel lblNewLabel_2 = new JLabel("대     상:");
                     lblNewLabel_2.setBounds(333, 346, 67, 15);
                     lblNewLabel_2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
@@ -130,11 +135,11 @@ public class SubjectManagerFrm extends JFrame {
                     scrollPane.setBounds(17, 50, 699, 275);
                     
                     JLabel label_2 = new JLabel("\uC124       \uBA85:");
-                    label_2.setBounds(333, 382, 67, 15);
+                    label_2.setBounds(333, 426, 67, 15);
                     label_2.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JButton updateButton = new JButton("\uC218   \uC815");
-                    updateButton.setBounds(129, 486, 104, 23);
+                    updateButton.setBounds(129, 534, 104, 23);
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         updateSubjectAction(e);
@@ -144,7 +149,7 @@ public class SubjectManagerFrm extends JFrame {
                     updateButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JButton deleteButton = new JButton("\uC0AD   \uC81C");
-                    deleteButton.setBounds(333, 486, 104, 23);
+                    deleteButton.setBounds(313, 534, 104, 23);
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         deleteSubjectAction(e);
@@ -154,7 +159,7 @@ public class SubjectManagerFrm extends JFrame {
                     deleteButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JScrollPane scrollPane_1 = new JScrollPane();
-                    scrollPane_1.setBounds(412, 382, 195, 70);
+                    scrollPane_1.setBounds(412, 426, 195, 70);
                     
                     JLabel lblNewLabel = new JLabel("소속조직:");
                     lblNewLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
@@ -187,14 +192,14 @@ public class SubjectManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uC18C\uC18D\uC870\uC9C1", "\uC124\uBA85"
+                                        "\uAD50\uACFC\uBAA9\uCF54\uB4DC", "\uAD50\uACFC\uBAA9\uBA85", "\uC601\uC5B4\uBA85", "\uB300\uC0C1\uAD6C\uBD84", "\uB300\uC0C1\uD559\uB144", "\uC774\uC218\uAD6C\uBD84", "\uC774\uC218\uD559\uC810", "\uD3C9\uAC00\uBC29\uC2DD", "\uC18C\uC18D\uC870\uC9C1", "\uC124\uBA85"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -203,9 +208,9 @@ public class SubjectManagerFrm extends JFrame {
                     table.getColumnModel().getColumn(1).setPreferredWidth(133);
                     table.getColumnModel().getColumn(2).setPreferredWidth(142);
                     table.getColumnModel().getColumn(3).setPreferredWidth(64);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(61);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(111);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(214);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(61);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(132);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(230);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                   scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -241,8 +246,38 @@ public class SubjectManagerFrm extends JFrame {
                   });
                   button.setFont(new Font("나눔명조", Font.BOLD, 13));
                   button.setBackground(new Color(224, 255, 255));
-                  button.setBounds(503, 486, 104, 23);
+                  button.setBounds(501, 534, 104, 23);
                   contentPane.add(button);
+                  
+                  JLabel label = new JLabel("대상학년:");
+                  label.setFont(new Font("나눔명조", Font.BOLD, 13));
+                  label.setBounds(334, 385, 66, 15);
+                  contentPane.add(label);
+                  
+                  comboBox_schYear = new JComboBox();
+                  schYearArray=new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"};
+                  comboBox_schYear.setModel(new DefaultComboBoxModel(schYearArray));
+                  comboBox_schYear.setFont(new Font("나눔명조", Font.BOLD, 13));
+                  comboBox_schYear.setBounds(412, 382, 195, 21);
+                  contentPane.add(comboBox_schYear);
+                  
+                  JLabel label_3 = new JLabel("평가방식:");
+                  label_3.setFont(new Font("나눔명조", Font.BOLD, 13));
+                  label_3.setBounds(17, 429, 66, 15);
+                  contentPane.add(label_3);
+                  
+                   xRadioButton = new JRadioButton("상대평가");
+                  xRadioButton.setBounds(95, 427, 80, 23);
+                  contentPane.add(xRadioButton);
+                  
+                   cRadioButton = new JRadioButton("절대평가");
+                  cRadioButton.setBounds(173, 427, 83, 23);
+                  
+                  bgroup=new ButtonGroup();
+                  bgroup.add(xRadioButton);
+                  bgroup.add(cRadioButton);
+                  
+                  contentPane.add(cRadioButton);
                   
                   setTable(new Subjects());
           }
@@ -288,12 +323,16 @@ public class SubjectManagerFrm extends JFrame {
                               subExp= null;
                     }
                     String subCode=dft.getValueAt(row, 0).toString();
+                    String schYear = comboBox_schYear.getSelectedItem().toString();//대상학년
+                    String envMethod=xRadioButton.isSelected()? xRadioButton.getText() : cRadioButton.getText();
                     Subjects sub=new Subjects();
                     sub.setLearnType(learnType);
                     sub.setCreditType(credit);
                     sub.setColType(colType);
                     sub.setSubExp(subExp);
                     sub.setSubCode(subCode);
+                    sub.setSchYear(schYear);
+                    sub.setEnvMethod(envMethod);
                      
                     SubjectsDao subDao=new SubjectsDao();
                     int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
@@ -305,7 +344,6 @@ public class SubjectManagerFrm extends JFrame {
                                         JOptionPane.showMessageDialog(this, "수정 실패했습니다");
                               }
                     }
-                    
                     subDao.closeDao();
                     setTable(new Subjects());
           }
@@ -351,31 +389,54 @@ public class SubjectManagerFrm extends JFrame {
                     }
                     //이수구분/이수학점/대상 learnType,credit,colType;
                     //comboBox_learnType,comboBox_credit,comboBox_colType;
-                    String getlearnType=dft.getValueAt(table.getSelectedRow(), 4).toString();
+                    //이수구분
+                    String getlearnType=dft.getValueAt(table.getSelectedRow(), 5).toString();
                     for(int i=0;i<comboBox_learnType.getItemCount();i++){
                               if(getlearnType.equals(learnType[i])){
                                         comboBox_learnType.setSelectedIndex(i);
                               }
                     }
-                    String getcredit=dft.getValueAt(table.getSelectedRow(), 5).toString();
+                    //이수학점
+                    String getcredit=dft.getValueAt(table.getSelectedRow(), 6).toString();
                     for(int i=0;i<comboBox_credit.getItemCount();i++){
                               if(getcredit.equals(credit[i])){
                                         comboBox_credit.setSelectedIndex(i);
                               }
                     }
+                  //대상 대학/대학원
                     String getcolType=dft.getValueAt(table.getSelectedRow(), 3).toString();
                     for(int i=0;i<comboBox_colType.getItemCount();i++){
                               if(getcolType.equals(colType[i])){
                                         comboBox_colType.setSelectedIndex(i);
                               }
                     }
+                    //학과설명
                     String getSubExp;
                     try {
-                              getSubExp=dft.getValueAt(table.getSelectedRow(), 7).toString();
+                              getSubExp=dft.getValueAt(table.getSelectedRow(), 9).toString();
                               textArea.setText(getSubExp);
                     } catch (Exception e) {
                               textArea.setText("");
                     }
+                    
+                    if(getcolType.equals("대학")){
+                              schYearArray=new String[] {"1학년", "2학년", "3학년", "4학년"};
+                              comboBox_schYear.setModel(new DefaultComboBoxModel(schYearArray));
+                    }else{
+                              schYearArray=new String[] {"대학원"};
+                              comboBox_schYear.setModel(new DefaultComboBoxModel(schYearArray));
+                    }
+//                    comboBox_schYear대상학년
+                    String getSchYear=dft.getValueAt(table.getSelectedRow(), 4).toString();
+                    for(int i=0;i<comboBox_schYear.getItemCount();i++){
+                              if(getSchYear.equals(schYearArray[i])){
+                                        comboBox_schYear.setSelectedIndex(i);
+                              }
+                    }
+                    //평가방식
+                    String getenvMethod=dft.getValueAt(table.getSelectedRow(), 7).toString();
+                    if(getenvMethod.equals(xRadioButton.getText())) xRadioButton.setSelected(true);
+                    if(getenvMethod.equals(cRadioButton.getText())) cRadioButton.setSelected(true);
           }
 
           //setTable()
@@ -390,8 +451,10 @@ public class SubjectManagerFrm extends JFrame {
                               v.add(sb.getSubName());
                               v.add(sb.getSubEname());
                               v.add(sb.getColType());
+                              v.add(sb.getSchYear());
                               v.add(sb.getLearnType());
                               v.add(sb.getCreditType());
+                              v.add(sb.getEnvMethod());
                               v.add(this.getDeptNameById(sb.getOrgId()));
                               v.add(sb.getSubExp());
                               dft.addRow(v);

@@ -5,12 +5,17 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -19,6 +24,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.dao.QuestionDao;
+import com.qujia.model.Question;
+import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
 public class EvaluationQuestionFrm extends JFrame {
@@ -26,9 +34,16 @@ public class EvaluationQuestionFrm extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField_searchQue;
 	private JTable table;
-	private JTextField textField_editQue;
 	private JPanel panel_Manager,panel_add,panel_card;
 	private CardLayout card;
+	private JComboBox comboBox_addObj;
+	private JTextArea textArea_addQue;
+	private JComboBox comboBox_searchObj;
+	private static int row=-1;
+	private DefaultTableModel   dft;
+	private JTextArea textArea_editQue;
+	private JComboBox comboBox_editObj;
+	private String[] objArray;
 
 	/**
 	 * Launch the application.
@@ -70,6 +85,7 @@ public class EvaluationQuestionFrm extends JFrame {
 		questionManButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				card.show(panel_card, "panel_Manager");
+				setTable(new Question());
 			}
 		});
 		
@@ -98,12 +114,17 @@ public class EvaluationQuestionFrm extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("평가대상：");
 		lblNewLabel_1.setBounds(356, 31, 75, 15);
 		
-		JComboBox comboBox_searchObj = new JComboBox();
+		comboBox_searchObj = new JComboBox();
 		comboBox_searchObj.setBounds(436, 28, 163, 21);
-		comboBox_searchObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC1C\uC124\uAD50\uC218"}));
+		comboBox_searchObj.setModel(new DefaultComboBoxModel(new String[] {"", "개설과정", "강의교수"}));
 		
 		JButton searchButton = new JButton("\uAC80 \uC0C9");
-		searchButton.setBounds(632, 27, 61, 23);
+		searchButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    searchQuestion(e);
+		          }
+		});
+		searchButton.setBounds(611, 27, 82, 23);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(18, 56, 686, 170);
@@ -111,24 +132,37 @@ public class EvaluationQuestionFrm extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
 		lblNewLabel_2.setBounds(18, 247, 91, 15);
 		
-		textField_editQue = new JTextField();
-		textField_editQue.setBounds(121, 244, 583, 21);
-		textField_editQue.setColumns(10);
-		
 		JLabel lblNewLabel_3 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB300\uC0C1:");
-		lblNewLabel_3.setBounds(18, 287, 91, 15);
+		lblNewLabel_3.setBounds(18, 306, 91, 15);
 		
-		JComboBox comboBox_editObj = new JComboBox();
-		comboBox_editObj.setBounds(121, 284, 160, 21);
-		comboBox_editObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC1C\uC124\uAD50\uC218"}));
+		comboBox_editObj = new JComboBox();
+		comboBox_editObj.setBounds(121, 303, 160, 21);
+		objArray=new String[] {"개설과정", "강의교수"};
+		comboBox_editObj.setModel(new DefaultComboBoxModel(objArray));
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
-		updateButton.setBounds(333, 283, 80, 23);
+		updateButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    updateQuestion(e);
+		          }
+		});
+		updateButton.setBounds(332, 302, 80, 23);
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
-		deleteButton.setBounds(453, 283, 80, 23);
+		deleteButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    deleteQuestion(e);
+		          }
+		});
+		deleteButton.setBounds(454, 302, 80, 23);
 		
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+		          @Override
+		          public void mouseClicked(MouseEvent e) {
+		                    selectRowAction(e);
+		          }
+		});
 		table.setRowHeight(25);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -160,7 +194,6 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_Manager.add(comboBox_editObj);
 		panel_Manager.add(updateButton);
 		panel_Manager.add(deleteButton);
-		panel_Manager.add(textField_editQue);
 		
 		JButton button = new JButton("닫기");
 		button.addActionListener(new ActionListener() {
@@ -168,8 +201,15 @@ public class EvaluationQuestionFrm extends JFrame {
 		                    dispose();
 		          }
 		});
-		button.setBounds(573, 283, 80, 23);
+		button.setBounds(574, 302, 80, 23);
 		panel_Manager.add(button);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(121, 247, 533, 49);
+		panel_Manager.add(scrollPane_2);
+		
+		textArea_editQue = new JTextArea();
+		scrollPane_2.setViewportView(textArea_editQue);
 		
 		panel_add = new JPanel();
 		panel_add.setBackground(new Color(253, 245, 230));
@@ -184,14 +224,19 @@ public class EvaluationQuestionFrm extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB300\uC0C1:");
 		lblNewLabel_5.setBounds(62, 187, 95, 15);
 		
-		JComboBox comboBox_addObj = new JComboBox();
+		comboBox_addObj = new JComboBox();
 		comboBox_addObj.setBounds(169, 184, 323, 21);
 		comboBox_addObj.setModel(new DefaultComboBoxModel(new String[] {"\uAC1C\uC124\uACFC\uC815", "\uAC15\uC758\uAD50\uC218"}));
 		
-		JButton addButton = new JButton("\uCD94  \uAC00");
-		addButton.setBounds(228, 260, 65, 23);
+		JButton addButton = new JButton("추가");
+		addButton.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    AddQuestion(e);
+		          }
+		});
+		addButton.setBounds(217, 260, 76, 23);
 		
-		JTextArea textArea_addQue = new JTextArea();
+		textArea_addQue = new JTextArea();
 		textArea_addQue.setLineWrap(true);
 		scrollPane_1.setViewportView(textArea_addQue);
 		panel_add.setLayout(null);
@@ -201,17 +246,140 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_add.add(scrollPane_1);
 		panel_add.add(addButton);
 		
-		JButton button_1 = new JButton("취 소");
+		JButton button_1 = new JButton("취소");
 		button_1.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    card.show(panel_card, "panel_Manager");
 		          }
 		});
-		button_1.setBounds(317, 260, 65, 23);
+		button_1.setBounds(317, 260, 82, 23);
 		panel_add.add(button_1);
 		contentPane.setLayout(null);
 		contentPane.add(questionManButton);
 		contentPane.add(questionAddButton);
 		contentPane.add(panel_card);
+		 dft= (DefaultTableModel) table.getModel();
+		setTable(new Question());
 	}
+
+          protected void deleteQuestion(ActionEvent e) {
+                    if(row==-1){
+                              JOptionPane.showMessageDialog(this, "삭제할 행을 선택해주세요!");
+                              return;
+                    }
+                    QuestionDao quDao =new QuestionDao();
+                    String id = table.getValueAt(row, 0).toString();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(quDao.deleteQue(id)){
+                                        JOptionPane.showMessageDialog(this, "삭제 성공했습니다!");
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "삭제 실패했습니다!");
+                              }  
+                    }
+                    quDao.closeDao();
+                    setTable(new Question());
+                    resetValue();
+                    
+          }
+
+          protected void updateQuestion(ActionEvent e) {
+                    row=table.getSelectedRow();
+                    String id = dft.getValueAt(row, 0).toString();
+                    String upQue = textArea_editQue.getText().toString();
+                    String upObj = comboBox_editObj.getSelectedItem().toString();
+                    if(StringUtil.isEmpty(upQue)){
+                              JOptionPane.showMessageDialog(this, "질문내용을 입력해주세요!");
+                              return;
+                    }
+                    Question qu=new Question();
+                    qu.setQue(upQue);
+                    qu.setObj(upObj);
+                    qu.setId(id);
+                    QuestionDao quDao=new QuestionDao();
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
+                                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if(showConfirmDialog==JOptionPane.YES_OPTION){
+                              if(quDao.updateQuestion(qu)){
+                                        JOptionPane.showMessageDialog(this, "질문내용을 수정했습니다!");
+                                        setTable(new Question());
+                                        resetValue();
+                                        return;
+                              }else{
+                                        JOptionPane.showMessageDialog(this, "질문내용 수정이 실패되었습니다!");
+                                        return;
+                              }
+                    }
+                    
+          }
+
+          private void resetValue() {
+                    textArea_editQue.setText("");
+                    comboBox_editObj.setSelectedIndex(0);
+          }
+
+          protected void selectRowAction(MouseEvent e) {
+                    row=table.getSelectedRow();
+                    String id = dft.getValueAt(row, 0).toString();
+                    String que = dft.getValueAt(row, 1).toString();
+                    String obj = dft.getValueAt(row,2).toString();
+                    textArea_editQue.setText(que);
+                    for(int i=0;i<comboBox_editObj.getItemCount();i++){
+                              if(obj.equals(objArray[i])){
+                                        comboBox_editObj.setSelectedIndex(i);
+                              } 
+                    }
+                    
+          }
+
+          protected void searchQuestion(ActionEvent e) {
+                    String sQue = textField_searchQue.getText().toString();
+                    String sObj;
+                    try {
+                              sObj = comboBox_searchObj.getSelectedItem().toString();
+                    } catch (Exception e2) {
+                              sObj=null;
+                    }
+                    Question qu=new Question();
+                    qu.setQue(sQue);
+                    qu.setObj(sObj);
+                    setTable(qu);
+          }
+
+          private void setTable(Question question) {
+                    DefaultTableModel dft = (DefaultTableModel) table.getModel();
+                    dft.setRowCount(0);
+                    QuestionDao quDao=new QuestionDao();
+                    List<Question> quList = quDao.getQueList(question);
+                    for(Question q : quList){
+                              Vector v=new Vector();
+                              v.add(q.getId());//0
+                              v.add(q.getQue());
+                              v.add(q.getObj());
+                              dft.addRow(v);
+                    }
+                    quDao.closeDao();  
+                    
+          }
+
+          protected void AddQuestion(ActionEvent e) {
+                    String que = textArea_addQue.getText().toString();
+                    String obj = comboBox_addObj.getSelectedItem().toString();
+                    if(StringUtil.isEmpty(que)){
+                              JOptionPane.showMessageDialog(this, "질문 내용을 입력해주세요!");
+                              return;
+                    }
+                    Question qu=new Question();
+                    qu.setQue(que);
+                    qu.setObj(obj);
+                    QuestionDao quDao=new QuestionDao();
+                    if(quDao.AddQue(qu)){
+                              JOptionPane.showMessageDialog(this, "질문을 추가했습니다!");
+                              return;
+                    }else{
+                              JOptionPane.showMessageDialog(this, "질문 추가는 실패했습니다!");
+                              return;
+                    }
+          }
 }

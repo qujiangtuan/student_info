@@ -12,7 +12,7 @@ import com.qujia.util.StringUtil;
 public class SubjectsDao extends BaseDao {
           //subject login
           public boolean addSubjects(Subjects sbj){
-                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?)";
+                    String sql="insert into subject values(?,?,?,?,?,?,?,?,?,?,?)";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sbj.getSubCode() );
@@ -24,6 +24,8 @@ public class SubjectsDao extends BaseDao {
                               prst.setString(7, sbj.getSubExp());
                               prst.setString(8,sbj.getOrgName());
                               prst.setInt(9, sbj.getCreditType());
+                              prst.setString(10,sbj.getSchYear());
+                              prst.setString(11,sbj.getEnvMethod());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               // TODO Auto-generated catch block
@@ -54,6 +56,8 @@ public class SubjectsDao extends BaseDao {
                                         sbj.setColType(e.getString("col_type"));
                                         sbj.setSubExp(e.getString("sub_exp"));
                                         sbj.setOrgName(e.getString("orgname"));
+                                        sbj.setSchYear(e.getString("schyear"));
+                                        sbj.setEnvMethod(e.getString("env_method"));
                                         retList.add(sbj);
                               }
                     } catch (SQLException e) {
@@ -63,14 +67,16 @@ public class SubjectsDao extends BaseDao {
                     return retList;
           }
           public boolean updateSubjects(Subjects sub) {
-                    String sql="update subject set learn_type=?,credit_type=?,col_type=?,sub_exp=?  where sub_cod=?";
+                    String sql="update subject set learn_type=?,credit_type=?,col_type=?,sub_exp=?,schyear=?,env_method=?  where sub_cod=?";
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sub.getLearnType());
                               prst.setInt(2, sub.getCreditType());
                               prst.setString(3,sub.getColType());
                               prst.setString(4,sub.getSubExp());
-                              prst.setString(5,sub.getSubCode());
+                              prst.setString(5,sub.getSchYear());
+                              prst.setString(6,sub.getEnvMethod());
+                              prst.setString(7,sub.getSubCode());
                               if(prst.executeUpdate()>0) return true;
                     } catch (SQLException e) {
                               e.printStackTrace();

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,10 +25,20 @@ import com.qujia.test1.MyRadioCellEditor;
 import com.qujia.test1.MyRadioCellRenderer;
 import com.qujia.util.ViewUtil;
 
-public class LectureEvalutaionFrm extends JFrame {
+public class LectureEvalutaionFrm extends JDialog {
 
           private JPanel contentPane;
           private JTable table;
+          private static boolean flag;
+
+          
+          public static boolean isFlag() {
+                    return flag;
+          }
+
+          public static void setFlag(boolean flag) {
+                    LectureEvalutaionFrm.flag = flag;
+          }
 
           /**
            * Launch the application.
@@ -36,7 +47,7 @@ public class LectureEvalutaionFrm extends JFrame {
                     EventQueue.invokeLater(new Runnable() {
                               public void run() {
                                         try {
-                                                  LectureEvalutaionFrm frame = new LectureEvalutaionFrm();
+                                                  LectureEvalutaionFrm frame = new LectureEvalutaionFrm(null);
                                                   frame.setVisible(true);
                                         } catch (Exception e) {
                                                   e.printStackTrace();
@@ -48,7 +59,8 @@ public class LectureEvalutaionFrm extends JFrame {
           /**
            * Create the frame.
            */
-          public LectureEvalutaionFrm() {
+          public LectureEvalutaionFrm(JFrame fr) {
+                    super(fr, "", true);
                     this.setResizable(false);
                     setTitle("\uAC15\uC758\uD3C9\uAC00");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -110,6 +122,8 @@ public class LectureEvalutaionFrm extends JFrame {
                     JButton btnNewButton = new JButton("확 인");
                     btnNewButton.setBounds(536, 343, 76, 23);
                     btnNewButton.addActionListener(new ActionListener() {
+                              
+
                               public void actionPerformed(ActionEvent e) {
                             	  Integer index;
                             	  try {
@@ -129,8 +143,10 @@ public class LectureEvalutaionFrm extends JFrame {
 								}
 //                            	  index=(Integer) table.getValueAt(rowCount-1, 2);
 //                            	  integerList.add(index);
-                            	  System.out.println(integerList);
+//                            	  System.out.println(integerList);
                             	  setTable();
+                            	  flag=true;
+                            	  dispose();
                               }
                     });
                     btnNewButton.setBackground(new Color(176, 224, 230));
@@ -146,6 +162,7 @@ public class LectureEvalutaionFrm extends JFrame {
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
+                                        flag=false;
                               }
                     });
                     button.setBackground(new Color(250, 240, 230));

@@ -5,9 +5,12 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -40,6 +44,14 @@ public class AddSubjectFrm extends JFrame {
           private JLabel label_2;
           private JTextField textField_orgName;
           private List<Org> orgList;
+          private JLabel label_1;
+          private JComboBox comboBox_schYear;
+          private JLabel label_3;
+          private JRadioButton cRadioButton,xRadioButton;
+          private ButtonGroup bgroup;
+          private static String[] col;
+          private static String[] schYearArray;
+          
           /**
            * Launch the application.
            */
@@ -109,24 +121,35 @@ public class AddSubjectFrm extends JFrame {
                                         13));
                     
                     comboBox_colType = new JComboBox();
+                    comboBox_colType.addItemListener(new ItemListener() {
+                              public void itemStateChanged(ItemEvent arg0) {
+                                        if("대학".equals(comboBox_colType.getSelectedItem().toString())){
+                                                  schYearArray= new String[] {"1학년", "2학년", "3학년", "4학년"};
+//                                                  comboBox_schYear.setSelectedIndex(0);
+                                        }else{
+                                                  schYearArray= new String[] {"대학원"};
+//                                                  comboBox_schYear.setSelectedIndex(0);
+                                        }
+                                        comboBox_schYear.setModel(new DefaultComboBoxModel(schYearArray));
+                              }
+                    });
                     comboBox_colType.setBounds(406, 28, 146, 21);
                     comboBox_colType.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    comboBox_colType.setModel(new DefaultComboBoxModel(new String[] {
-                                        "\uB300\uD559", "\uB300\uD559\uC6D0" }));
+                    col=new String[] {"대학", "대학원" };
+                    comboBox_colType.setModel(new DefaultComboBoxModel(col));
 
                     submitButton = new JButton("\uB4F1  \uB85D");
-                    submitButton.setBounds(168, 268, 83, 25);
+                    submitButton.setBounds(175, 284, 83, 25);
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         submitAction(ae);
                               }
                     });
                     submitButton.setBackground(new Color(64, 224, 208));
-                    submitButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
-                                        14));
+                    submitButton.setFont(new Font("NanumMyeongjo", Font.BOLD,14));
 
                     cancelButton = new JButton("\uCDE8  \uC18C");
-                    cancelButton.setBounds(334, 268, 90, 25);
+                    cancelButton.setBounds(325, 284, 90, 25);
                     cancelButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
@@ -160,19 +183,19 @@ public class AddSubjectFrm extends JFrame {
                     contentPane.add(cancelButton);
                     
                     lblNewLabel_6 = new JLabel("\uAD50\uACFC\uBAA9\uC124\uBA85:");
-                    lblNewLabel_6.setBounds(10, 155, 74, 19);
+                    lblNewLabel_6.setBounds(12, 197, 74, 19);
                     contentPane.add(lblNewLabel_6);
                     lblNewLabel_6.setFont(new Font("나눔명조", Font.BOLD, 13));
                     
                     JScrollPane scrollPane = new JScrollPane();
-                    scrollPane.setBounds(96, 152, 456, 60);
+                    scrollPane.setBounds(98, 194, 456, 60);
                     contentPane.add(scrollPane);
                     
                      textArea = new JTextArea();
                      textArea.setLineWrap(true);
                      scrollPane.setViewportView(textArea);
                      
-                     JLabel lblNewLabel_4 = new JLabel("소속조직:");
+                     JLabel lblNewLabel_4 = new JLabel("개설학과:");
                      lblNewLabel_4.setBounds(10, 109, 74, 19);
                      contentPane.add(lblNewLabel_4);
                      lblNewLabel_4.setFont(new Font("나눔명조", Font.BOLD, 13));
@@ -193,6 +216,38 @@ public class AddSubjectFrm extends JFrame {
                      });
                      searchButton.setBounds(244, 107, 72, 22);
                      contentPane.add(searchButton);
+                     
+                     label_1 = new JLabel("대상학년:");
+                     label_1.setFont(new Font("나눔명조", Font.BOLD, 13));
+                     label_1.setBounds(330, 153, 64, 15);
+                     contentPane.add(label_1);
+                     
+                     comboBox_schYear = new JComboBox();
+//                     schYearArray= new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"};
+                     schYearArray= new String[] {"1학년", "2학년", "3학년", "4학년"};
+                     comboBox_schYear.setModel(new DefaultComboBoxModel(schYearArray));
+                     comboBox_schYear.setFont(new Font("나눔명조", Font.BOLD, 13));
+                     comboBox_schYear.setBounds(406, 150, 146, 21);
+                     contentPane.add(comboBox_schYear);
+                     
+                     label_3 = new JLabel("평가방식:");
+                     label_3.setFont(new Font("나눔명조", Font.BOLD, 13));
+                     label_3.setBounds(12, 153, 72, 25);
+                     contentPane.add(label_3);
+                     
+                     cRadioButton = new JRadioButton("절대평가");
+                     cRadioButton.setBounds(175, 153, 83, 23);
+                     contentPane.add(cRadioButton);
+                     
+                     xRadioButton = new JRadioButton("상대평가");
+                     xRadioButton.setSelected(true);
+                     xRadioButton.setBounds(88, 153, 83, 23);
+                     
+                     bgroup = new ButtonGroup();
+                     bgroup.add(xRadioButton);
+                     bgroup.add(cRadioButton);
+                     
+                     contentPane.add(xRadioButton);
                     
 //                    setDeptName();
           }
@@ -214,6 +269,10 @@ public class AddSubjectFrm extends JFrame {
                     String subExp=textArea.getText().toString();
                     String subCode;////중복확인
                     subCode=getStudentNumber(orgId);
+                    
+                    String schYear = comboBox_schYear.getSelectedItem().toString();//대상학년
+                    String envMethod = xRadioButton.isSelected() ? xRadioButton.getText() : cRadioButton.getText();//평가방식
+                    
                     if(this.isRepeat(subCode)){
                               subCode=getStudentNumber(orgId);
                     }
@@ -231,6 +290,8 @@ public class AddSubjectFrm extends JFrame {
                     sbj.setColType(colType);
                     sbj.setOrgName(deptName);
                     sbj.setSubExp(subExp);
+                    sbj.setSchYear(schYear);
+                    sbj.setEnvMethod(envMethod);
                     
                     SubjectsDao sbjDao=new SubjectsDao();
                     if (sbjDao.addSubjects(sbj)) {
