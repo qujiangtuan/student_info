@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -166,22 +165,21 @@ public class YearStandManagerFrm extends JFrame {
 		textField_culMust.setColumns(10);
 		
 		JButton updateButton = new JButton("\uC218 \uC815");
-		updateButton.setBounds(676, 369, 80, 23);
+		updateButton.setBounds(201, 566, 80, 23);
 		updateButton.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    updateYearDeptStand(e);
 		          }
 		});
-		updateButton.setBackground(new Color(224, 255, 255));
 		
 		JButton deleteButton = new JButton("\uC0AD \uC81C");
+		deleteButton.setVisible(false);
 		deleteButton.setBounds(676, 410, 80, 23);
 		deleteButton.addActionListener(new ActionListener() {
 		          public void actionPerformed(ActionEvent e) {
 		                    deleteYearDeptStand(e);
 		          }
 		});
-		deleteButton.setBackground(new Color(255, 99, 71));
 		
 		JLabel label_1 = new JLabel("졸업이수학점:");
 		label_1.setBounds(340, 373, 102, 15);
@@ -208,7 +206,7 @@ public class YearStandManagerFrm extends JFrame {
 		                    {null, null, null, null, null, null, null, null, null, null, null, null, null},
 		          },
 		          new String[] {
-		                    "\uAE30\uC900\uBC88\uD638", "\uD559\uACFC\uC774\uB984", "*\uC878\uC5C5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uC774\uC218\uD559\uC810", "*\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "*\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790"
+		                    "\uAE30\uC900\uBC88\uD638", "\uD559\uACFC\uC774\uB984", "\uC878\uC5C5\uC774\uC218\uD559\uC810", "\uC804\uACF5\uC774\uC218\uD559\uC810", "\uC804\uACF5\uD544\uC218\uD559\uC810", "\uC804\uACF5\uC120\uD0DD\uD559\uC810", "\uAD50\uC591\uC774\uC218\uD559\uC810", "\uAD50\uC591\uD544\uC218\uD559\uC810", "\uAD50\uC591\uC120\uD0DD\uD559\uC810", "\uC218\uC2DC\uBAA8\uC9D1\uBE44\uC728", "\uC218\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uC815\uC2DC\uBAA8\uC9D1\uC778\uC6D0", "\uB4F1\uB85D\uC77C\uC790"
 		          }
 		) {
 		          boolean[] columnEditables = new boolean[] {
@@ -257,6 +255,15 @@ public class YearStandManagerFrm extends JFrame {
 		contentPane.add(updateButton);
 		contentPane.add(deleteButton);
 		contentPane.add(scrollPane);
+		
+		JButton button = new JButton("닫 기");
+		button.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent e) {
+		                    dispose();
+		          }
+		});
+		button.setBounds(334, 566, 80, 23);
+		contentPane.add(button);
 		
 		setTable(new YearDeptStand());
 	}

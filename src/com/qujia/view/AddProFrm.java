@@ -1,7 +1,6 @@
 package com.qujia.view;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.KeyboardFocusManager;
@@ -48,12 +47,13 @@ public class AddProFrm extends JFrame {
           private JTextField textField_cardid_2;
           private JTextField textField_tel2;
           private  JRadioButton teacherRadioButton,empRadioButton;
-          private  JRadioButton radioButton1,radioButton2,radioButton3;
+          private  JRadioButton radioButton_1,radioButton_3,radioButton_5;
+          private JRadioButton radioButton_2,radioButton_4,radioButton_6;
           private  JRadioButton radioButton_male,radioButton_female;
           private ButtonGroup bgroup1,bgroup2,bgroup3;
           private JPanel panel,panel_1,panel_2;
           private CardLayout card;
-          private JComboBox comboBox_teacher,comboBox_emptype;
+          private JComboBox comboBox_emptype;
           private JLabel label_7;
           private JLabel label_8;
           private JTextField textField_address2;
@@ -68,6 +68,7 @@ public class AddProFrm extends JFrame {
           private JComboBox comboBox_email2;
           private JTextField textField_sup;
           private JButton btnNewButton_3;
+          
           /**
            * Launch the application.
            */
@@ -223,7 +224,6 @@ public class AddProFrm extends JFrame {
                                         }
                     	}
                     });
-                    btnNewButton.setBackground(new Color(224, 255, 255));
                     
                     JButton btnNewButton_1 = new JButton("\uCDE8 \uC18C");
                     btnNewButton_1.addActionListener(new ActionListener() {
@@ -232,7 +232,6 @@ public class AddProFrm extends JFrame {
                               }
                     });
                     btnNewButton_1.setBounds(461, 311, 63, 23);
-                    btnNewButton_1.setBackground(new Color(255, 182, 193));
                     
                     JLabel staff_typeLabel = new JLabel("\uAD50\uC9C1\uC6D0\uAD6C\uBD84:");
                     staff_typeLabel.setBounds(51, 89, 74, 15);
@@ -254,7 +253,7 @@ public class AddProFrm extends JFrame {
                     	public void itemStateChanged(ItemEvent e) {
                     		card.show(panel, "panel_2");
                     		bgroup2.clearSelection();
-                    		radioButton1.setSelected(true);
+                    		radioButton_1.setSelected(true);
 //                    		comboBox_superior1.setSelectedIndex(0);
                     	}
                     });
@@ -306,68 +305,54 @@ public class AddProFrm extends JFrame {
                     panel.setLayout(card);
                     
                     panel_1 = new JPanel();
-                    panel_1.setBackground(new Color(224, 255, 255));
                     panel.add(panel_1, "panel_1");
                     
-                    JLabel label_5 = new JLabel("\uAD50\uC6D0\uAD6C\uBD84:");
-                    label_5.setBounds(10, 18, 58, 15);
+                    JLabel label_5 = new JLabel("직위: ");
+                    label_5.setBounds(21, 18, 45, 15);
+                    radioButton_1 = new JRadioButton("정교수");
+                    radioButton_1.setBounds(74, 14, 83, 23);
+                    radioButton_1.setSelected(true);
+                    radioButton_3 = new JRadioButton("조교수");
+                    radioButton_3.setBounds(74, 54, 83, 23);
+                    
+                    radioButton_5 = new JRadioButton("겸임교수");
+                    radioButton_5.setBounds(74, 99, 83, 23);
                     
                     
-                    
-                    comboBox_teacher = new JComboBox();
-                    comboBox_teacher.setBounds(163, 15, 81, 21);
-                    comboBox_teacher.setEnabled(true);
-                    comboBox_teacher.setModel(new DefaultComboBoxModel(new String[] {"", "\uC815\uAD50\uC218", "\uBD80\uAD50\uC218", "\uC870\uAD50\uC218", "\uC804\uC784\uAC15\uC0AC"}));
-                    radioButton1 = new JRadioButton("\uC804\uC784\uAD50\uC218");
-                    radioButton1.setBounds(74, 14, 83, 23);
-                    radioButton1.setSelected(true);
-                    radioButton1.addItemListener(new ItemListener() {
-                    	public void itemStateChanged(ItemEvent e) {
-                    		if(comboBox_teacher.isEditable()) {
-                    			
-                    		}else {
-                				comboBox_teacher.setEnabled(true);
-
-                    		}
-                    	}
-                    });
-                    radioButton2 = new JRadioButton("\uACB8\uC784\uAD50\uC218");
-                    radioButton2.setBounds(74, 38, 83, 23);
-                    radioButton2.addItemListener(new ItemListener() {
-                    	public void itemStateChanged(ItemEvent e) {
-                    		comboBox_teacher.setEnabled(false);
-                    		comboBox_teacher.setSelectedIndex(0);
-                    	}
-                    });
-                    
-                    radioButton3 = new JRadioButton("\uC2DC\uAC04\uAC15\uC0AC");
-                    radioButton3.setBounds(74, 63, 83, 23);
-                    radioButton3.addItemListener(new ItemListener() {
-                    	public void itemStateChanged(ItemEvent e) {
-                    		comboBox_teacher.setEnabled(false);
-                    		comboBox_teacher.setSelectedIndex(0);
-                    	}
-                    });
-                    bgroup2=new ButtonGroup();
-                    bgroup2.add(radioButton1);
-                    bgroup2.add(radioButton2);
-                    bgroup2.add(radioButton3);
                     panel_1.setLayout(null);
                     panel_1.add(label_5);
-                    panel_1.add(radioButton3);
-                    panel_1.add(radioButton2);
-                    panel_1.add(radioButton1);
-                    panel_1.add(comboBox_teacher);
+                    panel_1.add(radioButton_5);
+                    panel_1.add(radioButton_3);
+                    panel_1.add(radioButton_1);
+                    
+                    radioButton_2 = new JRadioButton("부교수");
+                    radioButton_2.setBounds(173, 14, 83, 23);
+                    panel_1.add(radioButton_2);
+                    
+                    radioButton_4 = new JRadioButton("전임강사");
+                    radioButton_4.setBounds(173, 54, 83, 23);
+                    panel_1.add(radioButton_4);
+                    
+                    radioButton_6 = new JRadioButton("시간강가");
+                    radioButton_6.setBounds(173, 99, 83, 23);
+                    panel_1.add(radioButton_6);
+                    
+                    bgroup2=new ButtonGroup();
+                    bgroup2.add(radioButton_1);
+                    bgroup2.add(radioButton_3);
+                    bgroup2.add(radioButton_5);
+                    bgroup2.add(radioButton_2);
+                    bgroup2.add(radioButton_4);
+                    bgroup2.add(radioButton_6);
                     
                     panel_2 = new JPanel();
-                    panel_2.setBackground(new Color(245, 245, 220));
                     panel.add(panel_2, "panel_2");
                     
                     comboBox_emptype = new JComboBox();
                     comboBox_emptype.setBounds(80, 28, 103, 21);
                     comboBox_emptype.setModel(new DefaultComboBoxModel(new String[] {"", "부장", "차장", "대리", "사원"}));
                     
-                    JLabel lblNewLabel_5 = new JLabel("\uC9C1\uC6D0\uAD6C\uBD84:");
+                    JLabel lblNewLabel_5 = new JLabel("직      위:");
                     lblNewLabel_5.setBounds(10, 31, 70, 15);
                     
                     label_7 = new JLabel("\uC9C1\uC18D\uC0C1\uC0AC:");
@@ -541,13 +526,15 @@ public class AddProFrm extends JFrame {
 			staffType=teacherRadioButton.isSelected() ? teacherRadioButton.getText():empRadioButton.getText();
 			sex=radioButton_male.isSelected() ? radioButton_male.getText() : radioButton_female.getText();
 			if(teacherRadioButton.isSelected()) {
-				personType=radioButton1.isSelected()? radioButton1.getText(): 
-					(radioButton2.isSelected()? radioButton2.getText():radioButton3.getText());
-				if(radioButton1.isSelected()) {
-					teacherType=comboBox_teacher.getSelectedItem().toString();
-				}else {
-					teacherType=null;
-				}
+				personType=radioButton_1.isSelected()? radioButton_1.getText(): 
+				          (radioButton_2.isSelected()? radioButton_2.getText():
+				          (radioButton_3.isSelected()? radioButton_3.getText():
+				          (radioButton_4.isSelected()? radioButton_4.getText():radioButton_5.getText())));
+//				if(radioButton_1.isSelected()) {
+//					teacherType=comboBox_teacher.getSelectedItem().toString();
+//				}else {
+//					teacherType=null;
+//				}
 			}else {
 				personType=comboBox_emptype.getSelectedItem().toString();
 				try {
@@ -688,12 +675,11 @@ public class AddProFrm extends JFrame {
 			bgroup2.clearSelection();
 			bgroup3.clearSelection();
 			radioButton_male.setSelected(true);
-			radioButton1.setSelected(true);
+			radioButton_1.setSelected(true);
 			teacherRadioButton.setSelected(true);
 			textField_org.setText("");
 			comboBox_emptype.setSelectedIndex(0);
 			textField_sup.setText("");
-			comboBox_teacher.setSelectedIndex(0);
 		}
 			//日期格式	
 		 public String getStringDate(DatePicker datepick) {

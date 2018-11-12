@@ -24,6 +24,9 @@ public class CourseApplyViewDao extends BaseDao {
                     if(!StringUtil.isEmpty(ca.getOrgName())){
                               sqlString.append(" and orgname like '%"+ca.getOrgName()+"%'");
                     }
+                    if(!StringUtil.isEmpty(ca.getLearnType())){
+                              sqlString.append(" and learn_type like '%"+ca.getLearnType()+"%'");
+                    }
                     try {
                               PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
                               //preparedStatement.setString(1, "%"+Student.getName()+"%");

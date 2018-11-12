@@ -47,7 +47,17 @@ public class AddOrgFrm extends JFrame {
           private JTextField textField_par;
           private List<Org> orgList;
           private static String orgType="교육기관";
+          private static String orgName;
           
+          
+          public static String getOrgName() {
+                    return orgName;
+          }
+
+          public static void setOrgName(String orgName) {
+                    AddOrgFrm.orgName = orgName;
+          }
+
           public String getOrgType() {
                     return orgType;
           }
@@ -281,9 +291,9 @@ public class AddOrgFrm extends JFrame {
           protected void addOrg(ActionEvent e) {
                     // TODO Auto-generated method stub
                     
-                    String orgCode,name,sName,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
+                    String orgCode,sName,coGrCode,gsDepMajCode,aftType,parCode,todayDate;
 //                    orgCode="";
-                    name=textField_orgName.getText().toString();
+                    orgName=textField_orgName.getText().toString();
 //                    sName=textField_sName.getText().toString();
 //                    orgType=radioButton_1.isSelected() ? radioButton_1
 //                                        .getText() :  (radioButton_2.isSelected() ? radioButton_2.getText():radioButton_3.getText());
@@ -297,7 +307,7 @@ public class AddOrgFrm extends JFrame {
                               parCode=null;
                     }
                     
-                    if (StringUtil.isEmpty(name)) {
+                    if (StringUtil.isEmpty(orgName)) {
                               JOptionPane.showMessageDialog(this,
                                                   "조직이름을 입력하십시오！");
                               return;
@@ -310,7 +320,7 @@ public class AddOrgFrm extends JFrame {
                     todayDate=DateUtil.getTodayDate();
                     Org org=new Org();
                     org.setOrgCode(orgCode);
-                    org.setName(name);
+                    org.setName(orgName);
 //                    org.setsName(sName);
                     org.setOrgType(orgType);
                     org.setCoGrCode(coGrCode);
@@ -326,7 +336,10 @@ public class AddOrgFrm extends JFrame {
                     }
                     orgDao.closeDao();
                     resetValue();
+                    dispose();
                     
+                    AddDeptStandFrm adsf=new AddDeptStandFrm();
+                    adsf.setVisible(true);
           }
           // get orgCode 조직코드 생성
           private String MakeOrgCode(JRadioButton jr1,JRadioButton jr2,JComboBox jc1,JComboBox jc2) {

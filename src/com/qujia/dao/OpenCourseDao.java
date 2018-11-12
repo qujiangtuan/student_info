@@ -176,6 +176,26 @@ public class OpenCourseDao extends BaseDao {
                     }
                     return couName;
           }
+          
+          public String getCouNo(String couName) {
+                    String sql = "select cou_no from open_course where cou_name= ? ";
+                    PreparedStatement prst =null;
+                    String couNo="";
+                    ResultSet rs;
+                    int id=0;
+                    try {
+                              prst= con.prepareStatement(sql);
+                              prst.setString(1, couName);
+                              rs = prst.executeQuery();
+                              while(rs.next()){
+                                        couNo=rs.getString("cou_no");
+                             }
+                    } catch (SQLException e1) {
+                              // TODO Auto-generated catch block
+                              e1.printStackTrace();
+                    }
+                    return couNo;
+          }
 
           public boolean isCouNo(String cnoInput) {
                     String sql = "select count(*) count from open_course where cou_no= ? ";

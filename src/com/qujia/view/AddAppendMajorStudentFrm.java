@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,7 +22,7 @@ import com.qujia.model.Student;
 import com.qujia.util.DateUtil;
 import com.qujia.util.ViewUtil;
 
-public class AddAppendMajorStudentFrm extends JFrame {
+public class AddAppendMajorStudentFrm extends JDialog {
 
 	private JPanel contentPane;
 	private JLabel label_name;
@@ -29,15 +30,25 @@ public class AddAppendMajorStudentFrm extends JFrame {
 	private JLabel Label_dept;
 	private JTextField textField_major;
 	private Student selectStu;
+	private static boolean flag=false;
+	private Student student,stuTemp;
 
-	/**
+	public static boolean isFlag() {
+                    return flag;
+          }
+
+          public static void setFlag(boolean flag) {
+                    AddAppendMajorStudentFrm.flag = flag;
+          }
+
+          /**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddAppendMajorStudentFrm frame = new AddAppendMajorStudentFrm();
+					AddAppendMajorStudentFrm frame = new AddAppendMajorStudentFrm(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,11 +60,21 @@ public class AddAppendMajorStudentFrm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddAppendMajorStudentFrm() {
+	public AddAppendMajorStudentFrm(JFrame fr) {
+	          super(fr,"",true);
 	          this.setResizable(false);
 		setTitle("추가전공등록");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 525, 350);
+		
+		student =new Student();
+		String sno=StudentManagerFrm.getSno();
+		String pw=StudentManagerFrm.getPw();
+		student.setsNo(sno);
+		student.setPassword(pw);
+        StudentDao stuDao=new StudentDao();
+        stuTemp=stuDao.login(student);
+		
 		
 		 ViewUtil vu=new ViewUtil();
          vu.showCenter(this);
@@ -166,14 +187,18 @@ public class AddAppendMajorStudentFrm extends JFrame {
 		                              student.setMajorType(majorType);
 		                              student.setMajor(secondMajor);
 		                              student.setApplyDate(applyDate);
+		                              student.setDeptName(stuTemp.getDeptName());
+		                              student.setInSchYear(stuTemp.getInSchYear());
+		                              student.setInSchState(stuTemp.getInSchState());
+		                              student.setDegreeProcess(stuTemp.getDegreeProcess());
 		                              
 		                              StudentDao sDao=new StudentDao();
-		                              if(sDao.UpdateAppendMajor(student)) {
+		                              if(sDao.UpdateAppendMajor(student)&&sDao.AddUpdateHistory(student)) {
 		                                  JOptionPane.showMessageDialog(this, "["+majorType+"]->{ "+secondMajor+" } 등록 성공했습니다!");
-		                                  
-		                                  StudentManagerFrm smf=new StudentManagerFrm();
-		                                  smf.setTable(new Student());
-		                                  
+//		                                  
+//		                                  StudentManagerFrm smf=new StudentManagerFrm();
+//		                                  smf.setTable(new Student());
+		                                  flag = true;
 		                                  this.dispose();
 		                                  this.setVisible(false);
 		                              }else {

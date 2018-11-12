@@ -1,5 +1,6 @@
 package com.qujia.dao;
 
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -346,11 +347,11 @@ public class PerCourseDao extends BaseDao {
                     return countCurr;
           }
           //평점
-          public Object getAvg(String year, int term, String sno) {
+          public double getAvg(String year, int term, String sno) {
                     String sql="select avg(score) avg_score from "
                                         +"(select peco.stu_no,peco.year,peco.term,peco.credit_type,peco.grade,peco.score  "
                                         +"from per_course peco where peco.stu_no=? and peco.year=? and peco.term=?)";
-                    int avgScore=0;
+                    double avgScore=0;
                     try {
                               PreparedStatement prst=con.prepareStatement(sql);
                               prst.setString(1, sno);
@@ -358,12 +359,13 @@ public class PerCourseDao extends BaseDao {
                               prst.setInt(3,term);
                               ResultSet e = prst.executeQuery();
                               while(e.next()){
-                                        avgScore=e.getInt("avg_score");
+                                        avgScore=e.getDouble("avg_score");
                               }
                     } catch (SQLException e) {
                               e.printStackTrace();
                     }
-                    return avgScore;
+                    BigDecimal bg = new BigDecimal(avgScore);
+                    return bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
           }
           //전필
           public int getMajMust(String sno) {
@@ -420,7 +422,6 @@ public class PerCourseDao extends BaseDao {
                               e.printStackTrace();
                     }
                     return CulMustSum;
-                    
           }
           //교선
           public int getCulCho(String sno) {
@@ -439,5 +440,42 @@ public class PerCourseDao extends BaseDao {
                               e.printStackTrace();
                     }
                     return culChoSum;
+          }
+
+          public boolean updateProScore(PerCourse pc, double avg) {
+                   String sql="update per_course set pro_score=? where stu_no=? and year=? and term=? and cou_no=?";
+                   PreparedStatement prst;
+                   try {
+                             prst=con.prepareStatement(sql);
+                             prst.setDouble(1, avg);
+                             prst.setString(2,pc.getSno());
+                             prst.setString(3,pc.getYear());
+                             prst.setInt(4,pc.getTerm());
+                             prst.setString(5,pc.getCouNo());
+                             if(prst.executeUpdate()>0){
+                                       return true;
+                             }
+                   } catch (SQLException e) {    
+                             e.printStackTrace();
+                   }
+                    return false;
+          }
+
+          public double getCouAvg(String couNo) {
+                    String sql="select avg(score) pro_avg_score from per_course peco where peco.cou_no=? and peco.year=? and peco.term=?";
+                    double pro_avg_score=0;
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, couNo);
+                              prst.setString(2,DateUtil.getThisYear());
+                              prst.setInt(3,DateUtil.getTerm());
+                              ResultSet e = prst.executeQuery();
+                              while(e.next()){
+                                        pro_avg_score=e.getInt("pro_avg_score");
+                              }
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return pro_avg_score;
           }
 }

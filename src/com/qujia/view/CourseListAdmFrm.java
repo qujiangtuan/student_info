@@ -112,15 +112,19 @@ public class CourseListAdmFrm extends JFrame {
                     scrollPane.setBounds(17, 106, 832, 232);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC2DC\uC791\uC77C\uC790:");
+                    lblNewLabel_3.setVisible(false);
                     lblNewLabel_3.setBounds(51, 15, 116, 25);
                     
                     DatePicker datePicker = new DatePicker();
+                    datePicker.setVisible(false);
                     datePicker.setBounds(179, 15, 160, 25);
                     
                     JLabel label = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC885\uB8CC\uC77C\uC790:");
+                    label.setVisible(false);
                     label.setBounds(427, 15, 129, 25);
                     
                     DatePicker datePicker_1 = new DatePicker();
+                    datePicker_1.setVisible(false);
                     datePicker_1.setBounds(561, 15, 160, 21);
                     
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0DD\uD559\uBC88:");
@@ -164,7 +168,9 @@ public class CourseListAdmFrm extends JFrame {
                     textField_upStu.setColumns(10);
                     
                     JButton btnNewButton_3 = new JButton("\uAE30\uAC04\uBCC0\uACBD");
+                    btnNewButton_3.setVisible(false);
                     btnNewButton_3.setBounds(733, 15, 105, 23);
+                    
                     
                     JLabel lblNewLabel_4 = new JLabel("\uD559\uC218\uBC88\uD638:");
                     lblNewLabel_4.setBounds(243, 360, 68, 15);
@@ -206,7 +212,7 @@ public class CourseListAdmFrm extends JFrame {
                     textField_upCou.setBounds(323, 357, 178, 21);
                     textField_upCou.setColumns(10);
                     
-                    JButton submitButton = new JButton("\uD655 \uC778");
+                    JButton submitButton = new JButton("추가수강");
                     submitButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         OtherApplyCourse(e);

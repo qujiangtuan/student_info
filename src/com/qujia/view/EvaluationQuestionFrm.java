@@ -1,7 +1,6 @@
 package com.qujia.view;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,7 +100,7 @@ public class EvaluationQuestionFrm extends JFrame {
 		panel_card.setLayout(card);
 		
 		panel_Manager = new JPanel();
-		panel_Manager.setBackground(new Color(224, 255, 255));
+//		panel_Manager.setBackground(new Color(224, 255, 255));
 		panel_card.add(panel_Manager, "panel_Manager");
 		
 		JLabel lblNewLabel = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
@@ -212,7 +211,7 @@ public class EvaluationQuestionFrm extends JFrame {
 		scrollPane_2.setViewportView(textArea_editQue);
 		
 		panel_add = new JPanel();
-		panel_add.setBackground(new Color(253, 245, 230));
+//		panel_add.setBackground(new Color(253, 245, 230));
 		panel_card.add(panel_add, "panel_add");
 		
 		JLabel lblNewLabel_4 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
@@ -376,6 +375,7 @@ public class EvaluationQuestionFrm extends JFrame {
                     QuestionDao quDao=new QuestionDao();
                     if(quDao.AddQue(qu)){
                               JOptionPane.showMessageDialog(this, "질문을 추가했습니다!");
+                              textArea_addQue.setText("");
                               return;
                     }else{
                               JOptionPane.showMessageDialog(this, "질문 추가는 실패했습니다!");

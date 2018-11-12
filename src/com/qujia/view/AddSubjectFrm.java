@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -145,7 +144,6 @@ public class AddSubjectFrm extends JFrame {
                                         submitAction(ae);
                               }
                     });
-                    submitButton.setBackground(new Color(64, 224, 208));
                     submitButton.setFont(new Font("NanumMyeongjo", Font.BOLD,14));
 
                     cancelButton = new JButton("\uCDE8  \uC18C");
@@ -155,7 +153,6 @@ public class AddSubjectFrm extends JFrame {
                                         dispose();
                               }
                     });
-                    cancelButton.setBackground(new Color(224, 255, 255));
                     cancelButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 

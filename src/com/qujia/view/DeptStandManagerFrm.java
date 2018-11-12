@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +24,7 @@ import com.qujia.dao.OrgDao;
 import com.qujia.model.DeptStand;
 import com.qujia.model.Org;
 import com.qujia.util.StringUtil;
+import com.qujia.util.ViewUtil;
 
 public class DeptStandManagerFrm extends JFrame {
           private JTextField searchClassNameTextField;
@@ -64,12 +63,11 @@ public class DeptStandManagerFrm extends JFrame {
 //                    setClosable(true);
 //                    setIconifiable(true);
 
-                    // ViewUtil vu=new ViewUtil();
-                    // vu.showCenter(this);
+                     ViewUtil vu=new ViewUtil();
+                     vu.showCenter(this);
                     JLabel classNameLabel = new JLabel("학과이름:");
                     classNameLabel.setBounds(52, 43, 80, 19);
-                    classNameLabel.setIcon(new ImageIcon(DeptStandManagerFrm.class
-                                        .getResource("/images/className.png")));
+                    classNameLabel.setIcon(null);
                     classNameLabel.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
@@ -95,8 +93,7 @@ public class DeptStandManagerFrm extends JFrame {
                                         resetValue();
                               }
                     });
-                    searchButton.setIcon(new ImageIcon(DeptStandManagerFrm.class
-                                        .getResource("/images/search.png")));
+                    searchButton.setIcon(null);
                     searchButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         13));
 
@@ -139,24 +136,23 @@ public class DeptStandManagerFrm extends JFrame {
                                         13));
 
                     JButton updateButton = new JButton("수  정");
-                    updateButton.setBounds(691, 315, 101, 29);
+                    updateButton.setBounds(218, 457, 101, 29);
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         updateDeptStand(e);
                               }
                     });
-                    updateButton.setBackground(new Color(50, 205, 50));
                     updateButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 
                     JButton deleteButton = new JButton("삭  제\r\n");
-                    deleteButton.setBounds(691, 369, 101, 29);
+                    deleteButton.setVisible(false);
+                    deleteButton.setBounds(367, 457, 101, 29);
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         deleteDept(ae);
                               }
                     });
-                    deleteButton.setBackground(new Color(255, 140, 0));
                     deleteButton.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 
@@ -234,6 +230,16 @@ public class DeptStandManagerFrm extends JFrame {
                     getContentPane().add(deleteButton);
                     getContentPane().add(updateButton);
                     
+                    JButton button = new JButton("닫  기");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setFont(new Font("나눔명조", Font.BOLD, 14));
+                    button.setBounds(526, 457, 101, 29);
+                    getContentPane().add(button);
+                    
                     // set TABLE data in center
                     DefaultTableCellRenderer cr = new DefaultTableCellRenderer();
                     cr.setHorizontalAlignment(JLabel.CENTER);
@@ -283,14 +289,14 @@ public class DeptStandManagerFrm extends JFrame {
                     DefaultTableModel dft = (DefaultTableModel) deptListTable.getModel();
                     String dsNo=dft.getValueAt(deptListTable.getSelectedRow(),0).toString();
                     String dsName=dft.getValueAt(deptListTable.getSelectedRow(),1).toString();
-                    String college=dft.getValueAt(deptListTable.getSelectedRow(),2).toString();
+//                    String college=dft.getValueAt(deptListTable.getSelectedRow(),2).toString();
                     int min=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),2).toString());
-                    int year1=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),6).toString());
-                    int year2=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),7).toString());
+                    int year1=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),4).toString());
+                    int year2=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),5).toString());
                     int max=Integer.parseInt(dft.getValueAt(deptListTable.getSelectedRow(),3).toString());
                     String deptExp = null;
                     try {
-                              deptExp=dft.getValueAt(deptListTable.getSelectedRow(),8).toString();
+                              deptExp=dft.getValueAt(deptListTable.getSelectedRow(),6).toString();
                     } catch (NullPointerException ne) {
                               // TODO: handle exception
                               deptExp="";
@@ -347,7 +353,7 @@ public class DeptStandManagerFrm extends JFrame {
                     DeptStand dStand=new DeptStand();
                     dStand.setStandId(dsNo);
                     dStand.setOrgid(dsNo);
-                    dStand.setCollege(college);
+//                    dStand.setCollege(college);
                     dStand.setMin(editmin);
                     dStand.setMax(editmax);
                     dStand.setYear1(edityear1);

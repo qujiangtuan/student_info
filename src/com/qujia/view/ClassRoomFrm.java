@@ -144,7 +144,6 @@ public class ClassRoomFrm extends JFrame {
 		          }
 		});
 		btnNewButton_2.setBounds(181, 338, 92, 23);
-		btnNewButton_2.setBackground(new Color(60, 179, 113));
 		
 		JButton button = new JButton("\uC0AD \uC81C");
 		button.addActionListener(new ActionListener() {
@@ -153,7 +152,6 @@ public class ClassRoomFrm extends JFrame {
 		          }
 		});
 		button.setBounds(327, 338, 92, 23);
-		button.setBackground(new Color(255, 99, 71));
 		
 		comboBox_editExp = new JComboBox();
 		comboBox_editExp.setBounds(360, 245, 172, 21);
@@ -212,7 +210,11 @@ public class ClassRoomFrm extends JFrame {
 		panel_crManager.add(comboBox_sExp);
 		
 		JButton button_1 = new JButton("닫기");
-		button_1.setBackground(new Color(224, 255, 255));
+		button_1.addActionListener(new ActionListener() {
+		          public void actionPerformed(ActionEvent arg0) {
+		                    dispose();
+		          }
+		});
 		button_1.setBounds(471, 338, 92, 23);
 		panel_crManager.add(button_1);
 		

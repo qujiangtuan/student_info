@@ -1,4 +1,4 @@
-package com.qujia.test1;
+package com.qujia.util;
 
 import java.awt.Component;
 

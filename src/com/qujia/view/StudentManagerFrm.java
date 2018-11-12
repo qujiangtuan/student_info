@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -58,6 +57,44 @@ public class StudentManagerFrm extends JFrame {
           private static String staticSno;
           private JPanel contentPane;
           private JButton button_1;
+          private static int row=-1;
+          private static  String sno=null;
+          private static  String stuName=null;
+          private static String pw=null;
+          
+          
+          public static String getPw() {
+                    return pw;
+          }
+
+          public static void setPw(String pw) {
+                    StudentManagerFrm.pw = pw;
+          }
+
+          public static int getRow() {
+                    return row;
+          }
+
+          public static void setRow(int row) {
+                    StudentManagerFrm.row = row;
+          }
+
+          public static String getSno() {
+                    return sno;
+          }
+
+          public static void setSno(String sno) {
+                    StudentManagerFrm.sno = sno;
+          }
+
+          public static String getStuName() {
+                    return stuName;
+          }
+
+          public static void setStuName(String stuName) {
+                    StudentManagerFrm.stuName = stuName;
+          }
+
           /**
            * Launch the application.
            */
@@ -121,15 +158,15 @@ public class StudentManagerFrm extends JFrame {
                     scrollPane.setBounds(12, 83, 994, 240);
                     
                     JLabel editClassLabel = new JLabel("\uC18C\uC18D\uD559\uACFC:");
-                    editClassLabel.setBounds(12, 354, 60, 19);
+                    editClassLabel.setVisible(false);
+                    editClassLabel.setBounds(12, 397, 60, 19);
                     editClassLabel.setIcon(null);
                     editClassLabel.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     editSexButtonGroup=new ButtonGroup();
                     
                     JButton submitEidtButton = new JButton("\uC218\uC815");
-                    submitEidtButton.setBounds(649, 346, 89, 27);
-                    submitEidtButton.setBackground(new Color(176, 224, 230));
+                    submitEidtButton.setBounds(424, 347, 89, 27);
                     submitEidtButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                           submiEditAct(ae);
@@ -191,38 +228,56 @@ public class StudentManagerFrm extends JFrame {
                     bg.add(radioButton_2);
                     
                     button = new JButton("추가\r\n전공");
-                    button.setBounds(745, 346, 114, 27);
+                    button.setBounds(576, 347, 114, 27);
                     button.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
-                    		 int row=studentListTable.getSelectedRow();
+                    	          DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
+//                    		 int row=studentListTable.getSelectedRow();
                              if(row==-1){
                                        JOptionPane.showMessageDialog(null, "수정할 행을 선택해주세요!");
                                        return;
                              }
-                    		AddAppendMajorStudentFrm aam=new AddAppendMajorStudentFrm();
+                             String major2=null;
+                             try {
+                                       major2= dft.getValueAt(row, 13).toString();
+                            } catch (Exception e2) {
+                                      major2=null;
+                            }
+                            if(major2!=null){
+                                      JOptionPane.showMessageDialog(null, "추가전공를 할 수 있습니다!");
+                                      return;
+                            }
+                    		AddAppendMajorStudentFrm aam=new AddAppendMajorStudentFrm(new JFrame());
                     		aam.setVisible(true);
+                    		
+                    		boolean flag = AddAppendMajorStudentFrm.isFlag();
+                    		if(flag){
+                    		          setTable(new Student());
+                    		}
                     	}
                     });
                     button.setFont(new Font("Dialog", Font.BOLD, 13));
-                    button.setBackground(new Color(72, 209, 204));
                     
                     JLabel label = new JLabel("재학상태:");
-                    label.setBounds(353, 350, 60, 19);
+                    label.setBounds(12, 351, 60, 19);
                     label.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     inSchStatusComboBox = new JComboBox();
-                    inSchStatusComboBox.setBounds(425, 347, 120, 26);
+                    inSchStatusComboBox.setBounds(84, 347, 166, 26);
                     
                     isInSchool=new String[] {"","재학", "휴학", "졸업", "자퇴", "퇴학"};
                     inSchStatusComboBox.setModel(new DefaultComboBoxModel(isInSchool));
 //                    degreeP=new String[] {"", "학사과정", "석사과정", "박사과정"};
                     
                     textField_deptName = new JTextField();
-                    textField_deptName.setBounds(84, 347, 143, 26);
+                    textField_deptName.setVisible(false);
+                    textField_deptName.setEditable(false);
+                    textField_deptName.setBounds(84, 394, 143, 26);
                     textField_deptName.setColumns(10);
                     
                     deptSearchButton = new JButton("조회");
-                    deptSearchButton.setBounds(229, 346, 74, 27);
+                    deptSearchButton.setVisible(false);
+                    deptSearchButton.setBounds(229, 393, 74, 27);
                     deptSearchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
@@ -319,9 +374,23 @@ public class StudentManagerFrm extends JFrame {
                               }
                     });
                     button_1.setFont(new Font("Dialog", Font.BOLD, 13));
-                    button_1.setBackground(new Color(224, 255, 255));
-                    button_1.setBounds(871, 346, 89, 27);
+                    button_1.setBounds(917, 350, 89, 27);
                     contentPane.add(button_1);
+                    
+                    JButton button_2 = new JButton("변경이력");
+                    button_2.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        if(row==-1){
+                                                  JOptionPane.showMessageDialog(null, "수정할 행을 선택해주세요!");
+                                                  return;
+                                        }
+                                        UpHistoryStudentManagerFrm smf=new UpHistoryStudentManagerFrm();
+                                        smf.setVisible(true);
+                              }
+                    });
+                    button_2.setFont(new Font("Dialog", Font.BOLD, 13));
+                    button_2.setBounds(751, 347, 100, 27);
+                    contentPane.add(button_2);
                     setTable(new Student());
           }
           protected String addSearch() {
@@ -335,45 +404,46 @@ public class StudentManagerFrm extends JFrame {
                     stuTmp=stDao.getSelectRowObject(student);
                     return stuTmp;
           }
-//          protected String getStudentName() {
-//			// TODO Auto-generated method stub
-//              String name;
-//        	  StudentDao stDao=new StudentDao();
-//        	  Student st=new Student();
-//        	  st.setsNo(staticSno);
-//        	  System.out.println(staticSno);
-//        	  name=stDao.getStNameById(st);
-//        	  return name;
-//		}
-//          protected String getStudentDept() {
-//                    // TODO Auto-generated method stub
-//                      String deptName = studentListTable.getValueAt(selectIndex, 2).toString();
-//                      return deptName;
-//                }
 		//수정 submit event
           protected void submiEditAct(ActionEvent ae) {
+                    DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
                     String orgid;
-                    int row=studentListTable.getSelectedRow();
                     if(row==-1){
                               JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
                               return;
                     }
+                    String schYear=dft.getValueAt(row, 3).toString();
                     String inSchStatus = inSchStatusComboBox.getSelectedItem().toString();
-//                    String degreeProcess=degreeComboBox.getSelectedItem().toString();
+                    String degreeProcess=dft.getValueAt(row, 5).toString();
                     String deptName1=textField_deptName.getText().toString();
+                    orgid=this.getOrgidByOrgName(deptName1);
+                    String major2,majorType;
+                    try {
+                              majorType=dft.getValueAt(row, 13).toString();
+                    } catch (Exception e) {
+                              majorType=null;
+                    }
+                    try {
+                              major2=dft.getValueAt(row, 14).toString();
+                    } catch (Exception e) {
+                              major2=null;
+                    }
                     Student student=new Student();
-//                    StudentClass sc = (StudentClass) searchClassComboBox.getSelectedItem();
-                     orgid=SearchDeptForStuFrm.getOrdId();
                     student.setOrgId(orgid);
+                    student.setName(stuName);
+                    student.setInSchYear(schYear);
                     student.setDeptName(deptName1);
                     student.setInSchState(inSchStatus);
-//                    student.setDegreeProcess(degreeProcess);
-                    student.setsNo(studentListTable.getValueAt(row, 0).toString());
-                    StudentDao studentDao=new StudentDao();
+                    student.setDegreeProcess(degreeProcess);
+                    student.setsNo(sno);
+                    student.setMajorType(majorType);
+                    student.setMajor(major2);
+//                    student.set
+                    StudentDao stuDao=new StudentDao();
                     int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
                                         JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                     if(showConfirmDialog==JOptionPane.YES_OPTION){
-                              if(studentDao.updateStudent(student)){
+                              if(stuDao.updateStudent(student)&&stuDao.AddUpdateHistory(student)){
                                         JOptionPane.showMessageDialog(this, "수정 성공했습니다");
                               }else{
                                         JOptionPane.showMessageDialog(this, "수정 실패했습니다");
@@ -381,13 +451,18 @@ public class StudentManagerFrm extends JFrame {
                     }else{
                               return;
                     }
-                    studentDao.closeDao();
+                    stuDao.closeDao();
                     setTable(new Student());
+                    row=-1;
           }
           //Table중 행을 선택
           protected void selectedTableRow(MouseEvent me) {
                     // TODO Auto-generated method stub
                     DefaultTableModel   dft = (DefaultTableModel) studentListTable.getModel();
+                    row=studentListTable.getSelectedRow();
+                     sno=dft.getValueAt(row, 0).toString();
+                     stuName=dft.getValueAt(row, 2).toString();
+                     pw=dft.getValueAt(row, 8).toString();
                     //得到选中表格中的哪一行，那一列的值
                     selectIndex=studentListTable.getSelectedRow();
                     //학번
@@ -488,6 +563,7 @@ public class StudentManagerFrm extends JFrame {
                     int row=studentListTable.getSelectedRow();
                     setTable(student);
                     restvalues();
+                    row=-1;
           }
           private void restvalues() {
                           textField_deptName.setText("");

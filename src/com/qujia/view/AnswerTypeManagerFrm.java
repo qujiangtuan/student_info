@@ -268,7 +268,7 @@ public class AnswerTypeManagerFrm extends JFrame {
 		
 		comboBox_anstype = new JComboBox();
 		comboBox_anstype.setEditable(true);
-		comboBox_anstype.setModel(new DefaultComboBoxModel(new String[] {"", "예/아니오", "좋다/싫다", "좋다/중간/싫다", "좋다/보통/나쁘다", "만족/보통/불만족", "아주좋다/상타/평타/하타", "씹상타/상타/평타/하타/씹하타", "자소서연습이나해라", "대강써라"}));
+		comboBox_anstype.setModel(new DefaultComboBoxModel(new String[] {"", "예/아니오", "좋다/싫다", "좋다/중간/싫다", "그렇다/보통/그렇지 않다", "좋다/보통/나쁘다", "만족/보통/불만족", "아주좋다/상타/평타/하타", "씹상타/상타/평타/하타/씹하타", "자소서연습이나해라", "대강써라"}));
 		GroupLayout gl_panel_addType = new GroupLayout(panel_addType);
 		gl_panel_addType.setHorizontalGroup(
 		          gl_panel_addType.createParallelGroup(Alignment.LEADING)
@@ -284,18 +284,19 @@ public class AnswerTypeManagerFrm extends JFrame {
 		                                                  .addPreferredGap(ComponentPlacement.RELATED)
 		                                                  .addGroup(gl_panel_addType.createParallelGroup(Alignment.LEADING)
 		                                                            .addGroup(gl_panel_addType.createSequentialGroup()
-		                                                                      .addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
-		                                                                      .addGap(18)
-		                                                                      .addComponent(comboBox_anstype, 0, 216, Short.MAX_VALUE))
-		                                                            .addGroup(gl_panel_addType.createSequentialGroup()
 		                                                                      .addGroup(gl_panel_addType.createParallelGroup(Alignment.LEADING)
 		                                                                                .addComponent(label, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
 		                                                                                .addComponent(label_type, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE))
 		                                                                      .addGap(18)
 		                                                                      .addGroup(gl_panel_addType.createParallelGroup(Alignment.LEADING)
 		                                                                                .addComponent(comboBox_info, 0, 218, Short.MAX_VALUE)
-		                                                                                .addComponent(comboBox_ansType, 0, 218, Short.MAX_VALUE))))))
-		                              .addContainerGap(317, GroupLayout.PREFERRED_SIZE))
+		                                                                                .addComponent(comboBox_ansType, 0, 218, Short.MAX_VALUE)))
+		                                                            .addGroup(gl_panel_addType.createSequentialGroup()
+		                                                                      .addComponent(lblNewLabel_5, GroupLayout.PREFERRED_SIZE, 93, GroupLayout.PREFERRED_SIZE)
+		                                                                      .addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+		                                                                      .addComponent(comboBox_anstype, GroupLayout.PREFERRED_SIZE, 287, GroupLayout.PREFERRED_SIZE)
+		                                                                      .addPreferredGap(ComponentPlacement.RELATED)))))
+		                              .addContainerGap(246, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_panel_addType.setVerticalGroup(
 		          gl_panel_addType.createParallelGroup(Alignment.LEADING)
@@ -316,7 +317,7 @@ public class AnswerTypeManagerFrm extends JFrame {
 		                              .addGroup(gl_panel_addType.createParallelGroup(Alignment.BASELINE)
 		                                        .addComponent(button_add)
 		                                        .addComponent(button_1))
-		                              .addContainerGap(119, Short.MAX_VALUE))
+		                              .addContainerGap(113, Short.MAX_VALUE))
 		);
 		panel_addType.setLayout(gl_panel_addType);
 		

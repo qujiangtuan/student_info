@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,6 +49,7 @@ public class AppendMajorOrgManagerFrm extends JFrame {
           private ButtonGroup bgroup;
           private JTextField textField_editAllow;
           private JButton btnNewButton;
+          private JButton button;
           /**
            * Launch the application.
            */
@@ -73,7 +73,7 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     this.setResizable(false);
                     setTitle("\uBCF5\uC218\uBD80\uC804\uACF5\uD5C8\uC6A9\uBC94\uC704\uBAA9\uB85D");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 668, 508);
+                    setBounds(100, 100, 668, 542);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -108,75 +108,73 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     scrollPane.setBounds(17, 65, 618, 197);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uD5C8\uC6A9\uD559\uACFC:");
-                    lblNewLabel_2.setBounds(17, 284, 67, 15);
+                    lblNewLabel_2.setBounds(41, 284, 67, 15);
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC2DC\uC791\uB144\uB3C4:");
-                    lblNewLabel_3.setBounds(17, 325, 67, 15);
+                    lblNewLabel_3.setBounds(41, 325, 67, 15);
                     
                       spinner_start = new JSpinner();
-                      spinner_start.setBounds(89, 322, 123, 22);
+                      spinner_start.setBounds(113, 322, 123, 22);
                     spinner_start.setModel(new SpinnerListModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031"}));
                     
                       spinner_end = new JSpinner();
-                      spinner_end.setBounds(341, 322, 123, 22);
+                      spinner_end.setBounds(445, 325, 123, 22);
                     spinner_end.setModel(new SpinnerListModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031"}));
                     
                     JLabel lblNewLabel_4 = new JLabel("\uD5C8\uC6A9\uAD6C\uBD84:");
-                    lblNewLabel_4.setBounds(17, 365, 67, 15);
+                    lblNewLabel_4.setBounds(41, 365, 67, 15);
                     
                     comboBox_allowType = new JComboBox();
-                    comboBox_allowType.setBounds(89, 362, 123, 21);
+                    comboBox_allowType.setBounds(113, 362, 123, 21);
                     allowTypeList=new String[] {"복수전공", "부전공"};
                     comboBox_allowType.setModel(new DefaultComboBoxModel(allowTypeList));
                     
                     JLabel lblNewLabel_5 = new JLabel("\uC885\uB8CC\uB144\uB3C4:");
-                    lblNewLabel_5.setBounds(262, 325, 61, 15);
+                    lblNewLabel_5.setBounds(366, 328, 61, 15);
                     
                     JLabel lblNewLabel_6 = new JLabel("\uBC94\uC704\uAD6C\uBD84:");
-                    lblNewLabel_6.setBounds(262, 365, 61, 15);
+                    lblNewLabel_6.setBounds(366, 368, 61, 15);
                     
                     comboBox_rangeType = new JComboBox();
-                    comboBox_rangeType.setBounds(341, 362, 123, 21);
+                    comboBox_rangeType.setBounds(445, 365, 123, 21);
                     rangeTypeList=new String[] {"대학", "학부", "학과", "전공"};
                     comboBox_rangeType.setModel(new DefaultComboBoxModel(rangeTypeList));
                     
                     JButton updateButton = new JButton("\uC218 \uC815");
-                    updateButton.setBounds(531, 280, 77, 23);
+                    updateButton.setBounds(157, 446, 77, 23);
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         updateSecondAllow(e);
                               }
                     });
-                    updateButton.setBackground(new Color(224, 255, 255));
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
-                    deleteButton.setBounds(531, 321, 79, 23);
+                    deleteButton.setBounds(312, 446, 79, 23);
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         deleteSecondAllow(e);
                               }
                     });
-                    deleteButton.setBackground(new Color(255, 127, 80));
                     
                     lblNewLabel_7 = new JLabel("허용여부:");
-                    lblNewLabel_7.setBounds(17, 405, 67, 15);
+                    lblNewLabel_7.setBounds(41, 405, 67, 15);
                     
                     yesRadioButton = new JRadioButton("Yes");
-                    yesRadioButton.setBounds(85, 401, 47, 23);
+                    yesRadioButton.setBounds(109, 401, 47, 23);
                     
                     noRadioButton = new JRadioButton("No");
-                    noRadioButton.setBounds(169, 401, 43, 23);
+                    noRadioButton.setBounds(193, 401, 43, 23);
                     bgroup=new ButtonGroup();
                     bgroup.add(yesRadioButton);
                     bgroup.add(noRadioButton);
                     
                     textField_editAllow = new JTextField();
                     textField_editAllow.setEditable(false);
-                    textField_editAllow.setBounds(89, 281, 123, 21);
+                    textField_editAllow.setBounds(113, 281, 123, 21);
                     textField_editAllow.setColumns(10);
                     
                     btnNewButton = new JButton("조회");
-                    btnNewButton.setBounds(224, 280, 70, 23);
+                    btnNewButton.setBounds(248, 280, 70, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());
@@ -240,6 +238,15 @@ public class AppendMajorOrgManagerFrm extends JFrame {
                     contentPane.add(btnNewButton);
                     contentPane.add(updateButton);
                     contentPane.add(deleteButton);
+                    
+                    button = new JButton("닫기");
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBounds(478, 446, 79, 23);
+                    contentPane.add(button);
                     setTable(new SecondMajorRange());
           }
           protected String addSearch() {

@@ -34,6 +34,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.qujia.dao.NoticeDao;
+import com.qujia.dao.ProStaffDao;
 import com.qujia.model.Admin;
 import com.qujia.model.Notice;
 import com.qujia.model.ProStaff;
@@ -82,7 +83,8 @@ public class MainFrm extends JFrame {
           private JTextField textField_Prosear;
           private JTextField textField_stusear;
           private static String fileName=null;
-          
+          private JMenuItem courseMenuItem;
+          private JLabel Label_adm,label_proType;
           
           public JDesktopPane getDesktopPane_sys() {
                     return desktopPane_sys;
@@ -166,17 +168,17 @@ public class MainFrm extends JFrame {
                     menu.setFont(new Font("Dialog", Font.BOLD, 13));
                     orgManagerMenu.add(menu);
                     
-                    JMenuItem menuItem_2 = new JMenuItem("학사기준등록");
-                    menuItem_2.addActionListener(new ActionListener() {
-                              public void actionPerformed(ActionEvent e) {
-                                        AddDeptStandFrm adsf=new AddDeptStandFrm();
-                                        layeredPane.setLayer(adsf, 200);
-                                        adsf.setVisible(true);
-//                                        desktopPane.add(adsf);
-                              }
-                    });
-                    menuItem_2.setFont(new Font("Dialog", Font.BOLD, 13));
-                    menu.add(menuItem_2);
+//                    JMenuItem menuItem_2 = new JMenuItem("학사기준등록");
+//                    menuItem_2.addActionListener(new ActionListener() {
+//                              public void actionPerformed(ActionEvent e) {
+//                                        AddDeptStandFrm adsf=new AddDeptStandFrm();
+//                                        layeredPane.setLayer(adsf, 200);
+//                                        adsf.setVisible(true);
+////                                        desktopPane.add(adsf);
+//                              }
+//                    });
+//                    menuItem_2.setFont(new Font("Dialog", Font.BOLD, 13));
+//                    menu.add(menuItem_2);
                     
                     JMenuItem menuItem_3 = new JMenuItem("학사기준목록");
                     menuItem_3.addActionListener(new ActionListener() {
@@ -184,17 +186,14 @@ public class MainFrm extends JFrame {
                                         DeptStandManagerFrm dsmf=new DeptStandManagerFrm();
                                         layeredPane.setLayer(dsmf, 200);
                                         dsmf.setVisible(true);
-                                        desktopPane_sys.add(dsmf);
+//                                        desktopPane_sys.add(dsmf);
                               }
                     });
                     menuItem_3.setFont(new Font("Dialog", Font.BOLD, 13));
                     menu.add(menuItem_3);
                     
-                    JMenu mnNewMenu_5 = new JMenu("학년별학과기준");
-                    menu.add(mnNewMenu_5);
-                    mnNewMenu_5.setFont(new Font("Dialog", Font.BOLD, 13));
-                    
                     JMenuItem mntmNewMenuItem_6 = new JMenuItem("학년별학과기준등록");
+                    menu.add(mntmNewMenuItem_6);
                     mntmNewMenuItem_6.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		AddYearStandFrm aysf=new AddYearStandFrm();
@@ -203,9 +202,9 @@ public class MainFrm extends JFrame {
                     	}
                     });
                     mntmNewMenuItem_6.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_5.add(mntmNewMenuItem_6);
                     
                     JMenuItem menuItem_10 = new JMenuItem("학년별학과기준목록");
+                    menu.add(menuItem_10);
                     menuItem_10.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent e) {
                     		YearStandManagerFrm ysmf=new YearStandManagerFrm();
@@ -214,7 +213,6 @@ public class MainFrm extends JFrame {
                     	}
                     });
                     menuItem_10.setFont(new Font("Dialog", Font.BOLD, 13));
-                    mnNewMenu_5.add(menuItem_10);
                     
                     JMenu mnNewMenu_6 = new JMenu("복수부전공허용관리");
                     mnNewMenu_6.setFont(new Font("Dialog", Font.BOLD, 13));
@@ -432,6 +430,16 @@ public class MainFrm extends JFrame {
                     menuItem_8.setFont(new Font("Dialog", Font.BOLD, 13));
                     mnNewMenu_4.add(menuItem_8);
                     
+                    JMenuItem mntmNewMenuItem_11 = new JMenuItem("강의평가결과");
+                    mntmNewMenuItem_11.setFont(new Font("Dialog", Font.BOLD, 13));
+                    mntmNewMenuItem_11.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        CourseProScoreForAdmin cpfs=new CourseProScoreForAdmin();
+                                        cpfs.setVisible(true);
+                              }
+                    });
+                    mnNewMenu_4.add(mntmNewMenuItem_11);
+                    
                     studentMenu = new JMenu("학생");
                     studentMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/studentManager.png")));
                     studentMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
@@ -462,7 +470,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     studentMenu.add(mntmNewMenuItem);
                     
-                    JMenuItem mntmNewMenuItem_1 = new JMenuItem("성적조희");
+                    JMenuItem mntmNewMenuItem_1 = new JMenuItem("성적조회");
                     mntmNewMenuItem_1.setIcon(new ImageIcon(MainFrm.class.getResource("/images/scoreSearch.png")));
                     mntmNewMenuItem_1.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
@@ -485,7 +493,7 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_1.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     studentMenu.add(mntmNewMenuItem_1);
                     
-                    proMenu = new JMenu("교원");
+                    proMenu = new JMenu("교직원");
                     proMenu.setFont(new Font("휴먼고딕", Font.BOLD, 14));
                     proMenu.setIcon(new ImageIcon(MainFrm.class.getResource("/images/proInfo.png")));
                     menuBar.add(proMenu);
@@ -502,17 +510,17 @@ public class MainFrm extends JFrame {
                     mntmNewMenuItem_3.setFont(new Font("휴먼고딕", Font.BOLD, 13));
                     proMenu.add(mntmNewMenuItem_3);
                     
-                    JMenuItem mntmNewMenuItem_4 = new JMenuItem("강의관리");
-                    mntmNewMenuItem_4.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classList.png")));
-                    mntmNewMenuItem_4.addActionListener(new ActionListener() {
+                    courseMenuItem = new JMenuItem("강의관리");
+                    courseMenuItem.setIcon(new ImageIcon(MainFrm.class.getResource("/images/classList.png")));
+                    courseMenuItem.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         CourseListProFrm clp=new CourseListProFrm();
                                         layeredPane.setLayer(clp, 200);
                                         clp.setVisible(true);
                               }
                     });
-                    mntmNewMenuItem_4.setFont(new Font("휴먼고딕", Font.BOLD, 13));
-                    proMenu.add(mntmNewMenuItem_4);
+                    courseMenuItem.setFont(new Font("휴먼고딕", Font.BOLD, 13));
+                    proMenu.add(courseMenuItem);
                     
                     panel_menu = new JPanel();
                     panel_menu.setBackground(new Color(230, 230, 250));
@@ -556,8 +564,8 @@ public class MainFrm extends JFrame {
                     panel.setBounds(0, 0, 1130, 25);
                     desktopPane_sys.add(panel);
                     
-                    JLabel lblNewLabel = new JLabel("관리자");
-                    panel.add(lblNewLabel);
+                    Label_adm = new JLabel("관리자");
+                    panel.add(Label_adm);
                     
                     panel_card = new JPanel();
                     panel_card.setBounds(269, 35, 547, 580);
@@ -653,7 +661,7 @@ public class MainFrm extends JFrame {
                     panel_list.add(lblNewLabel_7);
                     
                     comboBox_objSear = new JComboBox();
-                    comboBox_objSear.setModel(new DefaultComboBoxModel(new String[] {"", "전체공지", "학생공지", "교원공지"}));
+                    comboBox_objSear.setModel(new DefaultComboBoxModel(new String[] {"", "전체공지", "학생공지", "교직원공지"}));
                     comboBox_objSear.setBounds(305, 54, 96, 21);
                     panel_list.add(comboBox_objSear);
                     
@@ -781,7 +789,7 @@ public class MainFrm extends JFrame {
                     
                     comboBox_objAdd = new JComboBox();
                     comboBox_objAdd.setFont(new Font("Dialog", Font.BOLD, 12));
-                    comboBox_objAdd.setModel(new DefaultComboBoxModel(new String[] {"전체공지", "학생공지", "교원공지"}));
+                    comboBox_objAdd.setModel(new DefaultComboBoxModel(new String[] {"전체공지", "학생공지", "교직원공지"}));
                     comboBox_objAdd.setBounds(346, 79, 119, 21);
                     panel_login.add(comboBox_objAdd);
                     
@@ -896,7 +904,7 @@ public class MainFrm extends JFrame {
                     panel_update.add(label_16);
                     
                     comboBox_objUpdate = new JComboBox();
-                    objArray=new String[] {"전체공지", "학생공지", "교원공지"};
+                    objArray=new String[] {"전체공지", "학생공지", "교직원공지"};
                     comboBox_objUpdate.setModel(new DefaultComboBoxModel(objArray));
                     comboBox_objUpdate.setFont(new Font("Dialog", Font.BOLD, 12));
                     comboBox_objUpdate.setBounds(343, 89, 123, 21);
@@ -917,8 +925,8 @@ public class MainFrm extends JFrame {
                     panel_1.setBounds(0, 0, 1130, 25);
                     desktopPane_pro.add(panel_1);
                     
-                    JLabel proLabel_1 = new JLabel("교직원");
-                    panel_1.add(proLabel_1);
+                    label_proType = new JLabel("교직원");
+                    panel_1.add(label_proType);
                     
                     JScrollPane scrollPane_2 = new JScrollPane();
                     scrollPane_2.setBounds(67, 127, 450, 437);
@@ -1481,7 +1489,17 @@ public class MainFrm extends JFrame {
 //              	card.show(layeredPane, "desktopPane");
               	
               	ProStaff ps=(ProStaff)userObject;
-                String username="【"+ userType.getName()+ "】：" + ps.getpName();
+              	ProStaffDao psDao=new ProStaffDao();
+              	ProStaff psTmp=psDao.login(ps);
+//                String username="【"+ userType.getName()+ "】：" + ps.getpName();
+              	 String username="【"+ psTmp.getProType()+ "】：" + psTmp.getpName();
+              	 if("직원".equals(psTmp.getProType())){
+              	       courseMenuItem.setEnabled(false);
+              	       label_proType.setText("직원");
+              	 }else{
+              	       courseMenuItem.setEnabled(true);
+              	       label_proType.setText("교원");
+              	 }
                 loginUserLabel.setText(username);
                 setTable_listPro(new Notice());
               }else {
@@ -1558,11 +1576,11 @@ public class MainFrm extends JFrame {
                     layeredPane.setLayer(editPasswordFrm, 200);
                     editPasswordFrm.setVisible(true);
                     if("관리자".equals(userType.getName())) {
-                    	desktopPane_sys.add(editPasswordFrm);
+//                    	desktopPane_sys.add(editPasswordFrm);
                     }else if("교직원".equals(userType.getName())) {
-                    	desktopPane_pro.add(editPasswordFrm);
+//                    	desktopPane_pro.add(editPasswordFrm);
                     }else {
-                    	desktopPane_stu.add(editPasswordFrm);
+//                    	desktopPane_stu.add(editPasswordFrm);
                     }
           }
           //stu_downFile

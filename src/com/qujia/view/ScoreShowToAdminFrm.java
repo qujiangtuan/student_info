@@ -1,7 +1,6 @@
 package com.qujia.view;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,9 +52,12 @@ public class ScoreShowToAdminFrm extends JFrame {
           private JRadioButton radio_1,radio_2;
           private ButtonGroup group;
           private static int index=-1;
-          private DefaultTableModel dft_stuList,dft_score ;
+          private DefaultTableModel dft_stuList,dft_score,dft_score2 ;
           private static String sno,orgid;
           private JLabel label_name;
+          private JScrollPane scrollPane_1;
+          private JTable table_score2;
+          private int row_score=-1;
           
           
           
@@ -83,7 +85,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                     this.setResizable(false);
                     setTitle("\uC131\uC801\uD559\uC810\uD655\uC778");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 738, 515);
+                    setBounds(100, 100, 738, 632);
                     
                     ViewUtil vu = new ViewUtil();
                     vu.showCenter(this);
@@ -127,6 +129,10 @@ public class ScoreShowToAdminFrm extends JFrame {
                                         student.setName(name);
                                         student.setsNo(sno);
                                         setStudentTable(student);
+                                        index=-1;
+                                        row_score=-1;
+                                        dft_score.setRowCount(0);
+                                        dft_score2.setRowCount(0);
                               }
                     });
                     searchStuButton.setBounds(512, 25, 81, 23);
@@ -148,6 +154,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                                                   JOptionPane.showMessageDialog(null, "해당 학생을 선택해주세요!");
                                                   return;
                                         }
+                                        scrollPane_1.setVisible(true);
                                         card.show(panel_card, "panel_score");
                                         setTable_scoreAvg(new PerCourse(), sno);
                               }
@@ -161,6 +168,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                                                   JOptionPane.showMessageDialog(null, "해당 학생을 선택해주세요!");
                                                   return;
                                         }
+                                        scrollPane_1.setVisible(false);
                                         card.show(panel_card, "panel_credit");
                                         YearDeptStand yds=new YearDeptStand();
                                         yds.setOrgId(orgid);
@@ -169,14 +177,13 @@ public class ScoreShowToAdminFrm extends JFrame {
                     });
                     
                     panel_card = new JPanel();
-                    panel_card.setBounds(17, 202, 691, 251);
+                    panel_card.setBounds(17, 202, 691, 184);
                     card=new CardLayout(0, 0);
                     panel_card.setLayout(card);
                     
                     panel_score = new JPanel();
                     Border border_1=BorderFactory.createTitledBorder("성적확인");
                     panel_score.setBorder(border_1);
-                    panel_score.setBackground(new Color(255, 248, 220));
                     panel_card.add(panel_score, "panel_score");
                     
                     JScrollPane scrollPane_score = new JScrollPane();
@@ -185,18 +192,24 @@ public class ScoreShowToAdminFrm extends JFrame {
                               gl_panel_score.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_panel_score.createSequentialGroup()
                                                   .addContainerGap()
-                                                  .addComponent(scrollPane_score, GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
+                                                  .addComponent(scrollPane_score, GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                                                   .addContainerGap())
                     );
                     gl_panel_score.setVerticalGroup(
                               gl_panel_score.createParallelGroup(Alignment.TRAILING)
-                                        .addGroup(gl_panel_score.createSequentialGroup()
+                                        .addGroup(Alignment.LEADING, gl_panel_score.createSequentialGroup()
                                                   .addContainerGap()
-                                                  .addComponent(scrollPane_score, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                                                  .addContainerGap())
+                                                  .addComponent(scrollPane_score, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+                                                  .addContainerGap(71, Short.MAX_VALUE))
                     );
                     
                     table_score = new JTable();
+                    table_score.addMouseListener(new MouseAdapter() {
+                              @Override
+                              public void mouseClicked(MouseEvent e) {
+                                        selectTableScore(e);
+                              }
+                    });
                     scrollPane_score.setViewportView(table_score);
                     table_score.setRowHeight(25);
                     table_score.setModel(new DefaultTableModel(
@@ -218,8 +231,7 @@ public class ScoreShowToAdminFrm extends JFrame {
                     
                     panel_credit = new JPanel();
                     Border border_2=BorderFactory.createTitledBorder("학점확인");
-                    panel_score.setBorder(border_2);
-                    panel_credit.setBackground(new Color(176, 224, 230));
+                    panel_credit.setBorder(border_2);
                     panel_card.add(panel_credit, "panel_credit");
                     
                     JScrollPane scrollPane_credit = new JScrollPane();
@@ -235,8 +247,8 @@ public class ScoreShowToAdminFrm extends JFrame {
                               gl_panel_credit.createParallelGroup(Alignment.LEADING)
                                         .addGroup(gl_panel_credit.createSequentialGroup()
                                                   .addContainerGap()
-                                                  .addComponent(scrollPane_credit, GroupLayout.PREFERRED_SIZE, 234, GroupLayout.PREFERRED_SIZE)
-                                                  .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                  .addComponent(scrollPane_credit, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+                                                  .addContainerGap(123, Short.MAX_VALUE))
                     );
                     
                     table_credit = new JTable();
@@ -330,11 +342,69 @@ public class ScoreShowToAdminFrm extends JFrame {
                     group=new ButtonGroup();
                     group.add(radio_1);
                     group.add(radio_2);
-                    dft_stuList = (DefaultTableModel) table_student.getModel();
                     
+                    scrollPane_1 = new JScrollPane();
+                    scrollPane_1.setBounds(17, 396, 691, 184);
+                    contentPane.add(scrollPane_1);
+                    
+                    table_score2 = new JTable();
+                    table_score2.setRowHeight(25);
+                    table_score2.setModel(new DefaultTableModel(
+                              new Object[][] {
+                                        {null, null, null, null, null, null, null, null},
+                              },
+                              new String[] {
+                                        "\uB144\uB3C4", "\uD559\uAE30", "\uACFC\uBAA9\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uC774\uC218\uAD6C\uBD84", "\uB2F5\uB2F9\uAD50\uC218", "\uD559\uC810", "\uB4F1\uAE09"
+                              }
+                    ) {
+                              boolean[] columnEditables = new boolean[] {
+                                        false, false, false, false, false, false, false, false
+                              };
+                              public boolean isCellEditable(int row, int column) {
+                                        return columnEditables[column];
+                              }
+                    });
+                    table_score2.getColumnModel().getColumn(0).setPreferredWidth(59);
+                    table_score2.getColumnModel().getColumn(1).setPreferredWidth(40);
+                    table_score2.getColumnModel().getColumn(3).setPreferredWidth(189);
+                    scrollPane_1.setViewportView(table_score2);
+                    dft_stuList = (DefaultTableModel) table_student.getModel();
+                    dft_score = (DefaultTableModel) table_score.getModel();
+                    dft_score2 = (DefaultTableModel) table_score2.getModel();
                     setStudentTable(new Student());
                     
           }
+          protected void selectTableScore(MouseEvent e) {
+                    row_score=table_score.getSelectedRow();
+                    String year;
+                    int term;
+                    year=dft_score.getValueAt(row_score, 0).toString();
+                    term=Integer.parseInt(dft_score.getValueAt(row_score, 1).toString());
+                    PerCourse per=new PerCourse();
+                    per.setYear(year);
+                    per.setTerm(term);
+                    setTable_score2(per,sno);
+          }
+
+          private void setTable_score2(PerCourse per, String sno2) {
+                    dft_score2.setRowCount(0);
+                    PerCourseDao pcDao=new PerCourseDao();
+                    List<PerCourse> pcList = pcDao.getPCList(per,sno);
+                    for(PerCourse pc : pcList){
+                              Vector v=new Vector();
+                              v.add(pc.getYear());
+                              v.add(pc.getTerm());
+                              v.add(pc.getCouNo());
+                              v.add(pc.getCouName());
+                              v.add(pc.getLearnType());
+                              v.add(pc.getProName());
+                              v.add(pc.getCreditType());
+                              v.add(pc.getGrade());
+                              v.add(pc.getIsEva());
+                              dft_score2.addRow(v);
+                    }
+          }
+
           protected void selectRowStudent(MouseEvent e) {
                  index=table_student.getSelectedRow();
                  sno=dft_stuList.getValueAt(index, 0).toString();
@@ -348,9 +418,11 @@ public class ScoreShowToAdminFrm extends JFrame {
                  YearDeptStand yds=new YearDeptStand();
                  yds.setOrgId(orgid);
                  setTable_credit(yds);
+                 setTable_score3(); 
           }
-          
-
+          private void setTable_score3() {
+                    dft_score2.setRowCount(0);
+          }
           //table_score
           protected void setTable_scoreAvg(PerCourse perCourse, String sno) {
                     dft_score= (DefaultTableModel) table_score.getModel();

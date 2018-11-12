@@ -107,7 +107,6 @@ public class AddDeptStandFrm extends JFrame {
                                         addDept(e);
                               }
                     });
-                    button_submit.setBackground(new Color(175, 238, 238));
                     button_submit.setFont(new Font("NanumMyeongjo", Font.BOLD,
                                         14));
 
@@ -127,7 +126,6 @@ public class AddDeptStandFrm extends JFrame {
                               }
                     });
                     button_cancel.setFont(new Font("Dialog", Font.BOLD, 14));
-                    button_cancel.setBackground(new Color(175, 238, 238));
 
                     JLabel label_explain = new JLabel(
                                         "\uD559\uACFC\uC124\uBA85:");
@@ -156,12 +154,14 @@ public class AddDeptStandFrm extends JFrame {
                     contentPane.add(textField_year1);
                     
                     textField_deptName = new JTextField();
+                    textField_deptName.setText(AddOrgFrm.getOrgName());
                     textField_deptName.setEditable(false);
                     textField_deptName.setBounds(233, 24, 116, 21);
                     contentPane.add(textField_deptName);
                     textField_deptName.setColumns(10);
                     
                     JButton btnNewButton = new JButton("조회");
+                    btnNewButton.setVisible(false);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
                                         SearchDeptForStuFrm sdf=new SearchDeptForStuFrm(new JFrame());

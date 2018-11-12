@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 
+import com.qujia.view.AddAppendMajorStudentFrm;
 import com.qujia.view.LectureEvalutaionFrm;
 import com.qujia.view.SearchAddressFrm;
 import com.qujia.view.SearchAnswer;
@@ -107,6 +108,13 @@ public class ViewUtil extends JFrame{
                     double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
                     double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
                     searchAnswer.setLocation( (int) (width - searchAnswer.getWidth()) / 2,(int) (height - searchAnswer.getHeight()) / 2);
+//                    show();
+          }
+          public void showCenter(AddAppendMajorStudentFrm addAppendMajorStudentFrm) {
+                    // TODO Auto-generated method stub
+                    double width = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+                    double height = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    addAppendMajorStudentFrm.setLocation( (int) (width - addAppendMajorStudentFrm.getWidth()) / 2,(int) (height - addAppendMajorStudentFrm.getHeight()) / 2);
 //                    show();
           }
 }

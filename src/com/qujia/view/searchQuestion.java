@@ -152,7 +152,7 @@ public class searchQuestion extends JDialog {
                               getContentPane().add(buttonPane,
                                                   BorderLayout.SOUTH);
                               {
-                                        JButton okButton = new JButton("학인");
+                                        JButton okButton = new JButton("확인");
                                         okButton.addActionListener(new ActionListener() {
                                                   public void actionPerformed(ActionEvent e) {
                                                             submitAction(e);
@@ -196,7 +196,7 @@ public class searchQuestion extends JDialog {
 
           protected void submitAction(ActionEvent e) {
                     if(row==-1){
-                              JOptionPane.showMessageDialog(this, "교원 선택해주세요!");
+                              JOptionPane.showMessageDialog(this, "평가질문을 선택해주세요!");
                               return;
                     }
                     DefaultTableModel   dft = (DefaultTableModel) table.getModel();

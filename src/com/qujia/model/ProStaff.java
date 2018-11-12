@@ -18,9 +18,26 @@ public class ProStaff {
 	private String password;
 	private String supId;
 	
+	private int id;//history id
+	private String supName;
 	
 	
-	public String getOrgName() {
+	
+	
+	
+	public String getSupName() {
+                    return supName;
+          }
+          public void setSupName(String supName) {
+                    this.supName = supName;
+          }
+          public int getId() {
+                    return id;
+          }
+          public void setId(int id) {
+                    this.id = id;
+          }
+          public String getOrgName() {
                     return orgName;
           }
           public void setOrgName(String orgName) {

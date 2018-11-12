@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qujia.model.Student;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 
 public class StudentDao extends BaseDao{
@@ -149,6 +150,40 @@ public class StudentDao extends BaseDao{
                                 }
                       } catch (SQLException e) {
                                 // TODO Auto-generated catch block
+                                e.printStackTrace();
+                      }
+                      
+                      return retList;
+            }
+            public List<Student> getStudentHisList(Student student){
+                      List<Student> retList=new ArrayList<Student>();
+                      StringBuffer sqlString=new StringBuffer("select * from stu_his ");
+                      String sql = null;
+                      if(!StringUtil.isEmpty(student.getName())){
+                                sqlString.append(" and name like '%"+student.getName()+"%'");
+                      }
+                      if(!StringUtil.isEmpty(student.getsNo())){
+                                sqlString.append(" and sno like '%"+student.getsNo()+"%'");
+                      }
+                      try {
+                                PreparedStatement prst;
+                                          prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
+                                ResultSet executeQuery = prst.executeQuery();
+                                while(executeQuery.next()){
+                                          Student s =new Student();
+                                          s.setsNo(executeQuery.getString("sno"));
+                                          s.setName(executeQuery.getString("name"));
+                                          s.setJoinDate(executeQuery.getString("up_date"));
+                                          s.setMajorType(executeQuery.getString("major_type"));
+                                          s.setMajor(executeQuery.getString("major"));
+//                                          s.setApplyDate(executeQuery.getString("applydate"));
+                                          s.setInSchState(executeQuery.getString("insch_status"));
+                                          s.setDegreeProcess(executeQuery.getString("degree"));
+                                          s.setInSchYear(executeQuery.getString("sch_year"));
+                                          s.setDeptName(executeQuery.getString("deptname"));
+                                          retList.add(s);
+                                }
+                      } catch (SQLException e) {
                                 e.printStackTrace();
                       }
                       
@@ -375,6 +410,29 @@ public class StudentDao extends BaseDao{
                     } catch (SQLException e) {    
                               e.printStackTrace();
                     }
+                    return false;
+          }
+          //add update history
+          public boolean AddUpdateHistory(Student student) {
+                    String sql="insert into stu_his(id,sno,name,deptname,sch_year,insch_status,degree,up_date,major_type,major) "
+                                        + " values(stu_his_seq.nextval,?,?,?,?,?,?,?,?,?)";
+                    try {
+                            PreparedStatement prst=con.prepareStatement(sql);
+                            prst.setString(1, student.getsNo());
+                            prst.setString(2, student.getName());
+                            prst.setString(3,student.getDeptName());
+                            prst.setString(4,student.getInSchYear());
+                            prst.setString(5,student.getInSchState());
+                            prst.setString(6,student.getDegreeProcess());
+                            prst.setString(7, DateUtil.getTodayDateTime());
+                           prst.setString(8,student.getMajorType());
+                           prst.setString(9,student.getMajor());
+                            if(prst.executeUpdate()>0){ 
+                                      return true;
+                            }
+                  } catch (SQLException e) {
+                            e.printStackTrace();
+                  }
                     return false;
           }
 }

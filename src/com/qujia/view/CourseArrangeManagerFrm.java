@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -342,8 +341,8 @@ public class CourseArrangeManagerFrm extends JFrame {
                     label_4.setBounds(568, 347, 65, 15);
                     SchYear=new String[] {"1학년", "2학년", "3학년", "4학년", "대학원"};
                     
-                    JLabel lblNewLabel_2 = new JLabel("학기:");
-                    lblNewLabel_2.setBounds(590, 388, 43, 15);
+                    JLabel lblNewLabel_2 = new JLabel("대상학기:");
+                    lblNewLabel_2.setBounds(568, 388, 65, 15);
                     
                     comboBox_editTerm = new JComboBox();
                     term=new String[] {"1학기", "2학기", "여름계절학기", "겨울계절학기"};
@@ -367,7 +366,6 @@ public class CourseArrangeManagerFrm extends JFrame {
                               }
                     });
                     submitButton.setBounds(205, 616, 91, 23);
-                    submitButton.setBackground(new Color(176, 224, 230));
                     
                     JButton deleteButton = new JButton("삭 제");
                     deleteButton.addActionListener(new ActionListener() {
@@ -376,7 +374,6 @@ public class CourseArrangeManagerFrm extends JFrame {
                               }
                     });
                     deleteButton.setBounds(339, 616, 80, 23);
-                    deleteButton.setBackground(new Color(255, 160, 122));
                     
                     JLabel lblNewLabel_5 = new JLabel("개폐상태:");
                     lblNewLabel_5.setBounds(567, 513, 66, 15);
@@ -414,7 +411,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         {null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4", "\uB4F1\uB85D\uC77C\uC790"
+                                        "\uAC1C\uD3D0\uC0C1\uD0DC", "\uD559\uC218\uBC88\uD638", "\uAD50\uACFC\uBAA9\uBA85", "\uB2F4\uB2F9\uAD50\uC218", "\uAC1C\uC124\uB144\uB3C4", "\uB300\uC0C1\uD559\uAE30", "\uBD84\uBC18", "\uC815\uC6D0", "\uD604\uC708", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
@@ -425,8 +422,8 @@ public class CourseArrangeManagerFrm extends JFrame {
                               }
                     });
                     table.getColumnModel().getColumn(2).setPreferredWidth(127);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(389);
-                    table.getColumnModel().getColumn(9).setPreferredWidth(91);
+                    table.getColumnModel().getColumn(4).setPreferredWidth(91);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(389);
                     scrollPane.setViewportView(table);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -661,7 +658,6 @@ public class CourseArrangeManagerFrm extends JFrame {
                                         dispose();
                               }
                     });
-                    button.setBackground(new Color(224, 255, 255));
                     button.setBounds(484, 616, 91, 23);
                     contentPane.add(button);
                     
@@ -1270,6 +1266,7 @@ public class CourseArrangeManagerFrm extends JFrame {
                              v.add(o.getCouName());
                              v.add(getProNameByProId(o.getProId()));
 //                             v.add(o.getSchYear());
+                             v.add(o.getLoginDate());
                              v.add(o.getTerm());
                              v.add(o.getClassNo());
                              v.add(o.getFixedNum());
@@ -1279,7 +1276,7 @@ public class CourseArrangeManagerFrm extends JFrame {
 //                             classStr=this.listToString2(tvList,',');
 //                             v.add(classStr);
                              v.add(o.getTtcr());
-                             v.add(o.getLoginDate());
+                            
                              dft.addRow(v);
                    }
                    ocDao.closeDao();

@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -145,7 +144,6 @@ public class SubjectManagerFrm extends JFrame {
                                         updateSubjectAction(e);
                               }
                     });
-                    updateButton.setBackground(new Color(176, 224, 230));
                     updateButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JButton deleteButton = new JButton("\uC0AD   \uC81C");
@@ -155,13 +153,12 @@ public class SubjectManagerFrm extends JFrame {
                                         deleteSubjectAction(e);
                               }
                     });
-                    deleteButton.setBackground(new Color(255, 127, 80));
                     deleteButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JScrollPane scrollPane_1 = new JScrollPane();
                     scrollPane_1.setBounds(412, 426, 195, 70);
                     
-                    JLabel lblNewLabel = new JLabel("소속조직:");
+                    JLabel lblNewLabel = new JLabel("소속학과:");
                     lblNewLabel.setFont(new Font("나눔명조", Font.BOLD, 13));
                     lblNewLabel.setBounds(300, 19, 68, 15);
                     bgoup=new ButtonGroup();
@@ -245,7 +242,6 @@ public class SubjectManagerFrm extends JFrame {
                             }
                   });
                   button.setFont(new Font("나눔명조", Font.BOLD, 13));
-                  button.setBackground(new Color(224, 255, 255));
                   button.setBounds(501, 534, 104, 23);
                   contentPane.add(button);
                   

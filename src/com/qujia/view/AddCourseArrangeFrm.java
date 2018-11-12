@@ -107,7 +107,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     leabel_pro = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
                     leabel_pro.setBounds(319, 35, 61, 15);
 
-                    leabel_term = new JLabel(" 개설학기:");
+                    leabel_term = new JLabel(" 대상학기:");
                     leabel_term.setBounds(319, 80, 69, 15);
 
                     comboBox_term = new JComboBox();
@@ -551,7 +551,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     }
                     int fixedNum = Integer.parseInt(fixedNumStr);
                     couNo = getCouNo(subid);
-                    String loginDate = DateUtil.getTodayDate();
+                    String loginDate = DateUtil.getThisYear();
                     OpenCourse oc = new OpenCourse();
                     oc.setCouNo(couNo);
                     oc.setSubCode(subid);

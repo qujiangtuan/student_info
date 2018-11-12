@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.qujia.dao.PerCourseDao;
 import com.qujia.dao.ProCourseDao;
 import com.qujia.dao.ProCourseViewDao;
 import com.qujia.dao.ProStaffDao;
@@ -33,12 +34,12 @@ public class CourseListProFrm extends JFrame {
           private JTable table;
           private ProStaff pro,proTemp;
           private DefaultTableModel dft_per;
-          private static int index;
+          private static int index=-1;
           private DefaultTableModel dft;
           private ProCourseView cv;
           private JLabel userName;
-          private static String couno;
-          private static String couName;
+          private static String couno=null;
+          private static String couName=null;
           
           
           
@@ -109,6 +110,10 @@ public class CourseListProFrm extends JFrame {
                     button.setBounds(15, 233, 99, 23);
                     button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        if(index==-1){
+                                                  JOptionPane.showMessageDialog(null, "강의를 선택해주세요!");
+                                                  return;
+                                        }
                                         couno = dft.getValueAt(index, 0).toString();
                                         couName=dft.getValueAt(index, 1).toString();
                                         ScoreShowForProFrm ssfp=new ScoreShowForProFrm();
@@ -120,6 +125,10 @@ public class CourseListProFrm extends JFrame {
                     btnNewButton.setBounds(123, 233, 99, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
+                                        if(index==-1){
+                                                  JOptionPane.showMessageDialog(null, "강의를 선택해주세요!");
+                                                  return;
+                                        }
                                         couno = dft.getValueAt(index, 0).toString();
                                         couName=dft.getValueAt(index, 1).toString();
                                         ScoreEvalutionFrm sef=new ScoreEvalutionFrm();
@@ -324,12 +333,19 @@ public class CourseListProFrm extends JFrame {
                               v.add(cv.getCouName());
                               v.add(cv.getClassNo());
                               v.add(cv.getTtcr());
-                              v.add(cv.getLecEvaMark());
+//                              v.add(cv.getLecEvaMark());
+                              v.add(this.getProScore(cv.getCouNo()));
                               v.add(cv.getName());
                               dft_per.addRow(v);
                     }
                     cvDao.closeDao();
                     
+          }
+
+          private double getProScore(String couNo2) {
+                    PerCourseDao pcDao=new PerCourseDao();
+                    double avg=pcDao.getCouAvg(couNo2);
+                    return avg;
           }
 
 }

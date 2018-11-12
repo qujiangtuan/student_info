@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -62,7 +62,7 @@ public class OrgManagerFrm extends JFrame {
                     this.setResizable(false);
                     setTitle("조직관리");
                     setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-                    setBounds(100, 100, 899, 512);
+                    setBounds(100, 100, 899, 491);
                     
                     ViewUtil vu=new ViewUtil();
                     vu.showCenter(this);
@@ -82,15 +82,16 @@ public class OrgManagerFrm extends JFrame {
                     scrollPane.setBounds(15, 65, 853, 277);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uC870\uC9C1\uBA85:");
-                    lblNewLabel_1.setBounds(39, 362, 51, 15);
+                    lblNewLabel_1.setVisible(false);
+                    lblNewLabel_1.setBounds(25, 402, 51, 15);
                     
                     textField_editName = new JTextField();
-                    textField_editName.setBounds(99, 359, 248, 21);
+                    textField_editName.setVisible(false);
+                    textField_editName.setBounds(96, 399, 248, 21);
                     textField_editName.setColumns(10);
                     
                     JButton updateButton = new JButton("\uC218 \uC815");
-                    updateButton.setBounds(553, 403, 79, 23);
-                    updateButton.setBackground(new Color(102, 205, 170));
+                    updateButton.setBounds(424, 362, 79, 23);
                     updateButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         submiEditAct(e);
@@ -98,8 +99,8 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JButton deleteButton = new JButton("\uC0AD \uC81C");
-                    deleteButton.setBounds(644, 403, 79, 23);
-                    deleteButton.setBackground(new Color(255, 99, 71));
+                    deleteButton.setVisible(false);
+                    deleteButton.setBounds(735, 358, 79, 23);
                     deleteButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         deleteOrg(e);
@@ -107,7 +108,7 @@ public class OrgManagerFrm extends JFrame {
                     });
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC0C1\uC704\uC870\uC9C1:");
-                    lblNewLabel_3.setBounds(27, 407, 63, 15);
+                    lblNewLabel_3.setBounds(25, 366, 63, 15);
                     
                     JLabel lblNewLabel_4 = new JLabel("대학/대학원:");
                     lblNewLabel_4.setBounds(331, 28, 83, 15);
@@ -118,7 +119,6 @@ public class OrgManagerFrm extends JFrame {
                     
                     JButton searchButton = new JButton("\uAC80 \uC0C9");
                     searchButton.setBounds(760, 24, 63, 23);
-                    searchButton.setBackground(new Color(224, 255, 255));
                     searchButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         Org org=new Org();
@@ -175,7 +175,7 @@ public class OrgManagerFrm extends JFrame {
                     comboBox_gdm.setModel(new DefaultComboBoxModel(new String[] {"", "학부", "학과", "전공"}));
                     
                     textField_editPar = new JTextField();
-                    textField_editPar.setBounds(99, 404, 171, 21);
+                    textField_editPar.setBounds(96, 363, 171, 21);
                     textField_editPar.setColumns(10);
                     
                     JButton btnNewButton = new JButton("조회");
@@ -191,9 +191,10 @@ public class OrgManagerFrm extends JFrame {
                                         textField_editPar.setText(addSearchOrg());
                               }
                     });
-                    btnNewButton.setBounds(280, 403, 67, 23);
+                    btnNewButton.setBounds(279, 362, 67, 23);
                     
                     table = new JTable();
+                    table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
                     table.addMouseListener(new MouseAdapter() {
                               @Override
                               public void mouseClicked(MouseEvent e) {
@@ -252,8 +253,7 @@ public class OrgManagerFrm extends JFrame {
                                         dispose();
                               }
                     });
-                    button.setBackground(new Color(240, 255, 255));
-                    button.setBounds(735, 403, 79, 23);
+                    button.setBounds(570, 362, 79, 23);
                     contentPane.add(button);
                     
                     setTable(new Org());

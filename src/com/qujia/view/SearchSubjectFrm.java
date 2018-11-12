@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -126,7 +125,6 @@ public class SearchSubjectFrm extends JDialog {
                                         submitAction(e);
                               }
                     });
-                    updateButton.setBackground(new Color(176, 224, 230));
                     updateButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JButton deleteButton = new JButton("취소");
@@ -138,7 +136,6 @@ public class SearchSubjectFrm extends JDialog {
                                         dispose();
                               }
                     });
-                    deleteButton.setBackground(new Color(255, 127, 80));
                     deleteButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JLabel lblNewLabel = new JLabel("소속조직:");

@@ -22,6 +22,7 @@ import com.qujia.model.Admin;
 import com.qujia.model.ProStaff;
 import com.qujia.model.Student;
 import com.qujia.util.StringUtil;
+import com.qujia.util.ViewUtil;
 
 public class EditPasswordFrm extends JFrame {
 
@@ -63,14 +64,17 @@ public class EditPasswordFrm extends JFrame {
                     setContentPane(contentPane);
 //                    setClosable(true);
 //                    setIconifiable(true);
+                    ViewUtil vu = new ViewUtil();
+                    vu.showCenter(this);
+                    
                     JLabel oldPasswordLabel = new JLabel("현재 비밀번호:");
                     oldPasswordLabel.setBounds(58, 60, 119, 19);
-                    oldPasswordLabel.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/password.png")));
+                    oldPasswordLabel.setIcon(null);
                     oldPasswordLabel.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     JLabel newPasswordLable = new JLabel("새   비밀번호:");
                     newPasswordLable.setBounds(58, 108, 119, 19);
-                    newPasswordLable.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/editPassword.png")));
+                    newPasswordLable.setIcon(null);
                     newPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     oldPasswordTextField = new JPasswordField();
@@ -146,7 +150,7 @@ public class EditPasswordFrm extends JFrame {
                     
                     JLabel confirmPasswordLable = new JLabel("비밀번호확인:");
                     confirmPasswordLable.setBounds(58, 157, 125, 19);
-                    confirmPasswordLable.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/editPassword.png")));
+                    confirmPasswordLable.setIcon(null);
                     confirmPasswordLable.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
                     confirmPasswordTextField = new JPasswordField();
@@ -197,10 +201,10 @@ public class EditPasswordFrm extends JFrame {
                     resetButton.setIcon(null);
                     resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
                     
-                    JLabel currentUserLabel_1 = new JLabel("사 용 자:");
-                    currentUserLabel_1.setBounds(58, 15, 119, 19);
+                    JLabel currentUserLabel_1 = new JLabel("사    용    자:");
+                    currentUserLabel_1.setBounds(58, 15, 101, 19);
                     currentUserLabel_1.setFont(new Font("NanumMyeongjo", Font.BOLD, 13));
-                    currentUserLabel_1.setIcon(new ImageIcon(EditPasswordFrm.class.getResource("/images/studentManager.png")));
+                    currentUserLabel_1.setIcon(null);
                     
                     currentUserLabel = new JLabel("김진수");
                     currentUserLabel.setBounds(201, 15, 124, 19);

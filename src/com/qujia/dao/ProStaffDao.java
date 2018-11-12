@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qujia.model.ProStaff;
+import com.qujia.util.DateUtil;
 import com.qujia.util.StringUtil;
 
 public class ProStaffDao extends BaseDao {
@@ -29,7 +30,7 @@ public class ProStaffDao extends BaseDao {
                 	  psRst.setPeName(rs.getString("pename"));
                 	  psRst.setProType(rs.getString("pro_type"));
                 	  psRst.setPerType(rs.getString("per_type"));
-                	  psRst.setTeaType(rs.getString("tea_type"));
+//                	  psRst.setTeaType(rs.getString("tea_type"));
                 	  psRst.setSex(rs.getString("sex"));
                 	  psRst.setIdCardNo(rs.getString("id_card_no"));
                 	  psRst.setOrgId(rs.getString("orgid"));
@@ -50,7 +51,7 @@ public class ProStaffDao extends BaseDao {
 }
 	//add ProStaff
 	public boolean addProStaff(ProStaff ps){
-        String sql="insert into pro_staff values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="insert into pro_staff values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
                   PreparedStatement prst=con.prepareStatement(sql);
                   prst.setString(1, ps.getpNo());
@@ -58,20 +59,19 @@ public class ProStaffDao extends BaseDao {
                   prst.setString(3, ps.getPeName());
                   prst.setString(4, ps.getProType());
                   prst.setString(5, ps.getPerType());
-                  prst.setString(6, ps.getTeaType());
-                  prst.setString(7, ps.getSex());
-                  prst.setString(8, ps.getIdCardNo());
-                  prst.setString(9, ps.getOrgId());
-                  prst.setString(10, ps.getAddress());
-                  prst.setString(11, ps.getTel());
-                  prst.setString(12, ps.getEmail());
-                  prst.setString(13, ps.getLoginDate());
-                  prst.setString(14, ps.getPassword());
-                  prst.setString(15, ps.getSupId());
-                  prst.setString(16,ps.getOrgName());
+//                  prst.setString(6, ps.getTeaType());
+                  prst.setString(6, ps.getSex());
+                  prst.setString(7, ps.getIdCardNo());
+                  prst.setString(8, ps.getOrgId());
+                  prst.setString(9, ps.getAddress());
+                  prst.setString(10, ps.getTel());
+                  prst.setString(11, ps.getEmail());
+                  prst.setString(12, ps.getLoginDate());
+                  prst.setString(13, ps.getPassword());
+                  prst.setString(14, ps.getSupId());
+                  prst.setString(15,ps.getOrgName());
                   if(prst.executeUpdate()>0) return true;
         } catch (SQLException e) {
-                  // TODO Auto-generated catch block
                   e.printStackTrace();
         }
         return false;
@@ -106,7 +106,7 @@ public class ProStaffDao extends BaseDao {
 	         			 psDate.setPeName(e.getString("pename"));
 	         			 psDate.setProType(e.getString("pro_type"));
 	         			 psDate.setPerType(e.getString("per_type"));
-	         			 psDate.setTeaType(e.getString("tea_type"));
+//	         			 psDate.setTeaType(e.getString("tea_type"));
 	         			 psDate.setSex(e.getString("sex"));
 	         			 psDate.setIdCardNo(e.getString("id_card_no"));
 	         			 psDate.setOrgId(e.getString("orgid"));
@@ -126,19 +126,49 @@ public class ProStaffDao extends BaseDao {
         
         return retList;
 	}
+	//getHistory
+	public List<ProStaff> getProHistory(ProStaff ps){
+	          List<ProStaff> retList=new ArrayList<ProStaff>();
+	          StringBuffer sqlString=new StringBuffer("select * from pro_history where pro_id like '%"+ps.getpNo()+"%' order by up_date");
+//	          if(!StringUtil.isEmpty(ps.getpNo())){
+//	                    sqlString.append(" and pro_id like '%"+ps.getpNo()+"%'");
+//	          }
+	          try {
+	                    PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
+	                    //preparedStatement.setString(1, "%"+Student.getName()+"%");
+	                    ResultSet e = prst.executeQuery();
+	                    while(e.next()){
+	                        ProStaff psDate =new ProStaff();
+	                           psDate.setId(e.getInt("id"));
+	                           psDate.setpNo(e.getString("pro_id"));
+	                           psDate.setpName(e.getString("pname"));
+	                           psDate.setProType(e.getString("pro_type"));
+	                           psDate.setPerType(e.getString("per_type"));
+	                           psDate.setOrgName(e.getString("dept_name"));
+	                           psDate.setSupName(e.getString("sup_pro"));
+	                           psDate.setLoginDate(e.getString("up_date"));
+	                        retList.add(psDate);
+	                    }
+	          } catch (SQLException e) {
+	                    // TODO Auto-generated catch block
+	                    e.printStackTrace();
+	          }
+	          
+	          return retList;
+	      }
 	 //update ProStaff
     public boolean updateProStaff(ProStaff ps){
 //              String sql="update pro_staff set pname = ? , pename=?,pro_type=?,per_type=?,"
 //                                  + "tea_type=?,sex=?,orgid=?,address=?,tel=?,email=?,sup_id=?  where pno=?";
-              String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=?,orgname=? where pno=?";
+              String sql="update pro_staff set per_type=?,orgid=?,sup_id=?,orgname=? where pno=?";
               try {
                       PreparedStatement prst=con.prepareStatement(sql);
                       prst.setString(1, ps.getPerType());
-                      prst.setString(2, ps.getTeaType());
-                      prst.setString(3, ps.getOrgId());
-                      prst.setString(4, ps.getSupId());
-                      prst.setString(5,ps.getOrgName());
-                      prst.setString(6, ps.getpNo());
+//                      prst.setString(2, ps.getTeaType());
+                      prst.setString(2, ps.getOrgId());
+                      prst.setString(3, ps.getSupId());
+                      prst.setString(4,ps.getOrgName());
+                      prst.setString(5, ps.getpNo());
                       if(prst.executeUpdate()>0){ 
                                 return true;
                       }
@@ -256,7 +286,7 @@ public class ProStaffDao extends BaseDao {
                       psData.setpNo(e.getString("pno"));
                       psData.setpName(e.getString("pname"));
                       psData.setPerType(e.getString("per_type"));
-                      psData.setTeaType(e.getString("tea_type"));
+//                      psData.setTeaType(e.getString("tea_type"));
                       psData.setSex(e.getString("sex"));
                       psData.setOrgId(e.getString("orgid"));
                       psData.setOrgName(e.getString("orgname"));
@@ -367,5 +397,22 @@ public class ProStaffDao extends BaseDao {
                     return false;
           }
           //String sql="update pro_staff set per_type=?,tea_type=?,orgid=?,sup_id=?,orgname=? where pno=?";
+          public boolean insertHistory(ProStaff ps) {
+                    String sql="insert into pro_history values(pro_his_seq.nextval,?,?,?,?,?,?,?)";
+                    try {
+                              PreparedStatement prst=con.prepareStatement(sql);
+                              prst.setString(1, ps.getpNo());
+                              prst.setString(2, ps.getpName());
+                              prst.setString(3, ps.getProType());
+                              prst.setString(4, ps.getPerType());
+                              prst.setString(5,ps.getOrgName());
+                              prst.setString(6, ps.getSupName());
+                              prst.setString(7, DateUtil.getTodayDateTime());
+                              if(prst.executeUpdate()>0) return true;
+                    } catch (SQLException e) {
+                              e.printStackTrace();
+                    }
+                    return false;
+          }
         
 }

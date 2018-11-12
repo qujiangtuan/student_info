@@ -3,7 +3,6 @@ package com.qujia.view;
  * 수강신청
  */
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,7 +71,27 @@ public class ScoreShowToStudentFrm extends JFrame {
           private JLabel label;
           private JLabel label_dept;
           private String orgid;
+          private static String subName;
+          private static String proName;
           
+          
+          
+          public static String getSubName() {
+                    return subName;
+          }
+
+          public static void setSubName(String subName) {
+                    ScoreShowToStudentFrm.subName = subName;
+          }
+
+          public static String getProName() {
+                    return proName;
+          }
+
+          public static void setProName(String proName) {
+                    ScoreShowToStudentFrm.proName = proName;
+          }
+
           public static String getCouNo() {
                     return couNo;
           }
@@ -142,7 +161,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     panel_three.setLayout(card);
                     
                     panel_c_1 = new JPanel();
-                    panel_c_1.setBackground(new Color(0, 255, 255));
                     panel_three.add(panel_c_1, "panel_c_1");
                     
                     JScrollPane scrollPane_1 = new JScrollPane();
@@ -167,6 +185,9 @@ public class ScoreShowToStudentFrm extends JFrame {
                               @Override
                               public void mouseClicked(MouseEvent arg0) {
                                         index=table_scoreAll.getSelectedRow();
+                                       
+                                        subName=dft_scoreAll.getValueAt(index, 3).toString();
+                                        proName = dft_scoreAll.getValueAt(index, 5).toString();
                               }
                     });
                     table_scoreAll.setRowHeight(25);
@@ -195,7 +216,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     panel_c_1.setLayout(gl_panel_c_1);
                     
                     panel_c_2 = new JPanel();
-                    panel_c_2.setBackground(new Color(173, 255, 47));
                     panel_three.add(panel_c_2, "panel_c_2");
                     
                     JLabel lblNewLabel = new JLabel("\uD559\uAE30\uBCC4 \uC131\uC801\uB204\uACC4");
@@ -244,7 +264,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     panel_c_2.setLayout(gl_panel_c_2);
                     
                     JPanel panel_c_3 = new JPanel();
-                    panel_c_3.setBackground(new Color(230, 230, 250));
                     panel_three.add(panel_c_3, "panel_c_3");
                     
                     JScrollPane scrollPane_3 = new JScrollPane();
@@ -373,7 +392,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     
                     JButton all_Button = new JButton("\uC804\uC81C\uACFC\uBAA9\uC131\uC801");
                     all_Button.setBounds(18, 58, 130, 23);
-                    all_Button.setBackground(new Color(0, 255, 255));
                     all_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent arg0) {
                                         search_Button.setVisible(true);
@@ -395,7 +413,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                     
                     JButton term_Button = new JButton("\uB204\uACC4\uC131\uC801");
                     term_Button.setBounds(166, 58, 87, 23);
-                    term_Button.setBackground(new Color(173, 255, 47));
                     term_Button.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         search_Button.setVisible(false);
@@ -476,7 +493,6 @@ public class ScoreShowToStudentFrm extends JFrame {
                                         setTable_credit(yds);
                               }
                     });
-                    creditButton.setBackground(new Color(230, 230, 250));
                     contentPane.setLayout(null);
                     contentPane.add(panel_three);
                     contentPane.add(panel_two);

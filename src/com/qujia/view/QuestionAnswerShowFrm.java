@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -77,7 +76,7 @@ public class QuestionAnswerShowFrm extends JFrame {
 		panel_manager = new JPanel();
 		panel_manager.setBounds(5, 132, 785, 396);
 		panel_manager.setBorder(BorderFactory.createTitledBorder("답안보기관리"));
-		panel_manager.setBackground(new Color(240, 255, 240));
+//		panel_manager.setBackground(new Color(240, 255, 240));
 		
 		JLabel lblNewLabel_2 = new JLabel("\uD3C9\uAC00\uC9C8\uBB38\uB0B4\uC6A9:");
 		lblNewLabel_2.setBounds(30, 28, 111, 15);
@@ -164,7 +163,6 @@ public class QuestionAnswerShowFrm extends JFrame {
 		          }
 		});
 		btnNewButton.setBounds(686, 33, 69, 44);
-		btnNewButton.setBackground(new Color(176, 224, 230));
 		
 		textField_addQue = new JTextField();
 		textField_addQue.setEditable(false);

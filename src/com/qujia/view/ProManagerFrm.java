@@ -1,6 +1,5 @@
 package com.qujia.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -32,7 +31,6 @@ import com.qujia.dao.OrgDao;
 import com.qujia.dao.ProStaffDao;
 import com.qujia.model.Org;
 import com.qujia.model.ProStaff;
-import com.qujia.util.StringUtil;
 import com.qujia.util.ViewUtil;
 
 public class ProManagerFrm extends JFrame {
@@ -46,7 +44,7 @@ public class ProManagerFrm extends JFrame {
           private List<Org> orgList;
           private List<ProStaff> psList;
           private JComboBox comboBox_editperType;
-          private  JComboBox comboBox_eidtteaType,comboBox_proType;
+          private  JComboBox comboBox_proType;
           private ButtonGroup bgroup1,bgroup2;
           private String proTypeList[],perTypeList1[],perTypeList2[],teaTypeList[];
           private JCheckBox checkBox_searchOrg;
@@ -60,7 +58,27 @@ public class ProManagerFrm extends JFrame {
           private static String superName;
           private JTextField textField_orgName;
           private JButton button;
+          private static  int row=-1;
+          private static String proId;
+          private static String proName;
           
+          
+          public static String getProId() {
+                    return proId;
+          }
+
+          public static void setProId(String proId) {
+                    ProManagerFrm.proId = proId;
+          }
+
+          public static String getProName() {
+                    return proName;
+          }
+
+          public static void setProName(String proName) {
+                    ProManagerFrm.proName = proName;
+          }
+
           public static String getOrgName() {
                     return orgName;
           }
@@ -103,29 +121,30 @@ public class ProManagerFrm extends JFrame {
                     
                     proTypeList=new String[] {"", "교원", "직원"};
                     
-                    label_per = new JLabel("\uAD50\uC6D0\uAD6C\uBD84:");
+                    label_per = new JLabel("직위:");
                     label_per.setBounds(18, 413, 63, 15);
                     
                     comboBox_editperType = new JComboBox();
                     comboBox_editperType.setBounds(91, 410, 164, 21);
-                    comboBox_editperType.addItemListener(new ItemListener() {
-                    	public void itemStateChanged(ItemEvent ie) {
-                    		if(ie.getStateChange()==ItemEvent.SELECTED) {
-                    			String selectText=comboBox_editperType.getSelectedItem().toString();
-                    			if("전임교수".equals(selectText)) {
-                    				comboBox_eidtteaType.setEnabled(true);
-                    			}else {
-                    				comboBox_eidtteaType.setEnabled(false);
-                    				comboBox_eidtteaType.setSelectedIndex(0);
-                    			}
-                    		}
-                    	}
-                    });
-                    perTypeList1=new String[] {"", "전임교수", "겸임교수", "시간강사"};
+//                    comboBox_editperType.addItemListener(new ItemListener() {
+//                    	public void itemStateChanged(ItemEvent ie) {
+//                    		if(ie.getStateChange()==ItemEvent.SELECTED) {
+//                    			String selectText=comboBox_editperType.getSelectedItem().toString();
+//                    			if("전임교수".equals(selectText)) {
+//                    				comboBox_eidtteaType.setEnabled(true);
+//                    			}else {
+//                    				comboBox_eidtteaType.setEnabled(false);
+//                    				comboBox_eidtteaType.setSelectedIndex(0);
+//                    			}
+//                    		}
+//                    	}
+//                    });
+                    perTypeList1=new String[] {"", "정교수", "부교수", "조교수", "전임강사", "겸임교수", "시간강사"};
                     perTypeList2=new String[] {"", "부장", "차장", "대리", "사원"};
                     comboBox_editperType.setModel(new DefaultComboBoxModel(perTypeList1));
                     
                     JLabel lblNewLabel_5 = new JLabel("소속조직:");
+                    lblNewLabel_5.setVisible(false);
                     lblNewLabel_5.setBounds(18, 372, 63, 15);
                     
                     JLabel lblNewLabel_10 = new JLabel("교직원이름:");
@@ -156,22 +175,21 @@ public class ProManagerFrm extends JFrame {
                     });
                     
                     JButton btnNewButton_1 = new JButton("\uC218  \uC815");
-                    btnNewButton_1.setBounds(586, 450, 69, 23);
+                    btnNewButton_1.setBounds(267, 473, 69, 23);
                     btnNewButton_1.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		updateProAction(ae);
                     	}
                     });
-                    btnNewButton_1.setBackground(new Color(176, 224, 230));
                     
                     JButton btnNewButton_2 = new JButton("사  직");
-                    btnNewButton_2.setBounds(667, 450, 69, 23);
+                    btnNewButton_2.setVisible(false);
+                    btnNewButton_2.setBounds(803, 368, 69, 23);
                     btnNewButton_2.addActionListener(new ActionListener() {
                     	public void actionPerformed(ActionEvent ae) {
                     		deleteProStaffAction(ae);
                     	}
                     });
-                    btnNewButton_2.setBackground(new Color(255, 105, 180));
                     
                     radioButtonName = new JRadioButton("");
                     radioButtonName.setBounds(18, 19, 21, 19);
@@ -197,12 +215,8 @@ public class ProManagerFrm extends JFrame {
                     bgroup1.add(radioButtonName);
                     
                     JLabel lblNewLabel_12 = new JLabel("직속상사:");
-                    lblNewLabel_12.setBounds(18, 454, 63, 15);
-                   
-                    comboBox_eidtteaType = new JComboBox();
-                    comboBox_eidtteaType.setBounds(261, 410, 179, 21);
+                    lblNewLabel_12.setBounds(288, 413, 63, 15);
                     teaTypeList=new String[] {"", "정교수", "부교수", "조교수", "전임강사"};
-                    comboBox_eidtteaType.setModel(new DefaultComboBoxModel(teaTypeList));
                     
                     JLabel lblNewLabel_13 = new JLabel("교직원구분:");
                     lblNewLabel_13.setFont(new Font("Dialog", Font.BOLD, 12));
@@ -231,12 +245,14 @@ public class ProManagerFrm extends JFrame {
                     });
                     
                     textField_editOrgName = new JTextField();
+                    textField_editOrgName.setVisible(false);
                     textField_editOrgName.setEditable(false);
-                    textField_editOrgName.setBounds(91, 369, 267, 21);
+                    textField_editOrgName.setBounds(91, 369, 164, 21);
                     textField_editOrgName.setColumns(10);
                     
                     btnNewButton = new JButton("조회");
-                    btnNewButton.setBounds(368, 368, 73, 23);
+                    btnNewButton.setVisible(false);
+                    btnNewButton.setBounds(267, 368, 73, 23);
                     btnNewButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         SearchOrgForProFrm sdf=new SearchOrgForProFrm(new JFrame());
@@ -247,11 +263,11 @@ public class ProManagerFrm extends JFrame {
                     
                     textField_sup2 = new JTextField();
                     textField_sup2.setEditable(false);
-                    textField_sup2.setBounds(91, 451, 267, 21);
+                    textField_sup2.setBounds(362, 410, 164, 21);
                     textField_sup2.setColumns(10);
                     
                     button_searchSup = new JButton("조회");
-                    button_searchSup.setBounds(368, 450, 73, 23);
+                    button_searchSup.setBounds(544, 409, 73, 23);
                     button_searchSup.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         SearchSuperiorFrm ssf=new SearchSuperiorFrm(new JFrame());
@@ -270,15 +286,15 @@ public class ProManagerFrm extends JFrame {
                     table.setRowHeight(25);
                     table.setModel(new DefaultTableModel(
                               new Object[][] {
-                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                                        {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
                               },
                               new String[] {
-                                        "\uAD50\uC9C1\uC6D0\uBC88\uD638", "\uAD50\uC9C1\uC6D0\uBA85", "\uC601\uC5B4\uBA85", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uAD50\uC6D0\uAD6C\uBD84", "\uC804\uC784\uAD50\uC218\uAD6C\uBD84", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18C\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC5F0\uB77D\uCC98", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC790", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
+                                        "\uAD50\uC9C1\uC6D0\uBC88\uD638", "\uAD50\uC9C1\uC6D0\uBA85", "\uC601\uC5B4\uBA85", "\uAD50\uC9C1\uC6D0\uAD6C\uBD84", "\uC9C1\uC704", "\uC131\uBCC4", "\uC8FC\uBBFC\uB4F1\uB85D\uBC88\uD638", "\uC18C\uC18D\uD559\uACFC", "\uC8FC\uC18C", "\uC5F0\uB77D\uCC98", "\uC774\uBA54\uC77C", "\uB4F1\uB85D\uC77C\uC790", "\uBE44\uBC00\uBC88\uD638", "\uC9C1\uC18D\uC0C1\uC0AC"
                               }
                     ) {
                               boolean[] columnEditables = new boolean[] {
-                                        false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                                        false, false, false, false, false, false, false, false, false, false, false, false, false, false
                               };
                               public boolean isCellEditable(int row, int column) {
                                         return columnEditables[column];
@@ -288,13 +304,12 @@ public class ProManagerFrm extends JFrame {
                     table.getColumnModel().getColumn(2).setPreferredWidth(88);
                     table.getColumnModel().getColumn(3).setPreferredWidth(84);
                     table.getColumnModel().getColumn(4).setPreferredWidth(88);
-                    table.getColumnModel().getColumn(5).setPreferredWidth(83);
-                    table.getColumnModel().getColumn(6).setPreferredWidth(43);
-                    table.getColumnModel().getColumn(7).setPreferredWidth(114);
-                    table.getColumnModel().getColumn(8).setPreferredWidth(126);
-                    table.getColumnModel().getColumn(9).setPreferredWidth(137);
-                    table.getColumnModel().getColumn(10).setPreferredWidth(105);
-                    table.getColumnModel().getColumn(11).setPreferredWidth(146);
+                    table.getColumnModel().getColumn(5).setPreferredWidth(43);
+                    table.getColumnModel().getColumn(6).setPreferredWidth(114);
+                    table.getColumnModel().getColumn(7).setPreferredWidth(126);
+                    table.getColumnModel().getColumn(8).setPreferredWidth(137);
+                    table.getColumnModel().getColumn(9).setPreferredWidth(105);
+                    table.getColumnModel().getColumn(10).setPreferredWidth(146);
                     table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                     scrollPane.setViewportView(table);
                     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -304,7 +319,6 @@ public class ProManagerFrm extends JFrame {
                     contentPane.add(btnNewButton);
                     contentPane.add(label_per);
                     contentPane.add(comboBox_editperType);
-                    contentPane.add(comboBox_eidtteaType);
                     contentPane.add(lblNewLabel_12);
                     contentPane.add(textField_sup2);
                     contentPane.add(button_searchSup);
@@ -330,9 +344,27 @@ public class ProManagerFrm extends JFrame {
                     textField_orgName.setColumns(10);
                     
                     button = new JButton("닫기");
-                    button.setBackground(new Color(224, 255, 255));
-                    button.setBounds(748, 450, 69, 23);
+                    button.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                              }
+                    });
+                    button.setBounds(593, 473, 69, 23);
                     contentPane.add(button);
+                    
+                    JButton button_1 = new JButton("이력관리");
+                    button_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        if(row==-1){
+                                                  JOptionPane.showMessageDialog(null, "수정할 행을 선택해주세요!");
+                                                  return;
+                                        }
+                                        UpHistoryProManagerFrm uh=new UpHistoryProManagerFrm();
+                                        uh.setVisible(true);
+                              }
+                    });
+                    button_1.setBounds(417, 473, 95, 23);
+                    contentPane.add(button_1);
                     //这两条是显示横滚动条
 //                    table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
 //                    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -374,24 +406,26 @@ public class ProManagerFrm extends JFrame {
 
 		//update Pro 교직원 수정 submit 
           protected void updateProAction(ActionEvent ae) {
-        	  int row=table.getSelectedRow();
+        	  
               if(row==-1){
                         JOptionPane.showMessageDialog(this, "수정할 행을 선택해주세요!");
                         return;
               }
               DefaultTableModel   dft = (DefaultTableModel) table.getModel();
-              String proId =dft.getValueAt(row, 0).toString();
+              
               String proType=dft.getValueAt(row, 3).toString();
               String perType=comboBox_editperType.getSelectedItem().toString();
-              String teaType=comboBox_eidtteaType.getSelectedItem().toString();
+//              String teaType=comboBox_eidtteaType.getSelectedItem().toString();
               
               orgName=textField_editOrgName.getText().toString();
               orgId=this.getOrgidByOrgName(orgName);
 //              orgId = SearchOrgFrm.getOrdId();
               ProStaff ps=new ProStaff();
               ps.setpNo(proId);
+              ps.setpName(proName);
+              ps.setProType(proType);
               ps.setPerType(perType);
-              ps.setTeaType(teaType);
+//              ps.setTeaType(teaType);
               ps.setOrgId(orgId);
               ps.setOrgName(orgName);
               ProStaff ps1,ps2;
@@ -407,12 +441,12 @@ public class ProManagerFrm extends JFrame {
 				}
             	  ps.setSupId(superior2);
               }
-          
+           ps.setSupName(superName);
              ProStaffDao psDao=new ProStaffDao();
              int showConfirmDialog = JOptionPane.showConfirmDialog(null, "수정 하시겠습니까?", " WarningDialog!", 
                                  JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
              if(showConfirmDialog==JOptionPane.YES_OPTION){
-                       if(psDao.updateProStaff(ps)) {
+                       if(psDao.updateProStaff(ps)&&psDao.insertHistory(ps)) {
                                  JOptionPane.showMessageDialog(this, "수정 성공했습니다.");
                              }else {
                                  JOptionPane.showMessageDialog(this, "수정 실패했습니다");
@@ -428,7 +462,12 @@ public class ProManagerFrm extends JFrame {
 
 		//select a row of table
           protected void selectedTableRow(MouseEvent me) {
-        	  DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                    DefaultTableModel   dft = (DefaultTableModel) table.getModel();
+                 row=table.getSelectedRow();
+                 
+                 proId =dft.getValueAt(row, 0).toString();
+                 proName=dft.getValueAt(row, 1).toString();
+        	  
            //edit 교원/직원
           	String proType;
           	proType=dft.getValueAt(table.getSelectedRow(), 3).toString();
@@ -436,7 +475,7 @@ public class ProManagerFrm extends JFrame {
           	String perType=dft.getValueAt(table.getSelectedRow(), 4).toString();//교원
           	String supName;
           	try {
-          		supName=dft.getValueAt(table.getSelectedRow(), 14).toString();//직속상사 id
+          		supName=dft.getValueAt(table.getSelectedRow(), 13).toString();//직속상사 id
 			} catch (Exception e) {
 			    supName=null;
 			}
@@ -478,7 +517,7 @@ public class ProManagerFrm extends JFrame {
 //          			try {
 //          				ProStaff psPro=(ProStaff) comboBox_sup2.getItemAt(i);
 //					} catch (Exception e) {
-//						textField_sup2.sett
+//						
 //					}
 //                }
 //          		comboBox_sup1.setEnabled(false);//직소상사 
@@ -491,23 +530,23 @@ public class ProManagerFrm extends JFrame {
           	
           	
           	//전임교수 부분:정교수/부교수.... 수정
-          	String teaType;
-          	try {
-          		teaType=dft.getValueAt(table.getSelectedRow(), 5).toString();
-          		for(int i=0;i<comboBox_eidtteaType.getItemCount();i++){
-                    if(teaType.equals(teaTypeList[i])&&!StringUtil.isEmpty(teaType)){
-                    	comboBox_eidtteaType.setSelectedIndex(i);
-                    }
-                }
-			} catch (Exception e) {
-				teaType=null;
-				comboBox_eidtteaType.setSelectedIndex(0);
-			}
+//          	String teaType;
+//          	try {
+//          		teaType=dft.getValueAt(table.getSelectedRow(), 5).toString();
+//          		for(int i=0;i<comboBox_eidtteaType.getItemCount();i++){
+//                    if(teaType.equals(teaTypeList[i])&&!StringUtil.isEmpty(teaType)){
+//                    	comboBox_eidtteaType.setSelectedIndex(i);
+//                    }
+//                }
+//			} catch (Exception e) {
+//				teaType=null;
+//				comboBox_eidtteaType.setSelectedIndex(0);
+//			}
           	//성별 수정
           	String sex=dft.getValueAt(table.getSelectedRow(), 6).toString();
           	bgroup2.clearSelection();
             //소속조직
-            orgName=dft.getValueAt(table.getSelectedRow(), 8).toString();
+            orgName=dft.getValueAt(table.getSelectedRow(), 7).toString();
             textField_editOrgName.setText(orgName);
 		}
 		//교직원 검색
@@ -528,15 +567,16 @@ public class ProManagerFrm extends JFrame {
                     ps.setOrgName(orgName);
                     ps.setProType(comboBox_proType.getSelectedItem().toString());
                     
-                    int row=table.getSelectedRow();
+//                    int row=table.getSelectedRow();
                     if(row==-1){
                               restvalues();
                     }
                     setTable(ps);
+                    row=-1;
           }
         private void restvalues() {
         	comboBox_editperType.setSelectedIndex(0);
-        	comboBox_eidtteaType.setSelectedIndex(0);
+//        	comboBox_eidtteaType.setSelectedIndex(0);
         	bgroup2.clearSelection();
         	textField_editOrgName.setText("");
         	textField_sup2.setText("");
@@ -555,7 +595,7 @@ public class ProManagerFrm extends JFrame {
                              v.add(pslist.getPeName());
                              v.add(pslist.getProType());
                              v.add(pslist.getPerType());
-                             v.add(pslist.getTeaType());
+//                             v.add(pslist.getTeaType());
                              v.add(pslist.getSex());
                              v.add(pslist.getIdCardNo());
                              v.add(this.getOrgNameById(pslist.getOrgId()));

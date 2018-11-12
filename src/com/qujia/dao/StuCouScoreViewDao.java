@@ -59,6 +59,5 @@ public class StuCouScoreViewDao extends BaseDao {
                     return counts+"";
           }
 
-      
 
 }

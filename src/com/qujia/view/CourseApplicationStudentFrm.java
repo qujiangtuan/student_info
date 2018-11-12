@@ -80,6 +80,9 @@ public class CourseApplicationStudentFrm extends JFrame {
     private static String sno;//학생 학번
     private static int count;//현원
     private JButton btnNewButton_4;
+    private JLabel lblNewLabel;
+    private JLabel label_deptName;
+    private JButton searchButton;
     
     public static void main(String[] args) {
               EventQueue.invokeLater(new Runnable() {
@@ -121,14 +124,14 @@ public class CourseApplicationStudentFrm extends JFrame {
                     panel_one_button = new JPanel();
                     panel_one_button.setBounds(0, 4, 901, 38);
                     b_1 = new JButton("수강신청 목록");
+                    b_1.setVisible(false);
                     b_1.setBounds(12, 5, 150, 23);
-                    b_1.setBackground(new Color(255, 218, 185));
                     b_2 = new JButton("시간표");
+                    b_2.setVisible(false);//********************************************************************
                     b_2.setBounds(169, 5, 77, 23);
-                    b_2.setBackground(new Color(224, 255, 255));
                     b_3 = new JButton("수강신청확인서");
-                    b_3.setBounds(617, 5, 134, 23);
-                    b_3.setBackground(new Color(219, 112, 147));
+                    b_3.setVisible(false);//********************************************************************
+                    b_3.setBounds(742, 5, 134, 23);
                     b_1.addActionListener(new ActionListener() { // 直接翻转到p_1
                         public void actionPerformed(ActionEvent e) {
                                   card_per.show(panel_one, "p_1");
@@ -147,11 +150,11 @@ public class CourseApplicationStudentFrm extends JFrame {
                     });
                     
                     label_name = new JLabel("이름:");
-                    label_name.setBounds(308, 9, 40, 15);
+                    label_name.setBounds(270, 9, 40, 15);
                     
                     nameLabel = new JLabel("취지앙투안");
                     nameLabel.setText(stuTemp.getName());
-                    nameLabel.setBounds(348, 9, 106, 15);
+                    nameLabel.setBounds(308, 9, 106, 15);
                   
                    
                    panel_one = new JPanel(); // JPanel的布局管理将被设置成CardLayout
@@ -292,38 +295,59 @@ public class CourseApplicationStudentFrm extends JFrame {
                   panel_two_button = new JPanel();
                   panel_two_button.setBounds(0, 340, 901, 38);
                   
-                  button_no = new JButton("학수번호");
+                  button_no = new JButton("전체과목");
                   button_no.setBounds(10, 5, 98, 23);
-                  button_no.setBackground(new Color(230, 230, 250));
                   button_no.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
-                                      card_2.show(panel_two,"panel_1");
+//                                      card_2.show(panel_two,"panel_1");
+                                      setTable_1(new CourseApplyView());
+                                      index=-1;
+                                      label.setVisible(true);
+                                      textField_searchNC.setVisible(true);
+                                      searchButton.setVisible(true);
                             }
                   });
                   
                   button_self = new JButton("자과과목");
                   button_self.setBounds(120, 5, 99, 23);
-                  button_self.setBackground(new Color(189, 183, 107));
                   button_self.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
-//                                      card_2.show(panel_two, "panel_2");
+                                      CourseApplyView cav=new CourseApplyView();
+                                      String selfDept = label_deptName.getText().toString();
+                                      cav.setOrgName(selfDept);
+                                      setTable_1(cav);
+                                      index=-1;
+                                      label.setVisible(false);
+                                      textField_searchNC.setVisible(false);
+                                      searchButton.setVisible(false);
                             }
                   });
                   button_other = new JButton("타과과목");
+                  button_other.setVisible(false);
                   button_other.setBounds(340, 5, 98, 23);
-                  button_other.setBackground(new Color(102, 205, 170));
                   button_other.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
                                       card_2.show(panel_two,"panel_4");
+//                                      CourseApplyView cav=new CourseApplyView();
+//                                      String deptName =;
+//                                      cav.setLearnType(learn_type);
+//                                      setTable_1(cav);
                             }
                   });
                   
                   button_liberal = new JButton("교양과목");
                   button_liberal.setBounds(231, 5, 97, 23);
-                  button_liberal.setBackground(new Color(65, 105, 225));
                   button_liberal.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent e) {
-//                                      card_2.show(panel_two,"panel_3");
+                                      card_2.show(panel_two,"panel_3");
+                                      CourseApplyView cav=new CourseApplyView();
+                                      String learn_type ="교";
+                                      cav.setLearnType(learn_type);
+                                      setTable_1(cav);
+                                      index=-1;
+                                      label.setVisible(false);
+                                      textField_searchNC.setVisible(false);
+                                      searchButton.setVisible(false);
                             }
                   });
                  
@@ -334,7 +358,6 @@ public class CourseApplicationStudentFrm extends JFrame {
                                      applyCourseAction(ae);
                            }
                  });
-                 btnNewButton_2.setBackground(new Color(175, 238, 238));
                   
                   JPanel panel = new JPanel();
                   panel.setBounds(10, 418, 879, 233);
@@ -355,23 +378,23 @@ public class CourseApplicationStudentFrm extends JFrame {
                   table_1.setRowHeight(25);
                   table_1.setModel(new DefaultTableModel(
                             new Object[][] {
-                                      {null, null, null, null, null, null, null, null, null, null, null, null},
+                                      {null, null, null, null, null, null, null, null, null, null, null},
                             },
                             new String[] {
-                                      "\uC0C1\uD0DC", "\uACFC\uBAA9\uBA85", "\uD559\uC218\uBC88\uD638", "\uC218\uAC15\uB300\uC0C1(\uD559\uBD80/\uACFC)", "\uB300\uC0C1\uD559\uB144", "\uC774\uC218\uAD6C\uBD84 ", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC815\uC6D0", "\uD604\uC6D0 ", "\uBD84\uBC18", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
+                                      "\uACFC\uBAA9\uBA85", "\uD559\uC218\uBC88\uD638", "\uC218\uAC15\uB300\uC0C1(\uD559\uBD80/\uACFC)", "\uB300\uC0C1\uD559\uB144", "\uC774\uC218\uAD6C\uBD84 ", "\uD559\uC810", "\uB2F4\uB2F9\uAD50\uC218", "\uC815\uC6D0", "\uD604\uC6D0 ", "\uBD84\uBC18", "\uC2DC\uAC04/\uAC15\uC758\uC2E4"
                             }
                   ) {
                             boolean[] columnEditables = new boolean[] {
-                                      false, false, false, false, false, false, false, false, false, false, false, false
+                                      false, false, false, false, false, false, false, false, false, false, false
                             };
                             public boolean isCellEditable(int row, int column) {
                                       return columnEditables[column];
                             }
                   });
-                  table_1.getColumnModel().getColumn(1).setPreferredWidth(147);
-                  table_1.getColumnModel().getColumn(2).setPreferredWidth(80);
-                  table_1.getColumnModel().getColumn(3).setPreferredWidth(128);
-                  table_1.getColumnModel().getColumn(11).setPreferredWidth(308);
+                  table_1.getColumnModel().getColumn(0).setPreferredWidth(147);
+                  table_1.getColumnModel().getColumn(1).setPreferredWidth(80);
+                  table_1.getColumnModel().getColumn(2).setPreferredWidth(128);
+                  table_1.getColumnModel().getColumn(10).setPreferredWidth(308);
                   table_1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
                   
                   JLabel label_avg = new JLabel("직전학기평점평균:");
@@ -454,17 +477,17 @@ public class CourseApplicationStudentFrm extends JFrame {
                   textField_searchNC.setBounds(119, 8, 170, 21);
                   textField_searchNC.setColumns(10);
                   
-                  JButton btnNewButton = new JButton("조희");
-                  btnNewButton.addActionListener(new ActionListener() {
+                  searchButton = new JButton("조희");
+                  searchButton.addActionListener(new ActionListener() {
                             public void actionPerformed(ActionEvent ae) {
                                       searchCourseAction(ae);
                             }
                   });
-                  btnNewButton.setBounds(301, 7, 79, 23);
+                  searchButton.setBounds(301, 7, 79, 23);
                   panel_1.setLayout(null);
                   panel_1.add(label);
                   panel_1.add(textField_searchNC);
-                  panel_1.add(btnNewButton);
+                  panel_1.add(searchButton);
                   
                   panel_4 = new JPanel();
                   panel_4.setBackground(new Color(102, 205, 170));
@@ -523,6 +546,15 @@ public class CourseApplicationStudentFrm extends JFrame {
                   panel_one_button.add(label_name);
                   panel_one_button.add(nameLabel);
                   panel_one_button.add(b_3);
+                  
+                  lblNewLabel = new JLabel("소속학과:");
+                  lblNewLabel.setBounds(414, 9, 57, 15);
+                  panel_one_button.add(lblNewLabel);
+                  
+                  label_deptName = new JLabel("");
+                  label_deptName.setText(stuTemp.getDeptName());
+                  label_deptName.setBounds(476, 9, 129, 15);
+                  panel_one_button.add(label_deptName);
                   getContentPane().add(panel_one);
                   getContentPane().add(panel_show);
                   getContentPane().add(panel_two_button);
@@ -636,28 +668,28 @@ public class CourseApplicationStudentFrm extends JFrame {
                         return;
               }
               dft_1 = (DefaultTableModel) table_1.getModel();
-              int fixedNum = Integer.parseInt(dft_1.getValueAt(index, 8).toString());//정원
-              int currNum = Integer.parseInt(dft_1.getValueAt(index, 9).toString());//현원
+              int fixedNum = Integer.parseInt(dft_1.getValueAt(index, 7).toString());//정원
+              int currNum = Integer.parseInt(dft_1.getValueAt(index, 8).toString());//현원
               int credit1=Integer.parseInt(label_credit1.getText().toString());//신청가능학점
               int credit2=Integer.parseInt(label_credit2.getText().toString());//신청된 학점
              
-              String couNo = dft_1.getValueAt(index, 2).toString();
+              String couNo = dft_1.getValueAt(index, 1).toString();
               PerCourse pc=new PerCourse();
               pc.setYear(DateUtil.getThisYear());
               pc.setTerm(DateUtil.getTerm());
-              pc.setCouName(dft_1.getValueAt(index, 1).toString());
+              pc.setCouName(dft_1.getValueAt(index, 0).toString());
               pc.setCouNo(couNo);
-              pc.setCouDept(dft_1.getValueAt(index, 3).toString());
+              pc.setCouDept(dft_1.getValueAt(index, 2).toString());
               pc.setStuDept(dept);
-              pc.setLearnType(dft_1.getValueAt(index, 5).toString());
-              String proName=dft_1.getValueAt(index, 7).toString();
+              pc.setLearnType(dft_1.getValueAt(index, 4).toString());
+              String proName=dft_1.getValueAt(index, 6).toString();
               pc.setProName(proName);
               pc.setProId(this.getProNo(proName));
-              pc.setClassNo(dft_1.getValueAt(index, 10).toString());
+              pc.setClassNo(dft_1.getValueAt(index, 9).toString());
               //지금 신청할 이수학점 3점
-              int creditCurr = Integer.parseInt(dft_1.getValueAt(index, 6).toString());
+              int creditCurr = Integer.parseInt(dft_1.getValueAt(index, 5).toString());
               pc.setCreditType(creditCurr);
-              pc.setTtcr(dft_1.getValueAt(index, 11).toString());
+              pc.setTtcr(dft_1.getValueAt(index, 10).toString());
               pc.setSno(sno);
               pc.setsName(this.getStudentName(sno));
               PerCourseDao pcDao=new PerCourseDao();
@@ -762,7 +794,7 @@ public class CourseApplicationStudentFrm extends JFrame {
                List<CourseApplyView> cavList = cavDao.getCavList( courseApply);
                for(CourseApplyView cav : cavList){
                          Vector v=new Vector();
-                         v.add(null);
+//                         v.add(null);
                          v.add(cav.getCouName());
                          v.add(cav.getCouNo());
                          v.add(cav.getOrgName());
