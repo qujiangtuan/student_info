@@ -244,7 +244,7 @@ public class StudentManagerFrm extends JFrame {
                                       major2=null;
                             }
                             if(major2!=null){
-                                      JOptionPane.showMessageDialog(null, "추가전공를 할 수 있습니다!");
+                                      JOptionPane.showMessageDialog(null, "추가전공를 할 수 없습니다!");
                                       return;
                             }
                     		AddAppendMajorStudentFrm aam=new AddAppendMajorStudentFrm(new JFrame());

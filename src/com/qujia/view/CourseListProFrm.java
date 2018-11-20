@@ -206,10 +206,30 @@ public class CourseListProFrm extends JFrame {
                     btnNewButton_3.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
+                                       couName=null;
+                                       couno=null;
                               }
                     });
                     btnNewButton_3.setBounds(623, 272, 97, 23);
                     contentPane.add(btnNewButton_3);
+                    
+                    JButton btnNewButton_4 = new JButton("평가결과");
+                    btnNewButton_4.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent arg0) {
+                                        if(index==-1){
+                                                  JOptionPane.showMessageDialog(null, "강의를 선택해주세요!");
+                                                  return;
+                                        }
+                                        couno = dft.getValueAt(index, 0).toString();
+                                        couName=dft.getValueAt(index, 1).toString();
+//                                        ScoreShowForProFrm ssfp=new ScoreShowForProFrm();
+//                                        ssfp.setVisible(true);
+                                        EvaResultShowForProFrm eva=new EvaResultShowForProFrm();
+                                        eva.setVisible(true);
+                              }
+                    });
+                    btnNewButton_4.setBounds(15, 272, 97, 23);
+                    contentPane.add(btnNewButton_4);
                     
                     dft = (DefaultTableModel) table.getModel();
                     

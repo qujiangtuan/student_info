@@ -214,6 +214,12 @@ public class PerCourseDao extends BaseDao {
                     if(!StringUtil.isEmpty(pc.getStuDept())){
                               sqlString.append(" and stu_dept like '%"+pc.getStuDept()+"%'");
                     }
+                    if(!StringUtil.isEmpty(pc.getYear())){
+                              sqlString.append(" and year like '%"+pc.getYear()+"%'");
+                    }
+                    if(pc.getTerm()!=0){
+                              sqlString.append(" and term like '%"+pc.getTerm()+"%'");
+                    }
                     try {
                               PreparedStatement prst=con.prepareStatement(sqlString.toString().replaceFirst("and", "where"));
                               ResultSet e = prst.executeQuery();
@@ -236,7 +242,6 @@ public class PerCourseDao extends BaseDao {
                     } catch (SQLException e) {
                               e.printStackTrace();
                     }
-                    
                     return retList;
           }
 
@@ -443,15 +448,16 @@ public class PerCourseDao extends BaseDao {
           }
 
           public boolean updateProScore(PerCourse pc, double avg) {
-                   String sql="update per_course set pro_score=? where stu_no=? and year=? and term=? and cou_no=?";
+                   String sql="update per_course set pro_score=?,eva=?  where stu_no=? and year=? and term=? and cou_no=?";
                    PreparedStatement prst;
                    try {
                              prst=con.prepareStatement(sql);
                              prst.setDouble(1, avg);
-                             prst.setString(2,pc.getSno());
-                             prst.setString(3,pc.getYear());
-                             prst.setInt(4,pc.getTerm());
-                             prst.setString(5,pc.getCouNo());
+                             prst.setString(2,pc.getEva());
+                             prst.setString(3,pc.getSno());
+                             prst.setString(4,pc.getYear());
+                             prst.setInt(5,pc.getTerm());
+                             prst.setString(6,pc.getCouNo());
                              if(prst.executeUpdate()>0){
                                        return true;
                              }

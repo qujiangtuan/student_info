@@ -11,7 +11,16 @@ public class StuCouScoreView {
           private String couNo;
           private String grade;
           
+          private String eva;//주관식 강의평가
           
+          
+          
+          public String getEva() {
+                    return eva;
+          }
+          public void setEva(String eva) {
+                    this.eva = eva;
+          }
           public String getSno() {
                     return sno;
           }

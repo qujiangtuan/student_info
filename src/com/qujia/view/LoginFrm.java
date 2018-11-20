@@ -59,7 +59,7 @@ public class LoginFrm extends JFrame {
            */
           public LoginFrm() {
                     this.setResizable(false);
-                    setFont(new Font("나눔명조", Font.BOLD, 14));
+                    setFont(new Font("Dialog", Font.BOLD, 25));
                     setIconImage(Toolkit.getDefaultToolkit()
                                         .getImage(LoginFrm.class
                                                             .getResource("/images/student1.png")));
@@ -72,46 +72,44 @@ public class LoginFrm extends JFrame {
                     setContentPane(contentPane);
                     setLocationRelativeTo(null);
                     JLabel label = new JLabel("학사관리시스템");
-                    label.setBounds(161, 51, 169, 32);
+                    label.setBounds(144, 51, 254, 32);
                     label.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/student2.png")));
-                    label.setFont(new Font("NanumMyeongjo", Font.BOLD, 18));
+                    label.setFont(new Font("나눔명조 ExtraBold", Font.BOLD, 24));
 
-                    JLabel userNameLabel_1 = new JLabel(" 아 이 디：");
+                    JLabel userNameLabel_1 = new JLabel("아 이 디：");
                     userNameLabel_1.setBounds(110, 139, 103, 19);
                     userNameLabel_1.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/username.png")));
-                    userNameLabel_1.setFont(new Font("NanumMyeongjo",
-                                        Font.BOLD, 13));
+                    userNameLabel_1.setFont(new Font("나눔명조", Font.BOLD, 16));
 
                     userNameTextField = new JTextField();
                     userNameTextField.setBounds(243, 138, 155, 21);
                     userNameTextField.setColumns(10);
 
-                    JLabel passwordLabel = new JLabel("비밀번호：");
+                    JLabel passwordLabel = new JLabel("비밀번호:");
                     passwordLabel.setBounds(110, 178, 105, 19);
                     passwordLabel.setIcon(new ImageIcon(LoginFrm.class
                                         .getResource("/images/password.png")));
-                    passwordLabel.setFont(new Font("NanumMyeongjo", Font.BOLD,
-                                        13));
+                    passwordLabel.setFont(new Font("나눔명조", Font.BOLD, 16));
 
                     passwordTextField = new JPasswordField();
                     passwordTextField.setBounds(243, 177, 155, 21);
                     passwordTextField.setColumns(10);
 
-                    JButton loginButton = new JButton("    로그인");
-                    loginButton.setBounds(121, 267, 111, 29);
+                    JButton loginButton = new JButton("   로그인");
+                    loginButton.setBounds(110, 267, 122, 29);
                     loginButton.setHorizontalAlignment(SwingConstants.LEFT);
                     loginButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         loginAction(ae);
                               }
                     });
-                    loginButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 14));
+                    loginButton.setFont(new Font("나눔명조", Font.BOLD, 16));
                     loginButton.setIcon(null);
 
                     JButton resetButton = new JButton("비밀번호 찾기");
-                    resetButton.setBounds(262, 267, 137, 29);
+                    resetButton.setBounds(244, 267, 155, 29);
                     resetButton.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent ae) {
                                         FindPassword fp = new FindPassword();
@@ -119,7 +117,7 @@ public class LoginFrm extends JFrame {
                               }
                     });
                     resetButton.setIcon(null);
-                    resetButton.setFont(new Font("NanumMyeongjo", Font.BOLD, 14));
+                    resetButton.setFont(new Font("나눔명조", Font.BOLD, 16));
                     contentPane.setLayout(null);
                     contentPane.add(label);
                     contentPane.add(loginButton);
@@ -132,20 +130,20 @@ public class LoginFrm extends JFrame {
                     studentRadioButton = new JRadioButton(UserType.STUDENT.getName());
                     studentRadioButton.setOpaque(false);
                     studentRadioButton.setSelected(true);
-                    studentRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
-                    studentRadioButton.setBounds(144, 216, 57, 23);
+                    studentRadioButton.setFont(new Font("Dialog", Font.BOLD, 16));
+                    studentRadioButton.setBounds(131, 216, 70, 23);
                     contentPane.add(studentRadioButton);
                     
                     proRadioButton = new JRadioButton(UserType.TEACHER.getName());
                     proRadioButton.setOpaque(false);
-                    proRadioButton.setFont(new Font("Dialog", Font.BOLD, 13));
+                    proRadioButton.setFont(new Font("Dialog", Font.BOLD, 16));
                     proRadioButton.setBounds(222, 216, 83, 23);
                     contentPane.add(proRadioButton);
                     
                     adminButton = new JRadioButton(UserType.ADMIN.getName());
                     adminButton.setOpaque(false);
-                    adminButton.setFont(new Font("Dialog", Font.BOLD, 13));
-                    adminButton.setBounds(321, 216, 77, 23);
+                    adminButton.setFont(new Font("Dialog", Font.BOLD, 16));
+                    adminButton.setBounds(321, 216, 78, 23);
                     contentPane.add(adminButton);
                     bgroup=new ButtonGroup();
                     bgroup.add(studentRadioButton);
@@ -153,6 +151,7 @@ public class LoginFrm extends JFrame {
                     bgroup.add(adminButton);
                     
                     lblNewLabel = new JLabel("");
+                    lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
                     lblNewLabel.setIcon(new ImageIcon(LoginFrm.class.getResource("/images/login2.jpg")));
                     lblNewLabel.setBounds(0, 0, 548, 407);
                     contentPane.add(lblNewLabel);

@@ -93,7 +93,7 @@ public class EditPasswordFrm extends JFrame {
                               }
                               public void inputPassword(DocumentEvent e){
                                         String oldPwInput = null;
-                                        String oldPassword;
+                                        String oldPassword=null;
                                         try {
                                                   oldPwInput = e.getDocument().getText(e.getDocument().getStartPosition().getOffset(), e.getDocument().getLength());
                                                   if("관리자".equals(MainFrm.userType.getName())){

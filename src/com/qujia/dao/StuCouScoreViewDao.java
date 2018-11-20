@@ -35,6 +35,7 @@ public class StuCouScoreViewDao extends BaseDao {
                                         sc.setPno(e.getString("pno"));
                                         sc.setCouNo(e.getString("cou_no"));
                                         sc.setGrade(e.getString("grade"));
+                                        sc.setEva(e.getString("eva"));
                                         retList.add(sc);
                               }
                     } catch (SQLException e) {

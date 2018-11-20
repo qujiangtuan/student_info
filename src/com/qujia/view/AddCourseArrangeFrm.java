@@ -113,8 +113,7 @@ public class AddCourseArrangeFrm extends JFrame {
                     comboBox_term = new JComboBox();
                     comboBox_term.setBounds(386, 77, 102, 21);
                     comboBox_term.setModel(new DefaultComboBoxModel(
-                                        new String[] { "1학기", "2학기", "여름계절학기",
-                                                            "겨울계절학기" }));
+                                        new String[] { "1학기", "2학기" }));
 
                     DateUtil du = new DateUtil();
 

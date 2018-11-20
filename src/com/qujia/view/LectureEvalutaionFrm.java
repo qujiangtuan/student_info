@@ -45,6 +45,7 @@ public class LectureEvalutaionFrm extends JDialog {
           private static double avg=0;
           private JLabel label_zgx;
           private Student student,stuTemp;
+          private JTextArea textArea;
           
           public static double getAvg() {
                     return avg;
@@ -127,7 +128,7 @@ public class LectureEvalutaionFrm extends JDialog {
                     scrollPane.setViewportView(table);
                     
                     JLabel lblNewLabel_1 = new JLabel("\uB2F4\uB2F9\uAD50\uC218:");
-                    lblNewLabel_1.setBounds(227, 15, 66, 15);
+                    lblNewLabel_1.setBounds(291, 15, 66, 15);
                     
                     JLabel lblNewLabel_2 = new JLabel("\uAC1D\uAD00\uC2DD:");
                     lblNewLabel_2.setBounds(17, 44, 61, 15);
@@ -183,7 +184,7 @@ public class LectureEvalutaionFrm extends JDialog {
                     
                     label_subName = new JLabel("\uB370\uC774\uD130\uBCA0\uC774\uC2A4");
                     label_subName.setText(ScoreShowToStudentFrm.getSubName());
-                    label_subName.setBounds(90, 15, 92, 15);
+                    label_subName.setBounds(90, 15, 189, 15);
                     
                     label_proName = new JLabel("\uAE40\uBBF8\uC601");
                     label_proName.setText(ScoreShowToStudentFrm.getProName());
@@ -198,7 +199,7 @@ public class LectureEvalutaionFrm extends JDialog {
                               }
                     });
                     
-                    JTextArea textArea = new JTextArea();
+                    textArea = new JTextArea();
                     textArea.setLineWrap(true);
                     scrollPane_1.setViewportView(textArea);
                     contentPane.setLayout(null);
@@ -246,7 +247,9 @@ public class LectureEvalutaionFrm extends JDialog {
                                       avg1=(sum+=score[i])/rowCount;
                                       avg=getAvg(avg1);
                           }
+                            String eva = textArea.getText().toString();
                             PerCourse pc=new PerCourse();
+                            pc.setEva(eva);
                             pc.setSno(stuTemp.getsNo());
                             pc.setYear(DateUtil.getThisYear());
                             pc.setTerm(DateUtil.getTerm());

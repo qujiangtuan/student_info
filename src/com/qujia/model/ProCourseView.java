@@ -18,6 +18,8 @@ public class ProCourseView {
           
           //file inputStream
           private InputStream reader;
+          private String eva;//주관식 평가결과
+          
           
           
           
@@ -25,6 +27,12 @@ public class ProCourseView {
 
 
           
+          public String getEva() {
+                    return eva;
+          }
+          public void setEva(String eva) {
+                    this.eva = eva;
+          }
           public String getPno() {
                     return pno;
           }

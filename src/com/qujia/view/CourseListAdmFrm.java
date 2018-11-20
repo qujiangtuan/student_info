@@ -3,19 +3,26 @@ package com.qujia.view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SpinnerListModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -47,6 +54,9 @@ public class CourseListAdmFrm extends JFrame {
           private static int row;
           private JTextField textField_sName;
           private JTextField textField_souNo;
+          private JSpinner spinner_year;
+          private JComboBox comboBox_term;
+          private JCheckBox year_CheckBox;
           /**
            * Launch the application.
            */
@@ -113,19 +123,19 @@ public class CourseListAdmFrm extends JFrame {
                     
                     JLabel lblNewLabel_3 = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC2DC\uC791\uC77C\uC790:");
                     lblNewLabel_3.setVisible(false);
-                    lblNewLabel_3.setBounds(51, 15, 116, 25);
+                    lblNewLabel_3.setBounds(305, 15, 116, 25);
                     
                     DatePicker datePicker = new DatePicker();
                     datePicker.setVisible(false);
-                    datePicker.setBounds(179, 15, 160, 25);
+                    datePicker.setBounds(426, 15, 86, 25);
                     
                     JLabel label = new JLabel("\uC218\uAC15\uC2E0\uCCAD\uC885\uB8CC\uC77C\uC790:");
                     label.setVisible(false);
-                    label.setBounds(427, 15, 129, 25);
+                    label.setBounds(524, 15, 129, 25);
                     
                     DatePicker datePicker_1 = new DatePicker();
                     datePicker_1.setVisible(false);
-                    datePicker_1.setBounds(561, 15, 160, 21);
+                    datePicker_1.setBounds(659, 15, 62, 21);
                     
                     JLabel lblNewLabel_5 = new JLabel("\uD559\uC0DD\uD559\uBC88:");
                     lblNewLabel_5.setBounds(17, 360, 67, 15);
@@ -304,6 +314,39 @@ public class CourseListAdmFrm extends JFrame {
                     button.setBounds(752, 356, 86, 23);
                     contentPane.add(button);
                     
+                    JLabel label_1 = new JLabel("년도/학기:");
+                    label_1.setBounds(51, 20, 61, 15);
+                    contentPane.add(label_1);
+                    
+                    spinner_year = new JSpinner();
+                    spinner_year.setEnabled(false);
+                    spinner_year.setModel(new SpinnerListModel(new String[] {"2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"}));
+                    spinner_year.setBounds(124, 17, 67, 22);
+                    contentPane.add(spinner_year);
+                    
+                    comboBox_term = new JComboBox();
+                    comboBox_term.setEnabled(false);
+                    comboBox_term.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
+                    comboBox_term.setBounds(203, 17, 72, 21);
+                    contentPane.add(comboBox_term);
+                    
+                    year_CheckBox = new JCheckBox("");
+                    year_CheckBox.setSelected(false);
+                    year_CheckBox.addItemListener(new ItemListener() {
+                              public void itemStateChanged(ItemEvent e) {
+                                        boolean selected = year_CheckBox.isSelected();
+                                        if(selected){
+                                                  spinner_year.setEnabled(true);
+                                                  comboBox_term.setEnabled(true);
+                                        }else{
+                                                  spinner_year.setEnabled(false);
+                                                  comboBox_term.setEnabled(false);
+                                        }
+                              }
+                    });
+                    year_CheckBox.setBounds(22, 17, 21, 23);
+                    contentPane.add(year_CheckBox);
+                    
                     setTable(new PerCourse());
           }
           //정원이 되면 학과사무실 수강신청
@@ -366,6 +409,17 @@ public class CourseListAdmFrm extends JFrame {
 
           protected void searchCourseAction(ActionEvent e) {
                     PerCourse pc=new PerCourse();
+                    String year=null;
+                    int term=0;
+                    if(year_CheckBox.isSelected()){
+                              year = spinner_year.getValue().toString();
+                              term = Integer.parseInt(comboBox_term.getSelectedItem().toString());   
+                              pc.setYear(year);
+                              pc.setTerm(term);
+                    }else{
+                              pc.setYear(null);
+                              pc.setTerm(0);
+                    }
                     String stu = textField_stu.getText().toString();
                     if(!("".equals(stu))){
                           if(StringUtil.isNumeric(stu)){

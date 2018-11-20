@@ -1145,8 +1145,8 @@ public class CourseArrangeManagerFrm extends JFrame {
                     editProName=dft.getValueAt(row, 3).toString();
 //                    String editSchYear=dft.getValueAt(row, 4).toString();
                     String editTerm=dft.getValueAt(row, 4).toString();
-                    String editClassNo=dft.getValueAt(row, 5).toString();
-                    String editFeixdNum=dft.getValueAt(row, 6).toString();
+                    String editClassNo=dft.getValueAt(row, 6).toString();
+                    String editFeixdNum=dft.getValueAt(row, 7).toString();
                     String editStatus=dft.getValueAt(row, 0).toString();
                     
                     textField_editPro.setText(editProName);

@@ -11,6 +11,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -104,6 +105,8 @@ public class CourseProScoreForAdmin extends JFrame {
                               @Override
                               public void mouseClicked(MouseEvent arg0) {
                                         index=table.getSelectedRow();
+                                        couno = dft.getValueAt(index, 2).toString();
+                                        couName=dft.getValueAt(index, 3).toString();
                               }
                     });
                     table.setRowHeight(30);
@@ -138,6 +141,8 @@ public class CourseProScoreForAdmin extends JFrame {
                     btnNewButton_3.addActionListener(new ActionListener() {
                               public void actionPerformed(ActionEvent e) {
                                         dispose();
+                                        couName=null;
+                                        couno=null;
                               }
                     });
                     btnNewButton_3.setBounds(623, 236, 97, 23);
@@ -171,6 +176,20 @@ public class CourseProScoreForAdmin extends JFrame {
                     btnNewButton.setBounds(480, 11, 97, 23);
                     contentPane.add(btnNewButton);
                     
+                    JButton btnNewButton_1 = new JButton("평가결과");
+                    btnNewButton_1.addActionListener(new ActionListener() {
+                              public void actionPerformed(ActionEvent e) {
+                                        if(index==-1){
+                                                  JOptionPane.showMessageDialog(null, "강의를 선택해주세요!");
+                                                  return;
+                                        }
+                                        EvaResultShowForProFrm eva=new EvaResultShowForProFrm();
+                                        eva.setVisible(true);
+                              }
+                    });
+                    btnNewButton_1.setBounds(36, 236, 97, 23);
+                    contentPane.add(btnNewButton_1);
+                    
                     dft = (DefaultTableModel) table.getModel();
                     
 //                    cv=new ProCourseView();
@@ -194,6 +213,7 @@ public class CourseProScoreForAdmin extends JFrame {
 //                              v.add(cv.getLecEvaMark());
                               v.add(this.getProScore(cv.getCouNo()));
 //                              v.add(cv.getName());
+//                              v.add(cv.getEva());
                               dft_per.addRow(v);
                     }
                     cvDao.closeDao();

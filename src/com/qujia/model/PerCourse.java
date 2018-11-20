@@ -20,11 +20,21 @@ public class PerCourse {
           private String isEva;//강의 평가 완료여부
           private double score;//성적
           
+          private String eva;//주관식평가
+          
+          
+          
           
           
           
           
          
+          public String getEva() {
+                    return eva;
+          }
+          public void setEva(String eva) {
+                    this.eva = eva;
+          }
           public double getScore() {
                     return score;
           }

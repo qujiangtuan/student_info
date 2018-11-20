@@ -200,6 +200,16 @@ public class AddOrgFrm extends JFrame {
                     comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"", "\uD559\uBD80", "\uD559\uACFC", "\uC804\uACF5"}));
                     
                     comboBox_1 = new JComboBox();
+                    comboBox_1.addItemListener(new ItemListener() {
+                              public void itemStateChanged(ItemEvent e) {
+                                        String cogo = e.getItem().toString();
+                                        if("대학원".equals(cogo)){
+                                                  comboBox_2.setEnabled(false);
+                                        }else{
+                                                  comboBox_2.setEnabled(true);
+                                        }
+                              }
+                    });
                     comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "\uB300\uD559", "\uB300\uD559\uC6D0"}));
                     
                     JLabel label_2 = new JLabel("대상구분:");
@@ -335,11 +345,17 @@ public class AddOrgFrm extends JFrame {
                               JOptionPane.showMessageDialog(this, "조직 등록 실패했습니다!");
                     }
                     orgDao.closeDao();
-                    resetValue();
-                    dispose();
                     
-                    AddDeptStandFrm adsf=new AddDeptStandFrm();
-                    adsf.setVisible(true);
+                    dispose();
+                    System.out.println(orgType);
+                    if("교육기관".equals(orgType)&&(!StringUtil.isEmpty(gsDepMajCode))){
+                              resetValue();
+                              AddDeptStandFrm adsf=new AddDeptStandFrm();
+                              adsf.setVisible(true);    
+                    }else{
+                              resetValue();
+                              return;
+                    }
           }
           // get orgCode 조직코드 생성
           private String MakeOrgCode(JRadioButton jr1,JRadioButton jr2,JComboBox jc1,JComboBox jc2) {

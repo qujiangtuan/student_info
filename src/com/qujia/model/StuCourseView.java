@@ -28,6 +28,7 @@ public class StuCourseView {
           
           //file inputStream
           private InputStream reader;
+         
           
           
           
