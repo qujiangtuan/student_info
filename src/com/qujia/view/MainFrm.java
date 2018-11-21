@@ -798,7 +798,9 @@ public class MainFrm extends JFrame {
                                         exitSystemMenuItem_adm.setFont(new Font("Dialog", Font.BOLD, 13));
                                         exitSystemMenuItem_adm.addActionListener(new ActionListener() {
                                                   public void actionPerformed(ActionEvent ae) {
-                                                            if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
+                                                            int showConfirmDialog = JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？", " WarningDialog!", 
+                                                                                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                                                            if(showConfirmDialog==JOptionPane.YES_OPTION){
                                                                       System.exit(0);
                                                             }
                                                   }
@@ -1155,7 +1157,9 @@ public class MainFrm extends JFrame {
                                         menuItem_sysOut_stu = new JMenuItem("시스템종료");
                                         menuItem_sysOut_stu.addActionListener(new ActionListener() {
                                                   public void actionPerformed(ActionEvent e) {
-                                                            if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
+                                                            int showConfirmDialog = JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？", " WarningDialog!", 
+                                                                                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                                                            if(showConfirmDialog==JOptionPane.YES_OPTION){
                                                                       System.exit(0);
                                                             }
                                                   }
@@ -1248,7 +1252,9 @@ public class MainFrm extends JFrame {
                                         JMenuItem menuItem_sysOut_pro = new JMenuItem("시스템종료");
                                         menuItem_sysOut_pro.addActionListener(new ActionListener() {
                                                   public void actionPerformed(ActionEvent e) {
-                                                            if(JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？")==JOptionPane.OK_OPTION){
+                                                            int showConfirmDialog = JOptionPane.showConfirmDialog(MainFrm.this, "종료 하시겠습니까？", " WarningDialog!", 
+                                                                                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                                                            if(showConfirmDialog==JOptionPane.YES_OPTION){
                                                                       System.exit(0);
                                                             }
                                                   }
