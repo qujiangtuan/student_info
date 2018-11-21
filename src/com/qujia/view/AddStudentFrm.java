@@ -111,7 +111,7 @@ public class AddStudentFrm extends JFrame {
                     vu.showCenter(this);
 
                     JLabel studentNameLabel = new JLabel("학생이름:");
-                    studentNameLabel.setBounds(71, 36, 60, 19);
+                    studentNameLabel.setBounds(64, 36, 67, 19);
                     studentNameLabel.setIcon(null);
                     studentNameLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
@@ -120,7 +120,7 @@ public class AddStudentFrm extends JFrame {
                     studentNameTextField.setColumns(10);
 
                     JLabel studentClassLabel = new JLabel("소속조직:");
-                    studentClassLabel.setBounds(71, 76, 60, 19);
+                    studentClassLabel.setBounds(64, 76, 67, 19);
                     studentClassLabel.setIcon(null);
                     studentClassLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
@@ -173,7 +173,7 @@ public class AddStudentFrm extends JFrame {
                     cancelButton.setFont(new Font("Dialog", Font.BOLD, 13));
 
                     JLabel identityLabel = new JLabel("주민등록번호:");
-                    identityLabel.setBounds(44, 157, 88, 19);
+                    identityLabel.setBounds(34, 157, 98, 19);
                     identityLabel.setIcon(null);
                     identityLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
@@ -244,7 +244,7 @@ public class AddStudentFrm extends JFrame {
                     identityTextField_2.setColumns(10);
 
                     emailLabel = new JLabel("이메일:");
-                    emailLabel.setBounds(85, 238, 46, 19);
+                    emailLabel.setBounds(64, 238, 67, 19);
                     emailLabel.setIcon(null);
                     emailLabel.setFont(new Font("Dialog", Font.BOLD, 13));
 
@@ -254,7 +254,7 @@ public class AddStudentFrm extends JFrame {
                     //注释下列一行才能打开 界面编辑
                     //datePicker = getDatePicker();
                     lblNewLabel = new JLabel("연락처:");
-                    lblNewLabel.setBounds(86, 278, 46, 16);
+                    lblNewLabel.setBounds(64, 278, 68, 16);
                     lblNewLabel.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
                     textField_tel2 = new JTextField();
@@ -290,7 +290,7 @@ public class AddStudentFrm extends JFrame {
                     textField_tel2.setColumns(10);
 
                     JLabel lblNewLabel_1 = new JLabel("주소:");
-                    lblNewLabel_1.setBounds(100, 318, 32, 16);
+                    lblNewLabel_1.setBounds(76, 318, 56, 16);
                     lblNewLabel_1.setFont(new Font("휴먼명조", Font.BOLD, 13));
 
                     textField_address1 = new JTextField();
@@ -315,7 +315,7 @@ public class AddStudentFrm extends JFrame {
                     });
                     
                     lblNewLabel_2 = new JLabel("학위과정:");
-                    lblNewLabel_2.setBounds(71, 197, 60, 19);
+                    lblNewLabel_2.setBounds(50, 197, 81, 19);
                     lblNewLabel_2.setFont(new Font("Dialog", Font.BOLD, 13));
                     
                     comboBox_degree = new JComboBox();
