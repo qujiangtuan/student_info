@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="FatJar StudentInfo_oracle_fat1120.jar (experimental)" default="main" basedir=".">
+    <!-- this file was created by Fat-Jar Eclipse Plug-in -->
+    <!-- the ANT-Export is in a very early stage, so this -->
+    <!-- is only experimental, ANT 1.6 or above is        -->
+    <!-- required, feedback is always welcome:            -->
+    <!--       http://sourceforge.net/projects/fjep       -->
+    <!-- uncomment the following lines if using ANT outside Eclipse -->
+    <!--
+        <property name="fjepPath" value="reference:file:plugins/net.sf.fjep.fatjar_0.0.31/fatjar.jar"/>
+        <taskdef name="fatjar.build" classname="net.sf.fjep.anttask.FJBuildTask" classpath="${fjepPath}"/>
+        <typedef name="fatjar.manifest" classname="net.sf.fjep.anttask.FJManifestType" classpath="${fjepPath}"/>
+        <typedef name="fatjar.exclude" classname="net.sf.fjep.anttask.FJExcludeType" classpath="${fjepPath}"/>
+        <typedef name="fatjar.jarsource" classname="net.sf.fjep.anttask.FJJarSourceType" classpath="${fjepPath}"/>
+        <typedef name="fatjar.filesource" classname="net.sf.fjep.anttask.FJFileSourceType" classpath="${fjepPath}"/>
+    -->
+    <!-- uncomment the above lines to use ANT outside of Eclipse -->
+    <target name="main">
+        <fatjar.build onejar="true" output="StudentInfo_oracle_fat1120.jar">
+            <fatjar.manifest manifestfile="src\com\qujia\view\LoginFrm.java"/>
+            <fatjar.filesource path="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\bin" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\c3p0-0.9.1-pre6.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\com.springsource.org.aopalliance-1.0.0.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\commons-logging-1.2.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\mysql-connector-java-5.1.45-bin.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-aop-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-aspects-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-beans-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-context-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-core-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-expression-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-jdbc-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-orm-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-tx-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-web-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\spring-webmvc-4.0.0.RELEASE.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\datepicker.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\ojdbc14.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\ojdbc6.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\miglayout15-swing.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\jgoodies-forms-1.8.0.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\jfxrt.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\luna_eclipse-workspace\StudentInfo_oracle\lib\javax.mail.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\eclipse-jee-luna-SR2-win32-x86_64\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar" relpath=""/>
+            <fatjar.jarsource file="H:\Program Files\eclipse\eclipse-jee-luna-SR2-win32-x86_64\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar" relpath=""/>
+        </fatjar.build>
+    </target>
+</project>

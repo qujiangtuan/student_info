@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Thu Nov 22 18:42:37 KST 2018
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=H\:\\FILE\\Pickuptour1.jar
+manifest.mergeall=true
+manifest.mainclass=view.Login
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

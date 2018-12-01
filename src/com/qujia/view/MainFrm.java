@@ -144,7 +144,7 @@ public class MainFrm extends JFrame {
                     panel.add(Label_adm);
                     
                     panel_card = new JPanel();
-                    panel_card.setBounds(269, 35, 547, 571);
+                    panel_card.setBounds(269, 35, 547, 588);
                     desktopPane_sys.add(panel_card);
                     card_notice=new CardLayout(0, 0);
                     panel_card.setLayout(card_notice);
@@ -343,7 +343,7 @@ public class MainFrm extends JFrame {
                               }
                     });
                     loginButtonAdd.setFont(new Font("나눔명조", Font.BOLD, 18));
-                    loginButtonAdd.setBounds(185, 549, 97, 23);
+                    loginButtonAdd.setBounds(155, 538, 97, 23);
                     panel_login.add(loginButtonAdd);
                     
                     JButton cancelButtonAdd = new JButton("취 소");
@@ -355,7 +355,7 @@ public class MainFrm extends JFrame {
                               }
                     });
                     cancelButtonAdd.setFont(new Font("나눔명조", Font.BOLD, 18));
-                    cancelButtonAdd.setBounds(301, 549, 97, 23);
+                    cancelButtonAdd.setBounds(298, 538, 97, 23);
                     panel_login.add(cancelButtonAdd);
                     
                     JLabel label_15 = new JLabel("공지대상:");
@@ -459,7 +459,7 @@ public class MainFrm extends JFrame {
                               }
                     });
                     updateButton.setFont(new Font("나눔명조", Font.BOLD, 18));
-                    updateButton.setBounds(192, 547, 97, 23);
+                    updateButton.setBounds(160, 536, 97, 23);
                     panel_update.add(updateButton);
                     
                     JButton cancelUpdateButton = new JButton("취 소");
@@ -471,7 +471,7 @@ public class MainFrm extends JFrame {
                               }
                     });
                     cancelUpdateButton.setFont(new Font("나눔명조", Font.BOLD, 18));
-                    cancelUpdateButton.setBounds(303, 547, 97, 23);
+                    cancelUpdateButton.setBounds(289, 536, 97, 23);
                     panel_update.add(cancelUpdateButton);
                     
                     JLabel label_16 = new JLabel("공지대상:");
